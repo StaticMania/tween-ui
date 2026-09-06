@@ -1,0 +1,231 @@
+'use client';
+
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { Check, ChevronDown, Code2, Copy, Eye, RotateCw } from 'lucide-react';
+import { siteConfig } from '@/config/site';
+import { getEntry } from '@/lib/registry';
+import { getDemo } from '@/registry/__index__';
+import { cn, copyText } from '@/lib/utils';
+import { usage } from '@/registry/__sources__.generated';
+import { Html5Mark, ReactMark } from './brand-icons';
+import { OpenIn } from './open-in';
+
+type Framework = 'react' | 'html';
+type Tab = 'preview' | 'code';
+
+const FRAMEWORKS = [
+  { id: 'react' as const, label: 'React', Icon: ReactMark },
+  { id: 'html' as const, label: 'HTML', Icon: Html5Mark },
+];
+
+export function ComponentPreview({ name }: { name: string }) {
+  const entry = getEntry(name);
+  const [variant, setVariant] = useState(entry?.variants[0]?.id ?? '');
+  const [framework, setFramework] = useState<Framework>('react');
+  const [tab, setTab] = useState<Tab>('preview');
+  const [replay, setReplay] = useState(0);
+  const [copied, setCopied] = useState(false);
+  const [ddOpen, setDdOpen] = useState(false);
+  const ddRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ddOpen) return;
+    const onClick = (e: MouseEvent) => {
+      if (ddRef.current && !ddRef.current.contains(e.target as Node)) setDdOpen(false);
+    };
+    document.addEventListener('mousedown', onClick);
+    return () => document.removeEventListener('mousedown', onClick);
+  }, [ddOpen]);
+
+  const Demo = getDemo(name, variant);
+
+  if (!entry) {
+    return (
+      <div className="border-border text-muted-foreground my-5 rounded-lg border border-dashed p-4 text-sm">
+        Unknown component: <code>{name}</code>. Run <code>pnpm registry:build</code>.
+      </div>
+    );
+  }
+
+  const use = usage[name]?.[framework];
+  const activeFw = FRAMEWORKS.find((f) => f.id === framework) ?? FRAMEWORKS[0];
+
+  const copy = async () => {
+    if (!use) return;
+    await copyText(use.code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1600);
+  };
+
+  return (
+    <div className="border-border my-6 overflow-hidden rounded-xl border">
+      {/* toolbar: variants + open-in */}
+      <div className="border-border flex flex-wrap items-center gap-2 border-b px-3 py-2">
+        {entry.variants.length > 1 && (
+          <div className="flex flex-wrap items-center gap-1">
+            {entry.variants.map((v) => (
+              <button
+                key={v.id}
+                type="button"
+                onClick={() => setVariant(v.id)}
+                className={cn(
+                  'rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
+                  variant === v.id
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-highlighted hover:bg-muted'
+                )}
+              >
+                {v.label}
+              </button>
+            ))}
+          </div>
+        )}
+        <div className="ml-auto">
+          <OpenIn
+            name={name}
+            title={entry.title}
+            githubHref={`${siteConfig.repo}/tree/main/${siteConfig.registryPath}/${entry.group}`}
+          />
+        </div>
+      </div>
+
+      {/* tabs */}
+      <div className="border-border flex items-center gap-1 border-b px-3">
+        <TabButton
+          active={tab === 'preview'}
+          onClick={() => setTab('preview')}
+          icon={<Eye className="size-4" />}
+        >
+          Preview
+        </TabButton>
+        <TabButton
+          active={tab === 'code'}
+          onClick={() => setTab('code')}
+          icon={<Code2 className="size-4" />}
+        >
+          Code
+        </TabButton>
+      </div>
+
+      {tab === 'preview' ? (
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setReplay((n) => n + 1)}
+            title="Replay"
+            className="text-muted-foreground hover:text-highlighted border-border bg-background/70 absolute top-2 right-2 z-10 inline-flex size-8 items-center justify-center rounded-md border backdrop-blur transition-colors"
+          >
+            <RotateCw className="size-4" />
+          </button>
+          <div className="h-[320px] overflow-hidden bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] [background-size:16px_16px]">
+            {Demo ? (
+              <div key={replay} className="grid h-full w-full place-items-center p-10">
+                <Demo />
+              </div>
+            ) : (
+              <div className="grid h-full w-full place-items-center">
+                <span className="text-muted-foreground text-sm">No preview.</span>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="p-3">
+          <div className="overflow-hidden rounded-lg bg-[#0d1117]">
+            {/* framework dropdown + copy */}
+            <div className="flex items-center justify-end gap-1 border-b border-white/10 px-2 py-1.5">
+              <div ref={ddRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setDdOpen((v) => !v)}
+                  aria-haspopup="menu"
+                  aria-expanded={ddOpen}
+                  className="flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium text-white/80 transition-colors hover:bg-white/10"
+                >
+                  <activeFw.Icon className="size-4" />
+                  {activeFw.label}
+                  <ChevronDown
+                    className={cn('size-3.5 transition-transform', ddOpen && 'rotate-180')}
+                  />
+                </button>
+                {ddOpen && (
+                  <div
+                    role="menu"
+                    className="absolute right-0 z-20 mt-1 w-32 overflow-hidden rounded-md border border-white/10 bg-[#0d1117] p-1 shadow-lg"
+                  >
+                    {FRAMEWORKS.map((f) => (
+                      <button
+                        key={f.id}
+                        type="button"
+                        role="menuitem"
+                        onClick={() => {
+                          setFramework(f.id);
+                          setDdOpen(false);
+                        }}
+                        className={cn(
+                          'flex w-full items-center gap-2 rounded px-2 py-1.5 text-xs transition-colors',
+                          framework === f.id
+                            ? 'bg-white/10 text-white'
+                            : 'text-white/60 hover:bg-white/10 hover:text-white'
+                        )}
+                      >
+                        <f.Icon className="size-4" />
+                        {f.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={copy}
+                title="Copy code"
+                className="inline-flex size-7 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+              >
+                {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
+              </button>
+            </div>
+            {use ? (
+              <div
+                className="tween-code overflow-auto p-4 text-[13px] leading-relaxed [&_pre]:!bg-transparent"
+                dangerouslySetInnerHTML={{ __html: use.codeHtml }}
+              />
+            ) : (
+              <div className="text-muted-foreground p-4 text-sm">No usage snippet.</div>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function TabButton({
+  active,
+  onClick,
+  icon,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  icon: ReactNode;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        '-mb-px flex items-center gap-1.5 border-b-2 px-2.5 py-2 text-sm transition-colors',
+        active
+          ? 'border-primary text-primary'
+          : 'text-muted-foreground hover:text-highlighted border-transparent'
+      )}
+    >
+      {icon}
+      {children}
+    </button>
+  );
+}
+
+export default ComponentPreview;

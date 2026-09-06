@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+    :root { --ink:#111113; --accent:#6366f1; --muted:#6b7280; --line:#e6e6e9; --paper:#fafafa; --ease:cubic-bezier(.32,.72,0,1); }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:'Outfit', system-ui, sans-serif; color:var(--ink); }
+    a { color: var(--accent); } a:hover { color:#4f46e5; }
+    .kicker { font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
+
+    /* button base (shared) */
+    .asb { position:relative; display:inline-flex; height:48px; align-items:center; background:var(--ink);
+      color:#fff; border-radius:16px; padding:4px; overflow:hidden; border:none; font-family:inherit;
+      box-shadow:0 1px 1px rgba(16,24,40,.16); }
+    .asb__chip { position:absolute; top:4px; bottom:4px; left:4px; width:52px; background:var(--accent);
+      border-radius:12px; overflow:hidden; }
+    .asb__single { position:absolute; inset:0; display:grid; place-items:center; }
+    .asb__trail { position:absolute; inset:0; display:flex; align-items:center; justify-content:space-around; padding:0 12px; }
+    .asb__label { position:relative; z-index:2; margin-left:60px; margin-right:12px; font-size:16px;
+      font-weight:400; white-space:nowrap; }
+
+    /* live hover instance */
+    .asb--live { cursor:pointer; transition:scale .28s var(--ease); }
+    .asb--live:active { scale:.97; }
+    .asb--live .asb__chip { transition:width .5s var(--ease), left .5s var(--ease); }
+    .asb--live .asb__single { transition:opacity .26s var(--ease); }
+    .asb--live .asb__trail span { transform:translateX(-6px); opacity:0;
+      transition:opacity .26s var(--ease), transform .26s var(--ease); }
+    .asb--live .asb__label { transition:opacity .5s var(--ease), scale .5s var(--ease); }
+    .asb--live:hover .asb__chip { width:calc(100% - 8px); }
+    .asb--live:hover .asb__single { opacity:0; }
+    .asb--live:hover .asb__trail span { transform:translateX(0); opacity:1; }
+    .asb--live:hover .asb__trail span:nth-child(1){ transition-delay:.04s; }
+    .asb--live:hover .asb__trail span:nth-child(2){ transition-delay:.065s; }
+    .asb--live:hover .asb__trail span:nth-child(3){ transition-delay:.09s; }
+    .asb--live:hover .asb__trail span:nth-child(4){ transition-delay:.115s; }
+    .asb--live:hover .asb__trail span:nth-child(5){ transition-delay:.14s; }
+    .asb--live:hover .asb__label { opacity:0; scale:.9; }
+  </style>
+</helmet>
+
+<div style="width:1040px; min-height:900px; background:var(--paper);
+  background-image:radial-gradient(#e3e3e7 1px, transparent 1px); background-size:18px 18px; padding:48px 56px;">
+
+  <!-- header -->
+  <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:24px;">
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <div class="kicker">Tween UI · Button</div>
+      <div style="font-size:30px; font-weight:600; letter-spacing:-.01em;">Animated Sliding Button</div>
+      <div style="font-size:14px; color:var(--muted); max-width:520px; line-height:1.5;">
+        A pill button whose icon slides open into a staggered chevron trail on hover and focus.
+        CSS-driven, keyboard accessible, reduced-motion aware.
+      </div>
+    </div>
+    <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 12px; border:1px solid var(--line);
+      border-radius:999px; background:#fff; font-size:12px; font-weight:500; color:var(--muted); white-space:nowrap;">
+      <span style="width:8px; height:8px; border-radius:999px; background:var(--accent);"></span> Component
+    </div>
+  </div>
+
+  <!-- live hero -->
+  <div style="margin-top:32px; display:flex; flex-direction:column; gap:12px;">
+    <div class="kicker">Preview · hover me</div>
+    <div style="display:grid; place-items:center; height:200px; border:1px solid var(--line); border-radius:20px;
+      background:#fff; background-image:radial-gradient(#ededf0 1.1px, transparent 1.1px); background-size:16px 16px;">
+      <button class="asb asb--live" type="button">
+        <span class="asb__chip">
+          <span class="asb__single">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg>
+          </span>
+          <span class="asb__trail">
+            <span><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+            <span style="opacity:.8"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+            <span style="opacity:.6"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+            <span style="opacity:.4"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+            <span style="opacity:.2"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+          </span>
+        </span>
+        <span class="asb__label">Get started</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- states -->
+  <div style="margin-top:32px; display:flex; flex-direction:column; gap:12px;">
+    <div class="kicker">States</div>
+    <div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:16px;">
+
+      <!-- idle -->
+      <div style="display:flex; flex-direction:column; gap:12px; padding:20px; border:1px solid var(--line);
+        border-radius:16px; background:#fff;">
+        <div style="display:grid; place-items:center; height:76px;">
+          <div class="asb" style="width:200px;">
+            <span class="asb__chip">
+              <span class="asb__single"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+            </span>
+            <span class="asb__label">Get started</span>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <div style="font-size:13px; font-weight:600;">Idle</div>
+          <div style="font-size:12px; color:var(--muted);">Chip parked left, icon centered.</div>
+        </div>
+      </div>
+
+      <!-- expand -->
+      <div style="display:flex; flex-direction:column; gap:12px; padding:20px; border:1px solid var(--line);
+        border-radius:16px; background:#fff;">
+        <div style="display:grid; place-items:center; height:76px;">
+          <div class="asb" style="width:200px;">
+            <span class="asb__chip" style="width:calc(100% - 8px);">
+              <span class="asb__trail">
+                <span><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+                <span style="opacity:.8"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+                <span style="opacity:.6"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+                <span style="opacity:.4"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+                <span style="opacity:.2"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+              </span>
+            </span>
+            <span class="asb__label" style="opacity:.12;">Get started</span>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <div style="font-size:13px; font-weight:600;">Hover · expand</div>
+          <div style="font-size:12px; color:var(--muted);">Chip fills, staggered trail plays.</div>
+        </div>
+      </div>
+
+      <!-- park -->
+      <div style="display:flex; flex-direction:column; gap:12px; padding:20px; border:1px solid var(--line);
+        border-radius:16px; background:#fff;">
+        <div style="display:grid; place-items:center; height:76px;">
+          <div class="asb" style="width:200px;">
+            <span class="asb__chip" style="left:calc(100% - 56px);">
+              <span class="asb__single"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M8 5H10V7H8V5Z"/><path d="M11 8H13V10H11V8Z"/><path d="M14 11H16V13H14V11Z"/><path d="M11 14H13V16H11V14Z"/><path d="M8 17H10V19H8V17Z"/></svg></span>
+            </span>
+            <span class="asb__label" style="margin-left:12px; margin-right:60px;">Get started</span>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <div style="font-size:13px; font-weight:600;">Park</div>
+          <div style="font-size:12px; color:var(--muted);">Chip settles right on leave.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- spec -->
+  <div style="margin-top:32px; display:flex; flex-direction:column; gap:12px;">
+    <div class="kicker">Tokens</div>
+    <div style="display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px;">
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff;">
+        <span style="width:22px; height:22px; border-radius:6px; background:#111113;"></span>
+        <div style="display:flex; flex-direction:column;"><span style="font-size:12px; color:var(--muted);">Base</span><span style="font-size:13px; font-weight:600;">#111113</span></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff;">
+        <span style="width:22px; height:22px; border-radius:6px; background:#6366f1;"></span>
+        <div style="display:flex; flex-direction:column;"><span style="font-size:12px; color:var(--muted);">Accent</span><span style="font-size:13px; font-weight:600;">#6366F1</span></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff;">
+        <span style="width:22px; height:22px; border-radius:6px; background:#fff; border:1px solid var(--line);"></span>
+        <div style="display:flex; flex-direction:column;"><span style="font-size:12px; color:var(--muted);">Label</span><span style="font-size:13px; font-weight:600;">#FFFFFF</span></div>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff;">
+        <span style="width:22px; height:22px; border-radius:6px; background:#f3f4f6; display:grid; place-items:center; font-size:11px; font-weight:700; color:var(--muted);">Aa</span>
+        <div style="display:flex; flex-direction:column;"><span style="font-size:12px; color:var(--muted);">Font</span><span style="font-size:13px; font-weight:600;">Outfit</span></div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:2px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff;">
+        <span style="font-size:12px; color:var(--muted);">Height</span><span style="font-size:13px; font-weight:600;">48px</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:2px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff;">
+        <span style="font-size:12px; color:var(--muted);">Radius</span><span style="font-size:13px; font-weight:600;">16 / 12px</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:2px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff;">
+        <span style="font-size:12px; color:var(--muted);">Chip</span><span style="font-size:13px; font-weight:600;">52px</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:2px; padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:#fff;">
+        <span style="font-size:12px; color:var(--muted);">Easing</span><span style="font-size:13px; font-weight:600;">expand-in</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

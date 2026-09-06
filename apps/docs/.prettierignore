@@ -1,0 +1,5 @@
+.next
+node_modules
+public/r
+registry/__sources__.generated.ts
+pnpm-lock.yaml

@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import 'tailwindcss';
+@import 'docora/styles.css';
+
+/* Outfit as the site-wide typeface (overrides Docora's default sans).
+   Components carry their own colors/easing inline — no @theme tokens needed. */
+:root {
+  --docs-font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+}
+body {
+  font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "tween-ui",
+  "homepage": "https://tweenui.dev",
+  "items": [
+    {
+      "name": "animated-sliding-button",
+      "type": "component",
+      "title": "Animated Sliding Button",
+      "description": "A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware."
+    }
+  ]
+}
