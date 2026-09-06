@@ -12,6 +12,8 @@ export const demos: Record<string, ComponentType> = {
     () => import('./demos/button/animated-sliding-button')
   ),
   'sliding-tab-on-hover:default': dynamic(() => import('./demos/navigation/sliding-tab-on-hover')),
+  'avatar-reveal:default': dynamic(() => import('./demos/avatar/avatar-reveal')),
+  'auth-modal:default': dynamic(() => import('./demos/modal/auth-modal')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

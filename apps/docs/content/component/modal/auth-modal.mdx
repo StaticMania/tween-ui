@@ -1,0 +1,87 @@
+---
+title: Auth Modal
+description: A sign-in dialog that fades the backdrop, then scales the panel in with staggered content.
+icon: log-in
+---
+
+A sign-in modal: the **backdrop fades**, the **panel scales up**, then the close
+button, title, providers, and email field **stagger in**. Close with the X,
+the backdrop, or Escape — the exit plays in reverse. Driven by GSAP, and it
+fully respects `prefers-reduced-motion`.
+
+::component-preview{name="auth-modal"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/auth-modal"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="auth-modal"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import { useState } from 'react';
+import AuthModal from '@/components/tweenui/modal/auth-modal';
+
+export default function Page() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)}>
+        Sign in
+      </button>
+      <AuthModal open={open} onClose={() => setOpen(false)} />
+    </>
+  );
+}
+```
+
+:::
+:::tabs-item{label="HTML" icon="i-lucide-code-xml"}
+
+```html [index.html]
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+<div data-auth-modal-root>
+  <button type="button" data-auth-modal-open>Sign in</button>
+  <!-- overlay + panel markup -->
+</div>
+
+<script src="/tweenui/modal/auth-modal.js"></script>
+```
+
+:::
+::
+
+## Props
+
+| Prop         | Type                     | Default | Description                                      |
+| ------------ | ------------------------ | ------- | ------------------------------------------------ |
+| `open`       | `boolean`                | —       | Whether the dialog is shown.                     |
+| `onClose`    | `() => void`             | —       | Called after the exit animation finishes.        |
+| `onProvider` | `(id: string) => void`   | —       | Fires when a provider button is clicked.         |
+| `onEmail`    | `(email: string) => void`| —       | Fires with the email on form submit.             |
+
+## Accessibility
+
+::note
+The dialog uses `role="dialog"` and `aria-modal`. Escape, the close button, and
+the backdrop all dismiss it. Under `prefers-reduced-motion: reduce` the panel
+appears and disappears with no scale or stagger.
+::

@@ -13,6 +13,18 @@
       "type": "component",
       "title": "Sliding Tab On Hover",
       "description": "A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware."
+    },
+    {
+      "name": "avatar-reveal",
+      "type": "component",
+      "title": "Avatar Reveal",
+      "description": "Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "auth-modal",
+      "type": "component",
+      "title": "Auth Modal",
+      "description": "A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware."
     }
   ]
 }

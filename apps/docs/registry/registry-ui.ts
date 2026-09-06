@@ -2,6 +2,8 @@ import type { RegistryEntry } from './schema';
 
 const BUTTON_DIR = 'registry/tweenui/button';
 const NAV_DIR = 'registry/tweenui/navigation';
+const AVATAR_DIR = 'registry/tweenui/avatar';
+const MODAL_DIR = 'registry/tweenui/modal';
 
 /**
  * UI components. One entry per component; the build script does the rest.
@@ -131,6 +133,130 @@ export default function Example() {
 </nav>
 
 <script src="/tweenui/navigation/sliding-tab-on-hover.js"></script>`,
+    },
+  },
+  {
+    name: 'avatar-reveal',
+    type: 'component',
+    group: 'avatar',
+    title: 'Avatar Reveal',
+    description:
+      'Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${AVATAR_DIR}/avatar-reveal.tsx`,
+        target: 'components/tweenui/avatar/avatar-reveal.tsx',
+        kind: 'react',
+      },
+      {
+        path: `${AVATAR_DIR}/html/avatar-reveal.html`,
+        target: 'tweenui/avatar/avatar-reveal.html',
+        kind: 'html',
+      },
+      {
+        path: `${AVATAR_DIR}/html/avatar-reveal.js`,
+        target: 'tweenui/avatar/avatar-reveal.js',
+        kind: 'script',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${AVATAR_DIR}/avatar-reveal.tsx`,
+        htmlSource: `${AVATAR_DIR}/html/avatar-reveal.html`,
+      },
+    ],
+    usage: {
+      react: `import AvatarReveal from '@/components/tweenui/avatar/avatar-reveal';
+
+export default function Example() {
+  return <AvatarReveal>2,000+ teams shipping faster this week.</AvatarReveal>;
+}`,
+      html: `<!-- GSAP is required -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+<div data-avatar-reveal class="mx-auto flex max-w-[254px] items-center gap-x-3">
+  <div class="flex -space-x-3.5">
+    <figure data-ns-avatar class="size-11 overflow-hidden rounded-full outline-2 outline-white">
+      <img src="..." alt="Team member 1" class="size-full rounded-full object-cover" />
+    </figure>
+  </div>
+  <p data-ns-animate class="max-w-[142px] text-sm text-[#045f64]/80">
+    2,000+ teams shipping faster this week.
+  </p>
+</div>
+
+<script src="/tweenui/avatar/avatar-reveal.js"></script>`,
+    },
+  },
+  {
+    name: 'auth-modal',
+    type: 'component',
+    group: 'modal',
+    title: 'Auth Modal',
+    description:
+      'A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${MODAL_DIR}/auth-modal.tsx`,
+        target: 'components/tweenui/modal/auth-modal.tsx',
+        kind: 'react',
+      },
+      {
+        path: `${MODAL_DIR}/html/auth-modal.html`,
+        target: 'tweenui/modal/auth-modal.html',
+        kind: 'html',
+      },
+      {
+        path: `${MODAL_DIR}/html/auth-modal.js`,
+        target: 'tweenui/modal/auth-modal.js',
+        kind: 'script',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${MODAL_DIR}/auth-modal.tsx`,
+        htmlSource: `${MODAL_DIR}/html/auth-modal.html`,
+      },
+    ],
+    usage: {
+      react: `import { useState } from 'react';
+import AuthModal from '@/components/tweenui/modal/auth-modal';
+
+export default function Example() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)}>
+        Sign in
+      </button>
+      <AuthModal open={open} onClose={() => setOpen(false)} />
+    </>
+  );
+}`,
+      html: `<!-- GSAP is required -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+<div data-auth-modal-root>
+  <button type="button" data-auth-modal-open>Sign in</button>
+  <!-- overlay + panel markup -->
+</div>
+
+<script src="/tweenui/modal/auth-modal.js"></script>`,
     },
   },
 ];
