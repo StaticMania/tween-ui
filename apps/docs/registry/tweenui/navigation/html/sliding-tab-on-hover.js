@@ -7,6 +7,9 @@ const getBouncyEase = () => {
   return 'bouncy-ease';
 };
 
+// Bounds are measured against the item's offsetParent, which must be the
+// positioned <nav>. Don't wrap the items in another positioned element or the
+// indicator will be offset relative to the wrong ancestor.
 const getItemBounds = (item) => {
   const { offsetLeft: left, offsetTop: top, offsetWidth: width, offsetHeight: height } = item;
   return { left, top, width, height };

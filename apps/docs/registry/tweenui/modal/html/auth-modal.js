@@ -21,21 +21,64 @@ function createAuthModal(root) {
   }
 
   let isOpen = false;
+  let previouslyFocused = null;
+
+  const focusableSelector =
+    'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const getFocusable = () =>
+    [...panel.querySelectorAll(focusableSelector)].filter((el) => el.offsetParent !== null);
+
+  const onKeydown = (event) => {
+    if (event.key === "Escape") {
+      close();
+      return;
+    }
+    if (event.key !== "Tab") return;
+
+    // Trap focus within the panel.
+    const items = getFocusable();
+    if (!items.length) {
+      event.preventDefault();
+      panel.focus();
+      return;
+    }
+    const first = items[0];
+    const last = items[items.length - 1];
+    const active = document.activeElement;
+    if (event.shiftKey) {
+      if (active === first || active === panel || !panel.contains(active)) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (active === last || !panel.contains(active)) {
+      event.preventDefault();
+      first.focus();
+    }
+  };
 
   const finishClose = () => {
     overlay.classList.add("hidden");
     overlay.classList.remove("flex");
     overlay.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    document.removeEventListener("keydown", onKeydown);
+    // Restore focus to whatever opened the dialog.
+    if (previouslyFocused && typeof previouslyFocused.focus === "function") {
+      previouslyFocused.focus();
+    }
   };
 
   const open = () => {
     if (isOpen) return;
     isOpen = true;
+    previouslyFocused = document.activeElement;
     overlay.classList.remove("hidden");
     overlay.classList.add("flex");
     overlay.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeydown);
+    // Move focus into the dialog so keyboard/AT users start inside it.
+    panel.focus();
 
     if (typeof gsap === "undefined" || prefersReducedMotion()) {
       if (typeof gsap !== "undefined") {
@@ -83,6 +126,9 @@ function createAuthModal(root) {
   backdrop?.addEventListener("click", close);
   panel.addEventListener("click", (event) => event.stopPropagation());
 
+  // Consumers subscribe to these on the global object:
+  //   window.addEventListener("auth:provider", (e) => e.detail.provider)
+  //   window.addEventListener("auth:email", (e) => e.detail.email)
   providerBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       globalThis.dispatchEvent(
@@ -97,10 +143,6 @@ function createAuthModal(root) {
     globalThis.dispatchEvent(
       new CustomEvent("auth:email", { detail: { email: emailInput?.value?.trim() || "" } }),
     );
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && isOpen) close();
   });
 
   return { open, close };

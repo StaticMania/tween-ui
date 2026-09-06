@@ -25,6 +25,12 @@
       "type": "component",
       "title": "Auth Modal",
       "description": "A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "counter-number-on-scroll",
+      "type": "component",
+      "title": "Counter Number On Scroll",
+      "description": "Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware."
     }
   ]
 }

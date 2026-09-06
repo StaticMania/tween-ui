@@ -14,6 +14,12 @@ export const demos: Record<string, ComponentType> = {
   'sliding-tab-on-hover:default': dynamic(() => import('./demos/navigation/sliding-tab-on-hover')),
   'avatar-reveal:default': dynamic(() => import('./demos/avatar/avatar-reveal')),
   'auth-modal:default': dynamic(() => import('./demos/modal/auth-modal')),
+  'counter-number-on-scroll:instant': dynamic(
+    () => import('./demos/scroll-based/counter-number-on-scroll')
+  ),
+  'counter-number-on-scroll:viewport': dynamic(
+    () => import('./demos/scroll-based/counter-number-on-scroll-viewport')
+  ),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

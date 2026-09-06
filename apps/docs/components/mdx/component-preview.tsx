@@ -4,8 +4,8 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Check, ChevronDown, Code2, Copy, Eye, RotateCw } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { getEntry } from '@/lib/registry';
-import { getDemo } from '@/registry/__index__';
 import { cn, copyText } from '@/lib/utils';
+import { getDemo } from '@/registry/__index__';
 import { usage } from '@/registry/__sources__.generated';
 import { Html5Mark, ReactMark } from './brand-icons';
 import { OpenIn } from './open-in';
@@ -18,9 +18,18 @@ const FRAMEWORKS = [
   { id: 'html' as const, label: 'HTML', Icon: Html5Mark },
 ];
 
-export function ComponentPreview({ name }: { name: string }) {
+export function ComponentPreview({
+  name,
+  variant: variantProp,
+  size = 'default',
+}: {
+  name: string;
+  variant?: string;
+  size?: 'default' | 'lg';
+}) {
   const entry = getEntry(name);
-  const [variant, setVariant] = useState(entry?.variants[0]?.id ?? '');
+  const locked = entry?.variants.some((v) => v.id === variantProp) ? variantProp : undefined;
+  const [variant, setVariant] = useState(locked ?? entry?.variants[0]?.id ?? '');
   const [framework, setFramework] = useState<Framework>('react');
   const [tab, setTab] = useState<Tab>('preview');
   const [replay, setReplay] = useState(0);
@@ -61,7 +70,7 @@ export function ComponentPreview({ name }: { name: string }) {
     <div className="border-border my-6 overflow-hidden rounded-xl border">
       {/* toolbar: variants + open-in */}
       <div className="border-border flex flex-wrap items-center gap-2 border-b px-3 py-2">
-        {entry.variants.length > 1 && (
+        {!locked && entry.variants.length > 1 && (
           <div className="flex flex-wrap items-center gap-1">
             {entry.variants.map((v) => (
               <button
@@ -113,13 +122,24 @@ export function ComponentPreview({ name }: { name: string }) {
             type="button"
             onClick={() => setReplay((n) => n + 1)}
             title="Replay"
-            className="text-muted-foreground hover:text-highlighted border-border bg-background/70 absolute top-2 right-2 z-10 inline-flex size-8 items-center justify-center rounded-md border backdrop-blur transition-colors"
+            className="text-muted-foreground hover:text-highlighted border-border bg-background/70 absolute right-2 top-2 z-10 inline-flex size-8 items-center justify-center rounded-md border backdrop-blur transition-colors"
           >
             <RotateCw className="size-4" />
           </button>
-          <div className="h-[320px] overflow-hidden bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] [background-size:16px_16px]">
+          <div
+            className={cn(
+              'overflow-hidden bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] [background-size:16px_16px]',
+              size === 'lg' ? 'h-[400px]' : 'h-[320px]'
+            )}
+          >
             {Demo ? (
-              <div key={replay} className="grid h-full w-full place-items-center p-10">
+              <div
+                key={replay}
+                className={cn(
+                  'grid h-full w-full place-items-center',
+                  size === 'lg' ? 'p-5' : 'p-10'
+                )}
+              >
                 <Demo />
               </div>
             ) : (

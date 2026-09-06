@@ -20,6 +20,9 @@ const ITEM_CLASS =
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+// Bounds are measured against the item's offsetParent, which must be the
+// positioned <nav>. Don't wrap the items in another positioned element or the
+// indicator will be offset relative to the wrong ancestor.
 const getItemBounds = (item: HTMLElement) => {
   const { offsetLeft: left, offsetTop: top, offsetWidth: width, offsetHeight: height } = item;
   return { left, top, width, height };

@@ -1,0 +1,28 @@
+'use client';
+
+import CounterNumberOnScroll from '@/registry/tweenui/scroll-based/counter-number-on-scroll';
+
+export function CounterStats({ instant = false }: { instant?: boolean }) {
+  return (
+    <div className="flex items-end justify-center gap-8 text-center text-[#18181b]">
+      <div>
+        <p className="text-3xl font-medium tracking-tight">
+          <CounterNumberOnScroll value={150} instant={instant} />+
+        </p>
+        <p className="mt-1 text-xs text-[#18181b]/60">projects delivered</p>
+      </div>
+      <div>
+        <p className="text-3xl font-medium tracking-tight">
+          <CounterNumberOnScroll value={98} instant={instant} />%
+        </p>
+        <p className="mt-1 text-xs text-[#18181b]/60">client retention</p>
+      </div>
+      <div>
+        <p className="text-3xl font-medium tracking-tight">
+          <CounterNumberOnScroll value={3} instant={instant} />X
+        </p>
+        <p className="mt-1 text-xs text-[#18181b]/60">faster launch</p>
+      </div>
+    </div>
+  );
+}

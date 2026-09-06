@@ -153,15 +153,57 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
 
   useEffect(() => {
     if (!open) return;
+    const panel = panelRef.current;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
     const previous = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+
+    const focusable = () =>
+      panel
+        ? [
+            ...panel.querySelectorAll<HTMLElement>(
+              'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            ),
+          ].filter((el) => el.offsetParent !== null)
+        : [];
+
+    // Move focus into the dialog so keyboard/AT users start inside it.
+    panel?.focus();
+
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') close();
+      if (event.key === 'Escape') {
+        close();
+        return;
+      }
+      if (event.key !== 'Tab' || !panel) return;
+
+      // Trap focus within the panel.
+      const items = focusable();
+      if (items.length === 0) {
+        event.preventDefault();
+        panel.focus();
+        return;
+      }
+      const first = items[0]!;
+      const last = items[items.length - 1]!;
+      const active = document.activeElement;
+      if (event.shiftKey) {
+        if (active === first || active === panel || !panel.contains(active)) {
+          event.preventDefault();
+          last.focus();
+        }
+      } else if (active === last || !panel.contains(active)) {
+        event.preventDefault();
+        first.focus();
+      }
     };
+
     document.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = previous;
       document.removeEventListener('keydown', onKey);
+      // Restore focus to whatever opened the dialog.
+      previouslyFocused?.focus?.();
     };
   }, [open, close]);
 
@@ -182,13 +224,15 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
     >
       <div
         ref={backdropRef}
+        data-auth-modal-backdrop
         className="absolute inset-0 bg-[#045f64]/35 backdrop-blur-[14px] motion-reduce:opacity-100"
         onClick={close}
       />
       <div
         ref={panelRef}
         data-auth-modal-panel
-        className="relative z-10 w-full max-w-[360px] rounded-3xl border-2 border-[#045f64] bg-white p-6 motion-reduce:opacity-100"
+        tabIndex={-1}
+        className="relative z-10 w-full max-w-[360px] rounded-3xl border-2 border-[#045f64] bg-white p-6 outline-none motion-reduce:opacity-100"
         onClick={(event) => event.stopPropagation()}
       >
         <button

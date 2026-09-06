@@ -4,6 +4,7 @@ const BUTTON_DIR = 'registry/tweenui/button';
 const NAV_DIR = 'registry/tweenui/navigation';
 const AVATAR_DIR = 'registry/tweenui/avatar';
 const MODAL_DIR = 'registry/tweenui/modal';
+const SCROLL_DIR = 'registry/tweenui/scroll-based';
 
 /**
  * UI components. One entry per component; the build script does the rest.
@@ -257,6 +258,78 @@ export default function Example() {
 </div>
 
 <script src="/tweenui/modal/auth-modal.js"></script>`,
+    },
+  },
+  {
+    name: 'counter-number-on-scroll',
+    type: 'component',
+    group: 'scroll-based',
+    title: 'Counter Number On Scroll',
+    description:
+      'Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${SCROLL_DIR}/counter-number-on-scroll.tsx`,
+        target: 'components/tweenui/scroll-based/counter-number-on-scroll.tsx',
+        kind: 'react',
+      },
+      {
+        path: `${SCROLL_DIR}/html/counter-number-on-scroll.html`,
+        target: 'tweenui/scroll-based/counter-number-on-scroll.html',
+        kind: 'html',
+      },
+      {
+        path: `${SCROLL_DIR}/html/counter-number-on-scroll-viewport.html`,
+        target: 'tweenui/scroll-based/counter-number-on-scroll-viewport.html',
+        kind: 'html',
+      },
+      {
+        path: `${SCROLL_DIR}/html/counter-number-on-scroll.js`,
+        target: 'tweenui/scroll-based/counter-number-on-scroll.js',
+        kind: 'script',
+      },
+    ],
+    variants: [
+      {
+        id: 'instant',
+        label: 'Instant',
+        reactSource: `${SCROLL_DIR}/counter-number-on-scroll.tsx`,
+        htmlSource: `${SCROLL_DIR}/html/counter-number-on-scroll.html`,
+      },
+      {
+        id: 'viewport',
+        label: 'Viewport',
+        reactSource: `${SCROLL_DIR}/counter-number-on-scroll.tsx`,
+        htmlSource: `${SCROLL_DIR}/html/counter-number-on-scroll-viewport.html`,
+      },
+    ],
+    usage: {
+      react: `import CounterNumberOnScroll from '@/components/tweenui/scroll-based/counter-number-on-scroll';
+
+export default function Example() {
+  return (
+    <p>
+      <CounterNumberOnScroll value={150} instant />+ projects delivered
+    </p>
+  );
+}`,
+      html: `<!-- GSAP + ScrollTrigger + Number Flow -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script type="module">
+  import 'https://esm.sh/number-flow';
+</script>
+
+<span data-counter-trigger data-counter-value="150" data-instant>
+  <number-flow data-counter-number></number-flow>
+</span>+ projects delivered
+
+<script src="/tweenui/scroll-based/counter-number-on-scroll.js"></script>`,
     },
   },
 ];
