@@ -11,6 +11,7 @@ export const demos: Record<string, ComponentType> = {
   'animated-sliding-button:default': dynamic(
     () => import('./demos/button/animated-sliding-button')
   ),
+  'sliding-tab-on-hover:default': dynamic(() => import('./demos/navigation/sliding-tab-on-hover')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

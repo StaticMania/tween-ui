@@ -1,0 +1,92 @@
+---
+title: Sliding Tab On Hover
+description: A pill nav whose lime indicator scales in, then slides to the hovered or focused tab.
+icon: mouse-pointer-click
+---
+
+A navigation strip with a sliding hover indicator: on hover or keyboard focus
+the lime pill **scales in** under the first tab, then **slides** to follow the
+pointer. Leave the nav and it returns to the active tab. Driven by GSAP
+(CustomEase for the reveal), and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="sliding-tab-on-hover"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/sliding-tab-on-hover"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="sliding-tab-on-hover"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import SlidingTabOnHover from '@/components/tweenui/navigation/sliding-tab-on-hover';
+
+const items = [
+  { value: 'home', label: 'Home' },
+  { value: 'about', label: 'About' },
+  { value: 'services', label: 'Service' },
+  { value: 'projects', label: 'Projects' },
+  { value: 'team', label: 'Team' },
+  { value: 'blog', label: 'Blog' },
+];
+
+export default function Page() {
+  return <SlidingTabOnHover items={items} defaultValue="home" />;
+}
+```
+
+:::
+:::tabs-item{label="HTML" icon="i-lucide-code-xml"}
+
+```html [index.html]
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/CustomEase.min.js"></script>
+
+<nav data-nav-tabs aria-label="Sliding tabs" class="relative inline-flex ...">
+  <div data-nav-indicator class="absolute ..." aria-hidden="true"></div>
+  <a href="#home" data-nav-item data-active="true">Home</a>
+  <a href="#about" data-nav-item data-active="false">About</a>
+</nav>
+
+<script src="/tweenui/navigation/sliding-tab-on-hover.js"></script>
+```
+
+:::
+::
+
+## Props
+
+| Prop            | Type                      | Default | Description                                                     |
+| --------------- | ------------------------- | ------- | --------------------------------------------------------------- |
+| `items`         | `SlidingTabOnHoverItem[]` | —       | Tabs to render. Each has `value`, `label`, and optional `href`. |
+| `defaultValue`  | `string`                  | —       | Uncontrolled active tab. Indicator rests here on leave.         |
+| `value`         | `string`                  | —       | Controlled active tab.                                          |
+| `onValueChange` | `(value: string) => void` | —       | Fires when a tab is clicked.                                    |
+| `className`     | `string`                  | —       | Extra classes for the `<nav>` element.                          |
+
+Pass `href` on an item to render an `<a>`; otherwise it renders a `<button type="button">`. All native `<nav>` attributes are forwarded.
+
+## Accessibility
+
+::note
+The indicator animation is skipped under `prefers-reduced-motion: reduce` — the
+pill snaps to the target tab with no scale or slide. Keyboard focus (`focusin`)
+drives the same indicator as hover, and the active tab is marked with
+`aria-current`.
+::

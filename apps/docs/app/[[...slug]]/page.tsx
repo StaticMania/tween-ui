@@ -47,7 +47,7 @@ export default async function Page({ params }: PageProps) {
   const section = await source.getSection(page.path);
 
   return (
-    <DocsLayout toc={toc}>
+    <DocsLayout toc={toc} page={{ relativePath: page.relativePath, title: page.title }}>
       <DocsPage title={frontmatter.title} description={frontmatter.description} section={section}>
         {content}
       </DocsPage>

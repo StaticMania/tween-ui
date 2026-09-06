@@ -7,6 +7,12 @@
       "type": "component",
       "title": "Animated Sliding Button",
       "description": "A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware."
+    },
+    {
+      "name": "sliding-tab-on-hover",
+      "type": "component",
+      "title": "Sliding Tab On Hover",
+      "description": "A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware."
     }
   ]
 }
