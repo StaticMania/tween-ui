@@ -9,12 +9,8 @@ export default defineDocsConfig({
     locale: 'en',
   },
 
-  header: {
-    links: [{ label: 'Components', href: '/' }],
-  },
-
   socials: {
-    github: 'https://github.com/tween-ui/tween-ui',
+    github: 'https://github.com/StaticMania/tween-ui',
   },
 
   toc: {
@@ -24,7 +20,7 @@ export default defineDocsConfig({
       links: [
         {
           label: 'Report an issue',
-          href: 'https://github.com/tween-ui/tween-ui/issues',
+          href: 'https://github.com/StaticMania/tween-ui/issues',
           icon: 'book-open',
         },
       ],
@@ -32,7 +28,7 @@ export default defineDocsConfig({
   },
 
   github: {
-    url: 'https://github.com/tween-ui/tween-ui',
+    url: 'https://github.com/StaticMania/tween-ui',
     branch: 'main',
     rootDir: 'apps/docs',
   },

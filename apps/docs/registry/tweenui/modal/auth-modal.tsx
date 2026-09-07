@@ -41,7 +41,7 @@ const PROVIDERS = [
     icon: (
       <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
         <path
-          fill="#12161F"
+          fill="currentColor"
           d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"
         />
       </svg>
@@ -65,7 +65,7 @@ const PROVIDERS = [
     icon: (
       <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
         <path
-          fill="#12161F"
+          fill="currentColor"
           d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
         />
       </svg>
@@ -78,7 +78,7 @@ const PROVIDERS = [
       <svg viewBox="0 0 24 24" className="size-5 fill-none" aria-hidden="true">
         <path
           d="M19.2955 5 13.1929 11.2933M11.1136 13.4375 4.75 20M4.75 5 16.1136 20H19.75L8.38636 5H4.75Z"
-          stroke="#000"
+          stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -225,14 +225,14 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
       <div
         ref={backdropRef}
         data-auth-modal-backdrop
-        className="absolute inset-0 bg-[#045f64]/35 backdrop-blur-[14px] motion-reduce:opacity-100"
+        className="absolute inset-0 bg-background/70 backdrop-blur-[14px] motion-reduce:opacity-100"
         onClick={close}
       />
       <div
         ref={panelRef}
         data-auth-modal-panel
         tabIndex={-1}
-        className="relative z-10 w-full max-w-[360px] rounded-3xl border-2 border-[#045f64] bg-white p-6 outline-none motion-reduce:opacity-100"
+        className="relative z-10 w-full max-w-[360px] rounded-3xl border-2 border-[#045f64] bg-background p-6 outline-none motion-reduce:opacity-100"
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -248,10 +248,10 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
         </button>
 
         <div data-auth-modal-item className="mb-7 text-center">
-          <h2 id="auth-modal-title" className="text-xl font-medium text-[#045f64]">
+          <h2 id="auth-modal-title" className="text-xl font-medium text-foreground">
             Welcome back
           </h2>
-          <p className="mt-2 text-sm text-[#045f64]/60">Sign in to your account to continue</p>
+          <p className="mt-2 text-sm text-muted-foreground">Sign in to your account to continue</p>
         </div>
 
         <div data-auth-modal-item className="mb-7 grid grid-cols-5 gap-2.5">
@@ -261,7 +261,7 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
               type="button"
               aria-label={`Continue with ${provider.label}`}
               onClick={() => onProvider?.(provider.id)}
-              className="flex h-10 w-full items-center justify-center rounded-2xl bg-[#045f64]/10 transition-transform hover:scale-95 motion-reduce:transition-none motion-reduce:hover:scale-100"
+              className="flex h-10 w-full items-center justify-center rounded-2xl bg-[#045f64]/10 text-foreground transition-transform hover:scale-95 motion-reduce:transition-none motion-reduce:hover:scale-100"
             >
               {provider.icon}
             </button>
@@ -270,7 +270,7 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
 
         <div data-auth-modal-item className="mb-6 flex items-center gap-2">
           <span className="h-px w-full bg-[#045f64]/10" />
-          <span className="shrink-0 text-xs text-[#045f64]/50">Or continue with email</span>
+          <span className="shrink-0 text-xs text-muted-foreground">Or continue with email</span>
           <span className="h-px w-full bg-[#045f64]/10" />
         </div>
 
@@ -292,7 +292,7 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
               type="email"
               required
               placeholder="name@example.com"
-              className="h-11 w-full rounded-full border border-[#045f64]/10 bg-white pr-12 pl-10 text-sm text-[#045f64] outline-none placeholder:text-[#045f64]/50 focus-visible:ring-2 focus-visible:ring-[#045f64]"
+              className="h-11 w-full rounded-full border border-[#045f64]/10 bg-background pr-12 pl-10 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#045f64]"
             />
             <button
               type="submit"
@@ -310,7 +310,7 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
           </div>
         </form>
 
-        <p data-auth-modal-item className="mt-6 text-center text-xs text-[#045f64]/40">
+        <p data-auth-modal-item className="mt-6 text-center text-xs text-muted-foreground">
           By clicking continue, you agree to our Terms of Service and Privacy Policy.
         </p>
       </div>
