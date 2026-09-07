@@ -10,8 +10,7 @@ Flow handles the digit spin. Driven by GSAP, and it fully respects
 
 ## Instant
 
-Rolls up to the target as soon as the number mounts. Pass `instant` (or
-`data-instant` in HTML).
+Rolls up to the target as soon as the number mounts. Pass `instant`.
 
 ::component-preview{name="counter-number-on-scroll" variant="instant"}
 ::
@@ -70,8 +69,6 @@ export default function Page() {
 | `delay`    | `number`  | `0`         | Wait after the trigger before counting.           |
 | `instant`  | `boolean` | `false`     | Skip ScrollTrigger and play as soon as it mounts. |
 | `format`   | `Format`  | grouping on | Intl-style options passed to Number Flow.         |
-
-HTML uses `data-counter-value`, `data-counter-duration`, `data-counter-fraction-digits`, and `data-instant` on `[data-counter-trigger]`. For a nested scroll area, wrap the counters in `[data-counter-scroller]`.
 
 ## Accessibility
 

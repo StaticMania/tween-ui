@@ -5,17 +5,17 @@ import { Check, Copy } from 'lucide-react';
 import { cn, copyText } from '@/lib/utils';
 
 export const PMS = [
-  { id: 'npm', label: 'npm' },
   { id: 'pnpm', label: 'pnpm' },
-  { id: 'yarn', label: 'yarn' },
   { id: 'bun', label: 'bun' },
+  { id: 'yarn', label: 'yarn' },
+  { id: 'npm', label: 'npm' },
 ] as const;
 
 export type PmId = (typeof PMS)[number]['id'];
 
 /** Dark panel with package-manager tabs and a copy button for a single command. */
 export function CommandTabs({ commands }: { commands: Record<PmId, string> }) {
-  const [pm, setPm] = useState<PmId>('npm');
+  const [pm, setPm] = useState<PmId>('pnpm');
   const [copied, setCopied] = useState(false);
 
   const command = commands[pm];

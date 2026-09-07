@@ -10,7 +10,7 @@ export const siteConfig = {
   repo: 'https://github.com/StaticMania/tween-ui',
   /** Path prefix (relative to repo root) where registry sources live. */
   registryPath: 'apps/docs/registry/tweenui',
-  keywords: ['React', 'HTML', 'Tailwind CSS', 'GSAP', 'Animated', 'Components', 'Next.js'],
+  keywords: ['React', 'Tailwind CSS', 'GSAP', 'Animated', 'Components', 'Next.js'],
 } as const;
 
 export type SiteConfig = typeof siteConfig;

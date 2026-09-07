@@ -9,7 +9,7 @@ import { CommandTabs, installCommands, shadcnAddCommands } from './command-tabs'
 
 /**
  * Manual install — numbered steps: dependencies → registry dependencies →
- * copy the single-file source (React / HTML / tokens).
+ * copy the single-file source (React / tokens).
  */
 export function ComponentSource({ name }: { name: string }) {
   const entry = getEntry(name);
