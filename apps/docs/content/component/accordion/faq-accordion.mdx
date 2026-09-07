@@ -1,0 +1,71 @@
+---
+title: FAQ Accordion
+description: A single-open accordion that reveals its answer line by line as it expands.
+icon: circle-help
+---
+
+Click a question and the panel **animates its height open** while the answer
+**reveals line by line** through a SplitText mask, and the icon **morphs from
+plus to minus**. Only one item stays open at a time. Driven by GSAP, and it
+fully respects `prefers-reduced-motion`.
+
+::component-preview{name="faq-accordion" size="lg"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/faq-accordion"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="faq-accordion"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import FaqAccordion from '@/components/tweenui/accordion/faq-accordion';
+
+const items = [
+  { question: 'What is Tween UI?', answer: 'GSAP & CSS animated components for React.' },
+  { question: 'How do I install it?', answer: 'Copy the source, or add it with the CLI.' },
+  { question: 'Does it respect reduced motion?', answer: 'Yes — every component does.' },
+];
+
+export default function Page() {
+  return <FaqAccordion items={items} />;
+}
+```
+
+:::
+::
+
+## Props
+
+| Prop           | Type                              | Default | Description                                              |
+| -------------- | --------------------------------- | ------- | -------------------------------------------------------- |
+| `items`        | `{ question, answer }[]`          | —       | The questions and their answers (`ReactNode` each).      |
+| `defaultOpen`  | `number \| null`                  | `0`     | Item open on first render (uncontrolled); `null` = none. |
+| `open`         | `number \| null`                  | —       | Controlled open index (`null` closes all).               |
+| `onOpenChange` | `(index: number \| null) => void` | —       | Fires with the newly open index.                         |
+| `collapsible`  | `boolean`                         | `true`  | Allow the open item to close when clicked again.         |
+
+## Accessibility
+
+::note
+Each question is a real `<button>` with `aria-expanded` and `aria-controls`
+pointing at its panel; the panel is a `role="region"` labelled by the button.
+Under `prefers-reduced-motion: reduce` the panel opens and closes instantly with
+no height tween or line reveal.
+::

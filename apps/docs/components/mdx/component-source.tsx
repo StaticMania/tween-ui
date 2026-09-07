@@ -58,23 +58,25 @@ export function ComponentSource({ name }: { name: string }) {
     title: 'Copy and paste the following code into your project:',
     content: (
       <div>
-        <div className="mb-2 flex items-center gap-1">
-          {codeTabs.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => setTab(t.id)}
-              className={cn(
-                'rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
-                tab === t.id
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-muted-foreground hover:text-highlighted hover:bg-muted'
-              )}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
+        {codeTabs.length > 1 && (
+          <div className="mb-2 flex items-center gap-1">
+            {codeTabs.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => setTab(t.id)}
+                className={cn(
+                  'rounded-md px-2.5 py-1 text-xs font-medium transition-colors',
+                  tab === t.id
+                    ? 'bg-primary text-primary-foreground'
+                    : 'text-muted-foreground hover:text-highlighted hover:bg-muted'
+                )}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        )}
         <CodeBlock
           code={active.snippet.code}
           codeHtml={active.snippet.codeHtml}

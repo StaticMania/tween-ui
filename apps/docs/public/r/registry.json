@@ -31,6 +31,42 @@
       "type": "component",
       "title": "Counter Number On Scroll",
       "description": "Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware."
+    },
+    {
+      "name": "voice-sample-player",
+      "type": "component",
+      "title": "Voice Sample Player",
+      "description": "An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "flip-card-on-hover",
+      "type": "component",
+      "title": "Flip Card On Hover",
+      "description": "A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "faq-accordion",
+      "type": "component",
+      "title": "FAQ Accordion",
+      "description": "A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "shiny-button",
+      "type": "component",
+      "title": "Shiny Button",
+      "description": "A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware."
+    },
+    {
+      "name": "text-roll-button",
+      "type": "component",
+      "title": "Text Roll Button",
+      "description": "A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware."
+    },
+    {
+      "name": "slide-arrow-button",
+      "type": "component",
+      "title": "Slide Arrow Button",
+      "description": "A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware."
     }
   ]
 }

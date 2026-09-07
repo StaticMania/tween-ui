@@ -1,0 +1,66 @@
+---
+title: Shiny Button
+description: A pill button with a light sweep that glides across on hover.
+icon: sparkles
+---
+
+A call-to-action button with a **diagonal light sweep** that glides across the
+surface on hover, while the leading **sparkle twinkles**. It is a real
+`<button>` — forward a ref, wire `onClick`, `disabled`, `type`, anything native.
+Pure CSS, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="shiny-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/shiny-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="shiny-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import ShinyButton from '@/components/tweenui/button/shiny-button';
+
+export default function Page() {
+  return <ShinyButton onClick={() => console.log('clicked')}>Get started</ShinyButton>;
+}
+```
+
+:::
+::
+
+## Props
+
+Extends every native `<button>` attribute (`onClick`, `type`, `disabled`, `ref`, …).
+
+| Prop        | Type                              | Default    | Description                           |
+| ----------- | --------------------------------- | ---------- | ------------------------------------- |
+| `children`  | `ReactNode`                       | —          | Button label.                         |
+| `icon`      | `ReactNode`                       | `Sparkles` | Leading icon; pass `null` to hide it. |
+| `type`      | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type.                   |
+| `className` | `string`                          | —          | Merged with the base styles.          |
+
+## Accessibility
+
+::note
+It renders a native `<button>`, so keyboard and screen-reader behaviour comes
+for free; a visible focus ring is included. The light sweep and sparkle are
+decorative (`aria-hidden`) and are disabled under
+`prefers-reduced-motion: reduce`.
+::

@@ -1,0 +1,87 @@
+---
+title: Voice Sample Player
+description: An audio player pill with a waveform equalizer that reveals on play.
+icon: audio-lines
+---
+
+A voice-sample row: press play and the **name slides up and out**, a lime
+**waveform equalizer slides in** and starts oscillating, and the button
+**morphs from play to pause**. Pass a `src` to play real audio. Driven by GSAP,
+and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="voice-sample-player"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/voice-sample-player"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="voice-sample-player"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import VoiceSamplePlayer from '@/components/tweenui/media/voice-sample-player';
+
+export default function Page() {
+  return (
+    <VoiceSamplePlayer
+      name="Ada Lovelace"
+      description="British female · warm & precise"
+      avatar="/avatars/ada.jpg"
+      src="/audio/ada-sample.mp3"
+    />
+  );
+}
+```
+
+:::
+::
+
+To keep only one player active at a time, control `playing` from the parent:
+
+```tsx [app/page.tsx]
+const [activeId, setActiveId] = useState<string | null>(null);
+
+<VoiceSamplePlayer
+  name="Ada Lovelace"
+  playing={activeId === 'ada'}
+  onPlayingChange={(next) => setActiveId(next ? 'ada' : null)}
+/>;
+```
+
+## Props
+
+| Prop              | Type                         | Default | Description                                        |
+| ----------------- | ---------------------------- | ------- | -------------------------------------------------- |
+| `name`            | `string`                     | —       | Speaker / voice name.                              |
+| `description`     | `string`                     | —       | Short line under the name (accent, tone, …).       |
+| `avatar`          | `string`                     | —       | Avatar image URL; falls back to the name initials. |
+| `avatarAlt`       | `string`                     | `name`  | Alt text for the avatar.                           |
+| `src`             | `string`                     | —       | Audio file to play. Omit to animate without sound. |
+| `playing`         | `boolean`                    | —       | Controlled playing state.                          |
+| `defaultPlaying`  | `boolean`                    | `false` | Uncontrolled initial state.                        |
+| `onPlayingChange` | `(playing: boolean) => void` | —       | Fires when playback starts or stops.               |
+
+## Accessibility
+
+::note
+The play button is a real `<button>` with `aria-pressed` and an
+`aria-label` that flips between "Play" and "Pause". The waveform is decorative
+(`aria-hidden`). Under `prefers-reduced-motion: reduce` the label and waveform
+swap instantly with no slide, and the equalizer holds a static shape.
+::

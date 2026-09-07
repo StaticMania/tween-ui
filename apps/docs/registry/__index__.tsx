@@ -20,6 +20,12 @@ export const demos: Record<string, ComponentType> = {
   'counter-number-on-scroll:viewport': dynamic(
     () => import('./demos/scroll-based/counter-number-on-scroll-viewport')
   ),
+  'voice-sample-player:default': dynamic(() => import('./demos/media/voice-sample-player')),
+  'flip-card-on-hover:default': dynamic(() => import('./demos/card/flip-card-on-hover')),
+  'faq-accordion:default': dynamic(() => import('./demos/accordion/faq-accordion')),
+  'shiny-button:default': dynamic(() => import('./demos/button/shiny-button')),
+  'text-roll-button:default': dynamic(() => import('./demos/button/text-roll-button')),
+  'slide-arrow-button:default': dynamic(() => import('./demos/button/slide-arrow-button')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

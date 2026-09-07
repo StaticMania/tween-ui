@@ -26,7 +26,7 @@ export function flattenSections(items: NavItem[]): NavItem[] {
       return item;
     }
 
-    const leaves = collectLeaves(item.children);
+    const leaves = collectLeaves(item.children).sort((a, b) => a.label.localeCompare(b.label));
     if (leaves.length === 0) return item;
 
     return {

@@ -5,6 +5,9 @@ const NAV_DIR = 'registry/tweenui/navigation';
 const AVATAR_DIR = 'registry/tweenui/avatar';
 const MODAL_DIR = 'registry/tweenui/modal';
 const SCROLL_DIR = 'registry/tweenui/scroll-based';
+const MEDIA_DIR = 'registry/tweenui/media';
+const CARD_DIR = 'registry/tweenui/card';
+const ACCORDION_DIR = 'registry/tweenui/accordion';
 
 /**
  * UI components. One entry per component; the build script does the rest.
@@ -212,6 +215,233 @@ export default function Example() {
       <CounterNumberOnScroll value={150} instant />+ projects delivered
     </p>
   );
+}`,
+    },
+  },
+  {
+    name: 'voice-sample-player',
+    type: 'component',
+    group: 'media',
+    title: 'Voice Sample Player',
+    description:
+      'An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${MEDIA_DIR}/voice-sample-player.tsx`,
+        target: 'components/tweenui/media/voice-sample-player.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${MEDIA_DIR}/voice-sample-player.tsx`,
+      },
+    ],
+    usage: {
+      react: `import VoiceSamplePlayer from '@/components/tweenui/media/voice-sample-player';
+
+export default function Example() {
+  return (
+    <VoiceSamplePlayer
+      name="Ada Lovelace"
+      description="British female · warm & precise"
+      avatar="/avatars/ada.jpg"
+      src="/audio/ada-sample.mp3"
+    />
+  );
+}`,
+    },
+  },
+  {
+    name: 'flip-card-on-hover',
+    type: 'component',
+    group: 'card',
+    title: 'Flip Card On Hover',
+    description:
+      'A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${CARD_DIR}/flip-card-on-hover.tsx`,
+        target: 'components/tweenui/card/flip-card-on-hover.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${CARD_DIR}/flip-card-on-hover.tsx`,
+      },
+    ],
+    usage: {
+      react: `import FlipCardOnHover from '@/components/tweenui/card/flip-card-on-hover';
+
+export default function Example() {
+  return (
+    <FlipCardOnHover
+      eyebrow="(01)"
+      title="Web Design"
+      subtitle="Interfaces that convert"
+      description="Research-led product and marketing design, from wireframe to polished UI."
+      image="/services/web-design.jpg"
+      features={['UX & UI design', 'Design systems', 'Prototyping']}
+      href="/services/web-design"
+      ctaText="Explore service"
+    />
+  );
+}`,
+    },
+  },
+  {
+    name: 'faq-accordion',
+    type: 'component',
+    group: 'accordion',
+    title: 'FAQ Accordion',
+    description:
+      'A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${ACCORDION_DIR}/faq-accordion.tsx`,
+        target: 'components/tweenui/accordion/faq-accordion.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${ACCORDION_DIR}/faq-accordion.tsx`,
+      },
+    ],
+    usage: {
+      react: `import FaqAccordion from '@/components/tweenui/accordion/faq-accordion';
+
+const items = [
+  { question: 'What is Tween UI?', answer: 'GSAP & CSS animated components for React.' },
+  { question: 'How do I install it?', answer: 'Copy the source, or add it with the CLI.' },
+];
+
+export default function Example() {
+  return <FaqAccordion items={items} />;
+}`,
+    },
+  },
+  {
+    name: 'shiny-button',
+    type: 'component',
+    group: 'button',
+    title: 'Shiny Button',
+    description:
+      'A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: [], // CSS-only — no gsap
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${BUTTON_DIR}/shiny-button.tsx`,
+        target: 'components/tweenui/button/shiny-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${BUTTON_DIR}/shiny-button.tsx`,
+      },
+    ],
+    usage: {
+      react: `import ShinyButton from '@/components/tweenui/button/shiny-button';
+
+export default function Example() {
+  return <ShinyButton onClick={() => {}}>Get started</ShinyButton>;
+}`,
+    },
+  },
+  {
+    name: 'text-roll-button',
+    type: 'component',
+    group: 'button',
+    title: 'Text Roll Button',
+    description:
+      'A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${BUTTON_DIR}/text-roll-button.tsx`,
+        target: 'components/tweenui/button/text-roll-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${BUTTON_DIR}/text-roll-button.tsx`,
+      },
+    ],
+    usage: {
+      react: `import TextRollButton from '@/components/tweenui/button/text-roll-button';
+
+export default function Example() {
+  return <TextRollButton onClick={() => {}}>Try now</TextRollButton>;
+}`,
+    },
+  },
+  {
+    name: 'slide-arrow-button',
+    type: 'component',
+    group: 'button',
+    title: 'Slide Arrow Button',
+    description:
+      'A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: [], // CSS-only — no gsap
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${BUTTON_DIR}/slide-arrow-button.tsx`,
+        target: 'components/tweenui/button/slide-arrow-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${BUTTON_DIR}/slide-arrow-button.tsx`,
+      },
+    ],
+    usage: {
+      react: `import SlideArrowButton from '@/components/tweenui/button/slide-arrow-button';
+
+export default function Example() {
+  return <SlideArrowButton onClick={() => {}}>Get started</SlideArrowButton>;
 }`,
     },
   },
