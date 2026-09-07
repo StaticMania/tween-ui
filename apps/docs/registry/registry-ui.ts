@@ -445,4 +445,38 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'glow-button',
+    type: 'component',
+    group: 'button',
+    title: 'Glow Button',
+    description:
+      'A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: [], // CSS-only — no gsap
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${BUTTON_DIR}/glow-button.tsx`,
+        target: 'components/tweenui/button/glow-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${BUTTON_DIR}/glow-button.tsx`,
+      },
+    ],
+    usage: {
+      react: `import GlowButton from '@/components/tweenui/button/glow-button';
+
+export default function Example() {
+  return <GlowButton onClick={() => {}}>Get started</GlowButton>;
+}`,
+    },
+  },
 ];

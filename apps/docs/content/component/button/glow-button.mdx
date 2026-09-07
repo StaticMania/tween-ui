@@ -1,0 +1,65 @@
+---
+title: Glow Button
+description: A pill button floating over a soft, colorful glow that sharpens on hover.
+icon: rainbow
+---
+
+A pill button that floats over a soft, **colorful glow** — red, amber, violet
+and cyan blurred together. On hover the glow **sharpens**, the button **lifts**,
+and a **chevron slides through** its slot. It is a real `<button>`, so
+`onClick`, `type`, `disabled`, and refs all work. Pure CSS, and it fully
+respects `prefers-reduced-motion`.
+
+::component-preview{name="glow-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/glow-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="glow-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import GlowButton from '@/components/tweenui/button/glow-button';
+
+export default function Page() {
+  return <GlowButton onClick={() => console.log('clicked')}>Get started</GlowButton>;
+}
+```
+
+:::
+::
+
+## Props
+
+Extends every native `<button>` attribute (`onClick`, `type`, `disabled`, `ref`, …).
+
+| Prop        | Type                              | Default    | Description                  |
+| ----------- | --------------------------------- | ---------- | ---------------------------- |
+| `children`  | `ReactNode`                       | —          | Button label.                |
+| `type`      | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type.          |
+| `className` | `string`                          | —          | Merged with the base styles. |
+
+## Accessibility
+
+::note
+It renders a native `<button>`, so keyboard and screen-reader behaviour come for
+free, with a visible focus ring. The glow and chevrons are decorative
+(`aria-hidden`) and hold still under `prefers-reduced-motion: reduce`.
+::
