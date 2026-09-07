@@ -23,9 +23,8 @@ describe('registry integrity', () => {
         expect(typeof entry.cssVars).toBe('object');
       });
 
-      it('has both a React and an HTML file', () => {
+      it('has a React file', () => {
         expect(entry.files.some((f) => f.kind === 'react')).toBe(true);
-        expect(entry.files.some((f) => f.kind === 'html')).toBe(true);
       });
 
       it('every declared file exists on disk', () => {
@@ -34,20 +33,17 @@ describe('registry integrity', () => {
         }
       });
 
-      it('every variant maps to real react + html sources', () => {
+      it('every variant maps to a real react source', () => {
         expect(entry.variants.length).toBeGreaterThan(0);
         for (const v of entry.variants) {
           expect(existsSync(abs(v.reactSource)), `missing: ${v.reactSource}`).toBe(true);
-          expect(existsSync(abs(v.htmlSource)), `missing: ${v.htmlSource}`).toBe(true);
         }
       });
 
       it('respects prefers-reduced-motion in every variant', () => {
         for (const v of entry.variants) {
           const react = readFileSync(abs(v.reactSource), 'utf8');
-          const html = readFileSync(abs(v.htmlSource), 'utf8');
           expect(react, `${v.id} react`).toContain('motion-reduce:');
-          expect(html, `${v.id} html`).toContain('motion-reduce:');
         }
       });
 

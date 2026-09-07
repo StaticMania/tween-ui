@@ -3,8 +3,7 @@ import { defineDocsConfig } from 'docora';
 export default defineDocsConfig({
   site: {
     name: 'Tween UI',
-    description:
-      'GSAP & CSS animated components for React and plain HTML. Copy the source, own the animation.',
+    description: 'GSAP & CSS animated components for React. Copy the source, own the animation.',
     url: 'https://tweenui.dev',
     locale: 'en',
   },

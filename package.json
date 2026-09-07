@@ -9,9 +9,18 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "registry:build": "turbo run registry:build"
+    "registry:build": "turbo run registry:build",
+    "prepare": "lefthook install"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "lefthook": "^1.13.4",
     "turbo": "^2.3.3",
     "typescript": "^5.9.3"
   }

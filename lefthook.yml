@@ -1,0 +1,25 @@
+# Git hooks (mirrors Magic UI's setup, adapted to Tween UI's scripts).
+# Installed automatically on `pnpm install` via the lefthook package.
+#
+# Sequential (parallel: false) so the registry-build's `git add` never races the
+# formatter's re-stage on the git index.
+
+pre-commit:
+  parallel: false
+  commands:
+    registry:build:
+      glob: "**/registry/**/*.{ts,tsx}"
+      run: pnpm registry:build && git add --all
+      stage_fixed: true
+    typecheck:
+      glob: "*.{ts,tsx}"
+      run: pnpm typecheck
+    format:
+      glob: "*.{ts,tsx,mdx,css,json}"
+      run: pnpm --filter=docs run format
+      stage_fixed: true
+
+commit-msg:
+  commands:
+    "lint commit message":
+      run: npx --no -- commitlint --edit "$1"

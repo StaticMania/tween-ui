@@ -12,8 +12,8 @@ export interface RegistryFile {
   path: string;
   /** Where the CLI writes it in a consumer project. */
   target: string;
-  /** react = .tsx/.ts source, html = .html markup, script = shared vanilla JS. */
-  kind: 'react' | 'html' | 'script';
+  /** react = .tsx/.ts source. */
+  kind: 'react';
 }
 
 export interface RegistryVariant {
@@ -22,8 +22,6 @@ export interface RegistryVariant {
   label: string;
   /** Source file (relative to apps/docs) shown in the React Code tab. */
   reactSource: string;
-  /** Source file shown in the HTML Code tab. */
-  htmlSource: string;
 }
 
 export interface RegistryMedia {
@@ -54,9 +52,8 @@ export interface RegistryEntry {
   files: RegistryFile[];
   /** Variants shown on the doc page (first is the default preview). */
   variants: RegistryVariant[];
-  /** Short "how to use it" snippets shown in the Code tab and Usage section. */
+  /** Short "how to use it" snippet shown in the Code tab and Usage section. */
   usage: {
     react: string;
-    html: string;
   };
 }

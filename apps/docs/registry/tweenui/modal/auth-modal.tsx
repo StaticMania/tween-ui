@@ -225,14 +225,14 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
       <div
         ref={backdropRef}
         data-auth-modal-backdrop
-        className="absolute inset-0 bg-background/70 backdrop-blur-[14px] motion-reduce:opacity-100"
+        className="bg-background/70 absolute inset-0 backdrop-blur-[14px] motion-reduce:opacity-100"
         onClick={close}
       />
       <div
         ref={panelRef}
         data-auth-modal-panel
         tabIndex={-1}
-        className="relative z-10 w-full max-w-[360px] rounded-3xl border-2 border-[#045f64] bg-background p-6 outline-none motion-reduce:opacity-100"
+        className="bg-background relative z-10 w-full max-w-[360px] rounded-3xl border-2 border-[#045f64] p-6 outline-none motion-reduce:opacity-100"
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -248,10 +248,10 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
         </button>
 
         <div data-auth-modal-item className="mb-7 text-center">
-          <h2 id="auth-modal-title" className="text-xl font-medium text-foreground">
+          <h2 id="auth-modal-title" className="text-foreground text-xl font-medium">
             Welcome back
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">Sign in to your account to continue</p>
+          <p className="text-muted-foreground mt-2 text-sm">Sign in to your account to continue</p>
         </div>
 
         <div data-auth-modal-item className="mb-7 grid grid-cols-5 gap-2.5">
@@ -261,7 +261,7 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
               type="button"
               aria-label={`Continue with ${provider.label}`}
               onClick={() => onProvider?.(provider.id)}
-              className="flex h-10 w-full items-center justify-center rounded-2xl bg-[#045f64]/10 text-foreground transition-transform hover:scale-95 motion-reduce:transition-none motion-reduce:hover:scale-100"
+              className="text-foreground flex h-10 w-full items-center justify-center rounded-2xl bg-[#045f64]/10 transition-transform hover:scale-95 motion-reduce:transition-none motion-reduce:hover:scale-100"
             >
               {provider.icon}
             </button>
@@ -270,7 +270,7 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
 
         <div data-auth-modal-item className="mb-6 flex items-center gap-2">
           <span className="h-px w-full bg-[#045f64]/10" />
-          <span className="shrink-0 text-xs text-muted-foreground">Or continue with email</span>
+          <span className="text-muted-foreground shrink-0 text-xs">Or continue with email</span>
           <span className="h-px w-full bg-[#045f64]/10" />
         </div>
 
@@ -292,7 +292,7 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
               type="email"
               required
               placeholder="name@example.com"
-              className="h-11 w-full rounded-full border border-[#045f64]/10 bg-background pr-12 pl-10 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#045f64]"
+              className="bg-background text-foreground placeholder:text-muted-foreground h-11 w-full rounded-full border border-[#045f64]/10 pr-12 pl-10 text-sm outline-none focus-visible:ring-2 focus-visible:ring-[#045f64]"
             />
             <button
               type="submit"
@@ -310,7 +310,7 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
           </div>
         </form>
 
-        <p data-auth-modal-item className="mt-6 text-center text-xs text-muted-foreground">
+        <p data-auth-modal-item className="text-muted-foreground mt-6 text-center text-xs">
           By clicking continue, you agree to our Terms of Service and Privacy Policy.
         </p>
       </div>

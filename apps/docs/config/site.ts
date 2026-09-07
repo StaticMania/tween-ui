@@ -2,8 +2,7 @@ export const siteConfig = {
   name: 'Tween UI',
   url: 'https://tweenui.dev',
   ogImage: 'https://tweenui.dev/og',
-  description:
-    'GSAP & CSS animated components for React and plain HTML. Copy the source, own the animation.',
+  description: 'GSAP & CSS animated components for React. Copy the source, own the animation.',
   links: {
     github: 'https://github.com/StaticMania/tween-ui',
   },

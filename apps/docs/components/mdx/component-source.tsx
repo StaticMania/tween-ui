@@ -15,7 +15,7 @@ export function ComponentSource({ name }: { name: string }) {
   const entry = getEntry(name);
   const m = manual[name];
   const css = cssTokens[name];
-  const [tab, setTab] = useState<'react' | 'html' | 'css'>('react');
+  const [tab, setTab] = useState<'react' | 'css'>('react');
 
   if (!entry || !m) {
     return (
@@ -31,12 +31,6 @@ export function ComponentSource({ name }: { name: string }) {
       label: 'React',
       filename: `components/tweenui/${entry.group}/${name}.tsx`,
       snippet: m.react,
-    },
-    {
-      id: 'html' as const,
-      label: 'HTML',
-      filename: `tweenui/${entry.group}/${name}.html`,
-      snippet: m.html,
     },
     ...(css
       ? [{ id: 'css' as const, label: 'globals.css', filename: 'app/globals.css', snippet: css }]

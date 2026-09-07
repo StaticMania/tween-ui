@@ -42,35 +42,15 @@ export default function Page() {
 ```
 
 :::
-:::tabs-item{label="HTML" icon="i-lucide-code-xml"}
-
-```html [index.html]
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-
-<div data-avatar-reveal class="mx-auto flex max-w-[254px] items-center gap-x-3">
-  <div class="flex -space-x-3.5">
-    <figure data-ns-avatar class="size-11 overflow-hidden rounded-full outline-2 outline-white">
-      <img src="..." alt="Team member 1" class="size-full rounded-full object-cover" />
-    </figure>
-  </div>
-  <p data-ns-animate class="max-w-[142px] text-sm text-[#045f64]/80">
-    2,000+ teams shipping faster this week.
-  </p>
-</div>
-
-<script src="/tweenui/avatar/avatar-reveal.js"></script>
-```
-
-:::
 ::
 
 ## Props
 
-| Prop        | Type                 | Default                         | Description                          |
-| ----------- | -------------------- | ------------------------------- | ------------------------------------ |
-| `avatars`   | `AvatarRevealItem[]` | three Unsplash portraits        | Faces to stack. Each has `src` + `alt`. |
-| `children`  | `ReactNode`          | `2,000+ teams shipping…`        | Caption beside the stack.            |
-| `className` | `string`             | —                               | Extra classes for the root.          |
+| Prop        | Type                 | Default                  | Description                             |
+| ----------- | -------------------- | ------------------------ | --------------------------------------- |
+| `avatars`   | `AvatarRevealItem[]` | three Unsplash portraits | Faces to stack. Each has `src` + `alt`. |
+| `children`  | `ReactNode`          | `2,000+ teams shipping…` | Caption beside the stack.               |
+| `className` | `string`             | —                        | Extra classes for the root.             |
 
 ## Accessibility
 

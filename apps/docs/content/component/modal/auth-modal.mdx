@@ -53,30 +53,16 @@ export default function Page() {
 ```
 
 :::
-:::tabs-item{label="HTML" icon="i-lucide-code-xml"}
-
-```html [index.html]
-<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-
-<div data-auth-modal-root>
-  <button type="button" data-auth-modal-open>Sign in</button>
-  <!-- overlay + panel markup -->
-</div>
-
-<script src="/tweenui/modal/auth-modal.js"></script>
-```
-
-:::
 ::
 
 ## Props
 
-| Prop         | Type                     | Default | Description                                      |
-| ------------ | ------------------------ | ------- | ------------------------------------------------ |
-| `open`       | `boolean`                | —       | Whether the dialog is shown.                     |
-| `onClose`    | `() => void`             | —       | Called after the exit animation finishes.        |
-| `onProvider` | `(id: string) => void`   | —       | Fires when a provider button is clicked.         |
-| `onEmail`    | `(email: string) => void`| —       | Fires with the email on form submit.             |
+| Prop         | Type                      | Default | Description                               |
+| ------------ | ------------------------- | ------- | ----------------------------------------- |
+| `open`       | `boolean`                 | —       | Whether the dialog is shown.              |
+| `onClose`    | `() => void`              | —       | Called after the exit animation finishes. |
+| `onProvider` | `(id: string) => void`    | —       | Fires when a provider button is clicked.  |
+| `onEmail`    | `(email: string) => void` | —       | Fires with the email on form submit.      |
 
 ## Accessibility
 
