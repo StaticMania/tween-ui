@@ -8,6 +8,7 @@ const SCROLL_DIR = 'registry/tweenui/scroll-based';
 const MEDIA_DIR = 'registry/tweenui/media';
 const CARD_DIR = 'registry/tweenui/card';
 const ACCORDION_DIR = 'registry/tweenui/accordion';
+const ORBIT_DIR = 'registry/tweenui/orbit';
 
 /**
  * UI components. One entry per component; the build script does the rest.
@@ -476,6 +477,46 @@ export default function Example() {
 
 export default function Example() {
   return <GlowButton onClick={() => {}}>Get started</GlowButton>;
+}`,
+    },
+  },
+  {
+    name: 'logo-orbit',
+    type: 'component',
+    group: 'orbit',
+    title: 'Logo Orbit',
+    description:
+      'Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${ORBIT_DIR}/logo-orbit.tsx`,
+        target: 'components/tweenui/orbit/logo-orbit.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${ORBIT_DIR}/logo-orbit.tsx`,
+      },
+    ],
+    usage: {
+      react: `import LogoOrbit from '@/components/tweenui/orbit/logo-orbit';
+
+const logos = [
+  { src: '/logos/slack.svg', alt: 'Slack' },
+  { src: '/logos/figma.svg', alt: 'Figma' },
+  { src: '/logos/github.svg', alt: 'GitHub' },
+];
+
+export default function Example() {
+  return <LogoOrbit logos={logos} size={320} speed={1} />;
 }`,
     },
   },

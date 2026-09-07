@@ -73,6 +73,12 @@
       "type": "component",
       "title": "Glow Button",
       "description": "A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware."
+    },
+    {
+      "name": "logo-orbit",
+      "type": "component",
+      "title": "Logo Orbit",
+      "description": "Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware."
     }
   ]
 }

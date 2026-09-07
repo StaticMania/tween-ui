@@ -1,0 +1,71 @@
+---
+title: Logo Orbit
+description: Logos spaced evenly around a ring that rotates while each stays upright.
+icon: orbit
+---
+
+Logos sit evenly spaced around a ring that **rotates continuously**, while GSAP
+**counter-rotates each logo** so it always stays upright. Set the `size` and
+`speed` to taste. Driven by GSAP, and it fully respects
+`prefers-reduced-motion`.
+
+::component-preview{name="logo-orbit" size="lg"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/logo-orbit"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="logo-orbit"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import LogoOrbit from '@/components/tweenui/orbit/logo-orbit';
+
+const logos = [
+  { src: '/logos/slack.svg', alt: 'Slack' },
+  { src: '/logos/figma.svg', alt: 'Figma' },
+  { src: '/logos/github.svg', alt: 'GitHub' },
+  { src: '/logos/linear.svg', alt: 'Linear' },
+];
+
+export default function Page() {
+  return <LogoOrbit logos={logos} size={320} speed={1} />;
+}
+```
+
+:::
+::
+
+## Props
+
+| Prop    | Type             | Default | Description                                    |
+| ------- | ---------------- | ------- | ---------------------------------------------- |
+| `logos` | `{ src, alt }[]` | —       | Logos placed evenly around the ring.           |
+| `size`  | `number`         | `320`   | Ring diameter in pixels.                       |
+| `speed` | `number`         | `1`     | Rotation multiplier (1 = one turn every ~20s). |
+
+Extends native `<div>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Each logo keeps its `alt` text. The rotation is decorative; under
+`prefers-reduced-motion: reduce` the ring holds still with the logos laid out
+statically around it.
+::
