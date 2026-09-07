@@ -2,18 +2,18 @@
 
 import LogoOrbit from '@/registry/tweenui/orbit/logo-orbit';
 
-// Full-colour brand marks from Iconify's `logos` set.
-const icon = (name: string) => `https://api.iconify.design/logos:${name}.svg`;
+// Brand marks from Iconify (`logos` for colour, `simple-icons` for Figma + GSAP wordmark).
+const icon = (set: string, name: string) => `https://api.iconify.design/${set}:${name}.svg`;
 
 const LOGOS = [
-  { src: icon('figma'), alt: 'Figma' },
-  { src: icon('greensock'), alt: 'GSAP' },
-  { src: icon('tailwindcss-icon'), alt: 'Tailwind CSS' },
-  { src: icon('react'), alt: 'React' },
-  { src: icon('typescript-icon'), alt: 'TypeScript' },
-  { src: icon('discord-icon'), alt: 'Discord' },
-  { src: icon('github-icon'), alt: 'GitHub' },
-  { src: icon('slack-icon'), alt: 'Slack' },
+  { src: icon('simple-icons', 'figma'), alt: 'Figma' },
+  { src: icon('simple-icons', 'gsap'), alt: 'GSAP' },
+  { src: icon('logos', 'tailwindcss-icon'), alt: 'Tailwind CSS' },
+  { src: icon('logos', 'react'), alt: 'React' },
+  { src: icon('logos', 'typescript-icon'), alt: 'TypeScript' },
+  { src: icon('logos', 'discord-icon'), alt: 'Discord' },
+  { src: icon('logos', 'github-icon'), alt: 'GitHub' },
+  { src: icon('logos', 'slack-icon'), alt: 'Slack' },
 ];
 
 export default function LogoOrbitDemo() {

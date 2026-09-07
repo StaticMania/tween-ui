@@ -22,12 +22,15 @@ export interface LogoOrbitProps extends ComponentPropsWithoutRef<'div'> {
   size?: number;
   /** Rotation speed multiplier (1 = one turn every 20s). */
   speed?: number;
+  /** Pause the orbit while the pointer is over the ring. */
+  pauseOnHover?: boolean;
 }
 
 export default function LogoOrbit({
   logos,
   size = 320,
   speed = 1,
+  pauseOnHover = true,
   className,
   ...props
 }: LogoOrbitProps) {
@@ -74,8 +77,19 @@ export default function LogoOrbit({
       tl.to(hub, { rotation: 360, duration: 20, ease: 'none' });
       tl.to(items, { rotation: '-=360', duration: 20, ease: 'none' }, 0);
       tl.timeScale(timeScale);
+
+      if (!pauseOnHover) return;
+
+      const pause = () => tl.pause();
+      const resume = () => tl.resume();
+      ring.addEventListener('pointerenter', pause);
+      ring.addEventListener('pointerleave', resume);
+      return () => {
+        ring.removeEventListener('pointerenter', pause);
+        ring.removeEventListener('pointerleave', resume);
+      };
     },
-    { scope: ringRef, dependencies: [size, speed, logos.length] }
+    { scope: ringRef, dependencies: [size, speed, logos.length, pauseOnHover] }
   );
 
   return (

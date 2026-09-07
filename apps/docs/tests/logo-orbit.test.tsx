@@ -1,5 +1,6 @@
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import gsap from 'gsap';
+import { describe, expect, it, vi } from 'vitest';
 import LogoOrbit from '@/registry/tweenui/orbit/logo-orbit';
 
 const LOGOS = [
@@ -27,5 +28,32 @@ describe('Logo Orbit', () => {
   it('renders one pivot per logo', () => {
     const { container } = render(<LogoOrbit logos={LOGOS} />);
     expect(container.querySelectorAll('[data-orbit-pivot]')).toHaveLength(LOGOS.length);
+  });
+
+  it('pauses rotation on pointer enter by default', () => {
+    const pause = vi.spyOn(gsap.core.Timeline.prototype, 'pause');
+    const resume = vi.spyOn(gsap.core.Timeline.prototype, 'resume');
+    const { container } = render(<LogoOrbit logos={LOGOS} />);
+    const ring = container.querySelector('[data-logo-orbit]')!;
+
+    fireEvent.pointerEnter(ring);
+    expect(pause).toHaveBeenCalled();
+
+    fireEvent.pointerLeave(ring);
+    expect(resume).toHaveBeenCalled();
+
+    pause.mockRestore();
+    resume.mockRestore();
+  });
+
+  it('does not pause on hover when pauseOnHover is false', () => {
+    const pause = vi.spyOn(gsap.core.Timeline.prototype, 'pause');
+    const { container } = render(<LogoOrbit logos={LOGOS} pauseOnHover={false} />);
+    const ring = container.querySelector('[data-logo-orbit]')!;
+
+    fireEvent.pointerEnter(ring);
+    expect(pause).not.toHaveBeenCalled();
+
+    pause.mockRestore();
   });
 });

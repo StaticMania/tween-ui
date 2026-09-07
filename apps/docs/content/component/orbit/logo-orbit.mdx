@@ -5,9 +5,9 @@ icon: orbit
 ---
 
 Logos sit evenly spaced around a ring that **rotates continuously**, while GSAP
-**counter-rotates each logo** so it always stays upright. Set the `size` and
-`speed` to taste. Driven by GSAP, and it fully respects
-`prefers-reduced-motion`.
+**counter-rotates each logo** so it always stays upright. Hover pauses the
+orbit by default (`pauseOnHover`). Set the `size` and `speed` to taste. Driven
+by GSAP, and it fully respects `prefers-reduced-motion`.
 
 ::component-preview{name="logo-orbit" size="lg"}
 ::
@@ -54,11 +54,12 @@ export default function Page() {
 
 ## Props
 
-| Prop    | Type             | Default | Description                                    |
-| ------- | ---------------- | ------- | ---------------------------------------------- |
-| `logos` | `{ src, alt }[]` | —       | Logos placed evenly around the ring.           |
-| `size`  | `number`         | `320`   | Ring diameter in pixels.                       |
-| `speed` | `number`         | `1`     | Rotation multiplier (1 = one turn every ~20s). |
+| Prop           | Type             | Default | Description                                    |
+| -------------- | ---------------- | ------- | ---------------------------------------------- |
+| `logos`        | `{ src, alt }[]` | —       | Logos placed evenly around the ring.           |
+| `size`         | `number`         | `320`   | Ring diameter in pixels.                       |
+| `speed`        | `number`         | `1`     | Rotation multiplier (1 = one turn every ~20s). |
+| `pauseOnHover` | `boolean`        | `true`  | Pause the orbit while the pointer is over it.  |
 
 Extends native `<div>` attributes (`className`, `style`, …).
 
