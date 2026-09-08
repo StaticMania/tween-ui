@@ -31,6 +31,7 @@ export const demos: Record<string, ComponentType> = {
   'logo-orbit:default': dynamic(() => import('./demos/orbit/logo-orbit')),
   'logo-cycle:default': dynamic(() => import('./demos/logo/logo-cycle')),
   'logo-wave:default': dynamic(() => import('./demos/logo/logo-wave')),
+  'image-fan-slider:default': dynamic(() => import('./demos/slider/image-fan-slider')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing/pricing-plan-switch')),
 };
 

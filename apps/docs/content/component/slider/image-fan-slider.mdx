@@ -1,0 +1,74 @@
+---
+title: Image Fan Slider
+description: A fanned stack of images that auto-advances around a sharp center.
+icon: images
+---
+
+Five (or more) photos sit in a **fan**: the active one is large and sharp, the
+neighbors sit **rotated and blurred** on each side, and the rest tuck away.
+It **auto-advances** every `interval` seconds (`direction="left"` by default).
+Pass `direction="right"` to step the other way. Hover pauses by default
+(`pauseOnHover`). Pure CSS transitions, and it fully respects
+`prefers-reduced-motion`.
+
+::component-preview{name="image-fan-slider" size="lg"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/image-fan-slider"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="image-fan-slider"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import ImageFanSlider from '@/components/tweenui/slider/image-fan-slider';
+
+const images = [
+  { src: '/photos/one.jpg', alt: 'Portrait one' },
+  { src: '/photos/two.jpg', alt: 'Portrait two' },
+  { src: '/photos/three.jpg', alt: 'Portrait three' },
+  { src: '/photos/four.jpg', alt: 'Portrait four' },
+  { src: '/photos/five.jpg', alt: 'Portrait five' },
+];
+
+export default function Page() {
+  return <ImageFanSlider images={images} />;
+}
+```
+
+:::
+::
+
+## Props
+
+| Prop           | Type                | Default  | Description                                  |
+| -------------- | ------------------- | -------- | -------------------------------------------- |
+| `images`       | `{ src, alt }[]`    | —        | Photos in the fan. Five looks best.          |
+| `interval`     | `number`            | `2.5`    | Seconds between advances.                    |
+| `direction`    | `'left' \| 'right'` | `'left'` | Autoplay direction (`left` = next image).    |
+| `pauseOnHover` | `boolean`           | `true`   | Pause autoplay while the pointer is over it. |
+
+Extends native `<div>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Each image keeps its `alt` text. The autoplay is decorative; under
+`prefers-reduced-motion: reduce` the fan holds on the first image.
+::

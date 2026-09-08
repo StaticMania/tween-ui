@@ -99,6 +99,12 @@
       "description": "An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware."
     },
     {
+      "name": "image-fan-slider",
+      "type": "component",
+      "title": "Image Fan Slider",
+      "description": "A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware."
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "block",
       "title": "Pricing Plan Switch",

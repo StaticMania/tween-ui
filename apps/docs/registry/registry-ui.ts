@@ -10,6 +10,7 @@ const CARD_DIR = 'registry/tweenui/card';
 const ACCORDION_DIR = 'registry/tweenui/accordion';
 const ORBIT_DIR = 'registry/tweenui/orbit';
 const LOGO_DIR = 'registry/tweenui/logo';
+const SLIDER_DIR = 'registry/tweenui/slider';
 
 /**
  * UI components. One entry per component; the build script does the rest.
@@ -646,6 +647,46 @@ const logos = [
 
 export default function Example() {
   return <LogoWave logos={logos} duration={30} />;
+}`,
+    },
+  },
+  {
+    name: 'image-fan-slider',
+    type: 'component',
+    group: 'slider',
+    title: 'Image Fan Slider',
+    description:
+      'A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: [],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${SLIDER_DIR}/image-fan-slider.tsx`,
+        target: 'components/tweenui/slider/image-fan-slider.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${SLIDER_DIR}/image-fan-slider.tsx`,
+      },
+    ],
+    usage: {
+      react: `import ImageFanSlider from '@/components/tweenui/slider/image-fan-slider';
+
+const images = [
+  { src: '/photos/one.jpg', alt: 'Portrait one' },
+  { src: '/photos/two.jpg', alt: 'Portrait two' },
+  { src: '/photos/three.jpg', alt: 'Portrait three' },
+];
+
+export default function Example() {
+  return <ImageFanSlider images={images} />;
 }`,
     },
   },
