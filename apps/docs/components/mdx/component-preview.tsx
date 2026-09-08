@@ -19,7 +19,7 @@ export function ComponentPreview({
 }: {
   name: string;
   variant?: string;
-  size?: 'default' | 'lg';
+  size?: 'default' | 'lg' | 'xl';
 }) {
   const entry = getEntry(name);
   const locked = entry?.variants.some((v) => v.id === variantProp) ? variantProp : undefined;
@@ -38,6 +38,7 @@ export function ComponentPreview({
     );
   }
 
+  const isBlock = entry.type === 'block';
   const use = usage[name]?.react;
 
   const copy = async () => {
@@ -110,15 +111,22 @@ export function ComponentPreview({
           <div
             className={cn(
               'overflow-hidden bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] [background-size:16px_16px]',
-              size === 'lg' ? 'h-[400px]' : 'h-[320px]'
+              isBlock
+                ? 'h-auto'
+                : size === 'xl'
+                  ? 'h-[560px]'
+                  : size === 'lg'
+                    ? 'h-[400px]'
+                    : 'h-[320px]'
             )}
           >
             {Demo ? (
               <div
                 key={replay}
                 className={cn(
-                  'grid h-full w-full place-items-center',
-                  size === 'lg' ? 'p-5' : 'p-10'
+                  'grid w-full place-items-center',
+                  isBlock ? 'h-auto' : 'h-full',
+                  !isBlock && (size === 'xl' ? 'p-2' : size === 'lg' ? 'p-5' : 'p-10')
                 )}
               >
                 <Demo />

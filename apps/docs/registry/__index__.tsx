@@ -20,6 +20,7 @@ export const demos: Record<string, ComponentType> = {
   'counter-number-on-scroll:viewport': dynamic(
     () => import('./demos/scroll-based/counter-number-on-scroll-viewport')
   ),
+  'scroll-spin-image:default': dynamic(() => import('./demos/scroll-based/scroll-spin-image')),
   'voice-sample-player:default': dynamic(() => import('./demos/media/voice-sample-player')),
   'flip-card-on-hover:default': dynamic(() => import('./demos/card/flip-card-on-hover')),
   'faq-accordion:default': dynamic(() => import('./demos/accordion/faq-accordion')),
@@ -28,6 +29,7 @@ export const demos: Record<string, ComponentType> = {
   'slide-arrow-button:default': dynamic(() => import('./demos/button/slide-arrow-button')),
   'glow-button:default': dynamic(() => import('./demos/button/glow-button')),
   'logo-orbit:default': dynamic(() => import('./demos/orbit/logo-orbit')),
+  'pricing-plan-switch:default': dynamic(() => import('./demos/pricing/pricing-plan-switch')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

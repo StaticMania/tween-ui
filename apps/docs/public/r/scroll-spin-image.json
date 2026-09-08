@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-spin-image",
+  "type": "registry:ui",
+  "title": "Scroll Spin Image",
+  "description": "A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware.",
+  "dependencies": [
+    "gsap",
+    "@gsap/react"
+  ],
+  "registryDependencies": [],
+  "cssVars": {
+    "theme": {}
+  },
+  "files": [
+    {
+      "path": "components/tweenui/scroll-based/scroll-spin-image.tsx",
+      "type": "registry:component",
+      "target": "components/tweenui/scroll-based/scroll-spin-image.tsx",
+      "content": "'use client';\n\nimport { useRef, type ComponentPropsWithoutRef } from 'react';\nimport { useGSAP } from '@gsap/react';\nimport gsap from 'gsap';\nimport { cn } from '@/lib/utils';\n\ngsap.registerPlugin(useGSAP);\n\nconst prefersReducedMotion = () =>\n  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;\n\nconst DEFAULT_IDLE_DURATION = 50;\nconst DEFAULT_SCROLL_DURATION = 12;\nconst IDLE_DEBOUNCE_MS = 150;\n\nexport interface ScrollSpinImageProps extends ComponentPropsWithoutRef<'figure'> {\n  /** Image URL. */\n  src: string;\n  /** Accessible label; empty string marks the figure decorative (`aria-hidden`). */\n  alt?: string;\n  /** Slow continuous spin when the page is idle (seconds per turn). */\n  idleDuration?: number;\n  /** Faster spin while the user is scrolling (seconds per turn). */\n  scrollDuration?: number;\n}\n\nexport default function ScrollSpinImage({\n  src,\n  alt = '',\n  idleDuration = DEFAULT_IDLE_DURATION,\n  scrollDuration = DEFAULT_SCROLL_DURATION,\n  className,\n  ...props\n}: ScrollSpinImageProps) {\n  const figureRef = useRef<HTMLElement>(null);\n  const lastScrollTopRef = useRef(0);\n  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);\n  const currentTweenRef = useRef<gsap.core.Tween | null>(null);\n  const lastDirectionRef = useRef<'up' | 'down'>('down');\n  const isDecorative = alt === '';\n\n  useGSAP(\n    () => {\n      const item = figureRef.current;\n      if (!item) return;\n\n      if (prefersReducedMotion()) return;\n\n      const startRotation = (direction: 'up' | 'down', duration: number) => {\n        currentTweenRef.current?.kill();\n        currentTweenRef.current = gsap.to(item, {\n          rotate: direction === 'up' ? '-=360' : '+=360',\n          duration,\n          ease: 'linear',\n          transformOrigin: 'center center',\n          repeat: -1,\n        });\n      };\n\n      const scroller =\n        (item.closest('[data-scroll-spin-scroller]') as HTMLElement | null) ?? window;\n\n      const getScrollTop = () =>\n        scroller === window\n          ? window.pageYOffset || document.documentElement.scrollTop\n          : (scroller as HTMLElement).scrollTop;\n\n      const handleScroll = () => {\n        const scrollTop = getScrollTop();\n\n        let direction: 'up' | 'down' | null = null;\n        if (scrollTop > lastScrollTopRef.current) {\n          direction = 'down';\n        } else if (scrollTop < lastScrollTopRef.current) {\n          direction = 'up';\n        }\n\n        if (direction) {\n          lastDirectionRef.current = direction;\n          startRotation(direction, scrollDuration);\n        }\n\n        lastScrollTopRef.current = Math.max(scrollTop, 0);\n\n        clearTimeout(scrollTimeoutRef.current);\n        scrollTimeoutRef.current = setTimeout(() => {\n          startRotation(lastDirectionRef.current, idleDuration);\n        }, IDLE_DEBOUNCE_MS);\n      };\n\n      scroller.addEventListener('scroll', handleScroll, { passive: true });\n      startRotation('down', idleDuration);\n\n      return () => {\n        scroller.removeEventListener('scroll', handleScroll);\n        currentTweenRef.current?.kill();\n        clearTimeout(scrollTimeoutRef.current);\n      };\n    },\n    { scope: figureRef, dependencies: [src, idleDuration, scrollDuration] }\n  );\n\n  return (\n    <figure\n      ref={figureRef}\n      data-scroll-spin\n      aria-hidden={isDecorative ? true : undefined}\n      className={cn('pointer-events-none motion-reduce:transition-none', className)}\n      {...props}\n    >\n      <img src={src} alt={alt} className=\"size-full object-cover\" />\n    </figure>\n  );\n}\n"
+    }
+  ]
+}

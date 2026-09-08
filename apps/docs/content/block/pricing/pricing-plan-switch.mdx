@@ -1,0 +1,114 @@
+---
+title: Pricing Plan Switch
+description: A pricing section that morphs the plan badge, crossfades the copy, and spins the price on switch.
+icon: badge-dollar-sign
+---
+
+A ready-made pricing block. Picking a plan on the left **morphs the plan badge**
+(crossfade + width-morph), **crossfades the description**, and **spins the price**
+with Number Flow, while the feature checklist lights up its included rows. A
+monthly/yearly toggle re-spins the price. Driven by GSAP, and it fully respects
+`prefers-reduced-motion`.
+
+::component-preview{name="pricing-plan-switch" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/pricing-plan-switch"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="pricing-plan-switch"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import PricingPlanSwitch from '@/components/tweenui/pricing/pricing-plan-switch';
+
+export default function Page() {
+  return <PricingPlanSwitch />;
+}
+```
+
+:::
+::
+
+Pass your own plans and features to make it yours — each plan lights up its
+first `includedCount` rows of the shared `features` list:
+
+```tsx [app/page.tsx]
+import PricingPlanSwitch from '@/components/tweenui/pricing/pricing-plan-switch';
+
+const plans = [
+  {
+    id: 'starter',
+    name: 'Starter',
+    subtitle: 'For early-stage teams',
+    description: 'Core automation and a shared workspace to keep momentum.',
+    monthly: 2500,
+    yearly: 25000,
+    includedCount: 5,
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
+    subtitle: 'For growing teams',
+    description: 'Advanced automation, priority workflows, and deeper analytics.',
+    monthly: 4190,
+    yearly: 41900,
+    includedCount: 7,
+  },
+];
+
+const features = [
+  'Unlimited workflows',
+  'Team workspace',
+  'Email support',
+  'Advanced automation',
+  'Priority queue',
+  'Usage analytics',
+  'Role-based access',
+];
+
+export default function Page() {
+  return <PricingPlanSwitch plans={plans} features={features} ctaHref="/signup" />;
+}
+```
+
+## Props
+
+| Prop          | Type            | Default         | Description                                                            |
+| ------------- | --------------- | --------------- | ---------------------------------------------------------------------- |
+| `plans`       | `PricingPlan[]` | 3-tier sample   | Plans shown in the selector.                                           |
+| `features`    | `string[]`      | sample list     | Feature checklist; each plan lights up its first `includedCount` rows. |
+| `eyebrow`     | `string`        | `"Pricing"`     | Eyebrow badge above the heading.                                       |
+| `heading`     | `string`        | —               | Section heading.                                                       |
+| `description` | `string`        | —               | Section sub-heading.                                                   |
+| `currency`    | `string`        | `"$"`           | Currency symbol before the price.                                      |
+| `ctaText`     | `string`        | `"Get started"` | Primary CTA label.                                                     |
+| `ctaHref`     | `string`        | `"#"`           | Primary CTA link.                                                      |
+
+Each `PricingPlan` is `{ id, name, subtitle, description, monthly, yearly, includedCount }`.
+Extends native `<section>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+The billing toggle is a real checkbox with an `aria-label` and a visible focus
+ring, so it is fully keyboard operable. Under `prefers-reduced-motion: reduce`
+the badge and description swap instantly with no crossfade, and the price still
+updates without spinning.
+::

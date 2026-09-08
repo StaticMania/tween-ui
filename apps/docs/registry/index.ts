@@ -1,8 +1,9 @@
+import { blocks } from './registry-blocks';
 import { ui } from './registry-ui';
 import type { RegistryEntry } from './schema';
 
 /** All registry items (ui + blocks + lib as they land). */
-export const registry: RegistryEntry[] = [...ui];
+export const registry: RegistryEntry[] = [...ui, ...blocks];
 
 export function getEntry(name: string): RegistryEntry | undefined {
   return registry.find((item) => item.name === name);
