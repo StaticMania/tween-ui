@@ -199,7 +199,7 @@ export default function IntegrationHub({
               end: 1,
             },
           });
-          gsap.set(dot, { autoAlpha: 0.85 });
+          gsap.set(dot, { autoAlpha: 1 });
           tween.progress((0.45 + index * 0.08) % 1).play();
         });
       });
@@ -216,10 +216,10 @@ export default function IntegrationHub({
     >
       <div className="mx-auto w-full max-w-[804px] space-y-16 px-4">
         <div className="space-y-6 text-center">
-          <h2 className="m-0 text-2xl leading-[1.15] font-medium tracking-tight text-[#12161F] md:text-3xl lg:text-4xl dark:text-white">
+          <h2 className="text-2xl leading-[1.15] font-medium tracking-tight text-[#12161F] md:text-3xl lg:text-4xl dark:text-white">
             {title}
           </h2>
-          <p className="m-0 mx-auto max-w-[400px] text-sm leading-relaxed text-[#045f64]/70 dark:text-[#9fd4d6]/80">
+          <p className="mx-auto max-w-[400px] text-sm leading-relaxed text-[#045f64]/70 dark:text-[#9fd4d6]/80">
             {description}
           </p>
         </div>
@@ -240,9 +240,8 @@ export default function IntegrationHub({
                 />
                 <circle
                   data-hub-dot
-                  className="opacity-0 motion-reduce:hidden"
+                  className="fill-[#045f64] opacity-0 motion-reduce:hidden dark:fill-[#c6f56f]"
                   r={2}
-                  fill="#c6f56f"
                 />
               </g>
             ))}

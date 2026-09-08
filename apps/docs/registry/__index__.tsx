@@ -39,6 +39,7 @@ export const demos: Record<string, ComponentType> = {
   'cta-headline-photos:default': dynamic(() => import('./demos/cta/cta-headline-photos')),
   'blog-hover-expand:default': dynamic(() => import('./demos/blog/blog-hover-expand')),
   'integration-hub:default': dynamic(() => import('./demos/integration/integration-hub')),
+  'hero-rotating-cards:default': dynamic(() => import('./demos/hero/hero-rotating-cards')),
   'testimonial-split-slide:default': dynamic(
     () => import('./demos/testimonial/testimonial-split-slide')
   ),

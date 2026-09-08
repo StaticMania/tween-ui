@@ -6,6 +6,7 @@ const TESTIMONIAL_DIR = 'registry/tweenui/testimonial';
 const CTA_DIR = 'registry/tweenui/cta';
 const BLOG_DIR = 'registry/tweenui/blog';
 const INTEGRATION_DIR = 'registry/tweenui/integration';
+const HERO_DIR = 'registry/tweenui/hero';
 
 /**
  * Pre-composed sections built from primitives. Same registry shape as `ui`,
@@ -316,6 +317,40 @@ export default function Example() {
 
 export default function Example() {
   return <IntegrationHub />;
+}`,
+    },
+  },
+  {
+    name: 'hero-rotating-cards',
+    type: 'block',
+    group: 'hero',
+    title: 'Hero Rotating Cards',
+    description:
+      'A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${HERO_DIR}/hero-rotating-cards.tsx`,
+        target: 'components/tweenui/hero/hero-rotating-cards.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${HERO_DIR}/hero-rotating-cards.tsx`,
+      },
+    ],
+    usage: {
+      react: `import HeroRotatingCards from '@/components/tweenui/hero/hero-rotating-cards';
+
+export default function Example() {
+  return <HeroRotatingCards />;
 }`,
     },
   },

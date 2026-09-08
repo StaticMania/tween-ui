@@ -157,6 +157,12 @@
       "type": "block",
       "title": "Integration Hub",
       "description": "A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "hero-rotating-cards",
+      "type": "block",
+      "title": "Hero Rotating Cards",
+      "description": "A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware."
     }
   ]
 }
