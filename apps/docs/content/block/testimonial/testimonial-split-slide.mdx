@@ -1,0 +1,91 @@
+---
+title: Testimonial Split Slide
+description: A testimonial slider whose photo wipes in as tiled strips beside the quote.
+icon: quote
+---
+
+A ready-made testimonial block. A **split slider** shows a photo that **wipes in
+as tiled strips**, with the quote fading in beside it and the index ticking with
+Number Flow. Prev wipes **right to left**, next wipes **left to right**. Hover
+pauses the loop. Driven by GSAP, and it fully respects
+`prefers-reduced-motion`.
+
+::component-preview{name="testimonial-split-slide" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/testimonial-split-slide"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="testimonial-split-slide"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import TestimonialSplitSlide from '@/components/tweenui/testimonial/testimonial-split-slide';
+
+export default function Page() {
+  return <TestimonialSplitSlide />;
+}
+```
+
+:::
+::
+
+Pass your own quotes to make it yours. Set `directional={false}` to keep the
+original right-to-left split on every change:
+
+```tsx [app/page.tsx]
+import TestimonialSplitSlide from '@/components/tweenui/testimonial/testimonial-split-slide';
+
+const testimonials = [
+  {
+    id: 'maya',
+    image: '/photos/maya.jpg',
+    imageAlt: 'Maya, operations lead',
+    quote: 'Handoffs used to live in three chats. Now the pipeline updates itself.',
+  },
+  {
+    id: 'jon',
+    image: '/photos/jon.jpg',
+    imageAlt: 'Jon, founder',
+    quote: 'We shipped the first automation in an afternoon and never looked back.',
+  },
+];
+
+export default function Page() {
+  return <TestimonialSplitSlide testimonials={testimonials} directional={false} />;
+}
+```
+
+## Props
+
+| Prop           | Type                 | Default        | Description                                                                     |
+| -------------- | -------------------- | -------------- | ------------------------------------------------------------------------------- |
+| `testimonials` | `TestimonialSlide[]` | 4-slide sample | Quotes shown in the split slider.                                               |
+| `directional`  | `boolean`            | `true`         | Prev wipes right-to-left, next left-to-right. `false` keeps the original split. |
+
+Each `TestimonialSlide` is `{ id, image, imageAlt, quote }`. Extends native
+`<section>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Previous and next controls are real buttons with an `aria-label` and a visible
+focus ring. Hover pauses autoplay. Under `prefers-reduced-motion: reduce` the
+loop does not run and the photo tiles snap into place with no wipe.
+::

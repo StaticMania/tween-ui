@@ -1,0 +1,102 @@
+---
+title: Process Card Reveal
+description: A process section that auto-cycles stacked cards with a filling timeline.
+icon: list-ordered
+---
+
+A ready-made process block. Numbered steps sit on a **timeline** whose connector
+**fills** before the next card **slides and blurs** into place — image one way,
+copy the other. Hover pauses the loop; clicking a step jumps there. Driven by
+GSAP, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="process-card-reveal" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/process-card-reveal"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="process-card-reveal"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import ProcessCardReveal from '@/components/tweenui/process/process-card-reveal';
+
+export default function Page() {
+  return <ProcessCardReveal />;
+}
+```
+
+:::
+::
+
+Pass your own steps to make it yours. Each step can include an optional
+`overlay` image; without one, a frosted caption uses the step title:
+
+```tsx [app/page.tsx]
+import ProcessCardReveal from '@/components/tweenui/process/process-card-reveal';
+
+const steps = [
+  {
+    id: 'discover',
+    title: 'Discover',
+    description: 'Map the workflow and pick the trigger that starts every run.',
+    image: '/photos/discover.jpg',
+    imageAlt: 'Whiteboard session',
+    details: [
+      { title: 'Kickoff workshop', description: 'Align on the outcome in one sitting.' },
+      { title: 'Trigger catalog', description: 'Choose from the apps you already use.' },
+    ],
+  },
+  {
+    id: 'launch',
+    title: 'Launch',
+    description: 'Ship the flow, watch the first runs, and share it with the team.',
+    image: '/photos/launch.jpg',
+    imageAlt: 'Team launching a workflow',
+    details: [
+      { title: 'Live monitoring', description: 'Catch failed runs the moment they happen.' },
+      { title: 'Shared ownership', description: 'Invite teammates with clear permissions.' },
+    ],
+  },
+];
+
+export default function Page() {
+  return <ProcessCardReveal steps={steps} />;
+}
+```
+
+## Props
+
+| Prop    | Type            | Default       | Description                        |
+| ------- | --------------- | ------------- | ---------------------------------- |
+| `steps` | `ProcessStep[]` | 4-step sample | Cards shown in the stacked reveal. |
+
+Each `ProcessStep` is `{ id, title, description, image, imageAlt, overlay?, overlayAlt?, details }`.
+`details` is `{ title, description }[]`. Extends native `<section>` attributes
+(`className`, `style`, …).
+
+## Accessibility
+
+::note
+Timeline steps are real buttons with an `aria-label`, `aria-current="step"` on
+the active one, and a visible focus ring, so the sequence is fully keyboard
+operable. Hover pauses autoplay. Under `prefers-reduced-motion: reduce` the
+loop does not run and clicking a step snaps the card and timeline with no
+slide or blur.
+::
