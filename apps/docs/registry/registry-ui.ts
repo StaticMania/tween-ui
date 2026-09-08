@@ -9,6 +9,7 @@ const MEDIA_DIR = 'registry/tweenui/media';
 const CARD_DIR = 'registry/tweenui/card';
 const ACCORDION_DIR = 'registry/tweenui/accordion';
 const ORBIT_DIR = 'registry/tweenui/orbit';
+const LOGO_DIR = 'registry/tweenui/logo';
 
 /**
  * UI components. One entry per component; the build script does the rest.
@@ -557,6 +558,94 @@ const logos = [
 
 export default function Example() {
   return <LogoOrbit logos={logos} size={320} speed={1} />;
+}`,
+    },
+  },
+  {
+    name: 'logo-cycle',
+    type: 'component',
+    group: 'logo',
+    title: 'Logo Cycle',
+    description:
+      'A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${LOGO_DIR}/logo-cycle.tsx`,
+        target: 'components/tweenui/logo/logo-cycle.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${LOGO_DIR}/logo-cycle.tsx`,
+      },
+    ],
+    usage: {
+      react: `import LogoCycle from '@/components/tweenui/logo/logo-cycle';
+
+const logos = [
+  { src: '/logos/slack.svg', alt: 'Slack' },
+  { src: '/logos/figma.svg', alt: 'Figma' },
+  { src: '/logos/github.svg', alt: 'GitHub' },
+  { src: '/logos/linear.svg', alt: 'Linear' },
+  { src: '/logos/notion.svg', alt: 'Notion' },
+  { src: '/logos/vercel.svg', alt: 'Vercel' },
+  { src: '/logos/react.svg', alt: 'React' },
+  { src: '/logos/tailwind.svg', alt: 'Tailwind CSS' },
+];
+
+export default function Example() {
+  return <LogoCycle logos={logos} visibleCount={6} />;
+}`,
+    },
+  },
+  {
+    name: 'logo-wave',
+    type: 'component',
+    group: 'logo',
+    title: 'Logo Wave',
+    description:
+      'An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${LOGO_DIR}/logo-wave.tsx`,
+        target: 'components/tweenui/logo/logo-wave.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${LOGO_DIR}/logo-wave.tsx`,
+      },
+    ],
+    usage: {
+      react: `import LogoWave from '@/components/tweenui/logo/logo-wave';
+
+const logos = [
+  { src: '/logos/slack.svg', alt: 'Slack' },
+  { src: '/logos/figma.svg', alt: 'Figma' },
+  { src: '/logos/github.svg', alt: 'GitHub' },
+  { src: '/logos/linear.svg', alt: 'Linear' },
+  { src: '/logos/notion.svg', alt: 'Notion' },
+  { src: '/logos/vercel.svg', alt: 'Vercel' },
+];
+
+export default function Example() {
+  return <LogoWave logos={logos} duration={30} />;
 }`,
     },
   },

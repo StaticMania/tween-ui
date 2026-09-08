@@ -1,0 +1,85 @@
+---
+title: Logo Cycle
+description: A logo row that swaps groups with a staggered blur-slide.
+icon: gallery-horizontal
+---
+
+Logos sit in a **row of `visibleCount`**. When there are more marks than fit,
+GSAP **cycles the extra groups**: the current set staggers up and blurs out,
+the next set slides in from below. Hover pauses the loop by default
+(`pauseOnHover`). Driven by GSAP, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="logo-cycle" size="lg"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/logo-cycle"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="logo-cycle"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import LogoCycle from '@/components/tweenui/logo/logo-cycle';
+
+const logos = [
+  { src: '/logos/slack.svg', alt: 'Slack' },
+  { src: '/logos/figma.svg', alt: 'Figma' },
+  { src: '/logos/github.svg', alt: 'GitHub' },
+  { src: '/logos/linear.svg', alt: 'Linear' },
+  { src: '/logos/notion.svg', alt: 'Notion' },
+  { src: '/logos/vercel.svg', alt: 'Vercel' },
+  { src: '/logos/react.svg', alt: 'React' },
+  { src: '/logos/tailwind.svg', alt: 'Tailwind CSS' },
+];
+
+export default function Page() {
+  return <LogoCycle logos={logos} visibleCount={6} />;
+}
+```
+
+:::
+::
+
+## Props
+
+| Prop            | Type                                                | Default          | Description                                      |
+| --------------- | --------------------------------------------------- | ---------------- | ------------------------------------------------ |
+| `logos`         | `{ src, alt }[]`                                    | —                | Logos to cycle through in groups.                |
+| `visibleCount`  | `number`                                            | `6`              | How many logos show in each group.               |
+| `interval`      | `number`                                            | `2.5`            | Seconds between group swaps.                     |
+| `duration`      | `number`                                            | `0.6`            | Swap tween duration in seconds.                  |
+| `stagger`       | `number`                                            | `0.14`           | Delay between items in a group, in seconds.      |
+| `delay`         | `number`                                            | `0.5`            | Seconds to wait before the first swap.           |
+| `yOffset`       | `number`                                            | `40`             | Vertical travel of the stagger, in pixels.       |
+| `blur`          | `number`                                            | `4`              | Blur radius while swapping, in pixels.           |
+| `ease`          | `string`                                            | `'power1.inOut'` | GSAP ease for the swap.                          |
+| `pauseOnHover`  | `boolean`                                           | `true`           | Pause the cycle while the pointer is over it.    |
+| `itemClassName` | `string`                                            | —                | Extra classes for each logo slot.                |
+| `renderLogo`    | `(logo: LogoCycleLogo, index: number) => ReactNode` | —                | Custom logo markup instead of a default `<img>`. |
+
+Extends native `<div>` attributes (`className`, `style`, …). If `logos.length`
+is at most `visibleCount`, the row stays static and does not animate.
+
+## Accessibility
+
+::note
+Each logo keeps its `alt` text. The cycle is decorative; under
+`prefers-reduced-motion: reduce` the first group stays visible and the loop
+does not run.
+::

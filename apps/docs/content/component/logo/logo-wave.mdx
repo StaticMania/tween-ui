@@ -1,0 +1,80 @@
+---
+title: Logo Wave
+description: An infinite logo strip whose center mark rises and scales into an arc.
+icon: waves
+---
+
+Logos **scroll in an endless strip** (`direction="left"` by default, right-to-left).
+Pass `direction="right"` to scroll the other way. The mark closest to the
+midpoint **rises and scales up**; the next few on each side step down into a
+wave. Hover pauses the marquee by default (`pauseOnHover`). Driven by GSAP, and
+it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="logo-wave" size="lg"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/logo-wave"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="logo-wave"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import LogoWave from '@/components/tweenui/logo/logo-wave';
+
+const logos = [
+  { src: '/logos/slack.svg', alt: 'Slack' },
+  { src: '/logos/figma.svg', alt: 'Figma' },
+  { src: '/logos/github.svg', alt: 'GitHub' },
+  { src: '/logos/linear.svg', alt: 'Linear' },
+  { src: '/logos/notion.svg', alt: 'Notion' },
+  { src: '/logos/vercel.svg', alt: 'Vercel' },
+];
+
+export default function Page() {
+  return <LogoWave logos={logos} duration={30} />;
+}
+```
+
+:::
+::
+
+## Props
+
+| Prop            | Type                                               | Default                  | Description                                      |
+| --------------- | -------------------------------------------------- | ------------------------ | ------------------------------------------------ |
+| `logos`         | `{ src, alt }[]`                                   | —                        | Logos duplicated along the marquee.              |
+| `duration`      | `number`                                           | `60`                     | Seconds for one set to travel its own width.     |
+| `gap`           | `number`                                           | `70`                     | Space between items, in pixels.                  |
+| `direction`     | `'left' \| 'right'`                                | `'left'`                 | Scroll direction (`left` = right-to-left).       |
+| `pauseOnHover`  | `boolean`                                          | `true`                   | Pause the marquee while the pointer is over it.  |
+| `itemClassName` | `string`                                           | —                        | Extra classes for each logo chip.                |
+| `renderLogo`    | `(logo: LogoWaveLogo, index: number) => ReactNode` | —                        | Custom logo markup instead of a default `<img>`. |
+| `wave`          | `{ scale: number; y: number }[]`                   | peak at `2.6` / `-110px` | Steps from the center mark outward.              |
+
+Extends native `<div>` attributes (`className`, `style`, …). Default `wave` is
+`[{ scale: 2.6, y: -110 }, { 1.8, -70 }, { 1.5, -50 }, { 1.3, -35 }, { 1.2, -20 }]`.
+
+## Accessibility
+
+::note
+Each logo keeps its `alt` text. The marquee is decorative; under
+`prefers-reduced-motion: reduce` the strip holds still with the center-most
+mark still highlighted.
+::

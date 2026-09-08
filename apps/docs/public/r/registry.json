@@ -87,6 +87,18 @@
       "description": "Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware."
     },
     {
+      "name": "logo-cycle",
+      "type": "component",
+      "title": "Logo Cycle",
+      "description": "A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "logo-wave",
+      "type": "component",
+      "title": "Logo Wave",
+      "description": "An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware."
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "block",
       "title": "Pricing Plan Switch",
