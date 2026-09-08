@@ -27,12 +27,7 @@ export interface BlogHoverExpandProps extends Omit<ComponentPropsWithoutRef<'sec
   posts?: BlogHoverExpandPost[];
 }
 
-const DEFAULT_TITLE = (
-  <>
-    Learn What&apos;s Working Now in{' '}
-    <span className="text-[#045f64]/50 italic dark:text-[#9fd4d6]/60">AI Marketing</span>
-  </>
-);
+const DEFAULT_TITLE = "Learn what's working now in motion";
 
 const DEFAULT_POSTS: BlogHoverExpandPost[] = [
   {
@@ -79,10 +74,10 @@ export default function BlogHoverExpand({
     >
       <div className="mx-auto w-full max-w-[1100px] space-y-10 px-4 md:space-y-12">
         <div className="space-y-3 text-center">
-          <h2 className="m-0 text-2xl leading-[1.15] font-normal tracking-tight text-[#12161F] md:text-3xl lg:text-4xl dark:text-white">
+          <h2 className="text-2xl leading-[1.15] font-normal tracking-tight text-[#12161F] md:text-3xl lg:text-4xl dark:text-white">
             {title}
           </h2>
-          <p className="m-0 mx-auto max-w-[520px] text-sm leading-relaxed text-[#045f64]/70 dark:text-[#9fd4d6]/80">
+          <p className="mx-auto max-w-[520px] text-sm leading-relaxed text-[#045f64]/70 dark:text-[#9fd4d6]/80">
             {description}
           </p>
         </div>
@@ -113,7 +108,7 @@ export default function BlogHoverExpand({
                   </figure>
                 </a>
                 <div className="space-y-3 px-1">
-                  <p className="m-0 text-xs text-[#12161F]/70 dark:text-white/60">{post.date}</p>
+                  <p className="text-xs text-[#12161F]/70 dark:text-white/60">{post.date}</p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
                       <span
@@ -125,7 +120,7 @@ export default function BlogHoverExpand({
                     ))}
                   </div>
                   <a href={post.href} className="blog-title-black no-underline">
-                    <h3 className="m-0 inline w-full cursor-pointer bg-[linear-gradient(transparent_calc(100%-1px),currentColor_1px)] bg-size-[0%_100%] bg-no-repeat pb-px text-lg font-normal text-[#12161F] transition-all duration-500 ease-[cubic-bezier(0.645,0.045,0.355,1)] group-hover:bg-size-[100%_100%] motion-reduce:transition-none dark:text-white">
+                    <h3 className="inline w-full cursor-pointer bg-[linear-gradient(transparent_calc(100%-1px),currentColor_1px)] bg-size-[0%_100%] bg-no-repeat pb-px text-lg font-normal text-[#12161F] transition-all duration-500 ease-[cubic-bezier(0.645,0.045,0.355,1)] group-hover:bg-size-[100%_100%] motion-reduce:transition-none dark:text-white">
                       {post.title}
                     </h3>
                   </a>

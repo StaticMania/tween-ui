@@ -67,10 +67,10 @@ export default function CtaImageFan({
         <ImageFanSlider images={images} className="motion-reduce:scale-100" />
 
         <div className="space-y-3 text-center">
-          <h2 className="m-0 text-2xl leading-[1.2] font-medium tracking-tight text-[#12161F] md:text-3xl lg:text-4xl dark:text-white">
+          <h2 className="text-2xl leading-[1.2] font-medium tracking-tight text-[#12161F] md:text-3xl lg:text-4xl dark:text-white">
             {title}
           </h2>
-          <p className="m-0 mx-auto max-w-[320px] text-sm leading-relaxed text-[#045f64]/70 dark:text-[#9fd4d6]/80">
+          <p className="mx-auto max-w-[320px] text-sm leading-relaxed text-[#045f64]/70 dark:text-[#9fd4d6]/80">
             {description}
           </p>
         </div>

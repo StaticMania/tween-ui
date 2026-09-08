@@ -88,7 +88,7 @@ function LogoMark({
     <figure
       ref={itemRef}
       data-logo-cycle-item
-      className={cn('m-0 grid h-11 w-12 shrink-0 place-items-center', itemClassName)}
+      className={cn('grid h-11 w-12 shrink-0 place-items-center', itemClassName)}
     >
       {renderLogo ? (
         renderLogo(logo, index)

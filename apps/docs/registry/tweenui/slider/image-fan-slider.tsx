@@ -114,7 +114,7 @@ export default function ImageFanSlider({
           key={`${image.src}-${i}`}
           data-image-fan-slide
           data-active={i === activeIndex ? 'true' : undefined}
-          className="absolute m-0 overflow-hidden border-4 border-white transition-all duration-700 ease-in-out motion-reduce:transition-none dark:border-[#12161F]"
+          className="absolute overflow-hidden border-4 border-white transition-all duration-700 ease-in-out motion-reduce:transition-none dark:border-[#12161F]"
           style={slideStyle(i, activeIndex, total)}
         >
           <img src={image.src} alt={image.alt} className="size-full rounded-lg object-cover" />

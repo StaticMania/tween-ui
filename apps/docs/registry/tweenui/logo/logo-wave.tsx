@@ -235,7 +235,7 @@ export default function LogoWave({
               key={`${setIndex}-${logo.alt}-${index}`}
               data-logo-wave-item
               className={cn(
-                'm-0 grid size-[42px] shrink-0 place-items-center rounded-full border border-[#045f64]/10 bg-white p-2 shadow-[0_1px_2px_rgba(16,24,40,0.12)] transition-transform duration-500 ease-in-out motion-reduce:transition-none dark:border-[#045f64]/40 dark:bg-[#12161F]',
+                'grid size-[42px] shrink-0 place-items-center rounded-full border border-[#045f64]/10 bg-white p-2 shadow-[0_1px_2px_rgba(16,24,40,0.12)] transition-transform duration-500 ease-in-out motion-reduce:transition-none dark:border-[#045f64]/40 dark:bg-[#12161F]',
                 itemClassName
               )}
             >

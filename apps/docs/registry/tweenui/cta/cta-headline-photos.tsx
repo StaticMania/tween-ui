@@ -178,7 +178,7 @@ export default function CtaHeadlinePhotos({
         </div>
 
         <div className="space-y-6 text-center">
-          <h2 className="m-0 text-2xl leading-[1.15] font-medium tracking-tight text-[#12161F] md:text-3xl lg:text-4xl dark:text-white">
+          <h2 className="text-2xl leading-[1.15] font-medium tracking-tight text-[#12161F] md:text-3xl lg:text-4xl dark:text-white">
             <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
               <span>{lead}</span>
               <span
@@ -209,7 +209,7 @@ export default function CtaHeadlinePhotos({
               <span>{end}</span>
             </span>
           </h2>
-          <p className="m-0 mx-auto max-w-[320px] text-sm leading-relaxed text-[#045f64]/70 dark:text-[#9fd4d6]/80">
+          <p className="mx-auto max-w-[320px] text-sm leading-relaxed text-[#045f64]/70 dark:text-[#9fd4d6]/80">
             {description}
           </p>
         </div>

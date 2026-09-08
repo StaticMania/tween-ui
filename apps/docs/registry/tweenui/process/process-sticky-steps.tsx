@@ -221,7 +221,7 @@ export default function ProcessStickySteps({
       {...props}
     >
       <div className="flex min-h-full items-start justify-center gap-x-6 px-5 py-10 sm:gap-x-8 sm:px-8">
-        <h2 className="sticky top-8 m-0 max-w-[18rem] min-w-[10rem] flex-1 text-2xl leading-[1.2] font-medium tracking-tight text-[#12161F] sm:text-[1.75rem] md:text-[2rem] dark:text-white">
+        <h2 className="sticky top-8 max-w-[18rem] min-w-[10rem] flex-1 text-2xl leading-[1.2] font-medium tracking-tight text-[#12161F] sm:text-[1.75rem] md:text-[2rem] dark:text-white">
           {title}
         </h2>
 
