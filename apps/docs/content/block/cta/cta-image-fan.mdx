@@ -1,0 +1,90 @@
+---
+title: CTA Image Fan
+description: A call-to-action section with a fanned photo stack and a shiny button.
+icon: megaphone
+---
+
+A ready-made CTA block. A **fanned photo stack** auto-advances above the
+headline, then a **shiny button** invites the click. Built from Image Fan
+Slider and Shiny Button, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="cta-image-fan" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/cta-image-fan"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+Install [Image Fan Slider](/component/slider/image-fan-slider) and
+[Shiny Button](/component/button/shiny-button) first, then copy the block:
+
+::component-source{name="cta-image-fan"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import CtaImageFan from '@/components/tweenui/cta/cta-image-fan';
+
+export default function Page() {
+  return <CtaImageFan />;
+}
+```
+
+:::
+::
+
+Pass your own photos, copy, and click handler:
+
+```tsx [app/page.tsx]
+import CtaImageFan from '@/components/tweenui/cta/cta-image-fan';
+
+export default function Page() {
+  return (
+    <CtaImageFan
+      ctaLabel="Get started"
+      onCtaClick={() => console.log('cta')}
+      images={[
+        { src: '/photos/one.jpg', alt: 'Portrait one' },
+        { src: '/photos/two.jpg', alt: 'Portrait two' },
+        { src: '/photos/three.jpg', alt: 'Portrait three' },
+        { src: '/photos/four.jpg', alt: 'Portrait four' },
+        { src: '/photos/five.jpg', alt: 'Portrait five' },
+      ]}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop          | Type             | Default         | Description                         |
+| ------------- | ---------------- | --------------- | ----------------------------------- |
+| `images`      | `{ src, alt }[]` | 5 sample photos | Photos in the fan. Five looks best. |
+| `title`       | `ReactNode`      | sample heading  | Heading under the fan.              |
+| `description` | `string`         | sample line     | Supporting line under the heading.  |
+| `ctaLabel`    | `string`         | `Try for free`  | Label on the shiny button.          |
+| `onCtaClick`  | `() => void`     | —               | Click handler for the CTA button.   |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Each photo keeps its `alt` text. The CTA is a real button. Under
+`prefers-reduced-motion: reduce` the fan holds on the first image and the
+button shine does not run.
+::

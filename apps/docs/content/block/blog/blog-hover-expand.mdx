@@ -1,0 +1,91 @@
+---
+title: Blog Hover Expand
+description: A blog row where hovering a card widens it while the photo tilts in.
+icon: newspaper
+---
+
+A ready-made blog block. Three posts sit in a row; the **hovered card grows
+wider** while its photo **scales and tilts**. The title draws an underline.
+Pure CSS, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="blog-hover-expand" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/blog-hover-expand"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="blog-hover-expand"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import BlogHoverExpand from '@/components/tweenui/blog/blog-hover-expand';
+
+export default function Page() {
+  return <BlogHoverExpand />;
+}
+```
+
+:::
+::
+
+Pass your own posts to make it yours:
+
+```tsx [app/page.tsx]
+import BlogHoverExpand from '@/components/tweenui/blog/blog-hover-expand';
+
+export default function Page() {
+  return (
+    <BlogHoverExpand
+      ctaLabel="Read all posts"
+      onCtaClick={() => console.log('blog')}
+      posts={[
+        {
+          title: 'How to brief an AI creative team',
+          date: 'March 12, 2026',
+          tags: ['Ads'],
+          image: '/photos/brief.jpg',
+          imageAlt: 'Campaign briefing',
+          href: '/blog/brief',
+        },
+      ]}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop          | Type                    | Default        | Description                    |
+| ------------- | ----------------------- | -------------- | ------------------------------ |
+| `title`       | `ReactNode`             | sample heading | Section heading.               |
+| `description` | `string`                | sample line    | Supporting line.               |
+| `posts`       | `BlogHoverExpandPost[]` | 3-post sample  | Cards in the row.              |
+| `ctaLabel`    | `string`                | sample label   | Label on the bottom button.    |
+| `onCtaClick`  | `() => void`            | —              | Click handler for that button. |
+
+Each post is `{ title, date, tags, image, imageAlt, href }`. Extends native
+`<section>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Cards are real links with image `alt` text. Hover (and keyboard focus) expands
+the active card. Under `prefers-reduced-motion: reduce` the width, photo tilt,
+and title underline do not animate.
+::

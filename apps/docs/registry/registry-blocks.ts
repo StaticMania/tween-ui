@@ -3,6 +3,8 @@ import type { RegistryEntry } from './schema';
 const PRICING_DIR = 'registry/tweenui/pricing';
 const PROCESS_DIR = 'registry/tweenui/process';
 const TESTIMONIAL_DIR = 'registry/tweenui/testimonial';
+const CTA_DIR = 'registry/tweenui/cta';
+const BLOG_DIR = 'registry/tweenui/blog';
 
 /**
  * Pre-composed sections built from primitives. Same registry shape as `ui`,
@@ -177,6 +179,74 @@ export default function Example() {
 
 export default function Example() {
   return <TestimonialCardCarousel />;
+}`,
+    },
+  },
+  {
+    name: 'cta-image-fan',
+    type: 'block',
+    group: 'cta',
+    title: 'CTA Image Fan',
+    description:
+      'A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: [],
+    registryDependencies: ['image-fan-slider', 'shiny-button'],
+    cssVars: {},
+    files: [
+      {
+        path: `${CTA_DIR}/cta-image-fan.tsx`,
+        target: 'components/tweenui/cta/cta-image-fan.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${CTA_DIR}/cta-image-fan.tsx`,
+      },
+    ],
+    usage: {
+      react: `import CtaImageFan from '@/components/tweenui/cta/cta-image-fan';
+
+export default function Example() {
+  return <CtaImageFan />;
+}`,
+    },
+  },
+  {
+    name: 'blog-hover-expand',
+    type: 'block',
+    group: 'blog',
+    title: 'Blog Hover Expand',
+    description:
+      'A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: [],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${BLOG_DIR}/blog-hover-expand.tsx`,
+        target: 'components/tweenui/blog/blog-hover-expand.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${BLOG_DIR}/blog-hover-expand.tsx`,
+      },
+    ],
+    usage: {
+      react: `import BlogHoverExpand from '@/components/tweenui/blog/blog-hover-expand';
+
+export default function Example() {
+  return <BlogHoverExpand />;
 }`,
     },
   },

@@ -133,6 +133,18 @@
       "type": "block",
       "title": "Testimonial Card Carousel",
       "description": "A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots."
+    },
+    {
+      "name": "cta-image-fan",
+      "type": "block",
+      "title": "CTA Image Fan",
+      "description": "A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware."
+    },
+    {
+      "name": "blog-hover-expand",
+      "type": "block",
+      "title": "Blog Hover Expand",
+      "description": "A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware."
     }
   ]
 }
