@@ -48,38 +48,32 @@ const DEFAULT_STEPS: ProcessStickyStep[] = [
     title: 'Write or paste script',
     description:
       "Quickly draft your message or drop in your ready-to-go text to get started instantly. Whether you're crafting a new idea, refining existing",
-    image: '/images/ns-img-554.png',
-    imageAlt: 'Script editor with highlighted keywords',
-    overlay: '/images/ns-img-555.svg',
-    overlayAlt: 'Add more details',
-    overlayPosition: 'right',
+    image: 'https://images.unsplash.com/photo-1517842645767-c639042777db?w=800&h=520&fit=crop',
+    imageAlt: 'Notebook and pen for drafting a script',
   },
   {
     id: 'step-2',
     title: 'Choose your voice style',
     description:
       'Select from natural human-like voices, accents, and tones that fit your content. Browse through our extensive library of professional voices, each designed to match',
-    image: '/images/ns-img-556.png',
-    imageAlt: 'Voice style picker',
+    image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&h=520&fit=crop',
+    imageAlt: 'Studio microphone for choosing a voice',
   },
   {
     id: 'step-3',
     title: 'Customize the delivery',
     description:
       'Adjust speed, pitch, pauses, and emotions for a perfect performance. Fine-tune every aspect of your voiceover to create the exact tone and pacing you need for your project.',
-    image: '/images/ns-img-557.png',
-    imageAlt: 'Delivery customization controls',
+    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=520&fit=crop',
+    imageAlt: 'Mixing console for customizing delivery',
   },
   {
     id: 'step-4',
     title: 'Generate & download',
     description:
       "Get studio-quality audio in seconds and download instantly. Your professional voiceover is ready to use in any format, whether you're creating content for videos, podcasts, or presentations.",
-    image: '/images/ns-img-558.png',
-    imageAlt: 'Generated audio ready to download',
-    overlay: '/images/ns-img-559.svg',
-    overlayAlt: 'Download overlay',
-    overlayPosition: 'center',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&h=520&fit=crop',
+    imageAlt: 'Laptop ready to generate and download audio',
   },
 ];
 
