@@ -151,6 +151,12 @@
       "type": "block",
       "title": "Blog Hover Expand",
       "description": "A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware."
+    },
+    {
+      "name": "integration-hub",
+      "type": "block",
+      "title": "Integration Hub",
+      "description": "A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware."
     }
   ]
 }

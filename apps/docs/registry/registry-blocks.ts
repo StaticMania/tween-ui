@@ -5,6 +5,7 @@ const PROCESS_DIR = 'registry/tweenui/process';
 const TESTIMONIAL_DIR = 'registry/tweenui/testimonial';
 const CTA_DIR = 'registry/tweenui/cta';
 const BLOG_DIR = 'registry/tweenui/blog';
+const INTEGRATION_DIR = 'registry/tweenui/integration';
 
 /**
  * Pre-composed sections built from primitives. Same registry shape as `ui`,
@@ -281,6 +282,40 @@ export default function Example() {
 
 export default function Example() {
   return <BlogHoverExpand />;
+}`,
+    },
+  },
+  {
+    name: 'integration-hub',
+    type: 'block',
+    group: 'integration',
+    title: 'Integration Hub',
+    description:
+      'A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${INTEGRATION_DIR}/integration-hub.tsx`,
+        target: 'components/tweenui/integration/integration-hub.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${INTEGRATION_DIR}/integration-hub.tsx`,
+      },
+    ],
+    usage: {
+      react: `import IntegrationHub from '@/components/tweenui/integration/integration-hub';
+
+export default function Example() {
+  return <IntegrationHub />;
 }`,
     },
   },

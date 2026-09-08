@@ -1,0 +1,87 @@
+---
+title: Integration Hub
+description: A hub-and-spoke diagram that draws paths to partner logos, then sends dots along the lines.
+icon: share-2
+---
+
+A ready-made integrations block. The **center hub pops in**, paths **draw out**
+to six logos, then a lime dot **travels each line**. GSAP-driven
+(MotionPathPlugin), and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="integration-hub" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/integration-hub"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="integration-hub"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import IntegrationHub from '@/components/tweenui/integration/integration-hub';
+
+export default function Page() {
+  return <IntegrationHub />;
+}
+```
+
+:::
+::
+
+Pass your own logos:
+
+```tsx [app/page.tsx]
+import IntegrationHub from '@/components/tweenui/integration/integration-hub';
+
+export default function Page() {
+  return (
+    <IntegrationHub
+      left={[
+        { src: '/logos/slack.svg', alt: 'Slack' },
+        { src: '/logos/github.svg', alt: 'GitHub' },
+        { src: '/logos/figma.svg', alt: 'Figma' },
+      ]}
+      right={[
+        { src: '/logos/linear.svg', alt: 'Linear' },
+        { src: '/logos/notion.svg', srcDark: '/logos/notion-dark.svg', alt: 'Notion' },
+        { src: '/logos/zoom.svg', alt: 'Zoom' },
+      ]}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop          | Type                       | Default                  | Description                        |
+| ------------- | -------------------------- | ------------------------ | ---------------------------------- |
+| `title`       | `ReactNode`                | sample heading           | Section heading.                   |
+| `description` | `string`                   | sample line              | Supporting line under the heading. |
+| `left`        | `{ src, srcDark?, alt }[]` | Telegram, Google, Notion | Three logos on the left.           |
+| `right`       | `{ src, srcDark?, alt }[]` | Reddit, Stripe, Zoom     | Three logos on the right.          |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Each logo keeps its `alt` text. Paths and traveling dots are decorative
+(`aria-hidden`). Under `prefers-reduced-motion: reduce` the hub and logos land
+in place with no path draw or looping dots.
+::
