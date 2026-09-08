@@ -112,4 +112,38 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'testimonial-card-carousel',
+    type: 'block',
+    group: 'testimonial',
+    title: 'Testimonial Card Carousel',
+    description:
+      'A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots.',
+    isNew: true,
+    media: {},
+    dependencies: ['swiper'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${TESTIMONIAL_DIR}/testimonial-card-carousel.tsx`,
+        target: 'components/tweenui/testimonial/testimonial-card-carousel.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${TESTIMONIAL_DIR}/testimonial-card-carousel.tsx`,
+      },
+    ],
+    usage: {
+      react: `import TestimonialCardCarousel from '@/components/tweenui/testimonial/testimonial-card-carousel';
+
+export default function Example() {
+  return <TestimonialCardCarousel />;
+}`,
+    },
+  },
 ];

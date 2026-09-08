@@ -235,21 +235,25 @@ export default function PricingPlanSwitch({
         {/* Header */}
         <div className="space-y-6">
           <div className="space-y-4 text-center">
-            <span className="inline-block rounded-full border border-[#045f64]/20 px-3 py-1 text-xs font-medium tracking-wide text-[#045f64] uppercase">
+            <span className="inline-block rounded-full border border-[#045f64]/20 px-3 py-1 text-xs font-medium tracking-wide text-[#045f64] uppercase dark:border-[#045f64]/40 dark:text-[#9fd4d6]">
               {eyebrow}
             </span>
             <div className="space-y-2">
-              <h2 className="mx-auto max-w-[520px] text-2xl font-semibold text-[#12161F] sm:text-3xl">
+              <h2 className="mx-auto max-w-[520px] text-2xl font-semibold text-[#12161F] sm:text-3xl dark:text-white">
                 {heading}
               </h2>
-              <p className="mx-auto max-w-[560px] text-sm text-[#045f64]/70">{description}</p>
+              <p className="mx-auto max-w-[560px] text-sm text-[#045f64]/70 dark:text-[#9fd4d6]/80">
+                {description}
+              </p>
             </div>
           </div>
 
           {/* Billing toggle */}
           <div className="flex items-center justify-center">
             <label className="inline-flex cursor-pointer items-center">
-              <span className="me-2.5 text-sm font-medium text-[#12161F] select-none">Monthly</span>
+              <span className="me-2.5 text-sm font-medium text-[#12161F] select-none dark:text-white">
+                Monthly
+              </span>
               <input
                 type="checkbox"
                 checked={isYearly}
@@ -257,8 +261,10 @@ export default function PricingPlanSwitch({
                 className="peer sr-only"
                 aria-label="Toggle yearly billing"
               />
-              <span className="relative h-6 w-11 rounded-full bg-[#12161F]/15 transition-colors peer-checked:bg-[#c6f56f] peer-focus-visible:ring-2 peer-focus-visible:ring-[#045f64] peer-focus-visible:ring-offset-2 after:absolute after:top-1/2 after:left-[3px] after:size-5 after:-translate-y-1/2 after:rounded-full after:bg-[#045f64] after:transition-transform after:content-[''] peer-checked:after:translate-x-5" />
-              <span className="ms-2.5 text-sm font-medium text-[#12161F] select-none">Yearly</span>
+              <span className="relative h-6 w-11 rounded-full bg-[#12161F]/15 transition-colors peer-checked:bg-[#c6f56f] peer-focus-visible:ring-2 peer-focus-visible:ring-[#045f64] peer-focus-visible:ring-offset-2 after:absolute after:top-1/2 after:left-[3px] after:size-5 after:-translate-y-1/2 after:rounded-full after:bg-[#045f64] after:transition-transform after:content-[''] peer-checked:after:translate-x-5 dark:bg-white/15 dark:ring-offset-[#12161F]" />
+              <span className="ms-2.5 text-sm font-medium text-[#12161F] select-none dark:text-white">
+                Yearly
+              </span>
             </label>
           </div>
         </div>
@@ -266,7 +272,7 @@ export default function PricingPlanSwitch({
         <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-12 md:gap-8 lg:gap-12">
           {/* Plan selector */}
           <div className="space-y-6 md:col-span-5">
-            <div className="space-y-2 rounded-[20px] bg-[#045f64]/[0.06] p-2">
+            <div className="space-y-2 rounded-[20px] bg-[#045f64]/[0.06] p-2 dark:bg-[#045f64]/20">
               {plans.map((plan) => {
                 const isActive = selectedId === plan.id;
                 return (
@@ -275,11 +281,15 @@ export default function PricingPlanSwitch({
                     type="button"
                     onClick={() => setSelectedId(plan.id)}
                     data-active={isActive ? 'true' : 'false'}
-                    className="group flex w-full cursor-pointer items-center justify-between gap-x-6 rounded-xl px-5 py-3 text-left transition-colors hover:bg-white data-[active=true]:bg-white data-[active=true]:shadow-sm"
+                    className="group flex w-full cursor-pointer items-center justify-between gap-x-6 rounded-xl px-5 py-3 text-left transition-colors hover:bg-white data-[active=true]:bg-white data-[active=true]:shadow-sm dark:hover:bg-white/10 dark:data-[active=true]:bg-white/10"
                   >
                     <span className="space-y-1">
-                      <span className="block text-sm font-medium text-[#12161F]">{plan.name}</span>
-                      <span className="block text-xs text-[#045f64]/60">{plan.subtitle}</span>
+                      <span className="block text-sm font-medium text-[#12161F] dark:text-white">
+                        {plan.name}
+                      </span>
+                      <span className="block text-xs text-[#045f64]/60 dark:text-[#9fd4d6]/80">
+                        {plan.subtitle}
+                      </span>
                     </span>
                     <span
                       className={cn(
@@ -295,11 +305,11 @@ export default function PricingPlanSwitch({
             </div>
 
             <div className="flex items-center justify-center gap-x-6">
-              <span className="flex items-center gap-x-1.5 text-sm text-[#045f64] italic">
+              <span className="flex items-center gap-x-1.5 text-sm text-[#045f64] italic dark:text-[#9fd4d6]">
                 <DotIcon className="size-3" />
                 Free trial
               </span>
-              <span className="flex items-center gap-x-1.5 text-sm text-[#045f64] italic">
+              <span className="flex items-center gap-x-1.5 text-sm text-[#045f64] italic dark:text-[#9fd4d6]">
                 <DotIcon className="size-3" />
                 Cancel anytime
               </span>
@@ -309,12 +319,12 @@ export default function PricingPlanSwitch({
           {/* Card */}
           <div
             ref={cardRef}
-            className="space-y-10 rounded-2xl border border-[#045f64]/15 bg-white px-6 py-8 md:col-span-7"
+            className="space-y-10 rounded-2xl border border-[#045f64]/15 bg-white px-6 py-8 md:col-span-7 dark:border-[#045f64]/40 dark:bg-[#12161F]"
           >
             <div className="space-y-6">
               <span
                 ref={badgeWrapperRef}
-                className="relative inline-flex h-7 items-center overflow-hidden rounded-full border border-[#045f64]/20"
+                className="relative inline-flex h-7 items-center overflow-hidden rounded-full border border-[#045f64]/20 dark:border-[#045f64]/40"
               >
                 {plans.map((plan) => (
                   <span
@@ -322,7 +332,7 @@ export default function PricingPlanSwitch({
                     ref={(el) => {
                       badgeRefs.current[plan.id] = el ?? undefined;
                     }}
-                    className="absolute inset-y-0 left-0 flex w-max items-center px-3 text-xs font-medium whitespace-nowrap text-[#045f64]"
+                    className="absolute inset-y-0 left-0 flex w-max items-center px-3 text-xs font-medium whitespace-nowrap text-[#045f64] dark:text-[#9fd4d6]"
                   >
                     {plan.name}
                   </span>
@@ -331,8 +341,10 @@ export default function PricingPlanSwitch({
 
               <div className="space-y-4">
                 <div className="flex items-center justify-between gap-4">
-                  <h3 className="text-base font-medium text-[#12161F]">Subscription</h3>
-                  <p className="text-3xl font-medium text-[#12161F]">
+                  <h3 className="text-base font-medium text-[#12161F] dark:text-white">
+                    Subscription
+                  </h3>
+                  <p className="text-3xl font-medium text-[#12161F] dark:text-white">
                     {currency}
                     <NumberFlow
                       value={price}
@@ -346,7 +358,7 @@ export default function PricingPlanSwitch({
                       spinTiming={{ duration: 700, easing: 'ease-out' }}
                       opacityTiming={{ duration: 315, easing: 'ease-out' }}
                     />
-                    <span className="text-sm font-normal text-[#045f64]/60">
+                    <span className="text-sm font-normal text-[#045f64]/60 dark:text-[#9fd4d6]/80">
                       {isYearly ? '/year' : '/month'}
                     </span>
                   </p>
@@ -360,7 +372,7 @@ export default function PricingPlanSwitch({
                         descriptionRefs.current[plan.id] = el ?? undefined;
                       }}
                       className={cn(
-                        'col-start-1 row-start-1 text-sm text-[#045f64]/70',
+                        'col-start-1 row-start-1 text-sm text-[#045f64]/70 dark:text-[#9fd4d6]/80',
                         index !== 0 && 'opacity-0'
                       )}
                     >
@@ -372,7 +384,7 @@ export default function PricingPlanSwitch({
 
               <a
                 href={ctaHref}
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#045f64] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#12161F] motion-reduce:transition-none"
+                className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#045f64] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#12161F] motion-reduce:transition-none dark:hover:bg-[#0d1117]"
               >
                 {ctaText}
                 <ArrowIcon className="size-4 stroke-white" />
@@ -380,7 +392,9 @@ export default function PricingPlanSwitch({
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-base font-medium text-[#12161F]">What&apos;s included:</h4>
+              <h4 className="text-base font-medium text-[#12161F] dark:text-white">
+                What&apos;s included:
+              </h4>
               <ul className="space-y-4">
                 {features.map((feature, index) => {
                   const isActive = index < (currentPlan?.includedCount ?? 0);
@@ -389,20 +403,26 @@ export default function PricingPlanSwitch({
                       <span
                         className={cn(
                           'flex size-6 shrink-0 items-center justify-center rounded-full border p-1 transition-colors duration-500 ease-in-out',
-                          isActive ? 'border-[#045f64]/30' : 'border-[#045f64]/15'
+                          isActive
+                            ? 'border-[#045f64]/30 dark:border-[#045f64]/50'
+                            : 'border-[#045f64]/15 dark:border-[#045f64]/40'
                         )}
                       >
                         <CheckIcon
                           className={cn(
                             'size-4 transition-colors duration-500 ease-in-out',
-                            isActive ? 'stroke-[#045f64]' : 'stroke-[#045f64]/30'
+                            isActive
+                              ? 'stroke-[#045f64] dark:stroke-[#9fd4d6]'
+                              : 'stroke-[#045f64]/30'
                           )}
                         />
                       </span>
                       <span
                         className={cn(
                           'text-sm transition-colors duration-500 ease-in-out',
-                          isActive ? 'text-[#12161F]' : 'text-[#045f64]/30'
+                          isActive
+                            ? 'text-[#12161F] dark:text-white'
+                            : 'text-[#045f64]/30 dark:text-[#9fd4d6]/40'
                         )}
                       >
                         {feature}

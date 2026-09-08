@@ -124,8 +124,7 @@ export function ComponentPreview({
               <div
                 key={replay}
                 className={cn(
-                  'grid w-full place-items-center',
-                  isBlock ? 'h-auto' : 'h-full',
+                  isBlock ? 'block h-auto w-full min-w-0' : 'grid h-full w-full place-items-center',
                   !isBlock && (size === 'xl' ? 'p-2' : size === 'lg' ? 'p-5' : 'p-10')
                 )}
               >

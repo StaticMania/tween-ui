@@ -1,0 +1,125 @@
+---
+title: Testimonial Card Carousel
+description: A row of rating cards that autoplay, blur off-window slides, and page with dots.
+icon: star
+---
+
+A ready-made testimonial block built with [Swiper](https://swiperjs.com/react).
+**Rating cards** sit two-up by default (set `slidesPerView` to change that).
+Drag or swipe the row — off-window cards **fade and blur** as they leave.
+Autoplay pauses on hover; **dots** jump to a card. Pass any Swiper option
+through the `swiper` prop. Fully respects `prefers-reduced-motion`.
+
+::component-preview{name="testimonial-card-carousel" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/testimonial-card-carousel"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="testimonial-card-carousel"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import TestimonialCardCarousel from '@/components/tweenui/testimonial/testimonial-card-carousel';
+
+export default function Page() {
+  return <TestimonialCardCarousel />;
+}
+```
+
+:::
+::
+
+Pass your own quotes to make it yours:
+
+```tsx [app/page.tsx]
+import TestimonialCardCarousel from '@/components/tweenui/testimonial/testimonial-card-carousel';
+
+const testimonials = [
+  {
+    id: 'maya',
+    title: 'Clearer handoffs',
+    quote: 'Handoffs used to live in three chats. Now the pipeline updates itself.',
+    name: 'Maya Chen',
+    role: 'Operations lead',
+    avatar: '/photos/maya.jpg',
+    avatarAlt: 'Portrait of Maya Chen',
+  },
+  {
+    id: 'jon',
+    title: 'Shipped in an afternoon',
+    quote: 'We shipped the first automation in an afternoon and never looked back.',
+    name: 'Jon Hale',
+    role: 'Founder',
+    avatar: '/photos/jon.jpg',
+    avatarAlt: 'Portrait of Jon Hale',
+  },
+];
+
+export default function Page() {
+  return <TestimonialCardCarousel testimonials={testimonials} slidesPerView={2} />;
+}
+```
+
+Tune the tray with the `swiper` bag — any [Swiper React prop](https://swiperjs.com/react)
+except `children`. Your values merge over the defaults (`speed` 1100, autoplay
+every 2.5s, container breakpoints, Autoplay module). Extra `modules` are
+concatenated with Autoplay; `onSwiper` still wires the dots and blur:
+
+```tsx [app/page.tsx]
+import TestimonialCardCarousel from '@/components/tweenui/testimonial/testimonial-card-carousel';
+
+export default function Page() {
+  return (
+    <TestimonialCardCarousel
+      slidesPerView={2}
+      swiper={{
+        speed: 800,
+        spaceBetween: 12,
+        autoplay: { delay: 4000, disableOnInteraction: false },
+        loop: true,
+      }}
+    />
+  );
+}
+```
+
+The CLI installs `swiper`. Manual copy also lists `pnpm add swiper` before the
+source.
+
+## Props
+
+| Prop            | Type                     | Default       | Description                                                                                     |
+| --------------- | ------------------------ | ------------- | ----------------------------------------------------------------------------------------------- |
+| `testimonials`  | `TestimonialCardItem[]`  | 4-card sample | Cards shown in the carousel.                                                                    |
+| `slidesPerView` | `number`                 | `2`           | How many cards are visible when the tray is ≥560px. Narrower views show 1.                      |
+| `swiper`        | `TestimonialSwiperProps` | —             | Any Swiper option or event. Merged over the built-in defaults (`speed`, `loop`, `autoplay`, …). |
+
+Each `TestimonialCardItem` is
+`{ id, title, quote, name, role, avatar, avatarAlt }`. Extends native
+`<section>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Pagination dots are real buttons with an `aria-label` and `aria-current` on the
+active one, plus a visible focus ring. The row is drag and swipe enabled. Hover
+pauses autoplay. Under `prefers-reduced-motion: reduce` autoplay is off and
+`speed` is `0`, even if you set them on `swiper`. Off-window cards do not blur.
+::

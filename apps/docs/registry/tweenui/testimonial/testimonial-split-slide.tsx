@@ -241,7 +241,7 @@ export default function TestimonialSplitSlide({
   };
 
   const navButtonClass =
-    'inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#045f64]/20 text-[#045f64] transition-colors hover:border-transparent hover:bg-[#045f64] hover:text-[#c6f56f] focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none motion-reduce:transition-none';
+    'inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#045f64]/20 text-[#045f64] transition-colors hover:border-transparent hover:bg-[#045f64] hover:text-[#c6f56f] focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none motion-reduce:transition-none dark:border-[#045f64]/40 dark:text-[#9fd4d6] dark:ring-offset-[#12161F]';
 
   const nav = (
     <div className="relative flex w-full items-center justify-center">
@@ -263,7 +263,7 @@ export default function TestimonialSplitSlide({
           <ArrowDotRightIcon className="block size-6" />
         </button>
       </div>
-      <p className="absolute right-0 text-[#045f64]">
+      <p className="absolute right-0 text-[#045f64] dark:text-[#9fd4d6]">
         <NumberFlow
           value={activeIndex + 1}
           format={{ useGrouping: false, maximumFractionDigits: 0 }}
@@ -271,7 +271,7 @@ export default function TestimonialSplitSlide({
           spinTiming={{ duration: flowMs, easing: 'ease-out' }}
           opacityTiming={{ duration: prefersReducedMotion() ? 0 : 300, easing: 'ease-out' }}
         />
-        <span className="text-[#045f64]/40">/{slideCount}</span>
+        <span className="text-[#045f64]/40 dark:text-[#9fd4d6]/40">/{slideCount}</span>
       </p>
     </div>
   );
@@ -298,7 +298,7 @@ export default function TestimonialSplitSlide({
                 slideRefs.current[index] = el;
               }}
               className={cn(
-                'flex flex-col overflow-hidden rounded-[20px] border border-[#045f64]/15 bg-white p-1 md:absolute md:inset-0 md:flex-row',
+                'flex flex-col overflow-hidden rounded-[20px] border border-[#045f64]/15 bg-white p-1 md:absolute md:inset-0 md:flex-row dark:border-[#045f64]/40 dark:bg-[#12161F]',
                 index === activeIndex ? 'relative z-10' : 'hidden'
               )}
               aria-hidden={index !== activeIndex}
@@ -331,7 +331,7 @@ export default function TestimonialSplitSlide({
                 data-slide-content
                 className="flex w-full flex-col justify-center p-6 opacity-0 motion-reduce:opacity-100 md:w-[58%] md:pb-16"
               >
-                <p className="text-[#045f64]">&ldquo;{item.quote}&rdquo;</p>
+                <p className="text-[#045f64] dark:text-[#9fd4d6]">&ldquo;{item.quote}&rdquo;</p>
               </div>
             </article>
           ))}

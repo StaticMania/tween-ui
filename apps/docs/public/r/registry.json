@@ -121,6 +121,12 @@
       "type": "block",
       "title": "Testimonial Split Slide",
       "description": "A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "testimonial-card-carousel",
+      "type": "block",
+      "title": "Testimonial Card Carousel",
+      "description": "A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots."
     }
   ]
 }

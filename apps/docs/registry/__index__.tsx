@@ -37,6 +37,9 @@ export const demos: Record<string, ComponentType> = {
   'testimonial-split-slide:default': dynamic(
     () => import('./demos/testimonial/testimonial-split-slide')
   ),
+  'testimonial-card-carousel:default': dynamic(
+    () => import('./demos/testimonial/testimonial-card-carousel')
+  ),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

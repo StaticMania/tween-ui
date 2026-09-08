@@ -523,10 +523,10 @@ export default function ProcessCardReveal({
               onClick={() => goToStepRef.current(index)}
               className={cn(
                 'flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full border text-xs font-medium transition-all duration-400 ease-in-out motion-reduce:transition-none',
-                'border-[#045f64]/20 text-[#045f64]/50',
+                'border-[#045f64]/20 text-[#045f64]/50 dark:border-[#045f64]/40 dark:text-[#9fd4d6]/80',
                 'data-[item=active]:border-transparent data-[item=active]:bg-[#045f64] data-[item=active]:text-white',
                 'data-[item=completed]:border-transparent data-[item=completed]:bg-[#045f64] data-[item=completed]:text-white',
-                'focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none'
+                'focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none dark:ring-offset-[#12161F]'
               )}
             >
               {String(index + 1).padStart(2, '0')}
@@ -534,7 +534,7 @@ export default function ProcessCardReveal({
             {index < lineCount && (
               <div
                 className={cn(
-                  'relative bg-[#045f64]/15',
+                  'relative bg-[#045f64]/15 dark:bg-[#045f64]/30',
                   isHorizontal ? 'mx-1 h-px min-w-8 flex-1' : 'mx-auto min-h-8 w-px flex-1'
                 )}
               >
@@ -583,7 +583,7 @@ export default function ProcessCardReveal({
                 }}
                 data-process-card
                 data-step-id={step.id}
-                className="absolute inset-0 rounded-2xl bg-white p-1"
+                className="absolute inset-0 rounded-2xl bg-white p-1 dark:bg-[#12161F]"
               >
                 <div className="flex h-full w-full flex-col items-stretch gap-y-3 md:flex-row md:gap-x-5">
                   <div className="w-full shrink-0 overflow-hidden rounded-xl md:w-[46%]">
@@ -623,16 +623,20 @@ export default function ProcessCardReveal({
                       className="h-fit w-full space-y-4 max-md:px-3 md:h-full md:justify-center"
                     >
                       <div className="space-y-1">
-                        <h3 className="text-base font-medium text-[#12161F] md:text-lg">
+                        <h3 className="text-base font-medium text-[#12161F] md:text-lg dark:text-white">
                           {step.title}
                         </h3>
-                        <p className="text-left text-sm text-[#045f64]/70">{step.description}</p>
+                        <p className="text-left text-sm text-[#045f64]/70 dark:text-[#9fd4d6]/80">
+                          {step.description}
+                        </p>
                       </div>
                       <div className="hidden space-y-3 md:block">
                         {step.details.map((detail) => (
                           <div key={detail.title} className="space-y-0.5">
-                            <h4 className="text-sm font-medium text-[#12161F]">{detail.title}</h4>
-                            <p className="text-left text-sm text-[#045f64]/70">
+                            <h4 className="text-sm font-medium text-[#12161F] dark:text-white">
+                              {detail.title}
+                            </h4>
+                            <p className="text-left text-sm text-[#045f64]/70 dark:text-[#9fd4d6]/80">
                               {detail.description}
                             </p>
                           </div>
