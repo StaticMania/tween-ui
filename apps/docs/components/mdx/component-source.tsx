@@ -1,11 +1,12 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { getEntry } from '@/lib/registry';
 import { cn } from '@/lib/utils';
 import { cssTokens, manual } from '@/registry/__sources__.generated';
 import { CodeBlock } from './code-block';
 import { CommandTabs, installCommands, shadcnAddCommands } from './command-tabs';
+import { plainSnippet } from './snippet';
 
 /**
  * Manual install — numbered steps: dependencies → registry dependencies →
@@ -13,14 +14,56 @@ import { CommandTabs, installCommands, shadcnAddCommands } from './command-tabs'
  */
 export function ComponentSource({ name }: { name: string }) {
   const entry = getEntry(name);
-  const m = manual[name];
+  const generated = manual[name];
   const css = cssTokens[name];
   const [tab, setTab] = useState<'react' | 'css'>('react');
+  const [fetched, setFetched] = useState<typeof generated>();
+  const [failed, setFailed] = useState(false);
 
-  if (!entry || !m) {
+  useEffect(() => {
+    if (generated || !entry) return;
+
+    let cancelled = false;
+    fetch(`/r/${name}.json`)
+      .then((response) => (response.ok ? response.json() : null))
+      .then((item: { files?: Array<{ content?: string }> } | null) => {
+        const code = item?.files?.[0]?.content;
+        if (cancelled) return;
+        if (!code) {
+          setFailed(true);
+          return;
+        }
+        setFetched({ react: plainSnippet(code) });
+      })
+      .catch(() => {
+        if (!cancelled) setFailed(true);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [generated, entry, name]);
+
+  const m = generated ?? fetched;
+
+  if (!entry) {
     return (
       <div className="border-border text-muted-foreground my-3 rounded-lg border border-dashed p-4 text-sm">
         Unknown component: <code>{name}</code>. Run <code>pnpm registry:build</code>.
+      </div>
+    );
+  }
+
+  if (!m) {
+    return (
+      <div className="border-border text-muted-foreground my-3 rounded-lg border border-dashed p-4 text-sm">
+        {failed ? (
+          <>
+            Unknown component: <code>{name}</code>. Run <code>pnpm registry:build</code>.
+          </>
+        ) : (
+          'Loading source…'
+        )}
       </div>
     );
   }

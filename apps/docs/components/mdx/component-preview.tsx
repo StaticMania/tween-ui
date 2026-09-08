@@ -9,6 +9,7 @@ import { getDemo } from '@/registry/__index__';
 import { usage } from '@/registry/__sources__.generated';
 import { ReactMark } from './brand-icons';
 import { OpenIn } from './open-in';
+import { plainSnippet } from './snippet';
 
 type Tab = 'preview' | 'code';
 
@@ -39,7 +40,8 @@ export function ComponentPreview({
   }
 
   const isBlock = entry.type === 'block';
-  const use = usage[name]?.react;
+  const use =
+    usage[name]?.react ?? (entry.usage.react ? plainSnippet(entry.usage.react) : undefined);
 
   const copy = async () => {
     if (!use) return;

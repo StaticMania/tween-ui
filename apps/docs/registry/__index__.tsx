@@ -36,6 +36,7 @@ export const demos: Record<string, ComponentType> = {
   'process-card-reveal:default': dynamic(() => import('./demos/process/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process/process-sticky-steps')),
   'cta-image-fan:default': dynamic(() => import('./demos/cta/cta-image-fan')),
+  'cta-headline-photos:default': dynamic(() => import('./demos/cta/cta-headline-photos')),
   'blog-hover-expand:default': dynamic(() => import('./demos/blog/blog-hover-expand')),
   'testimonial-split-slide:default': dynamic(
     () => import('./demos/testimonial/testimonial-split-slide')

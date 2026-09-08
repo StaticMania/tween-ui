@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import BlogHoverExpand from '@/registry/tweenui/blog/blog-hover-expand';
 
 const POSTS = [
@@ -49,13 +49,5 @@ describe('Blog Hover Expand', () => {
       'data-active-post',
       '1'
     );
-  });
-
-  it('calls onCtaClick when the button is pressed', () => {
-    const onCtaClick = vi.fn();
-    render(<BlogHoverExpand posts={POSTS} ctaLabel="Read all" onCtaClick={onCtaClick} />);
-
-    fireEvent.click(screen.getByRole('button', { name: 'Read all' }));
-    expect(onCtaClick).toHaveBeenCalledTimes(1);
   });
 });

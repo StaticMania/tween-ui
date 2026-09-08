@@ -52,8 +52,6 @@ import BlogHoverExpand from '@/components/tweenui/blog/blog-hover-expand';
 export default function Page() {
   return (
     <BlogHoverExpand
-      ctaLabel="Read all posts"
-      onCtaClick={() => console.log('blog')}
       posts={[
         {
           title: 'How to brief an AI creative team',
@@ -71,13 +69,11 @@ export default function Page() {
 
 ## Props
 
-| Prop          | Type                    | Default        | Description                    |
-| ------------- | ----------------------- | -------------- | ------------------------------ |
-| `title`       | `ReactNode`             | sample heading | Section heading.               |
-| `description` | `string`                | sample line    | Supporting line.               |
-| `posts`       | `BlogHoverExpandPost[]` | 3-post sample  | Cards in the row.              |
-| `ctaLabel`    | `string`                | sample label   | Label on the bottom button.    |
-| `onCtaClick`  | `() => void`            | —              | Click handler for that button. |
+| Prop          | Type                    | Default        | Description       |
+| ------------- | ----------------------- | -------------- | ----------------- |
+| `title`       | `ReactNode`             | sample heading | Section heading.  |
+| `description` | `string`                | sample line    | Supporting line.  |
+| `posts`       | `BlogHoverExpandPost[]` | 3-post sample  | Cards in the row. |
 
 Each post is `{ title, date, tags, image, imageAlt, href }`. Extends native
 `<section>` attributes (`className`, `style`, …).

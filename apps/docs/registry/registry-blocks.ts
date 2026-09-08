@@ -217,6 +217,40 @@ export default function Example() {
     },
   },
   {
+    name: 'cta-headline-photos',
+    type: 'block',
+    group: 'cta',
+    title: 'CTA Headline Photos',
+    description:
+      'A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: ['slide-arrow-button'],
+    cssVars: {},
+    files: [
+      {
+        path: `${CTA_DIR}/cta-headline-photos.tsx`,
+        target: 'components/tweenui/cta/cta-headline-photos.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${CTA_DIR}/cta-headline-photos.tsx`,
+      },
+    ],
+    usage: {
+      react: `import CtaHeadlinePhotos from '@/components/tweenui/cta/cta-headline-photos';
+
+export default function Example() {
+  return <CtaHeadlinePhotos />;
+}`,
+    },
+  },
+  {
     name: 'blog-hover-expand',
     type: 'block',
     group: 'blog',

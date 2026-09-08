@@ -141,6 +141,12 @@
       "description": "A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware."
     },
     {
+      "name": "cta-headline-photos",
+      "type": "block",
+      "title": "CTA Headline Photos",
+      "description": "A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware."
+    },
+    {
       "name": "blog-hover-expand",
       "type": "block",
       "title": "Blog Hover Expand",

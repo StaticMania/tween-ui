@@ -25,10 +25,6 @@ export interface BlogHoverExpandProps extends Omit<ComponentPropsWithoutRef<'sec
   description?: string;
   /** Posts shown in the row. Defaults to a 3-post sample. */
   posts?: BlogHoverExpandPost[];
-  /** Label for the bottom CTA. */
-  ctaLabel?: string;
-  /** Click handler for the CTA. */
-  onCtaClick?: () => void;
 }
 
 const DEFAULT_TITLE = (
@@ -69,8 +65,6 @@ export default function BlogHoverExpand({
   title = DEFAULT_TITLE,
   description = 'Playbooks, trends, and real tactics for ads, SEO, funnels, and automation—built for growth-focused teams.',
   posts = DEFAULT_POSTS,
-  ctaLabel = 'Read Marketing Insights',
-  onCtaClick,
   className,
   ...props
 }: BlogHoverExpandProps) {
@@ -139,16 +133,6 @@ export default function BlogHoverExpand({
               </article>
             );
           })}
-        </div>
-
-        <div className="flex justify-center">
-          <button
-            type="button"
-            onClick={onCtaClick}
-            className="inline-flex h-11 cursor-pointer items-center justify-center rounded-lg border border-[#045f64]/20 px-5 text-sm font-medium text-[#045f64] transition-colors duration-300 hover:bg-[#045f64]/5 motion-reduce:transition-none dark:border-[#045f64]/40 dark:text-[#9fd4d6] dark:hover:bg-[#045f64]/20"
-          >
-            {ctaLabel}
-          </button>
         </div>
       </div>
     </section>
