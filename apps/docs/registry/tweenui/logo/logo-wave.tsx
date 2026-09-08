@@ -16,10 +16,29 @@ gsap.registerPlugin(useGSAP);
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+function LogoImage({ src, srcDark, alt }: LogoWaveLogo) {
+  if (!srcDark) {
+    return <img src={src} alt={alt} className="size-full object-contain" />;
+  }
+  return (
+    <>
+      <img src={src} alt={alt} className="size-full object-contain dark:hidden" />
+      <img
+        src={srcDark}
+        alt=""
+        aria-hidden="true"
+        className="hidden size-full object-contain dark:block"
+      />
+    </>
+  );
+}
+
 const ITEM_SIZE = 42;
 
 export interface LogoWaveLogo {
   src: string;
+  /** Optional mark shown under `.dark`. */
+  srcDark?: string;
   alt: string;
 }
 
@@ -216,14 +235,14 @@ export default function LogoWave({
               key={`${setIndex}-${logo.alt}-${index}`}
               data-logo-wave-item
               className={cn(
-                'm-0 grid size-[42px] shrink-0 place-items-center rounded-full border border-[#045f64]/10 bg-white p-2 shadow-[0_1px_2px_rgba(16,24,40,0.12)] transition-transform duration-500 ease-in-out motion-reduce:transition-none',
+                'm-0 grid size-[42px] shrink-0 place-items-center rounded-full border border-[#045f64]/10 bg-white p-2 shadow-[0_1px_2px_rgba(16,24,40,0.12)] transition-transform duration-500 ease-in-out motion-reduce:transition-none dark:border-[#045f64]/40 dark:bg-[#12161F]',
                 itemClassName
               )}
             >
               {renderLogo ? (
                 renderLogo(logo, index)
               ) : (
-                <img src={logo.src} alt={logo.alt} className="size-full object-contain" />
+                <LogoImage src={logo.src} srcDark={logo.srcDark} alt={logo.alt} />
               )}
             </figure>
           ))

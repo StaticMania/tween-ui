@@ -14,6 +14,8 @@ const GROUP_LAYOUT = 'flex flex-wrap items-center justify-center gap-x-8 gap-y-4
 
 export interface LogoCycleLogo {
   src: string;
+  /** Optional mark shown under `.dark`. */
+  srcDark?: string;
   alt: string;
 }
 
@@ -52,6 +54,23 @@ function chunkLogos<T>(items: T[], size: number): T[][] {
   return groups;
 }
 
+function LogoImage({ src, srcDark, alt }: LogoCycleLogo) {
+  if (!srcDark) {
+    return <img src={src} alt={alt} className="size-full object-contain" />;
+  }
+  return (
+    <>
+      <img src={src} alt={alt} className="size-full object-contain dark:hidden" />
+      <img
+        src={srcDark}
+        alt=""
+        aria-hidden="true"
+        className="hidden size-full object-contain dark:block"
+      />
+    </>
+  );
+}
+
 function LogoMark({
   logo,
   index,
@@ -74,7 +93,7 @@ function LogoMark({
       {renderLogo ? (
         renderLogo(logo, index)
       ) : (
-        <img src={logo.src} alt={logo.alt} className="size-full object-contain" />
+        <LogoImage src={logo.src} srcDark={logo.srcDark} alt={logo.alt} />
       )}
     </figure>
   );

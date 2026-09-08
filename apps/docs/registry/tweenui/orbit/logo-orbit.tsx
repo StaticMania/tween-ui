@@ -10,8 +10,27 @@ gsap.registerPlugin(useGSAP);
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+function LogoImage({ src, srcDark, alt }: LogoOrbitLogo) {
+  if (!srcDark) {
+    return <img src={src} alt={alt} className="size-full object-contain" />;
+  }
+  return (
+    <>
+      <img src={src} alt={alt} className="size-full object-contain dark:hidden" />
+      <img
+        src={srcDark}
+        alt=""
+        aria-hidden="true"
+        className="hidden size-full object-contain dark:block"
+      />
+    </>
+  );
+}
+
 export interface LogoOrbitLogo {
   src: string;
+  /** Optional mark shown under `.dark`. */
+  srcDark?: string;
   alt: string;
 }
 
@@ -97,7 +116,7 @@ export default function LogoOrbit({
       ref={ringRef}
       data-logo-orbit
       className={cn(
-        'relative mx-auto aspect-square rounded-full border-2 border-[#045f64]/15 motion-reduce:transition-none',
+        'relative mx-auto aspect-square rounded-full border-2 border-[#045f64]/15 motion-reduce:transition-none dark:border-[#045f64]/40',
         className
       )}
       style={{ width: size, height: size }}
@@ -117,9 +136,9 @@ export default function LogoOrbit({
               ref={(el) => {
                 itemRefs.current[i] = el;
               }}
-              className="absolute top-[-20px] grid size-16 place-items-center overflow-hidden rounded-full border border-[#045f64]/10 bg-white p-3 shadow-[0_1px_2px_rgba(16,24,40,0.12)]"
+              className="absolute top-[-20px] grid size-16 place-items-center overflow-hidden rounded-full border border-[#045f64]/10 bg-white p-3 shadow-[0_1px_2px_rgba(16,24,40,0.12)] dark:border-[#045f64]/40 dark:bg-[#12161F]"
             >
-              <img src={logo.src} alt={logo.alt} className="size-full object-contain" />
+              <LogoImage src={logo.src} srcDark={logo.srcDark} alt={logo.alt} />
             </div>
           </div>
         ))}

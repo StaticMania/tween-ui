@@ -1,0 +1,108 @@
+---
+title: Process Sticky Steps
+description: A process section with sticky heading and numbers that track the card in view.
+icon: list-ordered
+---
+
+A ready-made process block. The **heading, divider, and step numbers stay
+sticky inside the block** while the cards scroll in that frame — the page
+behind it does not move. Clicking a number jumps to that card. No GSAP —
+just Intersection Observer — and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="process-sticky-steps" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/process-sticky-steps"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="process-sticky-steps"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import ProcessStickySteps from '@/components/tweenui/process/process-sticky-steps';
+
+export default function Page() {
+  return <ProcessStickySteps />;
+}
+```
+
+:::
+::
+
+Pass your own heading and steps to make it yours. Each step can include an
+optional `overlay` image:
+
+```tsx [app/page.tsx]
+import ProcessStickySteps from '@/components/tweenui/process/process-sticky-steps';
+
+const steps = [
+  {
+    id: 'write',
+    title: 'Write or paste script',
+    description: 'Draft your message or drop in ready-to-go text.',
+    image: '/photos/script.jpg',
+    imageAlt: 'Writing a script',
+    overlay: '/photos/script-overlay.png',
+    overlayAlt: 'Script editor',
+    overlayPosition: 'right',
+  },
+  {
+    id: 'generate',
+    title: 'Generate and download',
+    description: 'Get studio-quality audio in seconds.',
+    image: '/photos/download.jpg',
+    imageAlt: 'Downloading audio',
+  },
+];
+
+export default function Page() {
+  return (
+    <ProcessStickySteps
+      title={
+        <>
+          Create stunning voiceover in{' '}
+          <span className="text-[#045f64] dark:text-[#c6f56f]">2 simple steps</span>
+        </>
+      }
+      steps={steps}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop    | Type                  | Default       | Description                            |
+| ------- | --------------------- | ------------- | -------------------------------------- |
+| `title` | `ReactNode`           | 4-step sample | Sticky heading shown beside the cards. |
+| `steps` | `ProcessStickyStep[]` | 4-step sample | Cards shown in the scroll column.      |
+
+Each `ProcessStickyStep` is `{ id, title, description, image, imageAlt, overlay?, overlayAlt?, overlayPosition? }`.
+`overlayPosition` is `'right' | 'center'`. Extends native `<section>` attributes
+(`className`, `style`, …).
+
+## Accessibility
+
+::note
+Step numbers are real buttons with an `aria-label`, `aria-current="step"` on
+the active one, and a visible focus ring, so the sequence is fully keyboard
+operable. Scroll happens inside the block. Under `prefers-reduced-motion: reduce`
+number color still updates and clicking a step jumps instantly with no smooth
+scroll.
+::

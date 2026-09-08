@@ -54,12 +54,12 @@ export default function Page() {
 
 ## Props
 
-| Prop           | Type             | Default | Description                                    |
-| -------------- | ---------------- | ------- | ---------------------------------------------- |
-| `logos`        | `{ src, alt }[]` | —       | Logos placed evenly around the ring.           |
-| `size`         | `number`         | `320`   | Ring diameter in pixels.                       |
-| `speed`        | `number`         | `1`     | Rotation multiplier (1 = one turn every ~20s). |
-| `pauseOnHover` | `boolean`        | `true`  | Pause the orbit while the pointer is over it.  |
+| Prop           | Type                       | Default | Description                                                            |
+| -------------- | -------------------------- | ------- | ---------------------------------------------------------------------- |
+| `logos`        | `{ src, srcDark?, alt }[]` | —       | Logos placed evenly around the ring. `srcDark` swaps in under `.dark`. |
+| `size`         | `number`                   | `320`   | Ring diameter in pixels.                                               |
+| `speed`        | `number`                   | `1`     | Rotation multiplier (1 = one turn every ~20s).                         |
+| `pauseOnHover` | `boolean`                  | `true`  | Pause the orbit while the pointer is over it.                          |
 
 Extends native `<div>` attributes (`className`, `style`, …).
 

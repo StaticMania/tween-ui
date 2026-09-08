@@ -34,6 +34,7 @@ export const demos: Record<string, ComponentType> = {
   'image-fan-slider:default': dynamic(() => import('./demos/slider/image-fan-slider')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process/process-card-reveal')),
+  'process-sticky-steps:default': dynamic(() => import('./demos/process/process-sticky-steps')),
   'testimonial-split-slide:default': dynamic(
     () => import('./demos/testimonial/testimonial-split-slide')
   ),

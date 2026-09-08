@@ -117,6 +117,12 @@
       "description": "A process section where a numbered timeline fills, then the next stacked card slides and blurs into place. Hover pauses the loop; clicking a step jumps there. GSAP-driven and reduced-motion aware."
     },
     {
+      "name": "process-sticky-steps",
+      "type": "block",
+      "title": "Process Sticky Steps",
+      "description": "A process section where a sticky heading and numbered buttons track the card in view. Clicking a step jumps there. Reduced-motion aware."
+    },
+    {
       "name": "testimonial-split-slide",
       "type": "block",
       "title": "Testimonial Split Slide",

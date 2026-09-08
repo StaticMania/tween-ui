@@ -30,7 +30,7 @@ export default function GlowButton({
     <button
       type={type}
       className={cn(
-        'group relative isolate inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full px-6 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+        'group relative isolate inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full px-6 text-sm font-medium text-white transition-transform duration-300 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:ring-offset-[#12161F]',
         className
       )}
       {...props}

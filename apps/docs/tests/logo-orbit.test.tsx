@@ -17,6 +17,14 @@ describe('Logo Orbit', () => {
     }
   });
 
+  it('renders a dark src when srcDark is set', () => {
+    const { container } = render(
+      <LogoOrbit logos={[{ src: '/a.svg', srcDark: '/a-dark.svg', alt: 'Alpha' }]} />
+    );
+    expect(screen.getByAltText('Alpha')).toHaveAttribute('src', '/a.svg');
+    expect(container.querySelector('img[src="/a-dark.svg"]')).toBeInTheDocument();
+  });
+
   it('applies the size to the ring', () => {
     const { container } = render(<LogoOrbit logos={LOGOS} size={400} />);
     const ring = container.querySelector('[data-logo-orbit]') as HTMLElement;

@@ -107,7 +107,7 @@ export default function AvatarReveal({
       {children ? (
         <p
           data-ns-animate
-          className="mx-auto max-w-[142px] text-left text-sm text-[#045f64]/80 opacity-0 motion-reduce:opacity-100"
+          className="mx-auto max-w-[142px] text-left text-sm text-[#045f64]/80 opacity-0 motion-reduce:opacity-100 dark:text-[#9fd4d6]/80"
         >
           {children}
         </p>

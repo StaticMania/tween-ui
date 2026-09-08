@@ -187,13 +187,17 @@ export default function FlipCardOnHover({
         <div
           ref={frontRef}
           data-flip-front
-          className="absolute inset-0 flex flex-col overflow-hidden rounded-2xl border border-[#045f64]/20 bg-white"
+          className="absolute inset-0 flex flex-col overflow-hidden rounded-2xl border border-[#045f64]/20 bg-white dark:border-[#045f64]/40 dark:bg-[#12161F]"
         >
           <div className="space-y-4 p-5">
-            {eyebrow ? <span className="text-xs text-[#045f64]/60">{eyebrow}</span> : null}
+            {eyebrow ? (
+              <span className="text-xs text-[#045f64]/60 dark:text-[#9fd4d6]/80">{eyebrow}</span>
+            ) : null}
             <div className="space-y-1">
-              <h3 className="text-lg font-medium text-[#12161F]">{title}</h3>
-              {subtitle ? <p className="text-sm text-[#045f64]/70">{subtitle}</p> : null}
+              <h3 className="text-lg font-medium text-[#12161F] dark:text-white">{title}</h3>
+              {subtitle ? (
+                <p className="text-sm text-[#045f64]/70 dark:text-[#9fd4d6]/80">{subtitle}</p>
+              ) : null}
             </div>
           </div>
           {image ? (
@@ -207,21 +211,24 @@ export default function FlipCardOnHover({
         <div
           ref={backRef}
           data-flip-back
-          className="absolute inset-0 flex flex-col rounded-2xl border border-[#045f64]/20 bg-white p-5"
+          className="absolute inset-0 flex flex-col rounded-2xl border border-[#045f64]/20 bg-white p-5 dark:border-[#045f64]/40 dark:bg-[#12161F]"
         >
           <div className="flex-1 space-y-5">
             <div className="space-y-2">
               {eyebrow ? (
-                <span data-flip-item className="block text-xs text-[#045f64]/60">
+                <span
+                  data-flip-item
+                  className="block text-xs text-[#045f64]/60 dark:text-[#9fd4d6]/80"
+                >
                   {eyebrow}
                 </span>
               ) : null}
               <div className="space-y-1">
-                <h3 data-flip-item className="text-lg font-medium text-[#12161F]">
+                <h3 data-flip-item className="text-lg font-medium text-[#12161F] dark:text-white">
                   {title}
                 </h3>
                 {description ? (
-                  <p data-flip-item className="text-sm text-[#045f64]/70">
+                  <p data-flip-item className="text-sm text-[#045f64]/70 dark:text-[#9fd4d6]/80">
                     {description}
                   </p>
                 ) : null}
@@ -233,9 +240,9 @@ export default function FlipCardOnHover({
                   <li
                     key={feature}
                     data-flip-item
-                    className="flex items-center gap-2 text-sm text-[#045f64]"
+                    className="flex items-center gap-2 text-sm text-[#045f64] dark:text-[#9fd4d6]"
                   >
-                    <Arrow className="size-3.5 shrink-0 stroke-[#045f64]" />
+                    <Arrow className="size-3.5 shrink-0 stroke-[#045f64] dark:stroke-[#9fd4d6]" />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -249,8 +256,8 @@ export default function FlipCardOnHover({
               href={href}
               className="group/link mt-5 flex items-center justify-between rounded-xl p-3 transition-colors hover:bg-[#045f64]/10 motion-reduce:transition-none"
             >
-              <span className="text-sm font-medium text-[#12161F]">{ctaText}</span>
-              <Arrow className="size-4 stroke-[#045f64] transition-transform duration-300 group-hover/link:translate-x-1 motion-reduce:transition-none" />
+              <span className="text-sm font-medium text-[#12161F] dark:text-white">{ctaText}</span>
+              <Arrow className="size-4 stroke-[#045f64] transition-transform duration-300 group-hover/link:translate-x-1 motion-reduce:transition-none dark:stroke-[#9fd4d6]" />
             </a>
           ) : null}
         </div>

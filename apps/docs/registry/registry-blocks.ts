@@ -79,6 +79,40 @@ export default function Example() {
     },
   },
   {
+    name: 'process-sticky-steps',
+    type: 'block',
+    group: 'process',
+    title: 'Process Sticky Steps',
+    description:
+      'A process section where a sticky heading and numbered buttons track the card in view. Clicking a step jumps there. Reduced-motion aware.',
+    isNew: true,
+    media: {},
+    dependencies: [],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${PROCESS_DIR}/process-sticky-steps.tsx`,
+        target: 'components/tweenui/process/process-sticky-steps.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${PROCESS_DIR}/process-sticky-steps.tsx`,
+      },
+    ],
+    usage: {
+      react: `import ProcessStickySteps from '@/components/tweenui/process/process-sticky-steps';
+
+export default function Example() {
+  return <ProcessStickySteps />;
+}`,
+    },
+  },
+  {
     name: 'testimonial-split-slide',
     type: 'block',
     group: 'testimonial',

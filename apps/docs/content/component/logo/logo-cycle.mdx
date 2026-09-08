@@ -58,20 +58,20 @@ export default function Page() {
 
 ## Props
 
-| Prop            | Type                                                | Default          | Description                                      |
-| --------------- | --------------------------------------------------- | ---------------- | ------------------------------------------------ |
-| `logos`         | `{ src, alt }[]`                                    | —                | Logos to cycle through in groups.                |
-| `visibleCount`  | `number`                                            | `6`              | How many logos show in each group.               |
-| `interval`      | `number`                                            | `2.5`            | Seconds between group swaps.                     |
-| `duration`      | `number`                                            | `0.6`            | Swap tween duration in seconds.                  |
-| `stagger`       | `number`                                            | `0.14`           | Delay between items in a group, in seconds.      |
-| `delay`         | `number`                                            | `0.5`            | Seconds to wait before the first swap.           |
-| `yOffset`       | `number`                                            | `40`             | Vertical travel of the stagger, in pixels.       |
-| `blur`          | `number`                                            | `4`              | Blur radius while swapping, in pixels.           |
-| `ease`          | `string`                                            | `'power1.inOut'` | GSAP ease for the swap.                          |
-| `pauseOnHover`  | `boolean`                                           | `true`           | Pause the cycle while the pointer is over it.    |
-| `itemClassName` | `string`                                            | —                | Extra classes for each logo slot.                |
-| `renderLogo`    | `(logo: LogoCycleLogo, index: number) => ReactNode` | —                | Custom logo markup instead of a default `<img>`. |
+| Prop            | Type                                                | Default          | Description                                                         |
+| --------------- | --------------------------------------------------- | ---------------- | ------------------------------------------------------------------- |
+| `logos`         | `{ src, srcDark?, alt }[]`                          | —                | Logos to cycle through in groups. `srcDark` swaps in under `.dark`. |
+| `visibleCount`  | `number`                                            | `6`              | How many logos show in each group.                                  |
+| `interval`      | `number`                                            | `2.5`            | Seconds between group swaps.                                        |
+| `duration`      | `number`                                            | `0.6`            | Swap tween duration in seconds.                                     |
+| `stagger`       | `number`                                            | `0.14`           | Delay between items in a group, in seconds.                         |
+| `delay`         | `number`                                            | `0.5`            | Seconds to wait before the first swap.                              |
+| `yOffset`       | `number`                                            | `40`             | Vertical travel of the stagger, in pixels.                          |
+| `blur`          | `number`                                            | `4`              | Blur radius while swapping, in pixels.                              |
+| `ease`          | `string`                                            | `'power1.inOut'` | GSAP ease for the swap.                                             |
+| `pauseOnHover`  | `boolean`                                           | `true`           | Pause the cycle while the pointer is over it.                       |
+| `itemClassName` | `string`                                            | —                | Extra classes for each logo slot.                                   |
+| `renderLogo`    | `(logo: LogoCycleLogo, index: number) => ReactNode` | —                | Custom logo markup instead of a default `<img>`.                    |
 
 Extends native `<div>` attributes (`className`, `style`, …). If `logos.length`
 is at most `visibleCount`, the row stays static and does not animate.

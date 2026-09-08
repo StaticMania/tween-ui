@@ -161,7 +161,7 @@ export default function VoiceSamplePlayer({
       data-playing={active ? 'true' : 'false'}
       className={cn(
         'flex w-full max-w-[420px] items-center gap-3 rounded-full p-2 transition-colors duration-500 ease-in-out motion-reduce:transition-none',
-        active ? 'bg-[#045f64]' : 'bg-[#045f64]/10',
+        active ? 'bg-[#045f64]' : 'bg-[#045f64]/10 dark:bg-[#045f64]/20',
         className
       )}
     >
@@ -169,7 +169,7 @@ export default function VoiceSamplePlayer({
         {avatar ? (
           <img src={avatar} alt={avatarAlt ?? name} className="size-full object-cover" />
         ) : (
-          <span className="flex size-full items-center justify-center text-sm font-medium text-[#045f64]">
+          <span className="flex size-full items-center justify-center text-sm font-medium text-[#045f64] dark:text-[#9fd4d6]">
             {name.slice(0, 2).toUpperCase()}
           </span>
         )}
@@ -177,8 +177,12 @@ export default function VoiceSamplePlayer({
 
       <div className="relative h-14 flex-1 overflow-hidden">
         <div ref={contentRef} className="absolute inset-0 flex flex-col justify-center">
-          <p className="truncate text-sm font-medium text-[#045f64]">{name}</p>
-          {description ? <p className="truncate text-xs text-[#045f64]/60">{description}</p> : null}
+          <p className="truncate text-sm font-medium text-[#045f64] dark:text-[#9fd4d6]">{name}</p>
+          {description ? (
+            <p className="truncate text-xs text-[#045f64]/60 dark:text-[#9fd4d6]/80">
+              {description}
+            </p>
+          ) : null}
         </div>
 
         <div
@@ -205,7 +209,7 @@ export default function VoiceSamplePlayer({
         onClick={() => setActive(!active)}
         aria-pressed={active}
         aria-label={active ? `Pause ${name}` : `Play ${name}`}
-        className="relative flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-[#045f64] shadow-[0_1px_1px_rgba(16,24,40,0.16)] transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100"
+        className="relative flex size-14 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-[#045f64] shadow-[0_1px_1px_rgba(16,24,40,0.16)] transition-transform hover:scale-105 motion-reduce:transition-none motion-reduce:hover:scale-100 dark:bg-[#12161F] dark:text-[#9fd4d6]"
       >
         <span className="relative size-6 overflow-hidden">
           <svg

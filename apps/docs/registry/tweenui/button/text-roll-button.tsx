@@ -86,7 +86,7 @@ export default function TextRollButton({
       ref={setRef}
       type={type}
       className={cn(
-        'inline-flex h-12 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#045f64] px-6 text-sm font-medium text-[#c6f56f] shadow-[0_1px_1px_rgba(16,24,40,0.16)] transition-colors duration-300 hover:bg-[#045f64]/95 focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60',
+        'inline-flex h-12 cursor-pointer items-center justify-center rounded-full border border-transparent bg-[#045f64] px-6 text-sm font-medium text-[#c6f56f] shadow-[0_1px_1px_rgba(16,24,40,0.16)] transition-colors duration-300 hover:bg-[#045f64]/95 focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 dark:ring-offset-[#12161F]',
         className
       )}
       {...props}

@@ -167,7 +167,7 @@ export default function FaqAccordion({
             key={index}
             data-faq-item
             data-expand={opened ? 'true' : 'false'}
-            className="min-w-0 overflow-hidden rounded-2xl border border-[#045f64]/15 bg-white"
+            className="min-w-0 overflow-hidden rounded-2xl border border-[#045f64]/15 bg-white dark:border-[#045f64]/40 dark:bg-[#12161F]"
           >
             <h3 className="min-w-0">
               <button
@@ -176,13 +176,13 @@ export default function FaqAccordion({
                 aria-expanded={opened}
                 aria-controls={panelId}
                 onClick={() => toggle(index)}
-                className="flex w-full min-w-0 cursor-pointer items-start justify-between gap-x-4 px-6 pt-5 pb-5 text-left text-base font-medium text-[#12161F] data-[expand=true]:pb-3"
+                className="flex w-full min-w-0 cursor-pointer items-start justify-between gap-x-4 px-6 pt-5 pb-5 text-left text-base font-medium text-[#12161F] data-[expand=true]:pb-3 dark:text-white"
                 data-expand={opened ? 'true' : 'false'}
               >
                 <span className="min-w-0 flex-1 text-wrap">{item.question}</span>
                 <span
                   data-expand={opened ? 'true' : 'false'}
-                  className="group grid size-6 shrink-0 place-items-center text-[#045f64]"
+                  className="group grid size-6 shrink-0 place-items-center text-[#045f64] dark:text-[#9fd4d6]"
                 >
                   <svg
                     viewBox="0 0 24 24"
@@ -217,7 +217,7 @@ export default function FaqAccordion({
                 ref={(node) => {
                   textRefs.current[index] = node;
                 }}
-                className="px-6 pb-6 text-sm wrap-break-word text-[#045f64]/70"
+                className="px-6 pb-6 text-sm wrap-break-word text-[#045f64]/70 dark:text-[#9fd4d6]/80"
               >
                 {item.answer}
               </div>

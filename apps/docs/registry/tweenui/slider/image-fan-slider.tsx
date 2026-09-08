@@ -26,7 +26,6 @@ function slideStyle(slideIndex: number, activeIndex: number, total: number): CSS
   const offset = (slideIndex - activeIndex + total) % total;
   const base: CSSProperties = {
     zIndex: 0,
-    border: '4px solid #fff',
     borderRadius: 8,
     filter: 'blur(4px)',
     width: 180,
@@ -115,7 +114,7 @@ export default function ImageFanSlider({
           key={`${image.src}-${i}`}
           data-image-fan-slide
           data-active={i === activeIndex ? 'true' : undefined}
-          className="absolute m-0 overflow-hidden transition-all duration-700 ease-in-out motion-reduce:transition-none"
+          className="absolute m-0 overflow-hidden border-4 border-white transition-all duration-700 ease-in-out motion-reduce:transition-none dark:border-[#12161F]"
           style={slideStyle(i, activeIndex, total)}
         >
           <img src={image.src} alt={image.alt} className="size-full rounded-lg object-cover" />
