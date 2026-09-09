@@ -4,3 +4,6 @@ packages:
 allowBuilds:
   esbuild: true
   lefthook: true
+  # Pulled in transitively by the shadcn devDependency; we never run msw, so
+  # its postinstall (which only copies a service worker) is not needed.
+  msw: false

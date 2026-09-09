@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import CtaHeadlinePhotos from '@/registry/tweenui/cta/cta-headline-photos';
+import CtaHeadlinePhotos from '@/registry/tweenui/cta-headline-photos';
 
 const AVATARS = [
   { src: '/a.jpg', alt: 'Ada' },

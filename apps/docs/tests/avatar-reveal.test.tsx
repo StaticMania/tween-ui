@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import AvatarReveal from '@/registry/tweenui/avatar/avatar-reveal';
+import AvatarReveal from '@/registry/tweenui/avatar-reveal';
 
 describe('Avatar Reveal', () => {
   it('renders default avatars and caption', () => {

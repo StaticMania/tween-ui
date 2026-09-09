@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import CounterNumberOnScroll from '@/registry/tweenui/scroll-based/counter-number-on-scroll';
+import CounterNumberOnScroll from '@/registry/tweenui/counter-number-on-scroll';
 
 describe('Counter Number On Scroll', () => {
   it('renders a trigger and mounts without error', () => {

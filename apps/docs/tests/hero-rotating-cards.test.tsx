@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import HeroRotatingCards from '@/registry/tweenui/hero/hero-rotating-cards';
+import HeroRotatingCards from '@/registry/tweenui/hero-rotating-cards';
 
 const CARDS = [
   { title: 'Brand motion', image: '/a.jpg', imageAlt: 'Brand frames' },

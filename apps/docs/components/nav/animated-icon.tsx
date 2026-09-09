@@ -105,6 +105,7 @@ const PLAY: Record<string, Play> = {
   'list-collapse': wave,
   layers: wave,
   'move-right': nudge,
+  'unfold-horizontal': nudge,
   'circle-arrow-right': nudge,
   'log-in': nudge,
   'share-2': nudge,

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import gsap from 'gsap';
 import { describe, expect, it, vi } from 'vitest';
-import LogoWave from '@/registry/tweenui/logo/logo-wave';
+import LogoWave from '@/registry/tweenui/logo-wave';
 
 const LOGOS = [
   { src: '/a.svg', alt: 'Alpha' },

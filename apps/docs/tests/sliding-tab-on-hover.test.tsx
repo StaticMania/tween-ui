@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import SlidingTabOnHover from '@/registry/tweenui/navigation/sliding-tab-on-hover';
+import SlidingTabOnHover from '@/registry/tweenui/sliding-tab-on-hover';
 
 const items = [
   { value: 'home', label: 'Home' },

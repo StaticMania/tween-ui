@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import TestimonialSplitSlide from '@/registry/tweenui/testimonial/testimonial-split-slide';
+import TestimonialSplitSlide from '@/registry/tweenui/testimonial-split-slide';
 
 vi.mock('@number-flow/react', () => ({
   default: ({ value }: { value: number }) => <span>{value}</span>,

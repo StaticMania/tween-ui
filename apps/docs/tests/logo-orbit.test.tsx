@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import gsap from 'gsap';
 import { describe, expect, it, vi } from 'vitest';
-import LogoOrbit from '@/registry/tweenui/orbit/logo-orbit';
+import LogoOrbit from '@/registry/tweenui/logo-orbit';
 
 const LOGOS = [
   { src: '/a.svg', alt: 'Alpha' },

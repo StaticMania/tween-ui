@@ -5,7 +5,7 @@ import { Check, Code2, Copy, Eye, RotateCw } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { getEntry } from '@/lib/registry';
 import { cn, copyText } from '@/lib/utils';
-import { getDemo } from '@/registry/__index__';
+import { getDemo } from '@/registry/__index__.generated';
 import { usage } from '@/registry/__sources__.generated';
 import { ReactMark } from './brand-icons';
 import { OpenIn } from './open-in';
@@ -77,7 +77,7 @@ export function ComponentPreview({
           <OpenIn
             name={name}
             title={entry.title}
-            githubHref={`${siteConfig.repo}/tree/main/${siteConfig.registryPath}/${entry.group}`}
+            githubHref={`${siteConfig.repo}/blob/main/${siteConfig.registryPath}/${name}.tsx`}
           />
         </div>
       </div>

@@ -4,165 +4,339 @@
   "items": [
     {
       "name": "animated-sliding-button",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Animated Sliding Button",
-      "description": "A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware."
+      "description": "A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/animated-sliding-button.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "sliding-tab-on-hover",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Sliding Tab On Hover",
-      "description": "A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware."
+      "description": "A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/sliding-tab-on-hover.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "avatar-reveal",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Avatar Reveal",
-      "description": "Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware."
+      "description": "Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/avatar-reveal.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "auth-modal",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Auth Modal",
-      "description": "A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware."
+      "description": "A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/auth-modal.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "counter-number-on-scroll",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Counter Number On Scroll",
-      "description": "Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware."
+      "description": "Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/counter-number-on-scroll.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "voice-sample-player",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Voice Sample Player",
-      "description": "An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware."
+      "description": "An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/voice-sample-player.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "flip-card-on-hover",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Flip Card On Hover",
-      "description": "A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware."
+      "description": "A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/flip-card-on-hover.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "faq-accordion",
-      "type": "component",
+      "type": "registry:ui",
       "title": "FAQ Accordion",
-      "description": "A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware."
+      "description": "A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/faq-accordion.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "shiny-button",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Shiny Button",
-      "description": "A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware."
+      "description": "A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/shiny-button.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "text-roll-button",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Text Roll Button",
-      "description": "A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware."
+      "description": "A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/text-roll-button.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "slide-arrow-button",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Slide Arrow Button",
-      "description": "A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware."
+      "description": "A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/slide-arrow-button.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "glow-button",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Glow Button",
-      "description": "A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware."
+      "description": "A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/glow-button.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "logo-orbit",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Logo Orbit",
-      "description": "Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware."
+      "description": "Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/logo-orbit.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "logo-cycle",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Logo Cycle",
-      "description": "A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware."
+      "description": "A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/logo-cycle.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "logo-wave",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Logo Wave",
-      "description": "An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware."
+      "description": "An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/logo-wave.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "image-fan-slider",
-      "type": "component",
+      "type": "registry:ui",
       "title": "Image Fan Slider",
-      "description": "A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware."
+      "description": "A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/image-fan-slider.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "pricing-plan-switch",
-      "type": "block",
+      "type": "registry:block",
       "title": "Pricing Plan Switch",
-      "description": "A pricing section where picking a plan morphs the name badge, crossfades the description, and spins the price with Number Flow, plus a monthly/yearly toggle and an activating feature checklist. GSAP-driven and reduced-motion aware."
+      "description": "A pricing section where picking a plan morphs the name badge, crossfades the description, and spins the price with Number Flow, plus a monthly/yearly toggle and an activating feature checklist. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/pricing-plan-switch.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "process-card-reveal",
-      "type": "block",
+      "type": "registry:block",
       "title": "Process Card Reveal",
-      "description": "A process section where a numbered timeline fills, then the next stacked card slides and blurs into place. Hover pauses the loop; clicking a step jumps there. GSAP-driven and reduced-motion aware."
+      "description": "A process section where a numbered timeline fills, then the next stacked card slides and blurs into place. Hover pauses the loop; clicking a step jumps there. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/process-card-reveal.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "process-sticky-steps",
-      "type": "block",
+      "type": "registry:block",
       "title": "Process Sticky Steps",
-      "description": "A process section where a sticky heading and numbered buttons track the card in view. Clicking a step jumps there. Reduced-motion aware."
+      "description": "A process section where a sticky heading and numbered buttons track the card in view. Clicking a step jumps there. Reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/process-sticky-steps.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "testimonial-split-slide",
-      "type": "block",
+      "type": "registry:block",
       "title": "Testimonial Split Slide",
-      "description": "A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware."
+      "description": "A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/testimonial-split-slide.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "testimonial-card-carousel",
-      "type": "block",
+      "type": "registry:block",
       "title": "Testimonial Card Carousel",
-      "description": "A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots."
+      "description": "A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots.",
+      "files": [
+        {
+          "path": "components/tweenui/testimonial-card-carousel.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "cta-image-fan",
-      "type": "block",
+      "type": "registry:block",
       "title": "CTA Image Fan",
-      "description": "A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware."
+      "description": "A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/cta-image-fan.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "cta-headline-photos",
-      "type": "block",
+      "type": "registry:block",
       "title": "CTA Headline Photos",
-      "description": "A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware."
+      "description": "A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/cta-headline-photos.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "blog-hover-expand",
-      "type": "block",
+      "type": "registry:block",
       "title": "Blog Hover Expand",
-      "description": "A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware."
+      "description": "A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/blog-hover-expand.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "integration-hub",
-      "type": "block",
+      "type": "registry:block",
       "title": "Integration Hub",
-      "description": "A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware."
+      "description": "A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/integration-hub.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "hero-rotating-cards",
-      "type": "block",
+      "type": "registry:block",
       "title": "Hero Rotating Cards",
-      "description": "A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware."
+      "description": "A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/hero-rotating-cards.tsx",
+          "type": "registry:component"
+        }
+      ]
     },
     {
       "name": "scroll-spin-image",
-      "type": "block",
+      "type": "registry:block",
       "title": "Scroll Spin Image",
-      "description": "A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware."
+      "description": "A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/scroll-spin-image.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "card-expand-on-hover",
+      "type": "registry:block",
+      "title": "Card Expand on Hover",
+      "description": "A card row where hovering one widens it, fades the photo in, and drops the copy to the bottom. CSS-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/card-expand-on-hover.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import AuthModal from '@/registry/tweenui/modal/auth-modal';
+import AuthModal from '@/registry/tweenui/auth-modal';
 
 describe('Auth Modal', () => {
   it('renders nothing when closed', () => {

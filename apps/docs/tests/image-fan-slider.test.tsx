@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import ImageFanSlider from '@/registry/tweenui/slider/image-fan-slider';
+import ImageFanSlider from '@/registry/tweenui/image-fan-slider';
 
 const IMAGES = [
   { src: '/a.jpg', alt: 'Alpha' },

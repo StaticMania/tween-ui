@@ -1,7 +1,7 @@
 import { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import TextRollButton from '@/registry/tweenui/button/text-roll-button';
+import TextRollButton from '@/registry/tweenui/text-roll-button';
 
 // SplitText needs real layout; force reduced motion so the GSAP path is skipped in jsdom.
 const setReducedMotion = (value: boolean) => {

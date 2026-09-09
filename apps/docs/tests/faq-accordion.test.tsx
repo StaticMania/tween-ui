@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import FaqAccordion from '@/registry/tweenui/accordion/faq-accordion';
+import FaqAccordion from '@/registry/tweenui/faq-accordion';
 
 const ITEMS = [
   { question: 'First question', answer: 'First answer.' },

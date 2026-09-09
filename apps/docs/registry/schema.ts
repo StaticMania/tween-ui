@@ -1,8 +1,9 @@
 /**
  * Tween UI registry types.
  * `registry.ts` is the hand-authored source of truth; `scripts/build-registry.ts`
- * reads it plus the files on disk to emit `public/r/<name>.json` (CLI format) and
- * `registry/__sources__.generated.ts` (code strings for the Code tab).
+ * reads it plus the files on disk to emit `public/r/<name>.json` (CLI format),
+ * `registry/__sources__.generated.ts` (code strings for the Code tab) and
+ * `registry/__index__.generated.tsx` (the live demo map).
  */
 
 export type RegistryType = 'component' | 'block';
@@ -22,6 +23,12 @@ export interface RegistryVariant {
   label: string;
   /** Source file (relative to apps/docs) shown in the React Code tab. */
   reactSource: string;
+  /**
+   * Demo module under `registry/demos`, without the extension. Defaults to the
+   * entry name for the first variant and `<name>-<id>` for the rest, so most
+   * entries never set it. `registry:build` fails if the file is missing.
+   */
+  demo?: string;
 }
 
 export interface RegistryMedia {
@@ -34,8 +41,6 @@ export interface RegistryMedia {
 export interface RegistryEntry {
   name: string;
   type: RegistryType;
-  /** URL group segment, e.g. "button" → /component/button/<name>. */
-  group: string;
   title: string;
   description: string;
   /** Show a "New" badge and list under the New section on the home gallery. */

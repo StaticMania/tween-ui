@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import IntegrationHub from '@/registry/tweenui/integration/integration-hub';
+import IntegrationHub from '@/registry/tweenui/integration-hub';
 
 const LEFT = [
   { src: '/a.svg', alt: 'Alpha' },

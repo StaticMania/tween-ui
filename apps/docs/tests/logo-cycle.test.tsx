@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import gsap from 'gsap';
 import { describe, expect, it, vi } from 'vitest';
-import LogoCycle from '@/registry/tweenui/logo/logo-cycle';
+import LogoCycle from '@/registry/tweenui/logo-cycle';
 
 const LOGOS = [
   { src: '/a.svg', alt: 'Alpha' },

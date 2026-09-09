@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import CtaImageFan from '@/registry/tweenui/cta/cta-image-fan';
+import CtaImageFan from '@/registry/tweenui/cta-image-fan';
 
 const IMAGES = [
   { src: '/a.jpg', alt: 'Alpha' },

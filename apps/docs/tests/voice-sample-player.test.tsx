@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import VoiceSamplePlayer from '@/registry/tweenui/media/voice-sample-player';
+import VoiceSamplePlayer from '@/registry/tweenui/voice-sample-player';
 
 describe('Voice Sample Player', () => {
   it('renders the name and a play button', () => {

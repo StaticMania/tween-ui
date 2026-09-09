@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import AnimatedSlidingButton from '@/registry/tweenui/button/animated-sliding-button';
+import AnimatedSlidingButton from '@/registry/tweenui/animated-sliding-button';
 
 describe('Animated Sliding Button', () => {
   it('renders its children and mounts without error', () => {

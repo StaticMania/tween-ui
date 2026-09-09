@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import FlipCardOnHover from '@/registry/tweenui/card/flip-card-on-hover';
+import FlipCardOnHover from '@/registry/tweenui/flip-card-on-hover';
 
 describe('Flip Card On Hover', () => {
   it('renders the title (on both faces)', () => {

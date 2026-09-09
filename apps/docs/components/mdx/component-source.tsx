@@ -72,7 +72,7 @@ export function ComponentSource({ name }: { name: string }) {
     {
       id: 'react' as const,
       label: 'React',
-      filename: `components/tweenui/${entry.group}/${name}.tsx`,
+      filename: `components/tweenui/${name}.tsx`,
       snippet: m.react,
     },
     ...(css

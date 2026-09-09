@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import ScrollSpinImage from '@/registry/tweenui/scroll-based/scroll-spin-image';
+import ScrollSpinImage from '@/registry/tweenui/scroll-spin-image';
 
 describe('Scroll Spin Image', () => {
   it('renders a figure with data-scroll-spin', () => {

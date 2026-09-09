@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import BlogHoverExpand from '@/registry/tweenui/blog/blog-hover-expand';
+import BlogHoverExpand from '@/registry/tweenui/blog-hover-expand';
 
 const POSTS = [
   {

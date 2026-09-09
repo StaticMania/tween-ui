@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import TestimonialCardCarousel from '@/registry/tweenui/testimonial/testimonial-card-carousel';
+import TestimonialCardCarousel from '@/registry/tweenui/testimonial-card-carousel';
 
 const TESTIMONIALS = [
   {

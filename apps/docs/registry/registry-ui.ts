@@ -1,17 +1,5 @@
 import type { RegistryEntry } from './schema';
 
-const BUTTON_DIR = 'registry/tweenui/button';
-const NAV_DIR = 'registry/tweenui/navigation';
-const AVATAR_DIR = 'registry/tweenui/avatar';
-const MODAL_DIR = 'registry/tweenui/modal';
-const SCROLL_DIR = 'registry/tweenui/scroll-based';
-const MEDIA_DIR = 'registry/tweenui/media';
-const CARD_DIR = 'registry/tweenui/card';
-const ACCORDION_DIR = 'registry/tweenui/accordion';
-const ORBIT_DIR = 'registry/tweenui/orbit';
-const LOGO_DIR = 'registry/tweenui/logo';
-const SLIDER_DIR = 'registry/tweenui/slider';
-
 /**
  * UI components. One entry per component; the build script does the rest.
  * (Mirrors Magic UI's registry-ui.ts — blocks/lib get their own files later.)
@@ -20,7 +8,6 @@ export const ui: RegistryEntry[] = [
   {
     name: 'animated-sliding-button',
     type: 'component',
-    group: 'button',
     title: 'Animated Sliding Button',
     description:
       'A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware.',
@@ -36,8 +23,8 @@ export const ui: RegistryEntry[] = [
     files: [
       // React — single self-contained file (icon + hook + trail + button)
       {
-        path: `${BUTTON_DIR}/animated-sliding-button.tsx`,
-        target: 'components/tweenui/button/animated-sliding-button.tsx',
+        path: 'registry/tweenui/animated-sliding-button.tsx',
+        target: 'components/tweenui/animated-sliding-button.tsx',
         kind: 'react',
       },
     ],
@@ -45,11 +32,11 @@ export const ui: RegistryEntry[] = [
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${BUTTON_DIR}/animated-sliding-button.tsx`,
+        reactSource: 'registry/tweenui/animated-sliding-button.tsx',
       },
     ],
     usage: {
-      react: `import AnimatedSlidingButton from '@/components/tweenui/button/animated-sliding-button';
+      react: `import AnimatedSlidingButton from '@/components/tweenui/animated-sliding-button';
 
 export default function Example() {
   return <AnimatedSlidingButton>Get started</AnimatedSlidingButton>;
@@ -59,7 +46,6 @@ export default function Example() {
   {
     name: 'sliding-tab-on-hover',
     type: 'component',
-    group: 'navigation',
     title: 'Sliding Tab On Hover',
     description:
       'A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware.',
@@ -72,8 +58,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${NAV_DIR}/sliding-tab-on-hover.tsx`,
-        target: 'components/tweenui/navigation/sliding-tab-on-hover.tsx',
+        path: 'registry/tweenui/sliding-tab-on-hover.tsx',
+        target: 'components/tweenui/sliding-tab-on-hover.tsx',
         kind: 'react',
       },
     ],
@@ -81,11 +67,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${NAV_DIR}/sliding-tab-on-hover.tsx`,
+        reactSource: 'registry/tweenui/sliding-tab-on-hover.tsx',
       },
     ],
     usage: {
-      react: `import SlidingTabOnHover from '@/components/tweenui/navigation/sliding-tab-on-hover';
+      react: `import SlidingTabOnHover from '@/components/tweenui/sliding-tab-on-hover';
 
 const items = [
   { value: 'home', label: 'Home' },
@@ -101,7 +87,6 @@ export default function Example() {
   {
     name: 'avatar-reveal',
     type: 'component',
-    group: 'avatar',
     title: 'Avatar Reveal',
     description:
       'Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware.',
@@ -111,8 +96,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${AVATAR_DIR}/avatar-reveal.tsx`,
-        target: 'components/tweenui/avatar/avatar-reveal.tsx',
+        path: 'registry/tweenui/avatar-reveal.tsx',
+        target: 'components/tweenui/avatar-reveal.tsx',
         kind: 'react',
       },
     ],
@@ -120,11 +105,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${AVATAR_DIR}/avatar-reveal.tsx`,
+        reactSource: 'registry/tweenui/avatar-reveal.tsx',
       },
     ],
     usage: {
-      react: `import AvatarReveal from '@/components/tweenui/avatar/avatar-reveal';
+      react: `import AvatarReveal from '@/components/tweenui/avatar-reveal';
 
 export default function Example() {
   return <AvatarReveal>2,000+ teams shipping faster this week.</AvatarReveal>;
@@ -134,7 +119,6 @@ export default function Example() {
   {
     name: 'auth-modal',
     type: 'component',
-    group: 'modal',
     title: 'Auth Modal',
     description:
       'A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware.',
@@ -144,8 +128,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${MODAL_DIR}/auth-modal.tsx`,
-        target: 'components/tweenui/modal/auth-modal.tsx',
+        path: 'registry/tweenui/auth-modal.tsx',
+        target: 'components/tweenui/auth-modal.tsx',
         kind: 'react',
       },
     ],
@@ -153,12 +137,12 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${MODAL_DIR}/auth-modal.tsx`,
+        reactSource: 'registry/tweenui/auth-modal.tsx',
       },
     ],
     usage: {
       react: `import { useState } from 'react';
-import AuthModal from '@/components/tweenui/modal/auth-modal';
+import AuthModal from '@/components/tweenui/auth-modal';
 
 export default function Example() {
   const [open, setOpen] = useState(false);
@@ -177,7 +161,6 @@ export default function Example() {
   {
     name: 'counter-number-on-scroll',
     type: 'component',
-    group: 'scroll-based',
     title: 'Counter Number On Scroll',
     description:
       'Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware.',
@@ -187,8 +170,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${SCROLL_DIR}/counter-number-on-scroll.tsx`,
-        target: 'components/tweenui/scroll-based/counter-number-on-scroll.tsx',
+        path: 'registry/tweenui/counter-number-on-scroll.tsx',
+        target: 'components/tweenui/counter-number-on-scroll.tsx',
         kind: 'react',
       },
     ],
@@ -196,16 +179,16 @@ export default function Example() {
       {
         id: 'instant',
         label: 'Instant',
-        reactSource: `${SCROLL_DIR}/counter-number-on-scroll.tsx`,
+        reactSource: 'registry/tweenui/counter-number-on-scroll.tsx',
       },
       {
         id: 'viewport',
         label: 'Viewport',
-        reactSource: `${SCROLL_DIR}/counter-number-on-scroll.tsx`,
+        reactSource: 'registry/tweenui/counter-number-on-scroll.tsx',
       },
     ],
     usage: {
-      react: `import CounterNumberOnScroll from '@/components/tweenui/scroll-based/counter-number-on-scroll';
+      react: `import CounterNumberOnScroll from '@/components/tweenui/counter-number-on-scroll';
 
 export default function Example() {
   return (
@@ -219,7 +202,6 @@ export default function Example() {
   {
     name: 'voice-sample-player',
     type: 'component',
-    group: 'media',
     title: 'Voice Sample Player',
     description:
       'An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware.',
@@ -229,8 +211,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${MEDIA_DIR}/voice-sample-player.tsx`,
-        target: 'components/tweenui/media/voice-sample-player.tsx',
+        path: 'registry/tweenui/voice-sample-player.tsx',
+        target: 'components/tweenui/voice-sample-player.tsx',
         kind: 'react',
       },
     ],
@@ -238,11 +220,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${MEDIA_DIR}/voice-sample-player.tsx`,
+        reactSource: 'registry/tweenui/voice-sample-player.tsx',
       },
     ],
     usage: {
-      react: `import VoiceSamplePlayer from '@/components/tweenui/media/voice-sample-player';
+      react: `import VoiceSamplePlayer from '@/components/tweenui/voice-sample-player';
 
 export default function Example() {
   return (
@@ -259,7 +241,6 @@ export default function Example() {
   {
     name: 'flip-card-on-hover',
     type: 'component',
-    group: 'card',
     title: 'Flip Card On Hover',
     description:
       'A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware.',
@@ -269,8 +250,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${CARD_DIR}/flip-card-on-hover.tsx`,
-        target: 'components/tweenui/card/flip-card-on-hover.tsx',
+        path: 'registry/tweenui/flip-card-on-hover.tsx',
+        target: 'components/tweenui/flip-card-on-hover.tsx',
         kind: 'react',
       },
     ],
@@ -278,11 +259,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${CARD_DIR}/flip-card-on-hover.tsx`,
+        reactSource: 'registry/tweenui/flip-card-on-hover.tsx',
       },
     ],
     usage: {
-      react: `import FlipCardOnHover from '@/components/tweenui/card/flip-card-on-hover';
+      react: `import FlipCardOnHover from '@/components/tweenui/flip-card-on-hover';
 
 export default function Example() {
   return (
@@ -303,7 +284,6 @@ export default function Example() {
   {
     name: 'faq-accordion',
     type: 'component',
-    group: 'accordion',
     title: 'FAQ Accordion',
     description:
       'A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware.',
@@ -313,8 +293,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${ACCORDION_DIR}/faq-accordion.tsx`,
-        target: 'components/tweenui/accordion/faq-accordion.tsx',
+        path: 'registry/tweenui/faq-accordion.tsx',
+        target: 'components/tweenui/faq-accordion.tsx',
         kind: 'react',
       },
     ],
@@ -322,11 +302,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${ACCORDION_DIR}/faq-accordion.tsx`,
+        reactSource: 'registry/tweenui/faq-accordion.tsx',
       },
     ],
     usage: {
-      react: `import FaqAccordion from '@/components/tweenui/accordion/faq-accordion';
+      react: `import FaqAccordion from '@/components/tweenui/faq-accordion';
 
 const items = [
   { question: 'What is Tween UI?', answer: 'GSAP & CSS animated components for React.' },
@@ -341,7 +321,6 @@ export default function Example() {
   {
     name: 'shiny-button',
     type: 'component',
-    group: 'button',
     title: 'Shiny Button',
     description:
       'A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware.',
@@ -351,8 +330,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${BUTTON_DIR}/shiny-button.tsx`,
-        target: 'components/tweenui/button/shiny-button.tsx',
+        path: 'registry/tweenui/shiny-button.tsx',
+        target: 'components/tweenui/shiny-button.tsx',
         kind: 'react',
       },
     ],
@@ -360,11 +339,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${BUTTON_DIR}/shiny-button.tsx`,
+        reactSource: 'registry/tweenui/shiny-button.tsx',
       },
     ],
     usage: {
-      react: `import ShinyButton from '@/components/tweenui/button/shiny-button';
+      react: `import ShinyButton from '@/components/tweenui/shiny-button';
 
 export default function Example() {
   return <ShinyButton onClick={() => {}}>Get started</ShinyButton>;
@@ -374,7 +353,6 @@ export default function Example() {
   {
     name: 'text-roll-button',
     type: 'component',
-    group: 'button',
     title: 'Text Roll Button',
     description:
       'A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware.',
@@ -384,8 +362,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${BUTTON_DIR}/text-roll-button.tsx`,
-        target: 'components/tweenui/button/text-roll-button.tsx',
+        path: 'registry/tweenui/text-roll-button.tsx',
+        target: 'components/tweenui/text-roll-button.tsx',
         kind: 'react',
       },
     ],
@@ -393,11 +371,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${BUTTON_DIR}/text-roll-button.tsx`,
+        reactSource: 'registry/tweenui/text-roll-button.tsx',
       },
     ],
     usage: {
-      react: `import TextRollButton from '@/components/tweenui/button/text-roll-button';
+      react: `import TextRollButton from '@/components/tweenui/text-roll-button';
 
 export default function Example() {
   return <TextRollButton onClick={() => {}}>Try now</TextRollButton>;
@@ -407,7 +385,6 @@ export default function Example() {
   {
     name: 'slide-arrow-button',
     type: 'component',
-    group: 'button',
     title: 'Slide Arrow Button',
     description:
       'A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware.',
@@ -417,8 +394,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${BUTTON_DIR}/slide-arrow-button.tsx`,
-        target: 'components/tweenui/button/slide-arrow-button.tsx',
+        path: 'registry/tweenui/slide-arrow-button.tsx',
+        target: 'components/tweenui/slide-arrow-button.tsx',
         kind: 'react',
       },
     ],
@@ -426,11 +403,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${BUTTON_DIR}/slide-arrow-button.tsx`,
+        reactSource: 'registry/tweenui/slide-arrow-button.tsx',
       },
     ],
     usage: {
-      react: `import SlideArrowButton from '@/components/tweenui/button/slide-arrow-button';
+      react: `import SlideArrowButton from '@/components/tweenui/slide-arrow-button';
 
 export default function Example() {
   return <SlideArrowButton onClick={() => {}}>Get started</SlideArrowButton>;
@@ -440,7 +417,6 @@ export default function Example() {
   {
     name: 'glow-button',
     type: 'component',
-    group: 'button',
     title: 'Glow Button',
     description:
       'A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware.',
@@ -450,8 +426,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${BUTTON_DIR}/glow-button.tsx`,
-        target: 'components/tweenui/button/glow-button.tsx',
+        path: 'registry/tweenui/glow-button.tsx',
+        target: 'components/tweenui/glow-button.tsx',
         kind: 'react',
       },
     ],
@@ -459,11 +435,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${BUTTON_DIR}/glow-button.tsx`,
+        reactSource: 'registry/tweenui/glow-button.tsx',
       },
     ],
     usage: {
-      react: `import GlowButton from '@/components/tweenui/button/glow-button';
+      react: `import GlowButton from '@/components/tweenui/glow-button';
 
 export default function Example() {
   return <GlowButton onClick={() => {}}>Get started</GlowButton>;
@@ -473,7 +449,6 @@ export default function Example() {
   {
     name: 'logo-orbit',
     type: 'component',
-    group: 'orbit',
     title: 'Logo Orbit',
     description:
       'Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware.',
@@ -483,8 +458,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${ORBIT_DIR}/logo-orbit.tsx`,
-        target: 'components/tweenui/orbit/logo-orbit.tsx',
+        path: 'registry/tweenui/logo-orbit.tsx',
+        target: 'components/tweenui/logo-orbit.tsx',
         kind: 'react',
       },
     ],
@@ -492,11 +467,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${ORBIT_DIR}/logo-orbit.tsx`,
+        reactSource: 'registry/tweenui/logo-orbit.tsx',
       },
     ],
     usage: {
-      react: `import LogoOrbit from '@/components/tweenui/orbit/logo-orbit';
+      react: `import LogoOrbit from '@/components/tweenui/logo-orbit';
 
 const logos = [
   { src: '/logos/slack.svg', alt: 'Slack' },
@@ -512,7 +487,6 @@ export default function Example() {
   {
     name: 'logo-cycle',
     type: 'component',
-    group: 'logo',
     title: 'Logo Cycle',
     description:
       'A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware.',
@@ -522,8 +496,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${LOGO_DIR}/logo-cycle.tsx`,
-        target: 'components/tweenui/logo/logo-cycle.tsx',
+        path: 'registry/tweenui/logo-cycle.tsx',
+        target: 'components/tweenui/logo-cycle.tsx',
         kind: 'react',
       },
     ],
@@ -531,11 +505,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${LOGO_DIR}/logo-cycle.tsx`,
+        reactSource: 'registry/tweenui/logo-cycle.tsx',
       },
     ],
     usage: {
-      react: `import LogoCycle from '@/components/tweenui/logo/logo-cycle';
+      react: `import LogoCycle from '@/components/tweenui/logo-cycle';
 
 const logos = [
   { src: '/logos/slack.svg', alt: 'Slack' },
@@ -556,7 +530,6 @@ export default function Example() {
   {
     name: 'logo-wave',
     type: 'component',
-    group: 'logo',
     title: 'Logo Wave',
     description:
       'An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware.',
@@ -566,8 +539,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${LOGO_DIR}/logo-wave.tsx`,
-        target: 'components/tweenui/logo/logo-wave.tsx',
+        path: 'registry/tweenui/logo-wave.tsx',
+        target: 'components/tweenui/logo-wave.tsx',
         kind: 'react',
       },
     ],
@@ -575,11 +548,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${LOGO_DIR}/logo-wave.tsx`,
+        reactSource: 'registry/tweenui/logo-wave.tsx',
       },
     ],
     usage: {
-      react: `import LogoWave from '@/components/tweenui/logo/logo-wave';
+      react: `import LogoWave from '@/components/tweenui/logo-wave';
 
 const logos = [
   { src: '/logos/slack.svg', alt: 'Slack' },
@@ -598,7 +571,6 @@ export default function Example() {
   {
     name: 'image-fan-slider',
     type: 'component',
-    group: 'slider',
     title: 'Image Fan Slider',
     description:
       'A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware.',
@@ -608,8 +580,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: `${SLIDER_DIR}/image-fan-slider.tsx`,
-        target: 'components/tweenui/slider/image-fan-slider.tsx',
+        path: 'registry/tweenui/image-fan-slider.tsx',
+        target: 'components/tweenui/image-fan-slider.tsx',
         kind: 'react',
       },
     ],
@@ -617,11 +589,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: `${SLIDER_DIR}/image-fan-slider.tsx`,
+        reactSource: 'registry/tweenui/image-fan-slider.tsx',
       },
     ],
     usage: {
-      react: `import ImageFanSlider from '@/components/tweenui/slider/image-fan-slider';
+      react: `import ImageFanSlider from '@/components/tweenui/image-fan-slider';
 
 const images = [
   { src: '/photos/one.jpg', alt: 'Portrait one' },

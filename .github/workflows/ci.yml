@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Regenerates public/r/*.json, __sources__.generated.ts and
+      # __index__.generated.tsx. Also runs the shadcn-schema and missing-demo
+      # checks, so a bad registry entry fails here.
+      - run: pnpm registry:build
+
+      # The generated files are committed, so anything left in the working tree
+      # means someone edited the registry without rebuilding.
+      - name: Verify generated files are up to date
+        run: git diff --exit-code --stat
+
+      - run: pnpm typecheck
+
+      - run: pnpm test
+
+      - run: pnpm build
