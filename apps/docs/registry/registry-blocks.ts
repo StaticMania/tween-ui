@@ -21,7 +21,6 @@ export const blocks: RegistryEntry[] = [
     title: 'Pricing Plan Switch',
     description:
       'A pricing section where picking a plan morphs the name badge, crossfades the description, and spins the price with Number Flow, plus a monthly/yearly toggle and an activating feature checklist. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],
@@ -55,7 +54,6 @@ export default function Example() {
     title: 'Process Card Reveal',
     description:
       'A process section where a numbered timeline fills, then the next stacked card slides and blurs into place. Hover pauses the loop; clicking a step jumps there. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -89,7 +87,6 @@ export default function Example() {
     title: 'Process Sticky Steps',
     description:
       'A process section where a sticky heading and numbered buttons track the card in view. Clicking a step jumps there. Reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: [],
     registryDependencies: [],
@@ -123,7 +120,6 @@ export default function Example() {
     title: 'Testimonial Split Slide',
     description:
       'A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],
@@ -157,7 +153,6 @@ export default function Example() {
     title: 'Testimonial Card Carousel',
     description:
       'A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots.',
-    isNew: true,
     media: {},
     dependencies: ['swiper'],
     registryDependencies: [],
@@ -191,7 +186,6 @@ export default function Example() {
     title: 'CTA Image Fan',
     description:
       'A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: [],
     registryDependencies: ['image-fan-slider', 'shiny-button'],
@@ -225,7 +219,6 @@ export default function Example() {
     title: 'CTA Headline Photos',
     description:
       'A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: ['slide-arrow-button'],
@@ -259,7 +252,6 @@ export default function Example() {
     title: 'Blog Hover Expand',
     description:
       'A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: [],
     registryDependencies: [],
@@ -293,7 +285,6 @@ export default function Example() {
     title: 'Integration Hub',
     description:
       'A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -327,7 +318,6 @@ export default function Example() {
     title: 'Hero Rotating Cards',
     description:
       'A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],

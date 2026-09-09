@@ -24,7 +24,6 @@ export const ui: RegistryEntry[] = [
     title: 'Animated Sliding Button',
     description:
       'A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware.',
-    isNew: true,
     media: {
       // image: '/media/animated-sliding-button/poster.png',
       // video: '/media/animated-sliding-button/preview.mp4',
@@ -64,7 +63,6 @@ export default function Example() {
     title: 'Sliding Tab On Hover',
     description:
       'A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware.',
-    isNew: true,
     media: {
       // image: '/media/sliding-tab-on-hover/poster.png',
       // video: '/media/sliding-tab-on-hover/preview.mp4',
@@ -107,7 +105,6 @@ export default function Example() {
     title: 'Avatar Reveal',
     description:
       'Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -141,7 +138,6 @@ export default function Example() {
     title: 'Auth Modal',
     description:
       'A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -185,7 +181,6 @@ export default function Example() {
     title: 'Counter Number On Scroll',
     description:
       'Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],
@@ -228,7 +223,6 @@ export default function Example() {
     title: 'Scroll Spin Image',
     description:
       'A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -268,7 +262,6 @@ export default function Example() {
     title: 'Voice Sample Player',
     description:
       'An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -309,7 +302,6 @@ export default function Example() {
     title: 'Flip Card On Hover',
     description:
       'A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -354,7 +346,6 @@ export default function Example() {
     title: 'FAQ Accordion',
     description:
       'A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -393,7 +384,6 @@ export default function Example() {
     title: 'Shiny Button',
     description:
       'A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: [], // CSS-only — no gsap
     registryDependencies: [],
@@ -427,7 +417,6 @@ export default function Example() {
     title: 'Text Roll Button',
     description:
       'A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -461,7 +450,6 @@ export default function Example() {
     title: 'Slide Arrow Button',
     description:
       'A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: [], // CSS-only — no gsap
     registryDependencies: [],
@@ -495,7 +483,6 @@ export default function Example() {
     title: 'Glow Button',
     description:
       'A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: [], // CSS-only — no gsap
     registryDependencies: [],
@@ -529,7 +516,6 @@ export default function Example() {
     title: 'Logo Orbit',
     description:
       'Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -569,7 +555,6 @@ export default function Example() {
     title: 'Logo Cycle',
     description:
       'A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -614,7 +599,6 @@ export default function Example() {
     title: 'Logo Wave',
     description:
       'An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -657,7 +641,6 @@ export default function Example() {
     title: 'Image Fan Slider',
     description:
       'A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware.',
-    isNew: true,
     media: {},
     dependencies: [],
     registryDependencies: [],
