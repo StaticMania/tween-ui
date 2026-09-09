@@ -7,6 +7,7 @@ const CTA_DIR = 'registry/tweenui/cta';
 const BLOG_DIR = 'registry/tweenui/blog';
 const INTEGRATION_DIR = 'registry/tweenui/integration';
 const HERO_DIR = 'registry/tweenui/hero';
+const SCROLL_DIR = 'registry/tweenui/scroll-based';
 
 /**
  * Pre-composed sections built from primitives. Same registry shape as `ui`,
@@ -341,6 +342,45 @@ export default function Example() {
 
 export default function Example() {
   return <HeroRotatingCards />;
+}`,
+    },
+  },
+  {
+    name: 'scroll-spin-image',
+    type: 'block',
+    group: 'scroll-based',
+    title: 'Scroll Spin Image',
+    description:
+      'A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: `${SCROLL_DIR}/scroll-spin-image.tsx`,
+        target: 'components/tweenui/scroll-based/scroll-spin-image.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: `${SCROLL_DIR}/scroll-spin-image.tsx`,
+      },
+    ],
+    usage: {
+      react: `import ScrollSpinImage from '@/components/tweenui/scroll-based/scroll-spin-image';
+
+export default function Example() {
+  return (
+    <ScrollSpinImage
+      src="/images/ns-img-579.png"
+      alt="Decorative illustration of financial management platform interface with credit cards"
+      className="w-full max-w-[700px] lg:max-w-[897px]"
+    />
+  );
 }`,
     },
   },

@@ -1,13 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import {
-  compileMdxFile,
-  createPageMetadata,
-  DocsLayout,
-  DocsPage,
-  DocsPager,
-  LandingLayout,
-} from 'docora';
+import { compileMdxFile, createPageMetadata, DocsPage, DocsPager, LandingLayout } from 'docora';
+import { DocsShell } from '../../components/layout/docs-shell';
 import { mdxComponents } from '../../components/mdx/registry-components';
 import docsConfig from '../../docs.config';
 import { source } from '../../lib/source';
@@ -53,7 +47,7 @@ export default async function Page({ params }: PageProps) {
   const isBlock = slug?.[0] === 'block';
 
   return (
-    <DocsLayout
+    <DocsShell
       toc={isBlock ? [] : toc}
       page={{ relativePath: page.relativePath, title: page.title }}
     >
@@ -61,6 +55,6 @@ export default async function Page({ params }: PageProps) {
         {content}
       </DocsPage>
       <DocsPager prev={prev} next={next} />
-    </DocsLayout>
+    </DocsShell>
   );
 }

@@ -9,7 +9,11 @@ export function getEntry(name: string): RegistryEntry | undefined {
   return registry.find((item) => item.name === name);
 }
 
+/**
+ * Doc URLs are flat — `/component/<name>` and `/block/<name>`. `group` still
+ * organises the source tree on disk (and the GitHub links), just not the URL.
+ */
 export function hrefFor(entry: RegistryEntry): string {
   const base = entry.type === 'block' ? 'block' : 'component';
-  return `/${base}/${entry.group}/${entry.name}`;
+  return `/${base}/${entry.name}`;
 }

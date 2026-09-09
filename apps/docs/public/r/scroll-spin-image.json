@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "scroll-spin-image",
-  "type": "registry:ui",
+  "type": "registry:block",
   "title": "Scroll Spin Image",
   "description": "A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware.",
   "dependencies": [

@@ -10,3 +10,31 @@
 body {
   font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Sidebar highlight pill. An emerald wash mixed from the theme's own --primary
+   (rather than a flat neutral), so it reads as Tween UI in both light and dark
+   and stays correct if the primary token is ever retuned. */
+.nav-pill {
+  background-color: color-mix(in oklch, var(--primary) 12%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--primary) 22%, transparent);
+}
+
+/* Docora's SiteHeader hardcodes its own MobileNav trigger just before the logo
+   slot, and that drawer renders docora's SidebarNav rather than ours. We render
+   our drawer inside the logo slot instead, so hide the built-in trigger. If a
+   docora upgrade reshapes the header this stops matching and two menu buttons
+   appear — visibly wrong rather than silently broken. */
+.tween-header > div > div:first-child > button:first-child {
+  display: none;
+}
+
+/* Sidebar and mobile-drawer nav scroll without showing scrollbar chrome. The
+   nav is a fixed-height column that almost always overflows, so the bar was
+   permanent visual noise. Scrolling (wheel, trackpad, keyboard) is untouched. */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

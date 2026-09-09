@@ -33,12 +33,6 @@
       "description": "Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware."
     },
     {
-      "name": "scroll-spin-image",
-      "type": "component",
-      "title": "Scroll Spin Image",
-      "description": "A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware."
-    },
-    {
       "name": "voice-sample-player",
       "type": "component",
       "title": "Voice Sample Player",
@@ -163,6 +157,12 @@
       "type": "block",
       "title": "Hero Rotating Cards",
       "description": "A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware."
+    },
+    {
+      "name": "scroll-spin-image",
+      "type": "block",
+      "title": "Scroll Spin Image",
+      "description": "A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware."
     }
   ]
 }
