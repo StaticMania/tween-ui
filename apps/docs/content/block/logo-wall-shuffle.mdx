@@ -1,0 +1,96 @@
+---
+title: Logo Wall Shuffle
+description: An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it.
+icon: shuffle
+---
+
+A ready-made integrations section. Tiles sit in **staggered columns**, and on a
+loop a single card **lifts its mark away** while the next one rises into place
+behind it, blurring through the change. Every tile is visited once before any
+repeats, so no card sits stale. The loop **pauses off-screen and in background
+tabs**, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="logo-wall-shuffle" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/logo-wall-shuffle"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="logo-wall-shuffle"}
+::
+
+:::
+::
+
+## Usage
+
+`logos` is required — these are your integrations, so the component ships no
+brand marks of its own.
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import LogoWallShuffle from '@/components/tweenui/logo-wall-shuffle';
+
+const LOGOS = [
+  { src: '/logos/slack.svg', alt: 'Slack' },
+  { src: '/logos/figma.svg', alt: 'Figma' },
+  { src: '/logos/notion.svg', alt: 'Notion' },
+  { src: '/logos/linear.svg', srcDark: '/logos/linear-dark.svg', alt: 'Linear' },
+];
+
+export default function Page() {
+  return <LogoWallShuffle logos={LOGOS} />;
+}
+```
+
+:::
+::
+
+Reshape the wall with `columns` — each number is one column's tile count, and
+every other column drops down to stagger the grid:
+
+```tsx
+<LogoWallShuffle logos={LOGOS} columns={[2, 3, 4, 3, 2]} />
+```
+
+## Props
+
+| Prop          | Type             | Default                 | Description                                  |
+| ------------- | ---------------- | ----------------------- | -------------------------------------------- |
+| `title`       | `ReactNode`      | sample heading          | Section heading.                             |
+| `description` | `string`         | sample line             | Supporting line under the heading.           |
+| `logos`       | `LogoWallLogo[]` | —                       | **Required.** Marks cycled through the wall. |
+| `columns`     | `number[]`       | `[1, 2, 3, 2, 3, 2, 1]` | Tiles per column, left to right.             |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+### `LogoWallLogo`
+
+| Field     | Type     | Description                         |
+| --------- | -------- | ----------------------------------- |
+| `src`     | `string` | Logo URL.                           |
+| `srcDark` | `string` | Swapped in under `.dark`. Optional. |
+| `alt`     | `string` | Alt text.                           |
+
+::note
+Pass **more logos than tiles** or the wall has nothing new to rotate in. The
+default pattern is 14 tiles, so aim for 16+ marks.
+::
+
+## Accessibility
+
+::note
+Every mark keeps its own `alt`, so the wall reads as a list of named
+integrations rather than decoration. Under `prefers-reduced-motion: reduce` the
+loop never starts — tiles render their first logo and stay put.
+::

@@ -39,13 +39,13 @@ export default defineDocsConfig({
         title: 'Components',
         links: [
           { label: 'All components', href: '/' },
-          { label: 'Animated Sliding Button', href: '/component/animated-sliding-button' },
-          { label: 'Sliding Tab On Hover', href: '/component/sliding-tab-on-hover' },
+          { label: 'Icon Trail Button', href: '/component/icon-trail-button' },
+          { label: 'Sliding Tabs', href: '/component/sliding-tabs' },
           { label: 'Avatar Reveal', href: '/component/avatar-reveal' },
           { label: 'Auth Modal', href: '/component/auth-modal' },
           {
-            label: 'Counter Number On Scroll',
-            href: '/component/counter-number-on-scroll',
+            label: 'Number Counter',
+            href: '/component/number-counter',
           },
         ],
       },

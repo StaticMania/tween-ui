@@ -1,0 +1,64 @@
+---
+title: Icon Trail Button
+description: A pill button whose icon slides open into a staggered chevron trail on hover and focus.
+icon: move-right
+---
+
+A pill button with an icon-slide animation: on hover or keyboard focus the icon
+pill expands and a staggered chevron trail plays out, then parks. It's driven by
+CSS transitions and a tiny state machine — no animation library — and it fully
+respects `prefers-reduced-motion`.
+
+::component-preview{name="icon-trail-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/icon-trail-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="icon-trail-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import IconTrailButton from '@/components/tweenui/button/icon-trail-button';
+
+export default function Page() {
+  return <IconTrailButton>Get started</IconTrailButton>;
+}
+```
+
+:::
+::
+
+## Props
+
+All native `<button>` props are supported, plus:
+
+| Prop             | Type        | Default | Description                           |
+| ---------------- | ----------- | ------- | ------------------------------------- |
+| `children`       | `ReactNode` | —       | The button label.                     |
+| `labelClassName` | `string`    | —       | Extra classes for the label span.     |
+| `className`      | `string`    | —       | Extra classes for the button element. |
+
+## Accessibility
+
+::note
+The animation is disabled under `prefers-reduced-motion: reduce` — the icon
+parks instantly with no trail — and every interactive state is reachable by
+keyboard (`:focus-visible` drives the same animation as hover).
+::

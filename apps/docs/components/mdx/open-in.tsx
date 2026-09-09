@@ -10,7 +10,7 @@ import { ClaudeMark, CursorMark, GithubMark, OpenAIMark, T3Mark } from './brand-
 type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 
 type OpenInProps = {
-  /** Registry component name, e.g. "animated-sliding-button". */
+  /** Registry component name, e.g. "icon-trail-button". */
   name: string;
   title: string;
   /** Link to the component's source folder on GitHub. */

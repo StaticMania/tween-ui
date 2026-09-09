@@ -6,14 +6,14 @@ import type { RegistryEntry } from './schema';
  */
 export const ui: RegistryEntry[] = [
   {
-    name: 'animated-sliding-button',
+    name: 'icon-trail-button',
     type: 'component',
-    title: 'Animated Sliding Button',
+    title: 'Icon Trail Button',
     description:
       'A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware.',
     media: {
-      // image: '/media/animated-sliding-button/poster.png',
-      // video: '/media/animated-sliding-button/preview.mp4',
+      // image: '/media/icon-trail-button/poster.png',
+      // video: '/media/icon-trail-button/preview.mp4',
     },
     dependencies: [], // CSS-only — no gsap
     registryDependencies: [],
@@ -23,8 +23,8 @@ export const ui: RegistryEntry[] = [
     files: [
       // React — single self-contained file (icon + hook + trail + button)
       {
-        path: 'registry/tweenui/animated-sliding-button.tsx',
-        target: 'components/tweenui/animated-sliding-button.tsx',
+        path: 'registry/tweenui/icon-trail-button.tsx',
+        target: 'components/tweenui/icon-trail-button.tsx',
         kind: 'react',
       },
     ],
@@ -32,34 +32,34 @@ export const ui: RegistryEntry[] = [
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/animated-sliding-button.tsx',
+        reactSource: 'registry/tweenui/icon-trail-button.tsx',
       },
     ],
     usage: {
-      react: `import AnimatedSlidingButton from '@/components/tweenui/animated-sliding-button';
+      react: `import IconTrailButton from '@/components/tweenui/icon-trail-button';
 
 export default function Example() {
-  return <AnimatedSlidingButton>Get started</AnimatedSlidingButton>;
+  return <IconTrailButton>Get started</IconTrailButton>;
 }`,
     },
   },
   {
-    name: 'sliding-tab-on-hover',
+    name: 'sliding-tabs',
     type: 'component',
-    title: 'Sliding Tab On Hover',
+    title: 'Sliding Tabs',
     description:
       'A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware.',
     media: {
-      // image: '/media/sliding-tab-on-hover/poster.png',
-      // video: '/media/sliding-tab-on-hover/preview.mp4',
+      // image: '/media/sliding-tabs/poster.png',
+      // video: '/media/sliding-tabs/preview.mp4',
     },
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/sliding-tab-on-hover.tsx',
-        target: 'components/tweenui/sliding-tab-on-hover.tsx',
+        path: 'registry/tweenui/sliding-tabs.tsx',
+        target: 'components/tweenui/sliding-tabs.tsx',
         kind: 'react',
       },
     ],
@@ -67,11 +67,11 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/sliding-tab-on-hover.tsx',
+        reactSource: 'registry/tweenui/sliding-tabs.tsx',
       },
     ],
     usage: {
-      react: `import SlidingTabOnHover from '@/components/tweenui/sliding-tab-on-hover';
+      react: `import SlidingTabs from '@/components/tweenui/sliding-tabs';
 
 const items = [
   { value: 'home', label: 'Home' },
@@ -80,7 +80,7 @@ const items = [
 ];
 
 export default function Example() {
-  return <SlidingTabOnHover items={items} defaultValue="home" />;
+  return <SlidingTabs items={items} defaultValue="home" />;
 }`,
     },
   },
@@ -159,9 +159,9 @@ export default function Example() {
     },
   },
   {
-    name: 'counter-number-on-scroll',
+    name: 'number-counter',
     type: 'component',
-    title: 'Counter Number On Scroll',
+    title: 'Number Counter',
     description:
       'Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware.',
     media: {},
@@ -170,8 +170,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/counter-number-on-scroll.tsx',
-        target: 'components/tweenui/counter-number-on-scroll.tsx',
+        path: 'registry/tweenui/number-counter.tsx',
+        target: 'components/tweenui/number-counter.tsx',
         kind: 'react',
       },
     ],
@@ -179,21 +179,21 @@ export default function Example() {
       {
         id: 'instant',
         label: 'Instant',
-        reactSource: 'registry/tweenui/counter-number-on-scroll.tsx',
+        reactSource: 'registry/tweenui/number-counter.tsx',
       },
       {
         id: 'viewport',
         label: 'Viewport',
-        reactSource: 'registry/tweenui/counter-number-on-scroll.tsx',
+        reactSource: 'registry/tweenui/number-counter.tsx',
       },
     ],
     usage: {
-      react: `import CounterNumberOnScroll from '@/components/tweenui/counter-number-on-scroll';
+      react: `import NumberCounter from '@/components/tweenui/number-counter';
 
 export default function Example() {
   return (
     <p>
-      <CounterNumberOnScroll value={150} instant />+ projects delivered
+      <NumberCounter value={150} instant />+ projects delivered
     </p>
   );
 }`,
@@ -239,9 +239,9 @@ export default function Example() {
     },
   },
   {
-    name: 'flip-card-on-hover',
+    name: 'flip-card',
     type: 'component',
-    title: 'Flip Card On Hover',
+    title: 'Flip Card',
     description:
       'A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware.',
     media: {},
@@ -250,8 +250,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/flip-card-on-hover.tsx',
-        target: 'components/tweenui/flip-card-on-hover.tsx',
+        path: 'registry/tweenui/flip-card.tsx',
+        target: 'components/tweenui/flip-card.tsx',
         kind: 'react',
       },
     ],
@@ -259,15 +259,15 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/flip-card-on-hover.tsx',
+        reactSource: 'registry/tweenui/flip-card.tsx',
       },
     ],
     usage: {
-      react: `import FlipCardOnHover from '@/components/tweenui/flip-card-on-hover';
+      react: `import FlipCard from '@/components/tweenui/flip-card';
 
 export default function Example() {
   return (
-    <FlipCardOnHover
+    <FlipCard
       eyebrow="(01)"
       title="Web Design"
       subtitle="Interfaces that convert"

@@ -1,0 +1,96 @@
+---
+title: CTA Photo Headline
+description: A call-to-action with staggered avatars and photos tucked into the heading.
+icon: image-plus
+---
+
+A ready-made CTA block. **Avatars pop in** above a heading that hides two
+photos in the copy — a pill that grows from the left, then a tilted square
+that drops into place. The action is a [Slide Arrow Button](/component/slide-arrow-button).
+GSAP-driven, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="cta-photo-headline" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/cta-photo-headline"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+Install [Slide Arrow Button](/component/slide-arrow-button) first, then
+copy the block:
+
+::component-source{name="cta-photo-headline"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import CtaPhotoHeadline from '@/components/tweenui/cta/cta-photo-headline';
+
+export default function Page() {
+  return <CtaPhotoHeadline />;
+}
+```
+
+:::
+::
+
+Pass your own faces, photos, copy, and click handler:
+
+```tsx [app/page.tsx]
+import CtaPhotoHeadline from '@/components/tweenui/cta/cta-photo-headline';
+
+export default function Page() {
+  return (
+    <CtaPhotoHeadline
+      ctaLabel="Browse the blocks"
+      onCtaClick={() => console.log('cta')}
+      avatars={[
+        { src: '/photos/one.jpg', alt: 'Motion designer' },
+        { src: '/photos/two.jpg', alt: 'Frontend engineer' },
+        { src: '/photos/three.jpg', alt: 'Product designer' },
+        { src: '/photos/four.jpg', alt: 'AI engineer' },
+      ]}
+      inlineImage={{ src: '/photos/ai-interface.jpg', alt: 'AI interface' }}
+      accentImage={{ src: '/photos/motion.jpg', alt: 'Motion form' }}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop          | Type             | Default             | Description                                  |
+| ------------- | ---------------- | ------------------- | -------------------------------------------- |
+| `avatars`     | `{ src, alt }[]` | 4 sample faces      | Faces in the row above the heading.          |
+| `inlineImage` | `{ src, alt? }`  | sample landscape    | Pill photo in the first headline line.       |
+| `accentImage` | `{ src, alt? }`  | sample portrait     | Tilted photo on the second headline line.    |
+| `lead`        | `string`         | `Turn static`       | Headline fragment before the pill.           |
+| `mid`         | `string`         | `into motion`       | Headline fragment after the pill.            |
+| `end`         | `string`         | `with Tween UI`     | Second-line headline after the tilted photo. |
+| `description` | `string`         | sample line         | Supporting line under the heading.           |
+| `ctaLabel`    | `string`         | `Browse the blocks` | Label on the slide-arrow button.             |
+| `onCtaClick`  | `() => void`     | —                   | Click handler for the CTA button.            |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Avatars keep their `alt` text. Headline photos are decorative unless you pass
+`alt`. The CTA is a real button. Under `prefers-reduced-motion: reduce` the
+avatars and inline photos land in their final state with no motion.
+::

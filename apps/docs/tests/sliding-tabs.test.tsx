@@ -1,0 +1,40 @@
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import SlidingTabs from '@/registry/tweenui/sliding-tabs';
+
+const items = [
+  { value: 'home', label: 'Home' },
+  { value: 'about', label: 'About' },
+  { value: 'services', label: 'Service' },
+];
+
+describe('Sliding Tabs', () => {
+  it('renders its items and mounts without error', () => {
+    render(<SlidingTabs items={items} defaultValue="home" />);
+    const nav = screen.getByRole('navigation', { name: /sliding tabs/i });
+    expect(nav).toBeInTheDocument();
+    expect(nav).toHaveAttribute('data-nav-tabs');
+    expect(screen.getByRole('button', { name: /home/i })).toHaveAttribute('data-active', 'true');
+    expect(screen.getByRole('button', { name: /home/i })).toHaveAttribute(
+      'data-highlighted',
+      'true'
+    );
+    expect(screen.getByRole('button', { name: /about/i })).toHaveAttribute('data-active', 'false');
+    expect(screen.getByRole('button', { name: /service/i })).toBeInTheDocument();
+  });
+
+  it('renders links when items provide href', () => {
+    render(
+      <SlidingTabs
+        items={[
+          { value: 'home', label: 'Home', href: '/home' },
+          { value: 'about', label: 'About', href: '/about' },
+        ]}
+        defaultValue="home"
+      />
+    );
+    const home = screen.getByRole('link', { name: /home/i });
+    expect(home).toHaveAttribute('href', '/home');
+    expect(home).toHaveAttribute('aria-current', 'page');
+  });
+});

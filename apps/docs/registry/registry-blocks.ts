@@ -103,9 +103,9 @@ export default function Example() {
     },
   },
   {
-    name: 'testimonial-split-slide',
+    name: 'testimonial-strip-wipe',
     type: 'block',
-    title: 'Testimonial Split Slide',
+    title: 'Testimonial Strip Wipe',
     description:
       'A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware.',
     media: {},
@@ -114,8 +114,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/testimonial-split-slide.tsx',
-        target: 'components/tweenui/testimonial-split-slide.tsx',
+        path: 'registry/tweenui/testimonial-strip-wipe.tsx',
+        target: 'components/tweenui/testimonial-strip-wipe.tsx',
         kind: 'react',
       },
     ],
@@ -123,14 +123,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/testimonial-split-slide.tsx',
+        reactSource: 'registry/tweenui/testimonial-strip-wipe.tsx',
       },
     ],
     usage: {
-      react: `import TestimonialSplitSlide from '@/components/tweenui/testimonial-split-slide';
+      react: `import TestimonialStripWipe from '@/components/tweenui/testimonial-strip-wipe';
 
 export default function Example() {
-  return <TestimonialSplitSlide />;
+  return <TestimonialStripWipe />;
 }`,
     },
   },
@@ -199,9 +199,9 @@ export default function Example() {
     },
   },
   {
-    name: 'cta-headline-photos',
+    name: 'cta-photo-headline',
     type: 'block',
-    title: 'CTA Headline Photos',
+    title: 'CTA Photo Headline',
     description:
       'A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware.',
     media: {},
@@ -210,8 +210,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/cta-headline-photos.tsx',
-        target: 'components/tweenui/cta-headline-photos.tsx',
+        path: 'registry/tweenui/cta-photo-headline.tsx',
+        target: 'components/tweenui/cta-photo-headline.tsx',
         kind: 'react',
       },
     ],
@@ -219,14 +219,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/cta-headline-photos.tsx',
+        reactSource: 'registry/tweenui/cta-photo-headline.tsx',
       },
     ],
     usage: {
-      react: `import CtaHeadlinePhotos from '@/components/tweenui/cta-headline-photos';
+      react: `import CtaPhotoHeadline from '@/components/tweenui/cta-photo-headline';
 
 export default function Example() {
-  return <CtaHeadlinePhotos />;
+  return <CtaPhotoHeadline />;
 }`,
     },
   },
@@ -327,9 +327,9 @@ export default function Example() {
     },
   },
   {
-    name: 'scroll-spin-image',
+    name: 'media-scroll-spin',
     type: 'block',
-    title: 'Scroll Spin Image',
+    title: 'Media Scroll Spin',
     description:
       'A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware.',
     media: {},
@@ -338,8 +338,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/scroll-spin-image.tsx',
-        target: 'components/tweenui/scroll-spin-image.tsx',
+        path: 'registry/tweenui/media-scroll-spin.tsx',
+        target: 'components/tweenui/media-scroll-spin.tsx',
         kind: 'react',
       },
     ],
@@ -347,15 +347,15 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/scroll-spin-image.tsx',
+        reactSource: 'registry/tweenui/media-scroll-spin.tsx',
       },
     ],
     usage: {
-      react: `import ScrollSpinImage from '@/components/tweenui/scroll-spin-image';
+      react: `import MediaScrollSpin from '@/components/tweenui/media-scroll-spin';
 
 export default function Example() {
   return (
-    <ScrollSpinImage
+    <MediaScrollSpin
       src="/images/ns-img-579.png"
       alt="Decorative illustration of financial management platform interface with credit cards"
       className="w-full max-w-[700px] lg:max-w-[897px]"
@@ -365,9 +365,9 @@ export default function Example() {
     },
   },
   {
-    name: 'card-expand-on-hover',
+    name: 'card-hover-expand',
     type: 'block',
-    title: 'Card Expand on Hover',
+    title: 'Card Hover Expand',
     description:
       'A card row where hovering one widens it, fades the photo in, and drops the copy to the bottom. CSS-driven and reduced-motion aware.',
     media: {},
@@ -376,8 +376,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/card-expand-on-hover.tsx',
-        target: 'components/tweenui/card-expand-on-hover.tsx',
+        path: 'registry/tweenui/card-hover-expand.tsx',
+        target: 'components/tweenui/card-hover-expand.tsx',
         kind: 'react',
       },
     ],
@@ -385,14 +385,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/card-expand-on-hover.tsx',
+        reactSource: 'registry/tweenui/card-hover-expand.tsx',
       },
     ],
     usage: {
-      react: `import CardExpandOnHover from '@/components/tweenui/card-expand-on-hover';
+      react: `import CardHoverExpand from '@/components/tweenui/card-hover-expand';
 
 export default function Example() {
-  return <CardExpandOnHover />;
+  return <CardHoverExpand />;
 }`,
     },
   },
@@ -425,6 +425,236 @@ export default function Example() {
 
 export default function Example() {
   return <ProjectSpotlightGrid />;
+}`,
+    },
+  },
+  {
+    name: 'testimonial-column-drift',
+    type: 'block',
+    title: 'Testimonial Column Drift',
+    description:
+      'Three columns of review cards that swing in from the sides as the section scrolls up, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP-driven and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/testimonial-column-drift.tsx',
+        target: 'components/tweenui/testimonial-column-drift.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/testimonial-column-drift.tsx',
+      },
+    ],
+    usage: {
+      react: `import TestimonialColumnDrift from '@/components/tweenui/testimonial-column-drift';
+
+export default function Example() {
+  return <TestimonialColumnDrift />;
+}`,
+    },
+  },
+  {
+    name: 'team-scatter-focus',
+    type: 'block',
+    title: 'Team Scatter Focus',
+    description:
+      'A team collage whose cards fly in from their own directions, then blur and shrink away from whichever one you hover. Falls back to a stacked grid on small screens. GSAP-driven and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/team-scatter-focus.tsx',
+        target: 'components/tweenui/team-scatter-focus.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/team-scatter-focus.tsx',
+      },
+    ],
+    usage: {
+      react: `import TeamScatterFocus from '@/components/tweenui/team-scatter-focus';
+
+export default function Example() {
+  return <TeamScatterFocus />;
+}`,
+    },
+  },
+  {
+    name: 'hero-tab-wipe',
+    type: 'block',
+    title: 'Hero Tab Wipe',
+    description:
+      'A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. A thumbnail tab strip picks a slide, and it autoplays between clicks. GSAP-driven and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/hero-tab-wipe.tsx',
+        target: 'components/tweenui/hero-tab-wipe.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/hero-tab-wipe.tsx',
+      },
+    ],
+    usage: {
+      react: `import HeroTabWipe from '@/components/tweenui/hero-tab-wipe';
+
+export default function Example() {
+  return <HeroTabWipe />;
+}`,
+    },
+  },
+  {
+    name: 'logo-wall-shuffle',
+    type: 'block',
+    title: 'Logo Wall Shuffle',
+    description:
+      'An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it. Pauses off-screen and in background tabs. GSAP-driven and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/logo-wall-shuffle.tsx',
+        target: 'components/tweenui/logo-wall-shuffle.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/logo-wall-shuffle.tsx',
+      },
+    ],
+    usage: {
+      react: `import LogoWallShuffle from '@/components/tweenui/logo-wall-shuffle';
+
+const LOGOS = [
+  { src: '/logos/slack.svg', alt: 'Slack' },
+  { src: '/logos/figma.svg', alt: 'Figma' },
+  { src: '/logos/linear.svg', srcDark: '/logos/linear-dark.svg', alt: 'Linear' },
+];
+
+export default function Example() {
+  return <LogoWallShuffle logos={LOGOS} />;
+}`,
+    },
+  },
+  {
+    name: 'testimonial-line-sweep',
+    type: 'block',
+    title: 'Testimonial Line Sweep',
+    description:
+      'A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText, and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/testimonial-line-sweep.tsx',
+        target: 'components/tweenui/testimonial-line-sweep.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/testimonial-line-sweep.tsx',
+      },
+    ],
+    usage: {
+      react: `import TestimonialLineSweep from '@/components/tweenui/testimonial-line-sweep';
+
+export default function Example() {
+  return <TestimonialLineSweep />;
+}`,
+    },
+  },
+  {
+    name: 'cta-starfall',
+    type: 'block',
+    title: 'CTA Starfall',
+    description:
+      'A dark call-to-action under a slow field of drifting stars, lit by a violet bloom at the top edge. The field is full on the first frame and pauses off-screen. GSAP-driven and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: ['shiny-button'],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/cta-starfall.tsx',
+        target: 'components/tweenui/cta-starfall.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/cta-starfall.tsx',
+      },
+    ],
+    usage: {
+      react: `import CtaStarfall from '@/components/tweenui/cta-starfall';
+
+export default function Example() {
+  return <CtaStarfall />;
+}`,
+    },
+  },
+  {
+    name: 'pricing-usage-slider',
+    type: 'block',
+    title: 'Pricing Usage Slider',
+    description:
+      'A two-plan pricing section where the second card prices itself from a volume slider, the figure spinning with Number Flow as you drag while the track fills behind the handle.',
+    media: {},
+    dependencies: ['@number-flow/react'],
+    registryDependencies: ['slide-arrow-button'],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/pricing-usage-slider.tsx',
+        target: 'components/tweenui/pricing-usage-slider.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/pricing-usage-slider.tsx',
+      },
+    ],
+    usage: {
+      react: `import PricingUsageSlider from '@/components/tweenui/pricing-usage-slider';
+
+export default function Example() {
+  return <PricingUsageSlider />;
 }`,
     },
   },

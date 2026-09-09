@@ -1,0 +1,82 @@
+---
+title: Flip Card
+description: A card that flips in 3D on hover to reveal details, features, and a CTA.
+icon: flip-horizontal
+---
+
+Hover the card (or tap on touch) and it **flips in 3D**: the front — number,
+title, image — rotates out while the back rotates in with the **description, a
+feature list, and a CTA staggering into place**. Driven by GSAP, and it fully
+respects `prefers-reduced-motion`.
+
+::component-preview{name="flip-card" size="lg"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/flip-card"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="flip-card"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import FlipCard from '@/components/tweenui/card/flip-card';
+
+export default function Page() {
+  return (
+    <FlipCard
+      eyebrow="(01)"
+      title="Web Design"
+      subtitle="Interfaces that convert"
+      description="Research-led product and marketing design, from wireframe to polished UI."
+      image="/services/web-design.jpg"
+      features={['UX & UI design', 'Design systems', 'Prototyping']}
+      href="/services/web-design"
+      ctaText="Explore service"
+    />
+  );
+}
+```
+
+:::
+::
+
+## Props
+
+| Prop              | Type                         | Default        | Description                                          |
+| ----------------- | ---------------------------- | -------------- | ---------------------------------------------------- |
+| `title`           | `string`                     | —              | Card heading, shown on both faces.                   |
+| `eyebrow`         | `string`                     | —              | Small label above the title, e.g. `(01)`.            |
+| `subtitle`        | `string`                     | —              | Front-face supporting line under the title.          |
+| `description`     | `string`                     | —              | Back-face body text revealed on flip.                |
+| `image`           | `string`                     | —              | Front-face image URL.                                |
+| `imageAlt`        | `string`                     | `title`        | Alt text for the image.                              |
+| `features`        | `string[]`                   | `[]`           | Bullet points revealed on the back, staggered in.    |
+| `href`            | `string`                     | —              | CTA link on the back. Omit to hide the CTA.          |
+| `ctaText`         | `string`                     | `'Learn more'` | CTA label.                                           |
+| `flipped`         | `boolean`                    | —              | Controlled flip state (disables hover/tap flipping). |
+| `onFlippedChange` | `(flipped: boolean) => void` | —              | Fires when the card flips from interaction.          |
+
+## Accessibility
+
+::note
+The card is focusable (`tabIndex={0}`); on hover-capable devices it also flips on
+keyboard focus and flips back on blur. Touch devices flip on tap instead. Under
+`prefers-reduced-motion: reduce` the faces swap instantly with no rotation or
+stagger.
+::

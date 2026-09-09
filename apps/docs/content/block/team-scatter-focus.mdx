@@ -1,0 +1,127 @@
+---
+title: Team Scatter Focus
+description: A team collage whose cards fly in from their own directions, then blur away from the one you hover.
+icon: focus
+---
+
+A ready-made team section. Cards sit on a **scattered collage** rather than a
+grid, each flying in from its own direction. Hover one and the rest **blur and
+shrink back**, so a single face holds the frame. Below `lg` the collage would
+overlap, so the same cards fall into a **stacked grid**. GSAP-driven,
+pointer-only, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="team-scatter-focus" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/team-scatter-focus"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="team-scatter-focus"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import TeamScatterFocus from '@/components/tweenui/team-scatter-focus';
+
+export default function Page() {
+  return <TeamScatterFocus />;
+}
+```
+
+:::
+::
+
+Pass your own people:
+
+```tsx [app/page.tsx]
+import TeamScatterFocus from '@/components/tweenui/team-scatter-focus';
+
+export default function Page() {
+  return (
+    <TeamScatterFocus
+      title="Meet the studio"
+      members={[
+        {
+          name: 'John Smith',
+          role: 'CEO & Founder',
+          image: '/team/john.jpg',
+          href: '/team/john-smith',
+          social: 'https://x.com/john',
+        },
+        {
+          name: 'William Finley',
+          role: 'Lead Designer',
+          image: '/team/william.jpg',
+          href: '/team/william-finley',
+        },
+      ]}
+    />
+  );
+}
+```
+
+## Placing the cards
+
+Every member can carry its own `position` (absolute Tailwind classes) and
+`direction`. Leave them out and the component uses its five built-in scatter
+slots in order, so an arbitrary list still lands as a collage instead of a stack:
+
+```tsx
+<TeamScatterFocus
+  members={[
+    {
+      name: 'John Smith',
+      role: 'CEO & Founder',
+      image: '/team/john.jpg',
+      position: 'z-2 left-[3%] top-[84px] xl:left-0',
+      direction: 'left',
+    },
+  ]}
+/>
+```
+
+## Props
+
+| Prop          | Type                       | Default        | Description                        |
+| ------------- | -------------------------- | -------------- | ---------------------------------- |
+| `title`       | `ReactNode`                | sample heading | Section heading.                   |
+| `description` | `string`                   | sample line    | Supporting line under the heading. |
+| `members`     | `TeamScatterFocusMember[]` | five people    | People in the collage.             |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+### `TeamScatterFocusMember`
+
+| Field                | Type                                  | Description                                            |
+| -------------------- | ------------------------------------- | ------------------------------------------------------ |
+| `name` · `role`      | `string`                              | Shown under the portrait.                              |
+| `image` · `imageAlt` | `string`                              | Portrait; `imageAlt` falls back to `name`.             |
+| `href`               | `string`                              | Member page. Defaults to `#`.                          |
+| `social`             | `string`                              | Adds the corner button. Omit it and no button renders. |
+| `position`           | `string`                              | Absolute placement classes. Falls back by index.       |
+| `direction`          | `'left' \| 'right' \| 'up' \| 'down'` | Where the card travels in from. Falls back by index.   |
+
+## Accessibility
+
+::note
+Each social button is labelled with the member's name, and portraits fall back
+to that name for `alt` text. The blur-and-shrink runs only for
+`(hover: hover) and (pointer: fine)` pointers, so touch users get a plain
+collage. Under `prefers-reduced-motion: reduce` nothing animates — no fly-in, no
+blur — and every card renders at its final position.
+::

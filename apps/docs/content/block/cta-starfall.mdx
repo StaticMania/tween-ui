@@ -1,0 +1,101 @@
+---
+title: CTA Starfall
+description: A dark call-to-action under a slow field of drifting stars, lit by a violet bloom.
+icon: moon-star
+---
+
+A ready-made closing section. A field of pinpoint stars **drifts slowly down**
+behind the copy, each one on its own speed and sideways drift, under a violet
+bloom at the top edge. The field is **full on the first frame** — every star is
+seeded part-way through its fall rather than spawning over time — and the whole
+thing **pauses off-screen and in background tabs**. GSAP-driven, and it fully
+respects `prefers-reduced-motion`.
+
+::component-preview{name="cta-starfall" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/cta-starfall"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="cta-starfall"}
+::
+
+:::
+::
+
+::note
+The button is [Shiny Button](/component/shiny-button), so the CLI installs that
+item too.
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import CtaStarfall from '@/components/tweenui/cta-starfall';
+
+export default function Page() {
+  return <CtaStarfall />;
+}
+```
+
+:::
+::
+
+Pass your own copy:
+
+```tsx [app/page.tsx]
+import CtaStarfall from '@/components/tweenui/cta-starfall';
+
+export default function Page() {
+  return (
+    <CtaStarfall
+      title="Ship the whole workflow, not just the design"
+      description="Automate the handoff and keep the team in one place."
+      action={{ label: 'Start free trial', onClick: () => router.push('/signup') }}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop          | Type                        | Default        | Description                             |
+| ------------- | --------------------------- | -------------- | --------------------------------------- |
+| `title`       | `ReactNode`                 | sample heading | Section heading.                        |
+| `description` | `string`                    | sample line    | Supporting line under the heading.      |
+| `action`      | `CtaStarfallAction \| null` | Start creating | Button below the copy. `null` hides it. |
+| `starCount`   | `number`                    | `160`          | How many stars fill the field.          |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+### `CtaStarfallAction`
+
+| Field     | Type         | Description                      |
+| --------- | ------------ | -------------------------------- |
+| `label`   | `string`     | Button text.                     |
+| `onClick` | `() => void` | Runs when the button is pressed. |
+
+::note
+The section carries its own dark background — the starfield only reads against
+one. Raise `starCount` for a denser sky; each star is a single pixel, so a few
+hundred stays cheap.
+::
+
+## Accessibility
+
+::note
+The whole starfield is `aria-hidden`, so a screen reader meets only the heading,
+the line under it, and the button. Under `prefers-reduced-motion: reduce` the
+stars are scattered once and never animate — the sky stays, the drift does not.
+::

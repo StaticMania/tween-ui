@@ -1,0 +1,116 @@
+---
+title: Testimonial Column Drift
+description: Three columns of review cards that swing into place on scroll, then drift past each other.
+icon: columns-3
+---
+
+A ready-made social-proof section. The outer columns **swing in from the sides**
+and the middle one lands a beat later, so the wall closes inward. After that the
+three columns **drift at different speeds** for the rest of the scroll. Cards
+lift on hover, the avatar flips, and the highlighted clause gets an underline
+wipe. GSAP + ScrollTrigger, and it fully respects `prefers-reduced-motion`.
+
+::component-preview{name="testimonial-column-drift" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/testimonial-column-drift"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="testimonial-column-drift"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import TestimonialColumnDrift from '@/components/tweenui/testimonial-column-drift';
+
+export default function Page() {
+  return <TestimonialColumnDrift />;
+}
+```
+
+:::
+::
+
+Pass your own reviews. Each array is one column:
+
+```tsx [app/page.tsx]
+import TestimonialColumnDrift from '@/components/tweenui/testimonial-column-drift';
+
+const review = (name: string, jobTitle: string, image: string) => ({
+  name,
+  jobTitle,
+  image,
+  quoteBefore: 'The rebuild shipped in three weeks,',
+  quoteHighlight: 'and conversions moved the same month.',
+  quoteAfter: 'Worth every call.',
+  stars: 5,
+});
+
+export default function Page() {
+  return (
+    <TestimonialColumnDrift
+      title="Trusted by teams that ship"
+      columns={[
+        [review('Liam Harper', 'Head of Growth', '/avatars/liam.jpg')],
+        [review('Ethan Brooks', 'President of Sales', '/avatars/ethan.jpg')],
+        [review('Ava Sinclair', 'Marketing Head', '/avatars/ava.jpg')],
+      ]}
+    />
+  );
+}
+```
+
+Hide the summary card with `rating={null}`:
+
+```tsx
+<TestimonialColumnDrift rating={null} />
+```
+
+## Props
+
+| Prop          | Type                                   | Default        | Description                                         |
+| ------------- | -------------------------------------- | -------------- | --------------------------------------------------- |
+| `title`       | `ReactNode`                            | sample heading | Section heading.                                    |
+| `description` | `string`                               | sample line    | Supporting line under the heading.                  |
+| `columns`     | `TestimonialColumnDriftItem[][]`       | three columns  | One array per column. Three is the intended shape.  |
+| `rating`      | `TestimonialColumnDriftRating \| null` | sample summary | Summary card in the middle column. `null` hides it. |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+### `TestimonialColumnDriftItem`
+
+| Field                                           | Type     | Description                                                        |
+| ----------------------------------------------- | -------- | ------------------------------------------------------------------ |
+| `name` · `jobTitle`                             | `string` | Reviewer identity.                                                 |
+| `image` · `imageAlt`                            | `string` | Avatar; `imageAlt` falls back to `name`.                           |
+| `quoteBefore` · `quoteHighlight` · `quoteAfter` | `string` | The quote, split so the middle clause can take the underline wipe. |
+| `stars`                                         | `number` | Filled stars out of five. Defaults to `4`.                         |
+
+::note
+The summary card is placed inside the **second** column, so it only appears when
+you pass at least two columns.
+::
+
+## Accessibility
+
+::note
+Each star row carries an `aria-label` with its filled count, and avatars fall
+back to the reviewer's name for `alt` text. Under `prefers-reduced-motion: reduce`
+nothing animates — no swing-in, no drift, no hover lift — and every card renders
+at its final position.
+::

@@ -1,0 +1,129 @@
+---
+title: Pricing Usage Slider
+description: A two-plan pricing section where one card prices itself from a volume slider.
+icon: sliders-horizontal
+---
+
+A pricing section built for plans that scale with usage. One card carries a
+fixed price; the other **prices itself from a slider** — drag the handle and the
+figure spins with Number Flow while the track fills behind the handle.
+
+::component-preview{name="pricing-usage-slider" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/pricing-usage-slider"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="pricing-usage-slider"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import PricingUsageSlider from '@/components/tweenui/pricing-usage-slider';
+
+export default function Page() {
+  return <PricingUsageSlider />;
+}
+```
+
+:::
+::
+
+A plan is slider-driven when it carries a `range` instead of a `price`:
+
+```tsx [app/page.tsx]
+import PricingUsageSlider from '@/components/tweenui/pricing-usage-slider';
+
+export default function Page() {
+  return (
+    <PricingUsageSlider
+      title="Flexible pricing for every creator"
+      plans={[
+        {
+          name: 'Creator',
+          description: 'Best for solo creators publishing weekly',
+          price: 79,
+          priceNote: 'Cancel or pause any time',
+          popular: true,
+          features: ['600+ minutes monthly', 'One cloned voice', 'Commercial license'],
+          cta: 'Upgrade now',
+          onClick: () => router.push('/signup'),
+        },
+        {
+          name: 'Scale',
+          description: 'Pay for the volume your team actually uses',
+          range: { min: 399, max: 1200, defaultValue: 750, label: 'Drag to set your volume' },
+          features: ['Custom SLA and volume', 'Unlimited cloned voices', 'SSO and SAML'],
+          cta: 'Contact sales',
+          onClick: () => router.push('/sales'),
+        },
+      ]}
+    />
+  );
+}
+```
+
+## Props
+
+| Prop           | Type                       | Default        | Description                           |
+| -------------- | -------------------------- | -------------- | ------------------------------------- |
+| `title`        | `ReactNode`                | sample heading | Section heading.                      |
+| `description`  | `string`                   | sample line    | Supporting line under the heading.    |
+| `plans`        | `PricingUsageSliderPlan[]` | two plans      | Plans side by side. Two is the shape. |
+| `popularLabel` | `string`                   | `Most popular` | Badge on the highlighted card.        |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+### `PricingUsageSliderPlan`
+
+| Field                  | Type                      | Description                                      |
+| ---------------------- | ------------------------- | ------------------------------------------------ |
+| `name` · `description` | `string`                  | Plan identity.                                   |
+| `price`                | `number`                  | Fixed monthly price. Omit it when using `range`. |
+| `priceNote`            | `string`                  | Small print under the price.                     |
+| `features`             | `string[]`                | Ticked list. Three keeps the two cards level.    |
+| `cta`                  | `string`                  | Button label.                                    |
+| `onClick`              | `() => void`              | Runs when that plan is chosen.                   |
+| `popular`              | `boolean`                 | Highlights the card and shows the badge.         |
+| `range`                | `PricingUsageSliderRange` | Turns the price into a slider.                   |
+
+### `PricingUsageSliderRange`
+
+| Field          | Type     | Description                                  |
+| -------------- | -------- | -------------------------------------------- |
+| `min` · `max`  | `number` | Ends of the track.                           |
+| `defaultValue` | `number` | Where the handle starts.                     |
+| `label`        | `string` | Caption under the slider, and its a11y name. |
+
+::note
+Both cards use [Slide Arrow Button](/component/slide-arrow-button), so the CLI
+installs that item too.
+::
+
+::note
+The slider paints its own filled track through an inline gradient, so the
+component needs no stylesheet of its own — nothing to copy beyond the one file.
+::
+
+## Accessibility
+
+::note
+The slider is a native `<input type="range">`, so it arrows and pages from the
+keyboard for free, and `range.label` becomes its accessible name. The section has no entrance animation, so there is nothing for
+`prefers-reduced-motion` to switch off here.
+::
