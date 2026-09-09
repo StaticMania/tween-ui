@@ -28,7 +28,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function Page({ params }: PageProps) {
-  const page = await source.getPage((await params).slug);
+  const { slug } = await params;
+  const page = await source.getPage(slug);
   if (!page) notFound();
 
   const { content, frontmatter, toc } = await compileMdxFile(page.filePath, {
@@ -46,8 +47,16 @@ export default async function Page({ params }: PageProps) {
   const { prev, next } = await source.getSurround(page.path);
   const section = await source.getSection(page.path);
 
+  // Block pages are single-preview showcases — their headings are boilerplate
+  // (Installation / Usage / Props). An empty toc drops the right rail, so the
+  // preview column reclaims its 240px + gap.
+  const isBlock = slug?.[0] === 'block';
+
   return (
-    <DocsLayout toc={toc} page={{ relativePath: page.relativePath, title: page.title }}>
+    <DocsLayout
+      toc={isBlock ? [] : toc}
+      page={{ relativePath: page.relativePath, title: page.title }}
+    >
       <DocsPage title={frontmatter.title} description={frontmatter.description} section={section}>
         {content}
       </DocsPage>
