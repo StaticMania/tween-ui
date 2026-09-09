@@ -38,6 +38,7 @@ export const demos: Record<string, ComponentType> = {
   'hero-rotating-cards:default': dynamic(() => import('./demos/hero-rotating-cards')),
   'scroll-spin-image:default': dynamic(() => import('./demos/scroll-spin-image')),
   'card-expand-on-hover:default': dynamic(() => import('./demos/card-expand-on-hover')),
+  'project-spotlight-grid:default': dynamic(() => import('./demos/project-spotlight-grid')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

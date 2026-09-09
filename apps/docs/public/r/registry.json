@@ -337,6 +337,18 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "project-spotlight-grid",
+      "type": "registry:block",
+      "title": "Project Spotlight Grid",
+      "description": "A staggered project grid where the hovered tile tilts toward the cursor in 3D while the rest scale back and dim. GSAP-driven, pointer-only, and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/project-spotlight-grid.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -396,4 +396,36 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'project-spotlight-grid',
+    type: 'block',
+    title: 'Project Spotlight Grid',
+    description:
+      'A staggered project grid where the hovered tile tilts toward the cursor in 3D while the rest scale back and dim. GSAP-driven, pointer-only, and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/project-spotlight-grid.tsx',
+        target: 'components/tweenui/project-spotlight-grid.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/project-spotlight-grid.tsx',
+      },
+    ],
+    usage: {
+      react: `import ProjectSpotlightGrid from '@/components/tweenui/project-spotlight-grid';
+
+export default function Example() {
+  return <ProjectSpotlightGrid />;
+}`,
+    },
+  },
 ];
