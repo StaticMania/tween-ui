@@ -1,5 +1,5 @@
 ---
-title: Testimonial Strip Wipe
+title: Strip Wipe
 description: A testimonial slider whose photo wipes in as tiled strips beside the quote.
 icon: quote
 ---
@@ -10,7 +10,7 @@ Number Flow. Prev wipes **right to left**, next wipes **left to right**. Hover
 pauses the loop. Driven by GSAP, and it fully respects
 `prefers-reduced-motion`.
 
-::component-preview{name="testimonial-strip-wipe" size="xl"}
+::component-preview{name="strip-wipe" size="xl"}
 ::
 
 ## Installation
@@ -18,13 +18,13 @@ pauses the loop. Driven by GSAP, and it fully respects
 ::tabs
 :::tabs-item{label="CLI" icon="i-lucide-terminal"}
 
-::install-tabs{item="@tweenui/testimonial-strip-wipe"}
+::install-tabs{item="@tweenui/strip-wipe"}
 ::
 
 :::
 :::tabs-item{label="Manual" icon="i-lucide-clipboard"}
 
-::component-source{name="testimonial-strip-wipe"}
+::component-source{name="strip-wipe"}
 ::
 
 :::
@@ -36,10 +36,10 @@ pauses the loop. Driven by GSAP, and it fully respects
 :::tabs-item{label="React" icon="i-lucide-atom"}
 
 ```tsx [app/page.tsx]
-import TestimonialStripWipe from '@/components/tweenui/testimonial/testimonial-strip-wipe';
+import StripWipe from '@/components/tweenui/testimonial/strip-wipe';
 
 export default function Page() {
-  return <TestimonialStripWipe />;
+  return <StripWipe />;
 }
 ```
 
@@ -50,7 +50,7 @@ Pass your own quotes to make it yours. Set `directional={false}` to keep the
 original right-to-left split on every change:
 
 ```tsx [app/page.tsx]
-import TestimonialStripWipe from '@/components/tweenui/testimonial/testimonial-strip-wipe';
+import StripWipe from '@/components/tweenui/testimonial/strip-wipe';
 
 const testimonials = [
   {
@@ -68,7 +68,7 @@ const testimonials = [
 ];
 
 export default function Page() {
-  return <TestimonialStripWipe testimonials={testimonials} directional={false} />;
+  return <StripWipe testimonials={testimonials} directional={false} />;
 }
 ```
 

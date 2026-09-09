@@ -35,7 +35,7 @@ function StarIcon({ filled = true, className }: { filled?: boolean; className?: 
   );
 }
 
-export interface TestimonialColumnDriftItem {
+export interface ColumnDriftItem {
   /** Reviewer name. */
   name: string;
   /** Role shown under the name. */
@@ -54,7 +54,7 @@ export interface TestimonialColumnDriftItem {
   stars?: number;
 }
 
-export interface TestimonialColumnDriftRating {
+export interface ColumnDriftRating {
   /** Headline score, e.g. "4.8". */
   score: string;
   /** Denominator shown next to the score. */
@@ -71,18 +71,15 @@ export interface TestimonialColumnDriftRating {
   quotes?: string[];
 }
 
-export interface TestimonialColumnDriftProps extends Omit<
-  ComponentPropsWithoutRef<'section'>,
-  'title'
-> {
+export interface ColumnDriftProps extends Omit<ComponentPropsWithoutRef<'section'>, 'title'> {
   /** Section heading. */
   title?: ReactNode;
   /** Supporting line under the heading. */
   description?: string;
   /** One array per column. Three columns is the intended shape. */
-  columns?: TestimonialColumnDriftItem[][];
+  columns?: ColumnDriftItem[][];
   /** Summary card dropped into the middle column. Pass `null` to hide it. */
-  rating?: TestimonialColumnDriftRating | null;
+  rating?: ColumnDriftRating | null;
 }
 
 const DEFAULT_TITLE = 'Latest creations and projects';
@@ -98,7 +95,7 @@ const QUOTE = {
 
 const AVATAR = (id: string) => `https://images.unsplash.com/${id}?w=96&h=96&fit=crop&crop=faces`;
 
-const DEFAULT_COLUMNS: TestimonialColumnDriftItem[][] = [
+const DEFAULT_COLUMNS: ColumnDriftItem[][] = [
   [
     {
       name: 'Liam Harper',
@@ -143,7 +140,7 @@ const DEFAULT_COLUMNS: TestimonialColumnDriftItem[][] = [
   ],
 ];
 
-const DEFAULT_RATING: TestimonialColumnDriftRating = {
+const DEFAULT_RATING: ColumnDriftRating = {
   score: '4.8',
   outOf: '/5',
   label: 'Real Rating',
@@ -163,7 +160,7 @@ const DEFAULT_RATING: TestimonialColumnDriftRating = {
 const CARD =
   'flex w-full flex-col items-start justify-between rounded-xl bg-white p-5 will-change-transform dark:bg-[#161b22] motion-reduce:transform-none motion-reduce:transition-none';
 
-function TestimonialCard({ item }: { item: TestimonialColumnDriftItem }) {
+function TestimonialCard({ item }: { item: ColumnDriftItem }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLImageElement>(null);
   const quoteRef = useRef<HTMLSpanElement>(null);
@@ -252,7 +249,7 @@ function TestimonialCard({ item }: { item: TestimonialColumnDriftItem }) {
   );
 }
 
-function RatingCard({ rating }: { rating: TestimonialColumnDriftRating }) {
+function RatingCard({ rating }: { rating: ColumnDriftRating }) {
   const avatars = rating.avatars ?? [];
 
   return (
@@ -316,14 +313,14 @@ function RatingCard({ rating }: { rating: TestimonialColumnDriftRating }) {
   );
 }
 
-export default function TestimonialColumnDrift({
+export default function ColumnDrift({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   columns = DEFAULT_COLUMNS,
   rating = DEFAULT_RATING,
   className,
   ...props
-}: TestimonialColumnDriftProps) {
+}: ColumnDriftProps) {
   const rootRef = useRef<HTMLElement>(null);
   const columnRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -389,7 +386,7 @@ export default function TestimonialColumnDrift({
   return (
     <section
       ref={rootRef}
-      data-testimonial-column-drift
+      data-column-drift
       className={cn('w-full px-5 py-16 md:py-24', className)}
       {...props}
     >

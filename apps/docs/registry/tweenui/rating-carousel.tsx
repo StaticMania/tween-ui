@@ -37,10 +37,7 @@ export interface TestimonialCardItem {
 /** Any Swiper option or event. Merged on top of the carousel defaults. */
 export type TestimonialSwiperProps = Omit<ComponentProps<typeof Swiper>, 'children'>;
 
-export interface TestimonialCardCarouselProps extends Omit<
-  ComponentPropsWithoutRef<'section'>,
-  'title'
-> {
+export interface RatingCarouselProps extends Omit<ComponentPropsWithoutRef<'section'>, 'title'> {
   /** Cards shown in the carousel. Defaults to a 4-card sample. */
   testimonials?: TestimonialCardItem[];
   /** How many cards are visible once the tray is at least 560px wide. Narrower views show 1. Default 2. */
@@ -133,13 +130,13 @@ function updateSlideStyles(swiper: SwiperClass) {
   });
 }
 
-export default function TestimonialCardCarousel({
+export default function RatingCarousel({
   testimonials = DEFAULT_TESTIMONIALS,
   slidesPerView = 2,
   swiper: swiperProps,
   className,
   ...props
-}: TestimonialCardCarouselProps) {
+}: RatingCarouselProps) {
   const swiperRef = useRef<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const reduced = prefersReducedMotion();
@@ -190,7 +187,7 @@ export default function TestimonialCardCarousel({
 
   return (
     <section
-      data-testimonial-card-carousel
+      data-rating-carousel
       data-active-slide={activeIndex}
       data-slides-per-view={perView}
       className={cn('w-full', className)}

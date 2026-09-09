@@ -1,5 +1,5 @@
 ---
-title: Testimonial Card Carousel
+title: Rating Carousel
 description: A row of rating cards that autoplay, blur off-window slides, and page with dots.
 icon: star
 ---
@@ -10,7 +10,7 @@ Drag or swipe the row — off-window cards **fade and blur** as they leave.
 Autoplay pauses on hover; **dots** jump to a card. Pass any Swiper option
 through the `swiper` prop. Fully respects `prefers-reduced-motion`.
 
-::component-preview{name="testimonial-card-carousel" size="xl"}
+::component-preview{name="rating-carousel" size="xl"}
 ::
 
 ## Installation
@@ -18,13 +18,13 @@ through the `swiper` prop. Fully respects `prefers-reduced-motion`.
 ::tabs
 :::tabs-item{label="CLI" icon="i-lucide-terminal"}
 
-::install-tabs{item="@tweenui/testimonial-card-carousel"}
+::install-tabs{item="@tweenui/rating-carousel"}
 ::
 
 :::
 :::tabs-item{label="Manual" icon="i-lucide-clipboard"}
 
-::component-source{name="testimonial-card-carousel"}
+::component-source{name="rating-carousel"}
 ::
 
 :::
@@ -36,10 +36,10 @@ through the `swiper` prop. Fully respects `prefers-reduced-motion`.
 :::tabs-item{label="React" icon="i-lucide-atom"}
 
 ```tsx [app/page.tsx]
-import TestimonialCardCarousel from '@/components/tweenui/testimonial/testimonial-card-carousel';
+import RatingCarousel from '@/components/tweenui/testimonial/rating-carousel';
 
 export default function Page() {
-  return <TestimonialCardCarousel />;
+  return <RatingCarousel />;
 }
 ```
 
@@ -49,7 +49,7 @@ export default function Page() {
 Pass your own quotes to make it yours:
 
 ```tsx [app/page.tsx]
-import TestimonialCardCarousel from '@/components/tweenui/testimonial/testimonial-card-carousel';
+import RatingCarousel from '@/components/tweenui/testimonial/rating-carousel';
 
 const testimonials = [
   {
@@ -73,7 +73,7 @@ const testimonials = [
 ];
 
 export default function Page() {
-  return <TestimonialCardCarousel testimonials={testimonials} slidesPerView={2} />;
+  return <RatingCarousel testimonials={testimonials} slidesPerView={2} />;
 }
 ```
 
@@ -83,11 +83,11 @@ every 2.5s, container breakpoints, Autoplay module). Extra `modules` are
 concatenated with Autoplay; `onSwiper` still wires the dots and blur:
 
 ```tsx [app/page.tsx]
-import TestimonialCardCarousel from '@/components/tweenui/testimonial/testimonial-card-carousel';
+import RatingCarousel from '@/components/tweenui/testimonial/rating-carousel';
 
 export default function Page() {
   return (
-    <TestimonialCardCarousel
+    <RatingCarousel
       slidesPerView={2}
       swiper={{
         speed: 800,

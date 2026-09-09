@@ -40,7 +40,7 @@ function StarIcon({ className }: { className?: string }) {
   );
 }
 
-export interface TestimonialLineSweepItem {
+export interface LineSweepItem {
   /** Quote text before the highlighted clause. */
   quoteStart: string;
   /** The clause rendered in full contrast. */
@@ -57,16 +57,13 @@ export interface TestimonialLineSweepItem {
   imageAlt?: string;
 }
 
-export interface TestimonialLineSweepProps extends Omit<
-  ComponentPropsWithoutRef<'section'>,
-  'title'
-> {
+export interface LineSweepProps extends Omit<ComponentPropsWithoutRef<'section'>, 'title'> {
   /** Section heading. */
   title?: ReactNode;
   /** Supporting line under the heading. */
   description?: string;
   /** Quotes to page through. Shown two at a time from `md` up. */
-  items?: TestimonialLineSweepItem[];
+  items?: LineSweepItem[];
 }
 
 const DEFAULT_TITLE = 'What our clients say about us';
@@ -76,7 +73,7 @@ const DEFAULT_DESCRIPTION =
 
 const PORTRAIT = (id: string) => `https://images.unsplash.com/${id}?w=420&h=340&fit=crop`;
 
-const DEFAULT_ITEMS: TestimonialLineSweepItem[] = [
+const DEFAULT_ITEMS: LineSweepItem[] = [
   {
     quoteStart: 'We replaced four tools with one workflow, and',
     quoteHighlight: 'the team shipped its first release two weeks early.',
@@ -111,13 +108,13 @@ const DEFAULT_ITEMS: TestimonialLineSweepItem[] = [
   },
 ];
 
-export default function TestimonialLineSweep({
+export default function LineSweep({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   items = DEFAULT_ITEMS,
   className,
   ...props
-}: TestimonialLineSweepProps) {
+}: LineSweepProps) {
   const rootRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -347,7 +344,7 @@ export default function TestimonialLineSweep({
   return (
     <section
       ref={rootRef}
-      data-testimonial-line-sweep
+      data-line-sweep
       className={cn('w-full px-5 py-14 md:py-16', className)}
       {...props}
     >

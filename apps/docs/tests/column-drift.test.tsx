@@ -1,10 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import TestimonialColumnDrift, {
-  type TestimonialColumnDriftItem,
-} from '@/registry/tweenui/testimonial-column-drift';
+import ColumnDrift, { type ColumnDriftItem } from '@/registry/tweenui/column-drift';
 
-const item = (name: string, jobTitle: string): TestimonialColumnDriftItem => ({
+const item = (name: string, jobTitle: string): ColumnDriftItem => ({
   name,
   jobTitle,
   image: `/${name}.jpg`,
@@ -19,10 +17,10 @@ const COLUMNS = [
   [item('Ava Sinclair', 'Marketing Head')],
 ];
 
-describe('Testimonial Column Drift', () => {
+describe('Column Drift', () => {
   it('renders the heading, description, and every column', () => {
     render(
-      <TestimonialColumnDrift
+      <ColumnDrift
         title="Latest creations and projects"
         description="What teams say after shipping."
         columns={COLUMNS}
@@ -38,27 +36,22 @@ describe('Testimonial Column Drift', () => {
 
   it('drops the rating card into the middle column, and hides it when null', () => {
     const { rerender } = render(
-      <TestimonialColumnDrift columns={COLUMNS} rating={{ score: '4.8', label: 'Real Rating' }} />
+      <ColumnDrift columns={COLUMNS} rating={{ score: '4.8', label: 'Real Rating' }} />
     );
     expect(screen.getByText('4.8')).toBeInTheDocument();
     expect(screen.getByText('Real Rating')).toBeInTheDocument();
 
-    rerender(<TestimonialColumnDrift columns={COLUMNS} rating={null} />);
+    rerender(<ColumnDrift columns={COLUMNS} rating={null} />);
     expect(screen.queryByText('4.8')).not.toBeInTheDocument();
   });
 
   it('labels the star row with the filled count', () => {
-    render(
-      <TestimonialColumnDrift
-        columns={[[{ ...item('Zoe', 'Designer'), stars: 5 }]]}
-        rating={null}
-      />
-    );
+    render(<ColumnDrift columns={[[{ ...item('Zoe', 'Designer'), stars: 5 }]]} rating={null} />);
     expect(screen.getByLabelText('5 out of 5 stars')).toBeInTheDocument();
   });
 
   it('merges a custom className onto the section', () => {
-    const { container } = render(<TestimonialColumnDrift columns={COLUMNS} className="mt-10" />);
-    expect(container.querySelector('[data-testimonial-column-drift]')).toHaveClass('mt-10');
+    const { container } = render(<ColumnDrift columns={COLUMNS} className="mt-10" />);
+    expect(container.querySelector('[data-column-drift]')).toHaveClass('mt-10');
   });
 });

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import TestimonialCardCarousel from '@/registry/tweenui/testimonial-card-carousel';
+import RatingCarousel from '@/registry/tweenui/rating-carousel';
 
 const TESTIMONIALS = [
   {
@@ -23,12 +23,12 @@ const TESTIMONIALS = [
   },
 ];
 
-describe('Testimonial Card Carousel', () => {
+describe('Rating Carousel', () => {
   beforeEach(() => {
     Object.defineProperty(window, 'innerWidth', { configurable: true, value: 500 });
   });
   it('renders every quote, name, and avatar', () => {
-    render(<TestimonialCardCarousel testimonials={TESTIMONIALS} />);
+    render(<RatingCarousel testimonials={TESTIMONIALS} />);
 
     expect(screen.getByText('Clearer handoffs')).toBeInTheDocument();
     expect(screen.getByText('One pipeline')).toBeInTheDocument();
@@ -39,44 +39,40 @@ describe('Testimonial Card Carousel', () => {
   });
 
   it('marks the first slide active', () => {
-    const { container } = render(<TestimonialCardCarousel testimonials={TESTIMONIALS} />);
-    expect(container.querySelector('[data-testimonial-card-carousel]')).toHaveAttribute(
+    const { container } = render(<RatingCarousel testimonials={TESTIMONIALS} />);
+    expect(container.querySelector('[data-rating-carousel]')).toHaveAttribute(
       'data-active-slide',
       '0'
     );
   });
 
   it('jumps to a card when its dot is clicked', () => {
-    const { container } = render(<TestimonialCardCarousel testimonials={TESTIMONIALS} />);
+    const { container } = render(<RatingCarousel testimonials={TESTIMONIALS} />);
     fireEvent.click(screen.getByRole('button', { name: /go to lin's testimonial/i }));
 
-    expect(container.querySelector('[data-testimonial-card-carousel]')).toHaveAttribute(
+    expect(container.querySelector('[data-rating-carousel]')).toHaveAttribute(
       'data-active-slide',
       '1'
     );
   });
 
   it('uses the slidesPerView prop', () => {
-    const { container } = render(
-      <TestimonialCardCarousel testimonials={TESTIMONIALS} slidesPerView={2} />
-    );
-    expect(container.querySelector('[data-testimonial-card-carousel]')).toHaveAttribute(
+    const { container } = render(<RatingCarousel testimonials={TESTIMONIALS} slidesPerView={2} />);
+    expect(container.querySelector('[data-rating-carousel]')).toHaveAttribute(
       'data-slides-per-view',
       '2'
     );
   });
 
   it('merges a custom className onto the section', () => {
-    const { container } = render(
-      <TestimonialCardCarousel testimonials={TESTIMONIALS} className="mt-10" />
-    );
-    expect(container.querySelector('[data-testimonial-card-carousel]')).toHaveClass('mt-10');
+    const { container } = render(<RatingCarousel testimonials={TESTIMONIALS} className="mt-10" />);
+    expect(container.querySelector('[data-rating-carousel]')).toHaveClass('mt-10');
   });
 
   it('forwards swiper className and onSwiper', () => {
     const onSwiper = vi.fn();
     const { container } = render(
-      <TestimonialCardCarousel
+      <RatingCarousel
         testimonials={TESTIMONIALS}
         swiper={{ className: 'custom-swiper', onSwiper, speed: 0 }}
       />

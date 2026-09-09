@@ -1,5 +1,5 @@
 ---
-title: Testimonial Line Sweep
+title: Line Sweep
 description: A paged testimonial pair whose text sweeps out line by line while the portrait irises shut.
 icon: aperture
 ---
@@ -10,7 +10,7 @@ A ready-made testimonial section. Two quotes sit side by side, and paging
 same way, so the two sets never collide. Page with the buttons or the arrow
 keys. GSAP + SplitText, and it fully respects `prefers-reduced-motion`.
 
-::component-preview{name="testimonial-line-sweep" size="xl"}
+::component-preview{name="line-sweep" size="xl"}
 ::
 
 ## Installation
@@ -18,13 +18,13 @@ keys. GSAP + SplitText, and it fully respects `prefers-reduced-motion`.
 ::tabs
 :::tabs-item{label="CLI" icon="i-lucide-terminal"}
 
-::install-tabs{item="@tweenui/testimonial-line-sweep"}
+::install-tabs{item="@tweenui/line-sweep"}
 ::
 
 :::
 :::tabs-item{label="Manual" icon="i-lucide-clipboard"}
 
-::component-source{name="testimonial-line-sweep"}
+::component-source{name="line-sweep"}
 ::
 
 :::
@@ -36,10 +36,10 @@ keys. GSAP + SplitText, and it fully respects `prefers-reduced-motion`.
 :::tabs-item{label="React" icon="i-lucide-atom"}
 
 ```tsx [app/page.tsx]
-import TestimonialLineSweep from '@/components/tweenui/testimonial-line-sweep';
+import LineSweep from '@/components/tweenui/line-sweep';
 
 export default function Page() {
-  return <TestimonialLineSweep />;
+  return <LineSweep />;
 }
 ```
 
@@ -50,11 +50,11 @@ Pass your own quotes. Each one is split in three so the middle clause can carry
 the emphasis:
 
 ```tsx [app/page.tsx]
-import TestimonialLineSweep from '@/components/tweenui/testimonial-line-sweep';
+import LineSweep from '@/components/tweenui/line-sweep';
 
 export default function Page() {
   return (
-    <TestimonialLineSweep
+    <LineSweep
       title="What our clients say about us"
       items={[
         {
@@ -81,15 +81,15 @@ export default function Page() {
 
 ## Props
 
-| Prop          | Type                         | Default        | Description                            |
-| ------------- | ---------------------------- | -------------- | -------------------------------------- |
-| `title`       | `ReactNode`                  | sample heading | Section heading.                       |
-| `description` | `string`                     | sample line    | Supporting line under the heading.     |
-| `items`       | `TestimonialLineSweepItem[]` | four quotes    | Quotes to page through, two at a time. |
+| Prop          | Type              | Default        | Description                            |
+| ------------- | ----------------- | -------------- | -------------------------------------- |
+| `title`       | `ReactNode`       | sample heading | Section heading.                       |
+| `description` | `string`          | sample line    | Supporting line under the heading.     |
+| `items`       | `LineSweepItem[]` | four quotes    | Quotes to page through, two at a time. |
 
 Extends native `<section>` attributes (`className`, `style`, …).
 
-### `TestimonialLineSweepItem`
+### `LineSweepItem`
 
 | Field                                        | Type     | Description                                         |
 | -------------------------------------------- | -------- | --------------------------------------------------- |

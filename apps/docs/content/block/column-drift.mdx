@@ -1,5 +1,5 @@
 ---
-title: Testimonial Column Drift
+title: Column Drift
 description: Three columns of review cards that swing into place on scroll, then drift past each other.
 icon: columns-3
 ---
@@ -10,7 +10,7 @@ three columns **drift at different speeds** for the rest of the scroll. Cards
 lift on hover, the avatar flips, and the highlighted clause gets an underline
 wipe. GSAP + ScrollTrigger, and it fully respects `prefers-reduced-motion`.
 
-::component-preview{name="testimonial-column-drift" size="xl"}
+::component-preview{name="column-drift" size="xl"}
 ::
 
 ## Installation
@@ -18,13 +18,13 @@ wipe. GSAP + ScrollTrigger, and it fully respects `prefers-reduced-motion`.
 ::tabs
 :::tabs-item{label="CLI" icon="i-lucide-terminal"}
 
-::install-tabs{item="@tweenui/testimonial-column-drift"}
+::install-tabs{item="@tweenui/column-drift"}
 ::
 
 :::
 :::tabs-item{label="Manual" icon="i-lucide-clipboard"}
 
-::component-source{name="testimonial-column-drift"}
+::component-source{name="column-drift"}
 ::
 
 :::
@@ -36,10 +36,10 @@ wipe. GSAP + ScrollTrigger, and it fully respects `prefers-reduced-motion`.
 :::tabs-item{label="React" icon="i-lucide-atom"}
 
 ```tsx [app/page.tsx]
-import TestimonialColumnDrift from '@/components/tweenui/testimonial-column-drift';
+import ColumnDrift from '@/components/tweenui/column-drift';
 
 export default function Page() {
-  return <TestimonialColumnDrift />;
+  return <ColumnDrift />;
 }
 ```
 
@@ -49,7 +49,7 @@ export default function Page() {
 Pass your own reviews. Each array is one column:
 
 ```tsx [app/page.tsx]
-import TestimonialColumnDrift from '@/components/tweenui/testimonial-column-drift';
+import ColumnDrift from '@/components/tweenui/column-drift';
 
 const review = (name: string, jobTitle: string, image: string) => ({
   name,
@@ -63,7 +63,7 @@ const review = (name: string, jobTitle: string, image: string) => ({
 
 export default function Page() {
   return (
-    <TestimonialColumnDrift
+    <ColumnDrift
       title="Trusted by teams that ship"
       columns={[
         [review('Liam Harper', 'Head of Growth', '/avatars/liam.jpg')],
@@ -78,21 +78,21 @@ export default function Page() {
 Hide the summary card with `rating={null}`:
 
 ```tsx
-<TestimonialColumnDrift rating={null} />
+<ColumnDrift rating={null} />
 ```
 
 ## Props
 
-| Prop          | Type                                   | Default        | Description                                         |
-| ------------- | -------------------------------------- | -------------- | --------------------------------------------------- |
-| `title`       | `ReactNode`                            | sample heading | Section heading.                                    |
-| `description` | `string`                               | sample line    | Supporting line under the heading.                  |
-| `columns`     | `TestimonialColumnDriftItem[][]`       | three columns  | One array per column. Three is the intended shape.  |
-| `rating`      | `TestimonialColumnDriftRating \| null` | sample summary | Summary card in the middle column. `null` hides it. |
+| Prop          | Type                        | Default        | Description                                         |
+| ------------- | --------------------------- | -------------- | --------------------------------------------------- |
+| `title`       | `ReactNode`                 | sample heading | Section heading.                                    |
+| `description` | `string`                    | sample line    | Supporting line under the heading.                  |
+| `columns`     | `ColumnDriftItem[][]`       | three columns  | One array per column. Three is the intended shape.  |
+| `rating`      | `ColumnDriftRating \| null` | sample summary | Summary card in the middle column. `null` hides it. |
 
 Extends native `<section>` attributes (`className`, `style`, …).
 
-### `TestimonialColumnDriftItem`
+### `ColumnDriftItem`
 
 | Field                                           | Type     | Description                                                        |
 | ----------------------------------------------- | -------- | ------------------------------------------------------------------ |

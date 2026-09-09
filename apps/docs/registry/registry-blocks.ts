@@ -103,9 +103,9 @@ export default function Example() {
     },
   },
   {
-    name: 'testimonial-strip-wipe',
+    name: 'strip-wipe',
     type: 'block',
-    title: 'Testimonial Strip Wipe',
+    title: 'Strip Wipe',
     description:
       'A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware.',
     media: {},
@@ -114,8 +114,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/testimonial-strip-wipe.tsx',
-        target: 'components/tweenui/testimonial-strip-wipe.tsx',
+        path: 'registry/tweenui/strip-wipe.tsx',
+        target: 'components/tweenui/strip-wipe.tsx',
         kind: 'react',
       },
     ],
@@ -123,21 +123,21 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/testimonial-strip-wipe.tsx',
+        reactSource: 'registry/tweenui/strip-wipe.tsx',
       },
     ],
     usage: {
-      react: `import TestimonialStripWipe from '@/components/tweenui/testimonial-strip-wipe';
+      react: `import StripWipe from '@/components/tweenui/strip-wipe';
 
 export default function Example() {
-  return <TestimonialStripWipe />;
+  return <StripWipe />;
 }`,
     },
   },
   {
-    name: 'testimonial-card-carousel',
+    name: 'rating-carousel',
     type: 'block',
-    title: 'Testimonial Card Carousel',
+    title: 'Rating Carousel',
     description:
       'A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots.',
     media: {},
@@ -146,8 +146,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/testimonial-card-carousel.tsx',
-        target: 'components/tweenui/testimonial-card-carousel.tsx',
+        path: 'registry/tweenui/rating-carousel.tsx',
+        target: 'components/tweenui/rating-carousel.tsx',
         kind: 'react',
       },
     ],
@@ -155,14 +155,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/testimonial-card-carousel.tsx',
+        reactSource: 'registry/tweenui/rating-carousel.tsx',
       },
     ],
     usage: {
-      react: `import TestimonialCardCarousel from '@/components/tweenui/testimonial-card-carousel';
+      react: `import RatingCarousel from '@/components/tweenui/rating-carousel';
 
 export default function Example() {
-  return <TestimonialCardCarousel />;
+  return <RatingCarousel />;
 }`,
     },
   },
@@ -429,9 +429,9 @@ export default function Example() {
     },
   },
   {
-    name: 'testimonial-column-drift',
+    name: 'column-drift',
     type: 'block',
-    title: 'Testimonial Column Drift',
+    title: 'Column Drift',
     description:
       'Three columns of review cards that swing in from the sides as the section scrolls up, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP-driven and reduced-motion aware.',
     media: {},
@@ -440,8 +440,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/testimonial-column-drift.tsx',
-        target: 'components/tweenui/testimonial-column-drift.tsx',
+        path: 'registry/tweenui/column-drift.tsx',
+        target: 'components/tweenui/column-drift.tsx',
         kind: 'react',
       },
     ],
@@ -449,14 +449,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/testimonial-column-drift.tsx',
+        reactSource: 'registry/tweenui/column-drift.tsx',
       },
     ],
     usage: {
-      react: `import TestimonialColumnDrift from '@/components/tweenui/testimonial-column-drift';
+      react: `import ColumnDrift from '@/components/tweenui/column-drift';
 
 export default function Example() {
-  return <TestimonialColumnDrift />;
+  return <ColumnDrift />;
 }`,
     },
   },
@@ -563,9 +563,9 @@ export default function Example() {
     },
   },
   {
-    name: 'testimonial-line-sweep',
+    name: 'line-sweep',
     type: 'block',
-    title: 'Testimonial Line Sweep',
+    title: 'Line Sweep',
     description:
       'A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText, and reduced-motion aware.',
     media: {},
@@ -574,8 +574,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/testimonial-line-sweep.tsx',
-        target: 'components/tweenui/testimonial-line-sweep.tsx',
+        path: 'registry/tweenui/line-sweep.tsx',
+        target: 'components/tweenui/line-sweep.tsx',
         kind: 'react',
       },
     ],
@@ -583,14 +583,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/testimonial-line-sweep.tsx',
+        reactSource: 'registry/tweenui/line-sweep.tsx',
       },
     ],
     usage: {
-      react: `import TestimonialLineSweep from '@/components/tweenui/testimonial-line-sweep';
+      react: `import LineSweep from '@/components/tweenui/line-sweep';
 
 export default function Example() {
-  return <TestimonialLineSweep />;
+  return <LineSweep />;
 }`,
     },
   },
@@ -655,6 +655,38 @@ export default function Example() {
 
 export default function Example() {
   return <PricingUsageSlider />;
+}`,
+    },
+  },
+  {
+    name: 'grid-cascade',
+    type: 'block',
+    title: 'Grid Cascade',
+    description:
+      'A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above. GSAP-driven and reduced-motion aware.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/grid-cascade.tsx',
+        target: 'components/tweenui/grid-cascade.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/grid-cascade.tsx',
+      },
+    ],
+    usage: {
+      react: `import GridCascade from '@/components/tweenui/grid-cascade';
+
+export default function Example() {
+  return <GridCascade />;
 }`,
     },
   },

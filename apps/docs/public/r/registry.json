@@ -231,25 +231,25 @@
       ]
     },
     {
-      "name": "testimonial-strip-wipe",
+      "name": "strip-wipe",
       "type": "registry:block",
-      "title": "Testimonial Strip Wipe",
+      "title": "Strip Wipe",
       "description": "A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware.",
       "files": [
         {
-          "path": "components/tweenui/testimonial-strip-wipe.tsx",
+          "path": "components/tweenui/strip-wipe.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
-      "name": "testimonial-card-carousel",
+      "name": "rating-carousel",
       "type": "registry:block",
-      "title": "Testimonial Card Carousel",
+      "title": "Rating Carousel",
       "description": "A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots.",
       "files": [
         {
-          "path": "components/tweenui/testimonial-card-carousel.tsx",
+          "path": "components/tweenui/rating-carousel.tsx",
           "type": "registry:component"
         }
       ]
@@ -351,13 +351,13 @@
       ]
     },
     {
-      "name": "testimonial-column-drift",
+      "name": "column-drift",
       "type": "registry:block",
-      "title": "Testimonial Column Drift",
+      "title": "Column Drift",
       "description": "Three columns of review cards that swing in from the sides as the section scrolls up, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP-driven and reduced-motion aware.",
       "files": [
         {
-          "path": "components/tweenui/testimonial-column-drift.tsx",
+          "path": "components/tweenui/column-drift.tsx",
           "type": "registry:component"
         }
       ]
@@ -399,13 +399,13 @@
       ]
     },
     {
-      "name": "testimonial-line-sweep",
+      "name": "line-sweep",
       "type": "registry:block",
-      "title": "Testimonial Line Sweep",
+      "title": "Line Sweep",
       "description": "A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText, and reduced-motion aware.",
       "files": [
         {
-          "path": "components/tweenui/testimonial-line-sweep.tsx",
+          "path": "components/tweenui/line-sweep.tsx",
           "type": "registry:component"
         }
       ]
@@ -430,6 +430,18 @@
       "files": [
         {
           "path": "components/tweenui/pricing-usage-slider.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grid-cascade",
+      "type": "registry:block",
+      "title": "Grid Cascade",
+      "description": "A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above. GSAP-driven and reduced-motion aware.",
+      "files": [
+        {
+          "path": "components/tweenui/grid-cascade.tsx",
           "type": "registry:component"
         }
       ]

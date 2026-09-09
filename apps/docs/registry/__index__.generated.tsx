@@ -29,8 +29,8 @@ export const demos: Record<string, ComponentType> = {
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process-sticky-steps')),
-  'testimonial-strip-wipe:default': dynamic(() => import('./demos/testimonial-strip-wipe')),
-  'testimonial-card-carousel:default': dynamic(() => import('./demos/testimonial-card-carousel')),
+  'strip-wipe:default': dynamic(() => import('./demos/strip-wipe')),
+  'rating-carousel:default': dynamic(() => import('./demos/rating-carousel')),
   'cta-image-fan:default': dynamic(() => import('./demos/cta-image-fan')),
   'cta-photo-headline:default': dynamic(() => import('./demos/cta-photo-headline')),
   'blog-hover-expand:default': dynamic(() => import('./demos/blog-hover-expand')),
@@ -39,13 +39,14 @@ export const demos: Record<string, ComponentType> = {
   'media-scroll-spin:default': dynamic(() => import('./demos/media-scroll-spin')),
   'card-hover-expand:default': dynamic(() => import('./demos/card-hover-expand')),
   'project-spotlight-grid:default': dynamic(() => import('./demos/project-spotlight-grid')),
-  'testimonial-column-drift:default': dynamic(() => import('./demos/testimonial-column-drift')),
+  'column-drift:default': dynamic(() => import('./demos/column-drift')),
   'team-scatter-focus:default': dynamic(() => import('./demos/team-scatter-focus')),
   'hero-tab-wipe:default': dynamic(() => import('./demos/hero-tab-wipe')),
   'logo-wall-shuffle:default': dynamic(() => import('./demos/logo-wall-shuffle')),
-  'testimonial-line-sweep:default': dynamic(() => import('./demos/testimonial-line-sweep')),
+  'line-sweep:default': dynamic(() => import('./demos/line-sweep')),
   'cta-starfall:default': dynamic(() => import('./demos/cta-starfall')),
   'pricing-usage-slider:default': dynamic(() => import('./demos/pricing-usage-slider')),
+  'grid-cascade:default': dynamic(() => import('./demos/grid-cascade')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

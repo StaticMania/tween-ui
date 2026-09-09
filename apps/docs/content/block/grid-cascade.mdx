@@ -1,0 +1,117 @@
+---
+title: Grid Cascade
+description: A three-up testimonial grid that pages a whole set at a time, cascading the next in from above.
+icon: messages-square
+---
+
+A testimonial section that moves in **sets, not slides**. Paging drops the
+current three away on a stagger, and only once they are gone does the next set
+**cascade in from above** — so the two groups never overlap mid-flight. Wraps
+around at either end. GSAP-driven, and it fully respects
+`prefers-reduced-motion`.
+
+::component-preview{name="grid-cascade" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="@tweenui/grid-cascade"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="grid-cascade"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import GridCascade from '@/components/tweenui/grid-cascade';
+
+export default function Page() {
+  return <GridCascade />;
+}
+```
+
+:::
+::
+
+Pass your own quotes:
+
+```tsx [app/page.tsx]
+import GridCascade from '@/components/tweenui/grid-cascade';
+
+export default function Page() {
+  return (
+    <GridCascade
+      title="What our users say"
+      items={[
+        {
+          name: 'Maya Collins',
+          position: 'Head of Operations',
+          review: 'We replaced four tools with one workflow and shipped two weeks early.',
+          image: '/people/maya.jpg',
+          link: 'https://x.com/maya',
+        },
+        {
+          name: 'Ethan Brooks',
+          position: 'President of Sales',
+          review: 'Reporting used to take a day a month. Now it lands in our inbox.',
+          image: '/people/ethan.jpg',
+        },
+      ]}
+    />
+  );
+}
+```
+
+Show more per page, or stop it wrapping:
+
+```tsx
+<GridCascade perPage={2} loop={false} />
+```
+
+## Props
+
+| Prop          | Type                | Default        | Description                           |
+| ------------- | ------------------- | -------------- | ------------------------------------- |
+| `title`       | `ReactNode`         | sample heading | Section heading.                      |
+| `description` | `string`            | —              | Optional line under the heading.      |
+| `items`       | `GridCascadeItem[]` | six quotes     | Quotes to page through.               |
+| `perPage`     | `number`            | `3`            | Cards shown at once.                  |
+| `loop`        | `boolean`           | `true`         | Wrap from the last page to the first. |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+### `GridCascadeItem`
+
+| Field                | Type     | Description                                              |
+| -------------------- | -------- | -------------------------------------------------------- |
+| `name` · `position`  | `string` | Reviewer identity.                                       |
+| `review`             | `string` | The quote. Clamped to three lines so a page stays level. |
+| `image` · `imageAlt` | `string` | Avatar; `imageAlt` falls back to `name`.                 |
+| `link`               | `string` | Adds the corner button. Omit it and none renders.        |
+
+::note
+The controls hide themselves when everything fits on one page, so passing three
+items with the default `perPage` gives a plain grid and no dead buttons.
+::
+
+## Accessibility
+
+::note
+Only the visible page is in the DOM, so a screen reader is never offered cards
+it cannot see. Both paging buttons are labelled, each star row carries its
+count, and profile buttons name the person they belong to. Under
+`prefers-reduced-motion: reduce` pages swap instantly with no drop or cascade.
+::

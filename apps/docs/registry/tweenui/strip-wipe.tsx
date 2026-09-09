@@ -27,10 +27,7 @@ export interface TestimonialSlide {
 
 export type TestimonialSplitFrom = 'left' | 'right';
 
-export interface TestimonialStripWipeProps extends Omit<
-  ComponentPropsWithoutRef<'section'>,
-  'title'
-> {
+export interface StripWipeProps extends Omit<ComponentPropsWithoutRef<'section'>, 'title'> {
   /** Quotes shown in the split slider. Defaults to a 4-slide sample. */
   testimonials?: TestimonialSlide[];
   /**
@@ -153,12 +150,12 @@ function playSlideVisual(slide: HTMLElement, instant: boolean, from: Testimonial
   }
 }
 
-export default function TestimonialStripWipe({
+export default function StripWipe({
   testimonials = DEFAULT_TESTIMONIALS,
   directional = true,
   className,
   ...props
-}: TestimonialStripWipeProps) {
+}: StripWipeProps) {
   const rootRef = useRef<HTMLElement>(null);
   const slideRefs = useRef<Array<HTMLElement | null>>([]);
   const loopDelayRef = useRef<gsap.core.Tween | null>(null);
@@ -279,7 +276,7 @@ export default function TestimonialStripWipe({
   return (
     <section
       ref={rootRef}
-      data-testimonial-strip-wipe
+      data-strip-wipe
       data-active-slide={activeIndex}
       data-split-from={splitFrom}
       className={cn('w-full', className)}
