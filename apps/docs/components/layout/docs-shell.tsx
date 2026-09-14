@@ -5,12 +5,14 @@ import { SiteFooter, SiteHeader, TableOfContents, useDocsConfig, type TocEntry }
 import { MobileNav } from '@/components/nav/mobile-nav';
 import { SidebarNav } from '@/components/nav/sidebar-nav';
 import { cn } from '@/lib/utils';
+import { HeaderActions } from './header-actions';
 import { HeaderLogo } from './header-logo';
 
 export type DocsShellProps = Readonly<{
   children: ReactNode;
   toc?: TocEntry[];
   page?: { relativePath?: string; title?: string };
+  starCount: number | null;
   className?: string;
 }>;
 
@@ -19,7 +21,7 @@ export type DocsShellProps = Readonly<{
  * layout hardcodes its own and exposes no sidebar slot). Keep the shell's
  * widths in sync with docora/src/layouts/docs-layout.tsx on upgrades.
  */
-export function DocsShell({ children, toc = [], page, className }: DocsShellProps) {
+export function DocsShell({ children, toc = [], page, starCount, className }: DocsShellProps) {
   const config = useDocsConfig();
 
   const navigation = config.navigation ?? [];
@@ -36,7 +38,9 @@ export function DocsShell({ children, toc = [], page, className }: DocsShellProp
             <HeaderLogo />
           </>
         }
-      />
+      >
+        <HeaderActions starCount={starCount} />
+      </SiteHeader>
 
       <div className="max-w-8xl mx-auto flex w-full flex-1 gap-8 px-4 sm:px-6">
         {hasSidebar && (

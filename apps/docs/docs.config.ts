@@ -8,9 +8,17 @@ export default defineDocsConfig({
     locale: 'en',
   },
 
-  socials: {
-    github: 'https://github.com/StaticMania/tween-ui',
+  header: {
+    logo: { light: '/logo.svg', alt: 'Tween UI' },
+    links: [
+      { label: 'Components', href: '/components' },
+      { label: 'Blocks', href: '/components#blocks' },
+    ],
   },
+
+  // No `socials` on purpose: docora renders those after the header's children
+  // slot, which would put GitHub to the right of the theme toggle. `github.url`
+  // below is the single source for the link, rendered by `HeaderActions`.
 
   toc: {
     title: 'On this page',
@@ -38,7 +46,7 @@ export default defineDocsConfig({
       {
         title: 'Components',
         links: [
-          { label: 'All components', href: '/' },
+          { label: 'All components', href: '/components' },
           { label: 'Icon Trail Button', href: '/component/icon-trail-button' },
           { label: 'Sliding Tabs', href: '/component/sliding-tabs' },
           { label: 'Avatar Reveal', href: '/component/avatar-reveal' },
@@ -47,6 +55,25 @@ export default defineDocsConfig({
             label: 'Number Counter',
             href: '/component/number-counter',
           },
+        ],
+      },
+      {
+        title: 'Blocks',
+        links: [
+          { label: 'All blocks', href: '/components#blocks' },
+          { label: 'Hero Tab Wipe', href: '/block/hero-tab-wipe' },
+          { label: 'Pricing Plan Switch', href: '/block/pricing-plan-switch' },
+          { label: 'Testimonial Strip Wipe', href: '/block/testimonial-strip-wipe' },
+          { label: 'CTA Starfall', href: '/block/cta-starfall' },
+        ],
+      },
+      {
+        title: 'Community',
+        links: [
+          { label: 'GitHub', href: 'https://github.com/StaticMania/tween-ui' },
+          { label: 'Report an issue', href: 'https://github.com/StaticMania/tween-ui/issues' },
+          { label: 'llms.txt', href: '/llms.txt' },
+          { label: 'MCP server', href: '/mcp' },
         ],
       },
     ],

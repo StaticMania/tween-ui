@@ -1,21 +1,33 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { compileMdxFile, createPageMetadata, DocsPage, DocsPager, LandingLayout } from 'docora';
-import { DocsShell } from '../../components/layout/docs-shell';
-import { mdxComponents } from '../../components/mdx/registry-components';
-import docsConfig from '../../docs.config';
-import { source } from '../../lib/source';
+import { LandingPage } from '@/components/landing/landing-page';
+import { DocsShell } from '@/components/layout/docs-shell';
+import { mdxComponents } from '@/components/mdx/registry-components';
+import docsConfig from '@/docs.config';
+import { fetchStarCount } from '@/lib/github';
+import { source } from '@/lib/source';
 
 type PageProps = Readonly<{
   params: Promise<{ slug?: string[] }>;
 }>;
 
+const isLanding = (slug: string[] | undefined): boolean => slug === undefined || slug.length === 0;
+
 export async function generateStaticParams() {
-  return source.getStaticParams();
+  return [{ slug: [] }, ...(await source.getStaticParams())];
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const page = await source.getPage((await params).slug);
+  const { slug } = await params;
+  if (isLanding(slug)) {
+    return {
+      title: { absolute: `${docsConfig.site.name} — ${docsConfig.site.description}` },
+      description: docsConfig.site.description,
+    };
+  }
+
+  const page = await source.getPage(slug);
   if (!page) return {};
 
   return createPageMetadata({ config: docsConfig, page });
@@ -23,6 +35,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+  const starCount = await fetchStarCount(docsConfig.github?.url);
+  if (isLanding(slug)) return <LandingPage starCount={starCount} />;
+
   const page = await source.getPage(slug);
   if (!page) notFound();
 
@@ -50,6 +65,7 @@ export default async function Page({ params }: PageProps) {
     <DocsShell
       toc={isBlock ? [] : toc}
       page={{ relativePath: page.relativePath, title: page.title }}
+      starCount={starCount}
     >
       <DocsPage title={frontmatter.title} description={frontmatter.description} section={section}>
         {content}
