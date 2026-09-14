@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from 'react';
 import { Check, Code2, Copy, Eye, RotateCw } from 'lucide-react';
+import { FullScreenPreview } from '@/components/preview/full-screen-preview';
 import { siteConfig } from '@/config/site';
 import { getEntry } from '@/lib/registry';
 import { cn, copyText } from '@/lib/utils';
@@ -73,7 +74,9 @@ export function ComponentPreview({
             ))}
           </div>
         )}
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-1">
+          {/* Blocks are built for a full page, so offer one. */}
+          {isBlock && <FullScreenPreview name={name} title={entry.title} />}
           <OpenIn
             name={name}
             title={entry.title}

@@ -44,7 +44,7 @@ export function DocsShell({ children, toc = [], page, starCount, className }: Do
 
       <div className="max-w-8xl mx-auto flex w-full flex-1 gap-8 px-4 sm:px-6">
         {hasSidebar && (
-          <aside className="no-scrollbar sticky top-16 hidden h-[calc(100svh-4rem)] w-64 shrink-0 overflow-y-auto py-8 pr-4 lg:block">
+          <aside className="no-scrollbar sticky top-16 -ml-2.5 hidden h-[calc(100svh-4rem)] w-64 shrink-0 overflow-y-auto py-8 pr-4 pl-2.5 lg:block">
             <SidebarNav items={navigation} />
           </aside>
         )}

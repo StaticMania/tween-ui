@@ -327,44 +327,6 @@ export default function Example() {
     },
   },
   {
-    name: 'media-scroll-spin',
-    type: 'block',
-    title: 'Media Scroll Spin',
-    description:
-      'A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware.',
-    media: {},
-    dependencies: ['gsap', '@gsap/react'],
-    registryDependencies: [],
-    cssVars: {},
-    files: [
-      {
-        path: 'registry/tweenui/media-scroll-spin.tsx',
-        target: 'components/tweenui/media-scroll-spin.tsx',
-        kind: 'react',
-      },
-    ],
-    variants: [
-      {
-        id: 'default',
-        label: 'Preview',
-        reactSource: 'registry/tweenui/media-scroll-spin.tsx',
-      },
-    ],
-    usage: {
-      react: `import MediaScrollSpin from '@/components/tweenui/media-scroll-spin';
-
-export default function Example() {
-  return (
-    <MediaScrollSpin
-      src="/images/ns-img-579.png"
-      alt="Decorative illustration of financial management platform interface with credit cards"
-      className="w-full max-w-[700px] lg:max-w-[897px]"
-    />
-  );
-}`,
-    },
-  },
-  {
     name: 'card-hover-expand',
     type: 'block',
     title: 'Card Hover Expand',

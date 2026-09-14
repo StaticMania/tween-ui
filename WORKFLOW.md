@@ -21,8 +21,8 @@ tween-ui/
 ├─ .github/workflows/ci.yml   # registry:build → generated-file drift → typecheck → test → build
 ├─ apps/docs/                 # Docora site AND the registry (source of truth)
 │  ├─ content/
-│  │  ├─ component/<name>.mdx  # flat — the URL is /component/<name>
-│  │  └─ block/<name>.mdx      #        and /block/<name>
+│  │  ├─ 1.component/<name>.mdx  # flat — the URL is /component/<name>
+│  │  └─ 2.block/<name>.mdx      #        and /block/<name> (the N. prefix only sets sidebar order)
 │  ├─ registry/
 │  │  ├─ registry-ui.ts        # component entries
 │  │  ├─ registry-blocks.ts    # block entries
@@ -77,7 +77,7 @@ of previews, toggles or menus.
 1. DROP     → registry/tweenui/<name>.tsx        (self-contained React source)
 2. DEMO     → registry/demos/<name>.tsx          (what the preview renders)
 3. REGISTER → one entry in registry-ui.ts or registry-blocks.ts
-4. DOCUMENT → content/component/<name>.mdx or content/block/<name>.mdx
+4. DOCUMENT → content/1.component/<name>.mdx or content/2.block/<name>.mdx
 5. VERIFY   → pnpm registry:build && pnpm test
 ```
 

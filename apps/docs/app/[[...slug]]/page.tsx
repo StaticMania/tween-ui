@@ -6,6 +6,12 @@ import { DocsShell } from '@/components/layout/docs-shell';
 import { mdxComponents } from '@/components/mdx/registry-components';
 import docsConfig from '@/docs.config';
 import { fetchStarCount } from '@/lib/github';
+import {
+  registryEntryForSlug,
+  registryJsonLd,
+  registryPageMetadata,
+  serializeJsonLd,
+} from '@/lib/metadata';
 import { source } from '@/lib/source';
 
 type PageProps = Readonly<{
@@ -30,7 +36,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const page = await source.getPage(slug);
   if (!page) return {};
 
-  return createPageMetadata({ config: docsConfig, page });
+  const entry = registryEntryForSlug(slug);
+  return entry
+    ? registryPageMetadata(entry, page)
+    : createPageMetadata({ config: docsConfig, page });
 }
 
 export default async function Page({ params }: PageProps) {
@@ -60,6 +69,7 @@ export default async function Page({ params }: PageProps) {
   // (Installation / Usage / Props). An empty toc drops the right rail, so the
   // preview column reclaims its 240px + gap.
   const isBlock = slug?.[0] === 'block';
+  const entry = registryEntryForSlug(slug);
 
   return (
     <DocsShell
@@ -67,6 +77,12 @@ export default async function Page({ params }: PageProps) {
       page={{ relativePath: page.relativePath, title: page.title }}
       starCount={starCount}
     >
+      {entry && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(registryJsonLd(entry)) }}
+        />
+      )}
       <DocsPage title={frontmatter.title} description={frontmatter.description} section={section}>
         {content}
       </DocsPage>

@@ -10,10 +10,6 @@ export default defineDocsConfig({
 
   header: {
     logo: { light: '/logo.svg', alt: 'Tween UI' },
-    links: [
-      { label: 'Components', href: '/components' },
-      { label: 'Blocks', href: '/components#blocks' },
-    ],
   },
 
   // No `socials` on purpose: docora renders those after the header's children

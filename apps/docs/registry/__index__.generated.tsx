@@ -36,7 +36,6 @@ export const demos: Record<string, ComponentType> = {
   'blog-hover-expand:default': dynamic(() => import('./demos/blog-hover-expand')),
   'integration-hub:default': dynamic(() => import('./demos/integration-hub')),
   'hero-rotating-cards:default': dynamic(() => import('./demos/hero-rotating-cards')),
-  'media-scroll-spin:default': dynamic(() => import('./demos/media-scroll-spin')),
   'card-hover-expand:default': dynamic(() => import('./demos/card-hover-expand')),
   'project-spotlight-grid:default': dynamic(() => import('./demos/project-spotlight-grid')),
   'column-drift:default': dynamic(() => import('./demos/column-drift')),

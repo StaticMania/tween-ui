@@ -96,7 +96,6 @@ const pop: Play = (svg) =>
  */
 const PLAY: Record<string, Play> = {
   'rotate-cw': spin,
-  'disc-3': spin,
   orbit: spin,
   rainbow: spin,
   'audio-lines': wave,

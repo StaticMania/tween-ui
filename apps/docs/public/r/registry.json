@@ -315,18 +315,6 @@
       ]
     },
     {
-      "name": "media-scroll-spin",
-      "type": "registry:block",
-      "title": "Media Scroll Spin",
-      "description": "A decorative image that spins continuously and speeds up in the scroll direction. GSAP-driven and reduced-motion aware.",
-      "files": [
-        {
-          "path": "components/tweenui/media-scroll-spin.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "card-hover-expand",
       "type": "registry:block",
       "title": "Card Hover Expand",

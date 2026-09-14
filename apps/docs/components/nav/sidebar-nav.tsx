@@ -151,7 +151,7 @@ export function SidebarNav({ items, onNavigate, className }: SidebarNavProps) {
   useEffect(() => {
     move(hovered ?? pathname, placed.current);
     placed.current = true;
-  }, [hovered, pathname, move]);
+  }, [hovered, pathname, items, move]);
 
   useEffect(() => {
     const onResize = () => move(hovered ?? pathname, false);

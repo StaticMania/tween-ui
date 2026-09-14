@@ -3,6 +3,17 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { afterAll, afterEach, beforeEach, vi } from 'vitest';
 
+// `next/font/google` is compiled away by the Next build and is not callable
+// under Vitest. docora calls `Public_Sans()` when its barrel loads, so any test
+// that imports docora — the metadata helpers, for one — needs this stand-in.
+vi.mock('next/font/google', () => ({
+  Public_Sans: () => ({
+    className: 'font-sans',
+    variable: '--docs-font-sans',
+    style: { fontFamily: 'sans-serif' },
+  }),
+}));
+
 // jsdom has no matchMedia; the button hook queries it on interaction, and
 // registering ScrollTrigger below reads it too — so this has to come first.
 if (!window.matchMedia) {
