@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 import { cn, copyText } from '@/lib/utils';
 
 export const PMS = [
@@ -62,7 +63,11 @@ export function CommandTabs({ commands }: { commands: Record<PmId, string> }) {
   );
 }
 
-export function shadcnAddCommands(item: string): Record<PmId, string> {
+export const registryItemUrl = (name: string) =>
+  `${siteConfig.url}/r/${name.replace(/^@tweenui\//, '')}.json`;
+
+export function shadcnAddCommands(names: string[]): Record<PmId, string> {
+  const item = names.map(registryItemUrl).join(' ');
   return {
     npm: `npx shadcn@latest add ${item}`,
     pnpm: `pnpm dlx shadcn@latest add ${item}`,

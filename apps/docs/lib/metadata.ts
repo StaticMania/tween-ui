@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { createPageMetadata, createRootMetadata } from 'docora';
 import { siteConfig } from '@/config/site';
 import docsConfig from '@/docs.config';
+import { buildOgImageUrl } from '@/lib/og-image/og-image-params';
 import { getEntry, hrefFor } from '@/registry/index';
 import type { RegistryEntry } from '@/registry/schema';
 
@@ -113,6 +114,7 @@ export function registryPageMetadata(
   const base = createPageMetadata({ config: docsConfig, page });
   const description = clampDescription(entry.description);
   const title = `${entry.title} — Animated React ${kindLabel(entry)}`;
+  const ogImage = buildOgImageUrl({ title: entry.title, description, kind: entry.type });
 
   return {
     ...base,
@@ -125,11 +127,13 @@ export function registryPageMetadata(
       title,
       description,
       url: absolute(hrefFor(entry)),
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       ...base.twitter,
       title,
       description,
+      images: [ogImage],
     },
   };
 }

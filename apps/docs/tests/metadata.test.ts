@@ -68,6 +68,10 @@ describe('registryPageMetadata', () => {
       url: 'https://tween-ui.vercel.app/block/grid-cascade',
     });
     expect(metadata.twitter).toMatchObject({ card: 'summary_large_image' });
+    expect(JSON.stringify(metadata.openGraph?.images)).toContain(
+      'https://tween-ui.vercel.app/og?title=Grid+Cascade'
+    );
+    expect(JSON.stringify(metadata.openGraph?.images)).toContain('kind=block');
     expect(metadata.alternates?.canonical).toBe('https://tween-ui.vercel.app/block/grid-cascade');
   });
 
