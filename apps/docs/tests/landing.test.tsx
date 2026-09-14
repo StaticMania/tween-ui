@@ -19,7 +19,7 @@ vi.mock('next/navigation', () => ({
 
 vi.mock('docora', () => ({
   useDocsConfig: () => ({
-    site: { name: 'Tween UI', url: 'https://tweenui.dev' },
+    site: { name: 'Tween UI', url: 'https://tween-ui.vercel.app' },
     github: { url: 'https://github.com/StaticMania/tween-ui' },
   }),
 }));
@@ -124,7 +124,7 @@ describe('landing sections', () => {
   it('carries the install command and routes to the gallery', () => {
     render(<Cta />);
     expect(
-      screen.getByText('npx shadcn@latest add https://tweenui.dev/r/icon-trail-button.json')
+      screen.getByText('npx shadcn@latest add https://tween-ui.vercel.app/r/icon-trail-button.json')
     ).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: /browse components/i }));
     expect(push).toHaveBeenCalledWith('/components');

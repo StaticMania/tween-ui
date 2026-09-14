@@ -1,4 +1,6 @@
-import { createOgRoute } from 'docora';
-import docsConfig from '../../docs.config';
+import { parseOgImageParams } from '@/lib/og-image/og-image-params';
+import { renderOgImage } from '@/lib/og-image/render-og-image';
 
-export const { GET } = createOgRoute(docsConfig);
+export async function GET(request: Request) {
+  return renderOgImage(parseOgImageParams(new URL(request.url).searchParams));
+}

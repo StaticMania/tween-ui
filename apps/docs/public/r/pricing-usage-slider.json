@@ -8,7 +8,7 @@
     "@number-flow/react"
   ],
   "registryDependencies": [
-    "slide-arrow-button"
+    "https://tween-ui.vercel.app/r/slide-arrow-button.json"
   ],
   "cssVars": {
     "theme": {}

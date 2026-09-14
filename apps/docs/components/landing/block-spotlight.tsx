@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { siteConfig } from '@/config/site';
 import { registry } from '@/lib/registry';
 import HeroTabWipe from '@/registry/tweenui/hero-tab-wipe';
 import { RevealGroup } from './reveal-group';
@@ -76,7 +77,7 @@ export function BlockSpotlight() {
                     <span className="bg-border-accented size-2.5 rounded-full" />
                   </span>
                   <span className="bg-muted text-dimmed ml-2 flex-1 truncate rounded-md px-2.5 py-1 text-center font-mono text-[11px]">
-                    tweenui.dev/block/{FEATURED}
+                    {new URL(siteConfig.url).host}/block/{FEATURED}
                   </span>
                 </div>
                 <HeroTabWipe className="px-2 py-4 sm:px-5 sm:py-6" />

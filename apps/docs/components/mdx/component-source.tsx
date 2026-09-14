@@ -93,7 +93,7 @@ export function ComponentSource({ name }: { name: string }) {
   if (entry.registryDependencies.length > 0) {
     steps.push({
       title: 'Install the following registry dependencies:',
-      content: <CommandTabs commands={shadcnAddCommands(entry.registryDependencies.join(' '))} />,
+      content: <CommandTabs commands={shadcnAddCommands(entry.registryDependencies)} />,
     });
   }
 

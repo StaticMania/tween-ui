@@ -9,7 +9,7 @@
     "@gsap/react"
   ],
   "registryDependencies": [
-    "shiny-button"
+    "https://tween-ui.vercel.app/r/shiny-button.json"
   ],
   "cssVars": {
     "theme": {}
