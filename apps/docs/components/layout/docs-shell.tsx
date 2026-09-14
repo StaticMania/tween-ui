@@ -1,12 +1,13 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { SiteFooter, SiteHeader, TableOfContents, useDocsConfig, type TocEntry } from 'docora';
+import { SiteHeader, TableOfContents, useDocsConfig, type TocEntry } from 'docora';
 import { MobileNav } from '@/components/nav/mobile-nav';
 import { SidebarNav } from '@/components/nav/sidebar-nav';
 import { cn } from '@/lib/utils';
 import { HeaderActions } from './header-actions';
 import { HeaderLogo } from './header-logo';
+import { SiteFooter } from './site-footer';
 
 export type DocsShellProps = Readonly<{
   children: ReactNode;
