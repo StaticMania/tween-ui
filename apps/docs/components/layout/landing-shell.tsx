@@ -1,9 +1,10 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { SiteFooter, SiteHeader, useDocsConfig } from 'docora';
+import { SiteHeader, useDocsConfig } from 'docora';
 import { HeaderActions } from '@/components/layout/header-actions';
 import { HeaderLogo } from '@/components/layout/header-logo';
+import { SiteFooter } from '@/components/layout/site-footer';
 import { MobileNav } from '@/components/nav/mobile-nav';
 
 export type LandingShellProps = Readonly<{

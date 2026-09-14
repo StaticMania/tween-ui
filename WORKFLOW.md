@@ -148,9 +148,10 @@ Visual regression (Playwright) is not set up.
   If a gallery filter is ever wanted, reintroduce it as UI first.
 - `isNew` is kept as an opt-in flag, set per entry when something ships. It is
   currently set on none.
-- **Docora is vendored in two places** — `components/layout/docs-shell.tsx` mirrors
-  its `DocsLayout`, and `components/nav/mobile-nav.tsx` replaces the drawer that
-  its `SiteHeader` hardcodes. Re-check both on a docora upgrade; `globals.css`
+- **Docora is vendored in three places** — `components/layout/docs-shell.tsx` mirrors
+  its `DocsLayout`, `components/nav/mobile-nav.tsx` replaces the drawer that
+  its `SiteHeader` hardcodes, and `components/layout/site-footer.tsx` replaces its
+  `SiteFooter` so the bottom line can credit Docora instead of Docus. Re-check both on a docora upgrade; `globals.css`
   also hides docora's built-in mobile trigger by structural selector.
 - Font: token stays `font-inter-tight`, value set to **Outfit** (loaded from Google Fonts).
 - Button trail icon: **custom diagonal-dots SVG** (not lucide).
