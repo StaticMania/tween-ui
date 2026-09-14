@@ -71,12 +71,18 @@ export function Cta() {
 
           <div
             data-reveal
-            className="mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+            className="mt-10 flex w-full max-w-72 flex-col gap-3 sm:mt-9 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
           >
-            <IconTrailButton onClick={() => router.push('/components')}>
+            <IconTrailButton
+              className="w-full justify-center sm:w-auto"
+              onClick={() => router.push('/components')}
+            >
               Browse components
             </IconTrailButton>
-            <IconTrailButton onClick={() => router.push('/components#blocks')}>
+            <IconTrailButton
+              className="w-full justify-center sm:w-auto"
+              onClick={() => router.push('/components#blocks')}
+            >
               Browse blocks
             </IconTrailButton>
           </div>

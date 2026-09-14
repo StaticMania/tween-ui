@@ -39,7 +39,7 @@ export function HeaderLogo() {
           className={cn('hidden h-6 w-auto dark:block', logo.className)}
         />
       )}
-      <span className="font-semibold tracking-tight">{title}</span>
+      <span className="font-semibold tracking-tight whitespace-nowrap">{title}</span>
     </Link>
   );
 }

@@ -283,6 +283,12 @@ body {
   display: none;
 }
 
+@media (min-width: 48rem) {
+  .tween-header > div {
+    grid-template-columns: minmax(max-content, 1fr) minmax(0, 28rem) minmax(max-content, 1fr);
+  }
+}
+
 /* Sidebar and mobile-drawer nav scroll without showing scrollbar chrome. The
    nav is a fixed-height column that almost always overflows, so the bar was
    permanent visual noise. Scrolling (wheel, trackpad, keyboard) is untouched. */

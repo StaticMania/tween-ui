@@ -123,12 +123,12 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
     <section aria-labelledby="hero-title" className="px-2 pt-2 sm:px-4 sm:pt-4">
       <div
         ref={rootRef}
-        className="bg-tween-ink stage-grid relative flex min-h-[calc(100svh-4.5rem)] flex-col overflow-hidden rounded-2xl py-10 text-white sm:rounded-3xl sm:py-14 dark:ring-1 dark:ring-white/10"
+        className="bg-tween-ink stage-grid relative flex min-h-[calc(100svh-4.5rem)] flex-col overflow-hidden rounded-2xl pt-16 pb-10 text-white sm:rounded-3xl sm:py-14 dark:ring-1 dark:ring-white/10"
       >
         <RevealGroup trigger="load" delay={0.1} className="flex flex-1 flex-col">
           <div className="main-container flex flex-1 items-center">
-            <div className="grid w-full items-center gap-10 lg:grid-cols-12 lg:gap-16">
-              <div className="lg:col-span-7">
+            <div className="grid w-full items-center gap-12 px-2 sm:gap-10 sm:px-0 lg:grid-cols-12 lg:gap-16">
+              <div className="text-center lg:col-span-7 lg:text-left">
                 <p
                   data-reveal
                   className="border-tween-teal-soft/25 text-tween-teal-soft mb-6 inline-flex items-center gap-2.5 rounded-full border bg-white/[0.04] px-3.5 py-1.5 font-mono text-[11px] sm:text-xs"
@@ -137,7 +137,8 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
                     className="bg-tween-lime size-1.5 shrink-0 rounded-full"
                     aria-hidden="true"
                   />
-                  {componentCount} components · {blockCount} blocks · React 19 + Tailwind v4
+                  {componentCount} components · {blockCount} blocks
+                  <span className="hidden sm:inline"> · React 19 + Tailwind v4</span>
                 </p>
 
                 <h1
@@ -152,17 +153,26 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
 
                 <p
                   data-reveal-text
-                  className="mt-6 max-w-[560px] text-[15px] leading-relaxed text-pretty text-white/70 sm:text-base md:text-lg"
+                  className="mx-auto mt-6 max-w-[560px] text-[15px] leading-relaxed text-pretty text-white/70 sm:text-base md:text-lg lg:mx-0"
                 >
                   Animated React components built with GSAP and Tailwind CSS. The CLI copies the
                   whole file into your project — there is no package to install and no API to learn.
                 </p>
 
-                <div data-reveal className="mt-9 flex flex-wrap items-center gap-3 sm:gap-4">
-                  <IconTrailButton onClick={() => router.push('/components')}>
+                <div
+                  data-reveal
+                  className="mx-auto mt-10 flex w-full max-w-72 flex-col gap-3 sm:mt-9 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start"
+                >
+                  <IconTrailButton
+                    className="w-full justify-center sm:w-auto"
+                    onClick={() => router.push('/components')}
+                  >
                     Browse components
                   </IconTrailButton>
-                  <IconTrailButton onClick={() => router.push('/components#blocks')}>
+                  <IconTrailButton
+                    className="w-full justify-center sm:w-auto"
+                    onClick={() => router.push('/components#blocks')}
+                  >
                     Browse blocks
                   </IconTrailButton>
                 </div>

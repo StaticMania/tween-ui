@@ -40,10 +40,10 @@ describe('landing hero', () => {
   it('states the live registry counts in the badge', () => {
     renderHero();
     expect(
-      screen.getByText(
-        `${COMPONENT_COUNT} components · ${BLOCK_COUNT} blocks · React 19 + Tailwind v4`
-      )
-    ).toBeInTheDocument();
+      screen.getByText(`${COMPONENT_COUNT} components · ${BLOCK_COUNT} blocks`, { exact: false })
+    ).toHaveTextContent(
+      `${COMPONENT_COUNT} components · ${BLOCK_COUNT} blocks · React 19 + Tailwind v4`
+    );
   });
 
   it('keeps the install command and GitHub out of the hero', () => {
