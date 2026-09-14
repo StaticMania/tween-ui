@@ -10,7 +10,7 @@
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "registry:build": "turbo run registry:build",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install || exit 0"
   },
   "commitlint": {
     "extends": [
