@@ -52,6 +52,22 @@ describe('registry integrity', () => {
           true
         );
       });
+
+      it('depends only on items that exist in this registry', () => {
+        for (const dep of entry.registryDependencies) {
+          expect(
+            registry.some((other) => other.name === dep),
+            `unknown dependency: ${dep}`
+          ).toBe(true);
+        }
+      });
+
+      it('ships registry dependencies as absolute URLs the shadcn CLI can fetch', () => {
+        const item = JSON.parse(readFileSync(abs(`public/r/${entry.name}.json`), 'utf8'));
+        for (const dep of item.registryDependencies) {
+          expect(dep).toMatch(/^https?:\/\/.+\/r\/[a-z0-9-]+\.json$/);
+        }
+      });
     });
   }
 });

@@ -10,6 +10,7 @@
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
     "registry:build": {
+      "env": ["REGISTRY_URL"],
       "outputs": ["registry/**", "public/r/**"]
     },
     "test": {

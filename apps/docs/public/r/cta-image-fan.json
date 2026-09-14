@@ -6,8 +6,8 @@
   "description": "A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware.",
   "dependencies": [],
   "registryDependencies": [
-    "image-fan-slider",
-    "shiny-button"
+    "https://tween-ui.vercel.app/r/image-fan-slider.json",
+    "https://tween-ui.vercel.app/r/shiny-button.json"
   ],
   "cssVars": {
     "theme": {}

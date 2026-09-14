@@ -13,11 +13,18 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { registryItemSchema, registrySchema } from 'shadcn/schema';
 import { codeToHtml } from 'shiki';
+import { siteConfig } from '../config/site';
 import { registry } from '../registry/index';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const appRoot = resolve(here, '..'); // apps/docs
 const publicR = join(appRoot, 'public', 'r');
+
+const registryUrl = (process.env.REGISTRY_URL ?? siteConfig.url).replace(/\/+$/, '');
+const registryNames = new Set(registry.map((entry) => entry.name));
+
+const resolveRegistryDependency = (dep: string) =>
+  registryNames.has(dep) ? `${registryUrl}/r/${dep}.json` : dep;
 
 const read = (rel: string) => readFile(join(appRoot, rel), 'utf8');
 
@@ -83,7 +90,7 @@ async function main() {
       title: entry.title,
       description: entry.description,
       dependencies: entry.dependencies,
-      registryDependencies: entry.registryDependencies,
+      registryDependencies: entry.registryDependencies.map(resolveRegistryDependency),
       cssVars: {
         theme: Object.fromEntries(
           Object.entries(entry.cssVars).map(([k, v]) => [k.replace(/^--/, ''), v])
@@ -112,7 +119,7 @@ async function main() {
     });
   }
 
-  const registryIndex = { name: 'tween-ui', homepage: 'https://tweenui.dev', items: index };
+  const registryIndex = { name: 'tween-ui', homepage: registryUrl, items: index };
   const parsedIndex = registrySchema.safeParse(registryIndex);
   if (!parsedIndex.success) {
     throw new Error(

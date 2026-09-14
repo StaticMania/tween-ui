@@ -4,7 +4,7 @@ export default defineDocsConfig({
   site: {
     name: 'Tween UI',
     description: 'GSAP & CSS animated components for React. Copy the source, own the animation.',
-    url: 'https://tweenui.dev',
+    url: 'https://tween-ui.vercel.app',
     locale: 'en',
   },
 
