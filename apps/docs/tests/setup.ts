@@ -39,6 +39,7 @@ if (!globalThis.ResizeObserver) {
 }
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.disable(false, false);
 
 // GSAP keeps a global ticker, and ScrollTrigger keeps document-level scroll and
 // resize listeners. Both outlive a test file: left attached, a listener fires a
