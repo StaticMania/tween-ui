@@ -3,7 +3,7 @@
   "name": "logo-wall-shuffle",
   "type": "registry:block",
   "title": "Logo Wall Shuffle",
-  "description": "An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it. Pauses off-screen and in background tabs. GSAP-driven and reduced-motion aware.",
+  "description": "An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it. Every tile is visited before any repeats, and the loop pauses off-screen and in background tabs.",
   "dependencies": [
     "gsap",
     "@gsap/react"

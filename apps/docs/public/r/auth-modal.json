@@ -3,7 +3,7 @@
   "name": "auth-modal",
   "type": "registry:ui",
   "title": "Auth Modal",
-  "description": "A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware.",
+  "description": "A sign-in dialog: the backdrop fades, the panel scales up, then the close button, title, providers and email field stagger in. Closing plays the sequence in reverse.",
   "dependencies": [
     "gsap",
     "@gsap/react"

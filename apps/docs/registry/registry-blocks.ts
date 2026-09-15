@@ -11,7 +11,7 @@ export const blocks: RegistryEntry[] = [
     type: 'block',
     title: 'Pricing Plan Switch',
     description:
-      'A pricing section where picking a plan morphs the name badge, crossfades the description, and spins the price with Number Flow, plus a monthly/yearly toggle and an activating feature checklist. GSAP-driven and reduced-motion aware.',
+      'A pricing section where picking a plan morphs the name badge, crossfades the description and spins the price with Number Flow, while the checklist lights up its included rows. A monthly/yearly toggle re-spins the price.',
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],
@@ -43,7 +43,7 @@ export default function Example() {
     type: 'block',
     title: 'Process Card Reveal',
     description:
-      'A process section where a numbered timeline fills, then the next stacked card slides and blurs into place. Hover pauses the loop; clicking a step jumps there. GSAP-driven and reduced-motion aware.',
+      'Numbered steps on a timeline whose connector fills before the next card slides and blurs into place — image one way, copy the other. Hover pauses the loop; clicking a step jumps there.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -75,7 +75,7 @@ export default function Example() {
     type: 'block',
     title: 'Process Sticky Steps',
     description:
-      'A process section where a sticky heading and numbered buttons track the card in view. Clicking a step jumps there. Reduced-motion aware.',
+      'A process block whose heading, divider and step numbers stay sticky inside the section while the cards scroll past them. No GSAP — just Intersection Observer.',
     media: {},
     dependencies: [],
     registryDependencies: [],
@@ -107,7 +107,7 @@ export default function Example() {
     type: 'block',
     title: 'Strip Wipe',
     description:
-      'A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware.',
+      'A split testimonial slider whose photo wipes in as tiled strips beside the quote, the index ticking over on Number Flow. Prev and next reverse the wipe direction.',
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],
@@ -139,7 +139,7 @@ export default function Example() {
     type: 'block',
     title: 'Rating Carousel',
     description:
-      'A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots.',
+      'A Swiper testimonial row of rating cards: drag or swipe it, and off-window cards fade and blur as they leave. Autoplay pauses on hover, and dots jump to a card.',
     media: {},
     dependencies: ['swiper'],
     registryDependencies: [],
@@ -171,7 +171,7 @@ export default function Example() {
     type: 'block',
     title: 'CTA Image Fan',
     description:
-      'A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware.',
+      'A call-to-action with a fanned photo stack auto-advancing above the headline and a shiny button below. Built from Image Fan Slider and Shiny Button.',
     media: {},
     dependencies: [],
     registryDependencies: ['image-fan-slider', 'shiny-button'],
@@ -203,7 +203,7 @@ export default function Example() {
     type: 'block',
     title: 'CTA Photo Headline',
     description:
-      'A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware.',
+      'A call-to-action where avatars pop in above a heading with two photos tucked into the copy — a pill that grows from the left, then a tilted square that drops into place.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: ['slide-arrow-button'],
@@ -235,7 +235,7 @@ export default function Example() {
     type: 'block',
     title: 'Blog Hover Expand',
     description:
-      'A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware.',
+      'A three-post blog row where the hovered card grows wider, its photo scales and tilts, and the title draws an underline. Pure CSS.',
     media: {},
     dependencies: [],
     registryDependencies: [],
@@ -267,7 +267,7 @@ export default function Example() {
     type: 'block',
     title: 'Integration Hub',
     description:
-      'A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware.',
+      'A hub-and-spoke integrations diagram: the center pops in, paths draw out to six logos, then a dot travels each line. Uses MotionPathPlugin.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -299,7 +299,7 @@ export default function Example() {
     type: 'block',
     title: 'Hero Rotating Cards',
     description:
-      'A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware.',
+      'A hero wheel of photo cards set on a large circle so only the top arc shows, spinning slowly so the next idea always comes into view.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -331,7 +331,7 @@ export default function Example() {
     type: 'block',
     title: 'Card Hover Expand',
     description:
-      'A card row where hovering one widens it, fades the photo in, and drops the copy to the bottom. CSS-driven and reduced-motion aware.',
+      'A card row where the hovered card grows wider, its photo fades in and the title drops to the bottom over a gradient. Every card stays expanded on small screens. Pure CSS.',
     media: {},
     dependencies: [],
     registryDependencies: [],
@@ -363,7 +363,7 @@ export default function Example() {
     type: 'block',
     title: 'Project Spotlight Grid',
     description:
-      'A staggered project grid where the hovered tile tilts toward the cursor in 3D while the rest scale back and dim. GSAP-driven, pointer-only, and reduced-motion aware.',
+      'A staggered project grid — tile heights cycle every six cards — where the hovered tile tilts toward the cursor in 3D while its siblings scale back and dim. Pointer-only.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -395,7 +395,7 @@ export default function Example() {
     type: 'block',
     title: 'Column Drift',
     description:
-      'Three columns of review cards that swing in from the sides as the section scrolls up, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP-driven and reduced-motion aware.',
+      'Three columns of review cards that swing in from the sides as the section scrolls, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP + ScrollTrigger.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -427,7 +427,7 @@ export default function Example() {
     type: 'block',
     title: 'Team Scatter Focus',
     description:
-      'A team collage whose cards fly in from their own directions, then blur and shrink away from whichever one you hover. Falls back to a stacked grid on small screens. GSAP-driven and reduced-motion aware.',
+      'A scattered team collage whose cards each fly in from their own direction, then blur and shrink back from whichever one you hover. Falls back to a stacked grid below lg.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -459,7 +459,7 @@ export default function Example() {
     type: 'block',
     title: 'Hero Tab Wipe',
     description:
-      'A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. A thumbnail tab strip picks a slide, and it autoplays between clicks. GSAP-driven and reduced-motion aware.',
+      'A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. The thumbnail strip is a real tablist, and the stage autoplays between clicks.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -491,7 +491,7 @@ export default function Example() {
     type: 'block',
     title: 'Logo Wall Shuffle',
     description:
-      'An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it. Pauses off-screen and in background tabs. GSAP-driven and reduced-motion aware.',
+      'An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it. Every tile is visited before any repeats, and the loop pauses off-screen and in background tabs.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -529,7 +529,7 @@ export default function Example() {
     type: 'block',
     title: 'Line Sweep',
     description:
-      'A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText, and reduced-motion aware.',
+      'A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -561,7 +561,7 @@ export default function Example() {
     type: 'block',
     title: 'CTA Starfall',
     description:
-      'A dark call-to-action under a slow field of drifting stars, lit by a violet bloom at the top edge. The field is full on the first frame and pauses off-screen. GSAP-driven and reduced-motion aware.',
+      'A dark closing section under a slow field of drifting stars lit by a violet bloom. The field is full on the first frame rather than spawning over time, and pauses off-screen and in background tabs.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: ['shiny-button'],
@@ -625,7 +625,7 @@ export default function Example() {
     type: 'block',
     title: 'Grid Cascade',
     description:
-      'A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above. GSAP-driven and reduced-motion aware.',
+      'A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above, so the two never overlap mid-flight.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],

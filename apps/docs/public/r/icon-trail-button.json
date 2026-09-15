@@ -3,7 +3,7 @@
   "name": "icon-trail-button",
   "type": "registry:ui",
   "title": "Icon Trail Button",
-  "description": "A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware.",
+  "description": "A pill button whose icon pill expands on hover or focus, playing out a staggered chevron trail before it parks. CSS transitions and a small state machine — no animation library.",
   "dependencies": [],
   "registryDependencies": [],
   "cssVars": {

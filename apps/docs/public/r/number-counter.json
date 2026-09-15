@@ -3,7 +3,7 @@
   "name": "number-counter",
   "type": "registry:ui",
   "title": "Number Counter",
-  "description": "Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware.",
+  "description": "Digits that spin up once when the stat scrolls into view. ScrollTrigger fires it, Number Flow handles the count.",
   "dependencies": [
     "gsap",
     "@gsap/react",

@@ -3,7 +3,7 @@
   "name": "faq-accordion",
   "type": "registry:ui",
   "title": "FAQ Accordion",
-  "description": "A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware.",
+  "description": "A single-open accordion that animates its height open while the answer reveals line by line through a SplitText mask and the icon morphs from plus to minus.",
   "dependencies": [
     "gsap",
     "@gsap/react"

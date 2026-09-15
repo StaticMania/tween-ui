@@ -3,7 +3,7 @@
   "name": "hero-rotating-cards",
   "type": "registry:block",
   "title": "Hero Rotating Cards",
-  "description": "A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware.",
+  "description": "A hero wheel of photo cards set on a large circle so only the top arc shows, spinning slowly so the next idea always comes into view.",
   "dependencies": [
     "gsap",
     "@gsap/react"

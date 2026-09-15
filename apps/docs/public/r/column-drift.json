@@ -3,7 +3,7 @@
   "name": "column-drift",
   "type": "registry:block",
   "title": "Column Drift",
-  "description": "Three columns of review cards that swing in from the sides as the section scrolls up, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP-driven and reduced-motion aware.",
+  "description": "Three columns of review cards that swing in from the sides as the section scrolls, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP + ScrollTrigger.",
   "dependencies": [
     "gsap",
     "@gsap/react"

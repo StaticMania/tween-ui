@@ -1,5 +1,39 @@
+import type { ReactNode } from 'react';
 import { registry } from '@/lib/registry';
-import { ComponentCard } from './component-card';
+// Preview-less cards for now. Switch back to './component-card' (v1) to bring
+// the poster + hover-video previews back once the media is in public/media.
+import { ComponentCardV2 as ComponentCard } from './component-card-v2';
+
+/**
+ * Section heading for the gallery. `not-prose` opts the gallery out of docora's
+ * typography, so the heading sets its own — matching the site's display style
+ * (Outfit medium, tight tracking) rather than the small uppercase label it used
+ * to be, which read as a form field next to the intro paragraph.
+ */
+function GallerySection({
+  title,
+  count,
+  children,
+  ...rest
+}: {
+  title: string;
+  count: number;
+  children: ReactNode;
+  id?: string;
+  className?: string;
+}) {
+  return (
+    <section {...rest}>
+      <div className="border-border mb-6 flex items-baseline gap-3 border-b pb-3">
+        <h2 className="text-highlighted text-xl font-medium tracking-[-0.02em]">{title}</h2>
+        <span className="text-dimmed font-mono text-xs tabular-nums">{count}</span>
+      </div>
+      {children}
+    </section>
+  );
+}
+
+const GRID = 'grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3';
 
 /**
  * Gallery page. Renders the registry as cards, with a "New" section first
@@ -11,41 +45,32 @@ export function ComponentGallery() {
   const newest = components.filter((e) => e.isNew);
 
   return (
-    <div className="not-prose flex flex-col gap-10">
+    <div className="not-prose mt-10 flex flex-col gap-14">
       {newest.length > 0 && (
-        <section>
-          <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wide uppercase">
-            New
-          </h2>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <GallerySection title="New" count={newest.length}>
+          <div className={GRID}>
             {newest.map((entry) => (
               <ComponentCard key={entry.name} entry={entry} />
             ))}
           </div>
-        </section>
+        </GallerySection>
       )}
 
-      <section>
-        <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wide uppercase">
-          All components
-        </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <GallerySection title="All components" count={components.length}>
+        <div className={GRID}>
           {components.map((entry) => (
             <ComponentCard key={entry.name} entry={entry} />
           ))}
         </div>
-      </section>
+      </GallerySection>
 
-      <section id="blocks" className="scroll-mt-24">
-        <h2 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wide uppercase">
-          All blocks
-        </h2>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <GallerySection title="All blocks" count={blocks.length} id="blocks" className="scroll-mt-24">
+        <div className={GRID}>
           {blocks.map((entry) => (
             <ComponentCard key={entry.name} entry={entry} />
           ))}
         </div>
-      </section>
+      </GallerySection>
     </div>
   );
 }

@@ -3,7 +3,7 @@
   "name": "cta-image-fan",
   "type": "registry:block",
   "title": "CTA Image Fan",
-  "description": "A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware.",
+  "description": "A call-to-action with a fanned photo stack auto-advancing above the headline and a shiny button below. Built from Image Fan Slider and Shiny Button.",
   "dependencies": [],
   "registryDependencies": [
     "https://tween-ui.vercel.app/r/image-fan-slider.json",

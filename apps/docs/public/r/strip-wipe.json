@@ -3,7 +3,7 @@
   "name": "strip-wipe",
   "type": "registry:block",
   "title": "Strip Wipe",
-  "description": "A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware.",
+  "description": "A split testimonial slider whose photo wipes in as tiled strips beside the quote, the index ticking over on Number Flow. Prev and next reverse the wipe direction.",
   "dependencies": [
     "gsap",
     "@gsap/react",

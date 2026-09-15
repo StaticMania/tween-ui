@@ -3,7 +3,7 @@
   "name": "avatar-reveal",
   "type": "registry:ui",
   "title": "Avatar Reveal",
-  "description": "Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware.",
+  "description": "Three stacked avatars that scale and unblur in from the left on an elastic ease, then a caption slides in from the right.",
   "dependencies": [
     "gsap",
     "@gsap/react"

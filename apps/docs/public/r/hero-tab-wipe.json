@@ -3,7 +3,7 @@
   "name": "hero-tab-wipe",
   "type": "registry:block",
   "title": "Hero Tab Wipe",
-  "description": "A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. A thumbnail tab strip picks a slide, and it autoplays between clicks. GSAP-driven and reduced-motion aware.",
+  "description": "A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. The thumbnail strip is a real tablist, and the stage autoplays between clicks.",
   "dependencies": [
     "gsap",
     "@gsap/react"

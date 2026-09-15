@@ -3,7 +3,7 @@
   "name": "cta-photo-headline",
   "type": "registry:block",
   "title": "CTA Photo Headline",
-  "description": "A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware.",
+  "description": "A call-to-action where avatars pop in above a heading with two photos tucked into the copy — a pill that grows from the left, then a tilted square that drops into place.",
   "dependencies": [
     "gsap",
     "@gsap/react"

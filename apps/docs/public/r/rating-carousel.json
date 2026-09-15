@@ -3,7 +3,7 @@
   "name": "rating-carousel",
   "type": "registry:block",
   "title": "Rating Carousel",
-  "description": "A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots.",
+  "description": "A Swiper testimonial row of rating cards: drag or swipe it, and off-window cards fade and blur as they leave. Autoplay pauses on hover, and dots jump to a card.",
   "dependencies": [
     "swiper"
   ],

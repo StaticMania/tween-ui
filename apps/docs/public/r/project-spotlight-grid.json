@@ -3,7 +3,7 @@
   "name": "project-spotlight-grid",
   "type": "registry:block",
   "title": "Project Spotlight Grid",
-  "description": "A staggered project grid where the hovered tile tilts toward the cursor in 3D while the rest scale back and dim. GSAP-driven, pointer-only, and reduced-motion aware.",
+  "description": "A staggered project grid — tile heights cycle every six cards — where the hovered tile tilts toward the cursor in 3D while its siblings scale back and dim. Pointer-only.",
   "dependencies": [
     "gsap",
     "@gsap/react"

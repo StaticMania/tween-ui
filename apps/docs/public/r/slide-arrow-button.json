@@ -3,7 +3,7 @@
   "name": "slide-arrow-button",
   "type": "registry:ui",
   "title": "Slide Arrow Button",
-  "description": "A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware.",
+  "description": "A pill button whose label rolls up on hover while the chevron slides out of its lime badge and a fresh one slides in from the left. Pure CSS — no GSAP dependency.",
   "dependencies": [],
   "registryDependencies": [],
   "cssVars": {

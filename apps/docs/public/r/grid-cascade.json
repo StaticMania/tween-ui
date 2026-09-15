@@ -3,7 +3,7 @@
   "name": "grid-cascade",
   "type": "registry:block",
   "title": "Grid Cascade",
-  "description": "A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above. GSAP-driven and reduced-motion aware.",
+  "description": "A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above, so the two never overlap mid-flight.",
   "dependencies": [
     "gsap",
     "@gsap/react"

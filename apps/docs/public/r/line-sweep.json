@@ -3,7 +3,7 @@
   "name": "line-sweep",
   "type": "registry:block",
   "title": "Line Sweep",
-  "description": "A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText, and reduced-motion aware.",
+  "description": "A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText.",
   "dependencies": [
     "gsap",
     "@gsap/react"

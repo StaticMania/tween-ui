@@ -3,7 +3,7 @@
   "name": "voice-sample-player",
   "type": "registry:ui",
   "title": "Voice Sample Player",
-  "description": "An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware.",
+  "description": "An audio player pill: press play and the name slides away, a lime waveform equalizer slides in and starts oscillating, and the icon morphs to pause. Pass a src to play real audio.",
   "dependencies": [
     "gsap",
     "@gsap/react"
