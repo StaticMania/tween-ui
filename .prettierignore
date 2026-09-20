@@ -1,0 +1,16 @@
+node_modules
+.next
+out
+dist
+.turbo
+.vercel
+pnpm-lock.yaml
+*.tsbuildinfo
+next-env.d.ts
+
+# Generated from the component sources by `pnpm registry:build` — formatting
+# them by hand would be undone on the next build.
+apps/docs/public/r
+apps/docs/registry/__sources__.generated.ts
+apps/docs/registry/__index__.generated.tsx
+apps/docs/registry/__media__.generated.ts
