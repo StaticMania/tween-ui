@@ -16,7 +16,7 @@ export function LandingShell({ children, starCount }: LandingShellProps) {
   const config = useDocsConfig();
 
   return (
-    <div className="flex min-h-svh flex-col">
+    <div data-landing className="flex min-h-svh flex-col">
       <SiteHeader
         className="tween-header"
         logo={
