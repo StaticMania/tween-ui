@@ -52,13 +52,17 @@ describe('landing hero', () => {
     expect(screen.queryByRole('link', { name: /github/i })).not.toBeInTheDocument();
   });
 
-  it('routes both registry buttons to the gallery', () => {
+  it('links both registry buttons to the gallery', () => {
     renderHero();
-    fireEvent.click(screen.getByRole('button', { name: /browse components/i }));
-    expect(push).toHaveBeenCalledWith('/components');
+    expect(screen.getByRole('link', { name: /browse components/i })).toHaveAttribute(
+      'href',
+      '/components'
+    );
 
-    fireEvent.click(screen.getByRole('button', { name: /browse blocks/i }));
-    expect(push).toHaveBeenCalledWith('/components#blocks');
+    expect(screen.getByRole('link', { name: /browse blocks/i })).toHaveAttribute(
+      'href',
+      '/components#blocks'
+    );
   });
 
   it('replays the timeline without throwing', () => {
@@ -102,15 +106,18 @@ describe('landing sections', () => {
     );
   });
 
-  it('frames the real tab-wipe block beside links to the others', () => {
+  it('previews four blocks beside links to the others', () => {
+    const featured = ['tab-wipe', 'pricing-plan-switch', 'rating-carousel', 'cta-starfall'];
     render(<BlockSpotlight />);
-    expect(screen.getByRole('tablist', { name: /choose a screen/i })).toBeInTheDocument();
 
-    const otherBlocks = registry.filter(
-      (entry) => entry.type === 'block' && entry.name !== 'tab-wipe'
+    for (const name of featured) {
+      expect(screen.getByRole('link', { name })).toHaveAttribute('href', `/block/${name}`);
+    }
+
+    const firstChip = registry.find(
+      (entry) => entry.type === 'block' && !featured.includes(entry.name)
     );
-    const firstChip = otherBlocks[0];
-    if (!firstChip) throw new Error('registry has no blocks besides the featured one');
+    if (!firstChip) throw new Error('registry has no blocks besides the featured ones');
     expect(screen.getByRole('link', { name: firstChip.name })).toHaveAttribute(
       'href',
       `/block/${firstChip.name}`
@@ -126,11 +133,15 @@ describe('landing sections', () => {
     expect(
       screen.getByText('npx shadcn@latest add https://tween-ui.vercel.app/r/icon-trail-button.json')
     ).toBeInTheDocument();
-    fireEvent.click(screen.getByRole('button', { name: /browse components/i }));
-    expect(push).toHaveBeenCalledWith('/components');
+    expect(screen.getByRole('link', { name: /browse components/i })).toHaveAttribute(
+      'href',
+      '/components'
+    );
 
-    fireEvent.click(screen.getByRole('button', { name: /browse blocks/i }));
-    expect(push).toHaveBeenCalledWith('/components#blocks');
+    expect(screen.getByRole('link', { name: /browse blocks/i })).toHaveAttribute(
+      'href',
+      '/components#blocks'
+    );
   });
 });
 

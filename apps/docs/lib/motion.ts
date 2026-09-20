@@ -1,4 +1,9 @@
+import gsap from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
+
+// Registering is what wires CustomEase to gsap; creating an ease is not, so
+// this stays at module scope while `tweenEase` is called from an effect.
+gsap.registerPlugin(CustomEase);
 
 /** The easing every Tween UI component ships with. */
 export const TWEEN_EASE = '0.32, 0.72, 0, 1';

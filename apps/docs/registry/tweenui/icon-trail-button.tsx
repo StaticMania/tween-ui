@@ -6,6 +6,7 @@ import {
   useRef,
   useState,
   type ComponentPropsWithoutRef,
+  type Ref,
   type SVGProps,
 } from 'react';
 import { cn } from '@/lib/utils';
@@ -41,15 +42,16 @@ const canHover = () =>
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const isButtonOn = (btn: HTMLButtonElement) =>
-  !btn.disabled && (btn.matches(':focus-visible') || (canHover() && btn.matches(':hover')));
+const isButtonOn = (el: HTMLElement) =>
+  !el.matches('[disabled]') &&
+  (el.matches(':focus-visible') || (canHover() && el.matches(':hover')));
 
 function useButtonIconSlide() {
   const [iconState, setIconState] = useState<IconSlideState>('idle');
   const dirRef = useRef<IconSlideDir | null>(null);
   const timerRef = useRef<number | null>(null);
   const stateRef = useRef<IconSlideState>('idle');
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const buttonRef = useRef<HTMLElement | null>(null);
 
   const clearTimer = useCallback(() => {
     if (timerRef.current !== null) {
@@ -75,7 +77,7 @@ function useButtonIconSlide() {
   );
 
   const step = useCallback(
-    (btn: HTMLButtonElement) => {
+    (btn: HTMLElement) => {
       const on = isButtonOn(btn);
 
       if (prefersReducedMotion()) {
@@ -175,25 +177,33 @@ function ButtonIconSlideTrail({ iconClassName }: { iconClassName: string }) {
 /*  Icon Trail Button — colors, easing and sizes are inline, so the      */
 /*  component is self-contained and needs no Tailwind @theme tokens.           */
 /* -------------------------------------------------------------------------- */
-interface IconTrailButtonProps extends ComponentPropsWithoutRef<'button'> {
+interface IconTrailButtonOwnProps {
   /** Extra classes for the label span. */
   labelClassName?: string;
 }
+
+/** Without `href` it is a button; with one it renders an anchor instead. */
+export type IconTrailButtonProps =
+  | (IconTrailButtonOwnProps & ComponentPropsWithoutRef<'button'> & { href?: never })
+  | (IconTrailButtonOwnProps & ComponentPropsWithoutRef<'a'> & { href: string });
 
 export default function IconTrailButton({
   children,
   labelClassName,
   className,
-  type = 'button',
   ...props
 }: IconTrailButtonProps) {
   const { iconState, buttonRef } = useButtonIconSlide();
+  const isLink = typeof props.href === 'string';
+  const Tag = isLink ? 'a' : 'button';
+  const tagProps = isLink
+    ? props
+    : { type: 'button' as const, ...(props as ComponentPropsWithoutRef<'button'>) };
 
   return (
-    <button
-      {...props}
-      ref={buttonRef}
-      type={type}
+    <Tag
+      {...(tagProps as ComponentPropsWithoutRef<'button'> & ComponentPropsWithoutRef<'a'>)}
+      ref={buttonRef as Ref<HTMLButtonElement & HTMLAnchorElement>}
       data-btn-icon-slide
       data-icon-state={iconState}
       className={cn(
@@ -212,6 +222,6 @@ export default function IconTrailButton({
       >
         {children}
       </span>
-    </button>
+    </Tag>
   );
 }

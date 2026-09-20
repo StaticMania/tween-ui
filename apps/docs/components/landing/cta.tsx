@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useDocsConfig } from 'docora';
-import { Check, Copy } from 'lucide-react';
+import { ArrowRight, Check, Copy } from 'lucide-react';
 import { copyText } from '@/lib/utils';
 import IconTrailButton from '@/registry/tweenui/icon-trail-button';
 import { RevealGroup } from './reveal-group';
@@ -12,7 +12,6 @@ const COPIED_MS = 1600;
 
 export function Cta() {
   const config = useDocsConfig();
-  const router = useRouter();
   const [isCopied, setIsCopied] = useState(false);
 
   const siteUrl = config.site.url ?? '';
@@ -73,18 +72,19 @@ export function Cta() {
             data-reveal
             className="mt-10 flex w-full max-w-72 flex-col gap-3 sm:mt-9 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4"
           >
-            <IconTrailButton
-              className="w-full justify-center sm:w-auto"
-              onClick={() => router.push('/components')}
-            >
+            <IconTrailButton href="/components" className="w-full justify-center sm:w-auto">
               Browse components
             </IconTrailButton>
-            <IconTrailButton
-              className="w-full justify-center sm:w-auto"
-              onClick={() => router.push('/components#blocks')}
+            <Link
+              href="/components#blocks"
+              className="group text-tween-lime focus-visible:ring-tween-lime inline-flex h-12 items-center justify-center gap-2 rounded-full px-2 text-base font-medium transition-colors hover:text-white focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
             >
               Browse blocks
-            </IconTrailButton>
+              <ArrowRight
+                className="ease-tween size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
+            </Link>
           </div>
         </RevealGroup>
       </div>
