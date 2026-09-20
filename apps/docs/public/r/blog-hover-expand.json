@@ -3,7 +3,7 @@
   "name": "blog-hover-expand",
   "type": "registry:block",
   "title": "Blog Hover Expand",
-  "description": "A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware.",
+  "description": "A three-post blog row where the hovered card grows wider, its photo scales and tilts, and the title draws an underline. Pure CSS.",
   "dependencies": [],
   "registryDependencies": [],
   "cssVars": {

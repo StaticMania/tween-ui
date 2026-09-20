@@ -3,7 +3,7 @@
   "name": "team-scatter-focus",
   "type": "registry:block",
   "title": "Team Scatter Focus",
-  "description": "A team collage whose cards fly in from their own directions, then blur and shrink away from whichever one you hover. Falls back to a stacked grid on small screens. GSAP-driven and reduced-motion aware.",
+  "description": "A scattered team collage whose cards each fly in from their own direction, then blur and shrink back from whichever one you hover. Falls back to a stacked grid below lg.",
   "dependencies": [
     "gsap",
     "@gsap/react"

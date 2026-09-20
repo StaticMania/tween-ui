@@ -6,7 +6,7 @@
       "name": "icon-trail-button",
       "type": "registry:ui",
       "title": "Icon Trail Button",
-      "description": "A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware.",
+      "description": "A pill button whose icon pill expands on hover or focus, playing out a staggered chevron trail before it parks. CSS transitions and a small state machine — no animation library.",
       "files": [
         {
           "path": "components/tweenui/icon-trail-button.tsx",
@@ -18,7 +18,7 @@
       "name": "sliding-tabs",
       "type": "registry:ui",
       "title": "Sliding Tabs",
-      "description": "A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware.",
+      "description": "A pill nav whose lime indicator scales in under the first tab, then slides to follow the pointer or keyboard focus. Leaving the nav returns it to the active tab.",
       "files": [
         {
           "path": "components/tweenui/sliding-tabs.tsx",
@@ -30,7 +30,7 @@
       "name": "avatar-reveal",
       "type": "registry:ui",
       "title": "Avatar Reveal",
-      "description": "Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware.",
+      "description": "Three stacked avatars that scale and unblur in from the left on an elastic ease, then a caption slides in from the right.",
       "files": [
         {
           "path": "components/tweenui/avatar-reveal.tsx",
@@ -42,7 +42,7 @@
       "name": "auth-modal",
       "type": "registry:ui",
       "title": "Auth Modal",
-      "description": "A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware.",
+      "description": "A sign-in dialog: the backdrop fades, the panel scales up, then the close button, title, providers and email field stagger in. Closing plays the sequence in reverse.",
       "files": [
         {
           "path": "components/tweenui/auth-modal.tsx",
@@ -54,7 +54,7 @@
       "name": "number-counter",
       "type": "registry:ui",
       "title": "Number Counter",
-      "description": "Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware.",
+      "description": "Digits that spin up once when the stat scrolls into view. ScrollTrigger fires it, Number Flow handles the count.",
       "files": [
         {
           "path": "components/tweenui/number-counter.tsx",
@@ -66,7 +66,7 @@
       "name": "voice-sample-player",
       "type": "registry:ui",
       "title": "Voice Sample Player",
-      "description": "An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware.",
+      "description": "An audio player pill: press play and the name slides away, a lime waveform equalizer slides in and starts oscillating, and the icon morphs to pause. Pass a src to play real audio.",
       "files": [
         {
           "path": "components/tweenui/voice-sample-player.tsx",
@@ -78,7 +78,7 @@
       "name": "flip-card",
       "type": "registry:ui",
       "title": "Flip Card",
-      "description": "A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware.",
+      "description": "A card that flips in 3D on hover or tap — the front rotates out while the back rotates in with its description, feature list and CTA staggering into place.",
       "files": [
         {
           "path": "components/tweenui/flip-card.tsx",
@@ -90,7 +90,7 @@
       "name": "faq-accordion",
       "type": "registry:ui",
       "title": "FAQ Accordion",
-      "description": "A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware.",
+      "description": "A single-open accordion that animates its height open while the answer reveals line by line through a SplitText mask and the icon morphs from plus to minus.",
       "files": [
         {
           "path": "components/tweenui/faq-accordion.tsx",
@@ -102,7 +102,7 @@
       "name": "shiny-button",
       "type": "registry:ui",
       "title": "Shiny Button",
-      "description": "A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware.",
+      "description": "A pill button with a diagonal light sweep that glides across on hover while the leading sparkle twinkles. Pure CSS — no GSAP dependency.",
       "files": [
         {
           "path": "components/tweenui/shiny-button.tsx",
@@ -114,7 +114,7 @@
       "name": "text-roll-button",
       "type": "registry:ui",
       "title": "Text Roll Button",
-      "description": "A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware.",
+      "description": "A pill button whose label rolls up character by character on hover — the current text lifts out the top as a fresh copy rolls in from below, on a fine per-character stagger.",
       "files": [
         {
           "path": "components/tweenui/text-roll-button.tsx",
@@ -126,7 +126,7 @@
       "name": "slide-arrow-button",
       "type": "registry:ui",
       "title": "Slide Arrow Button",
-      "description": "A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware.",
+      "description": "A pill button whose label rolls up on hover while the chevron slides out of its lime badge and a fresh one slides in from the left. Pure CSS — no GSAP dependency.",
       "files": [
         {
           "path": "components/tweenui/slide-arrow-button.tsx",
@@ -138,7 +138,7 @@
       "name": "glow-button",
       "type": "registry:ui",
       "title": "Glow Button",
-      "description": "A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware.",
+      "description": "A pill button floating over a soft red, amber, violet and cyan glow that sharpens as the button lifts and a chevron slides through its slot. Pure CSS — no GSAP dependency.",
       "files": [
         {
           "path": "components/tweenui/glow-button.tsx",
@@ -150,7 +150,7 @@
       "name": "logo-orbit",
       "type": "registry:ui",
       "title": "Logo Orbit",
-      "description": "Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware.",
+      "description": "Logos spaced evenly around a ring that rotates continuously, each mark counter-rotated so it always stays upright. Hover pauses the orbit.",
       "files": [
         {
           "path": "components/tweenui/logo-orbit.tsx",
@@ -162,7 +162,7 @@
       "name": "logo-cycle",
       "type": "registry:ui",
       "title": "Logo Cycle",
-      "description": "A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware.",
+      "description": "A logo row that holds a fixed count and cycles the extras: the current set staggers up and blurs out as the next slides in from below. Hover pauses the loop.",
       "files": [
         {
           "path": "components/tweenui/logo-cycle.tsx",
@@ -174,7 +174,7 @@
       "name": "logo-wave",
       "type": "registry:ui",
       "title": "Logo Wave",
-      "description": "An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware.",
+      "description": "An endless logo strip where the mark nearest the midpoint rises and scales up while its neighbors step down into a wave. Hover pauses the marquee.",
       "files": [
         {
           "path": "components/tweenui/logo-wave.tsx",
@@ -186,7 +186,7 @@
       "name": "image-fan-slider",
       "type": "registry:ui",
       "title": "Image Fan Slider",
-      "description": "A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware.",
+      "description": "A fan of photos that auto-advances — the active one large and sharp, its neighbors rotated and blurred on each side. Hover pauses. Pure CSS transitions.",
       "files": [
         {
           "path": "components/tweenui/image-fan-slider.tsx",
@@ -198,7 +198,7 @@
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",
-      "description": "A pricing section where picking a plan morphs the name badge, crossfades the description, and spins the price with Number Flow, plus a monthly/yearly toggle and an activating feature checklist. GSAP-driven and reduced-motion aware.",
+      "description": "A pricing section where picking a plan morphs the name badge, crossfades the description and spins the price with Number Flow, while the checklist lights up its included rows. A monthly/yearly toggle re-spins the price.",
       "files": [
         {
           "path": "components/tweenui/pricing-plan-switch.tsx",
@@ -210,7 +210,7 @@
       "name": "process-card-reveal",
       "type": "registry:block",
       "title": "Process Card Reveal",
-      "description": "A process section where a numbered timeline fills, then the next stacked card slides and blurs into place. Hover pauses the loop; clicking a step jumps there. GSAP-driven and reduced-motion aware.",
+      "description": "Numbered steps on a timeline whose connector fills before the next card slides and blurs into place — image one way, copy the other. Hover pauses the loop; clicking a step jumps there.",
       "files": [
         {
           "path": "components/tweenui/process-card-reveal.tsx",
@@ -222,7 +222,7 @@
       "name": "process-sticky-steps",
       "type": "registry:block",
       "title": "Process Sticky Steps",
-      "description": "A process section where a sticky heading and numbered buttons track the card in view. Clicking a step jumps there. Reduced-motion aware.",
+      "description": "A process block whose heading, divider and step numbers stay sticky inside the section while the cards scroll past them. No GSAP — just Intersection Observer.",
       "files": [
         {
           "path": "components/tweenui/process-sticky-steps.tsx",
@@ -234,7 +234,7 @@
       "name": "strip-wipe",
       "type": "registry:block",
       "title": "Strip Wipe",
-      "description": "A testimonial slider whose photo wipes in as tiled strips beside the quote. Prev and next reverse the split direction. GSAP-driven and reduced-motion aware.",
+      "description": "A split testimonial slider whose photo wipes in as tiled strips beside the quote, the index ticking over on Number Flow. Prev and next reverse the wipe direction.",
       "files": [
         {
           "path": "components/tweenui/strip-wipe.tsx",
@@ -246,7 +246,7 @@
       "name": "rating-carousel",
       "type": "registry:block",
       "title": "Rating Carousel",
-      "description": "A Swiper testimonial row of rating cards that autoplay, blur off-window slides, and page with clickable dots.",
+      "description": "A Swiper testimonial row of rating cards: drag or swipe it, and off-window cards fade and blur as they leave. Autoplay pauses on hover, and dots jump to a card.",
       "files": [
         {
           "path": "components/tweenui/rating-carousel.tsx",
@@ -258,7 +258,7 @@
       "name": "cta-image-fan",
       "type": "registry:block",
       "title": "CTA Image Fan",
-      "description": "A call-to-action section with a fanned photo stack that auto-advances above a shiny button. Reduced-motion aware.",
+      "description": "A call-to-action with a fanned photo stack auto-advancing above the headline and a shiny button below. Built from Image Fan Slider and Shiny Button.",
       "files": [
         {
           "path": "components/tweenui/cta-image-fan.tsx",
@@ -270,7 +270,7 @@
       "name": "cta-photo-headline",
       "type": "registry:block",
       "title": "CTA Photo Headline",
-      "description": "A call-to-action with staggered avatars and photos tucked into the heading, then a slide-arrow button. GSAP-driven and reduced-motion aware.",
+      "description": "A call-to-action where avatars pop in above a heading with two photos tucked into the copy — a pill that grows from the left, then a tilted square that drops into place.",
       "files": [
         {
           "path": "components/tweenui/cta-photo-headline.tsx",
@@ -282,7 +282,7 @@
       "name": "blog-hover-expand",
       "type": "registry:block",
       "title": "Blog Hover Expand",
-      "description": "A blog row where hovering a card widens it while the photo scales and tilts. Reduced-motion aware.",
+      "description": "A three-post blog row where the hovered card grows wider, its photo scales and tilts, and the title draws an underline. Pure CSS.",
       "files": [
         {
           "path": "components/tweenui/blog-hover-expand.tsx",
@@ -294,7 +294,7 @@
       "name": "integration-hub",
       "type": "registry:block",
       "title": "Integration Hub",
-      "description": "A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware.",
+      "description": "A hub-and-spoke integrations diagram: the center pops in, paths draw out to six logos, then a dot travels each line. Uses MotionPathPlugin.",
       "files": [
         {
           "path": "components/tweenui/integration-hub.tsx",
@@ -303,13 +303,13 @@
       ]
     },
     {
-      "name": "hero-rotating-cards",
+      "name": "infinite-rotating-cards",
       "type": "registry:block",
-      "title": "Hero Rotating Cards",
-      "description": "A hero wheel of photo cards that slowly spins so the next idea always comes into view. GSAP-driven and reduced-motion aware.",
+      "title": "Infinite Rotating Cards",
+      "description": "A hero wheel of photo cards set on a large circle so only the top arc shows, spinning slowly so the next idea always comes into view.",
       "files": [
         {
-          "path": "components/tweenui/hero-rotating-cards.tsx",
+          "path": "components/tweenui/infinite-rotating-cards.tsx",
           "type": "registry:component"
         }
       ]
@@ -318,7 +318,7 @@
       "name": "card-hover-expand",
       "type": "registry:block",
       "title": "Card Hover Expand",
-      "description": "A card row where hovering one widens it, fades the photo in, and drops the copy to the bottom. CSS-driven and reduced-motion aware.",
+      "description": "A card row where the hovered card grows wider, its photo fades in and the title drops to the bottom over a gradient. Every card stays expanded on small screens. Pure CSS.",
       "files": [
         {
           "path": "components/tweenui/card-hover-expand.tsx",
@@ -327,13 +327,13 @@
       ]
     },
     {
-      "name": "project-spotlight-grid",
+      "name": "card-spotlight-grid",
       "type": "registry:block",
-      "title": "Project Spotlight Grid",
-      "description": "A staggered project grid where the hovered tile tilts toward the cursor in 3D while the rest scale back and dim. GSAP-driven, pointer-only, and reduced-motion aware.",
+      "title": "Card Spotlight Grid",
+      "description": "A staggered project grid — tile heights cycle every six cards — where the hovered tile tilts toward the cursor in 3D while its siblings scale back and dim. Pointer-only.",
       "files": [
         {
-          "path": "components/tweenui/project-spotlight-grid.tsx",
+          "path": "components/tweenui/card-spotlight-grid.tsx",
           "type": "registry:component"
         }
       ]
@@ -342,7 +342,7 @@
       "name": "column-drift",
       "type": "registry:block",
       "title": "Column Drift",
-      "description": "Three columns of review cards that swing in from the sides as the section scrolls up, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP-driven and reduced-motion aware.",
+      "description": "Three columns of review cards that swing in from the sides as the section scrolls, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP + ScrollTrigger.",
       "files": [
         {
           "path": "components/tweenui/column-drift.tsx",
@@ -354,7 +354,7 @@
       "name": "team-scatter-focus",
       "type": "registry:block",
       "title": "Team Scatter Focus",
-      "description": "A team collage whose cards fly in from their own directions, then blur and shrink away from whichever one you hover. Falls back to a stacked grid on small screens. GSAP-driven and reduced-motion aware.",
+      "description": "A scattered team collage whose cards each fly in from their own direction, then blur and shrink back from whichever one you hover. Falls back to a stacked grid below lg.",
       "files": [
         {
           "path": "components/tweenui/team-scatter-focus.tsx",
@@ -363,13 +363,13 @@
       ]
     },
     {
-      "name": "hero-tab-wipe",
+      "name": "tab-wipe",
       "type": "registry:block",
-      "title": "Hero Tab Wipe",
-      "description": "A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. A thumbnail tab strip picks a slide, and it autoplays between clicks. GSAP-driven and reduced-motion aware.",
+      "title": "Tab Wipe",
+      "description": "A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. The thumbnail strip is a real tablist, and the stage autoplays between clicks.",
       "files": [
         {
-          "path": "components/tweenui/hero-tab-wipe.tsx",
+          "path": "components/tweenui/tab-wipe.tsx",
           "type": "registry:component"
         }
       ]
@@ -378,7 +378,7 @@
       "name": "logo-wall-shuffle",
       "type": "registry:block",
       "title": "Logo Wall Shuffle",
-      "description": "An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it. Pauses off-screen and in background tabs. GSAP-driven and reduced-motion aware.",
+      "description": "An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it. Every tile is visited before any repeats, and the loop pauses off-screen and in background tabs.",
       "files": [
         {
           "path": "components/tweenui/logo-wall-shuffle.tsx",
@@ -387,13 +387,13 @@
       ]
     },
     {
-      "name": "line-sweep",
+      "name": "testimonial-line-sweep",
       "type": "registry:block",
-      "title": "Line Sweep",
-      "description": "A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText, and reduced-motion aware.",
+      "title": "Testimonial Line Sweep",
+      "description": "A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText.",
       "files": [
         {
-          "path": "components/tweenui/line-sweep.tsx",
+          "path": "components/tweenui/testimonial-line-sweep.tsx",
           "type": "registry:component"
         }
       ]
@@ -402,7 +402,7 @@
       "name": "cta-starfall",
       "type": "registry:block",
       "title": "CTA Starfall",
-      "description": "A dark call-to-action under a slow field of drifting stars, lit by a violet bloom at the top edge. The field is full on the first frame and pauses off-screen. GSAP-driven and reduced-motion aware.",
+      "description": "A dark closing section under a slow field of drifting stars lit by a violet bloom. The field is full on the first frame rather than spawning over time, and pauses off-screen and in background tabs.",
       "files": [
         {
           "path": "components/tweenui/cta-starfall.tsx",
@@ -426,7 +426,7 @@
       "name": "grid-cascade",
       "type": "registry:block",
       "title": "Grid Cascade",
-      "description": "A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above. GSAP-driven and reduced-motion aware.",
+      "description": "A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above, so the two never overlap mid-flight.",
       "files": [
         {
           "path": "components/tweenui/grid-cascade.tsx",

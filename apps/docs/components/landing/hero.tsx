@@ -1,11 +1,11 @@
 'use client';
 
 import { useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-import { RotateCcw } from 'lucide-react';
+import { ArrowRight, RotateCcw } from 'lucide-react';
 import { prefersReducedMotion, TWEEN_EASE, tweenEase } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 import IconTrailButton from '@/registry/tweenui/icon-trail-button';
@@ -37,7 +37,6 @@ export type HeroProps = Readonly<{
 }>;
 
 export function Hero({ componentCount, blockCount }: HeroProps) {
-  const router = useRouter();
   const rootRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -133,10 +132,10 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
                   data-reveal
                   className="border-tween-teal-soft/25 text-tween-teal-soft mb-6 inline-flex items-center gap-2.5 rounded-full border bg-white/[0.04] px-3.5 py-1.5 font-mono text-[11px] sm:text-xs"
                 >
-                  <span
-                    className="bg-tween-lime size-1.5 shrink-0 rounded-full"
-                    aria-hidden="true"
-                  />
+                  <span className="relative flex size-2 shrink-0" aria-hidden="true">
+                    <span className="bg-tween-lime/70 absolute -inset-1 animate-ping rounded-full [animation-duration:2.4s] motion-reduce:hidden" />
+                    <span className="bg-tween-lime relative size-full rounded-full shadow-[0_0_5px_var(--color-tween-lime),0_0_12px_var(--color-tween-lime)]" />
+                  </span>
                   {componentCount} components · {blockCount} blocks
                   <span className="hidden sm:inline"> · React 19 + Tailwind v4</span>
                 </p>
@@ -163,18 +162,19 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
                   data-reveal
                   className="mx-auto mt-10 flex w-full max-w-72 flex-col gap-3 sm:mt-9 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start"
                 >
-                  <IconTrailButton
-                    className="w-full justify-center sm:w-auto"
-                    onClick={() => router.push('/components')}
-                  >
+                  <IconTrailButton href="/components" className="w-full justify-center sm:w-auto">
                     Browse components
                   </IconTrailButton>
-                  <IconTrailButton
-                    className="w-full justify-center sm:w-auto"
-                    onClick={() => router.push('/components#blocks')}
+                  <Link
+                    href="/components#blocks"
+                    className="group text-tween-lime focus-visible:ring-tween-lime inline-flex h-12 items-center justify-center gap-2 rounded-full px-2 text-base font-medium transition-colors hover:text-white focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
                   >
                     Browse blocks
-                  </IconTrailButton>
+                    <ArrowRight
+                      className="ease-tween size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
+                      aria-hidden="true"
+                    />
+                  </Link>
                 </div>
               </div>
 

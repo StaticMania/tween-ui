@@ -3,7 +3,7 @@
   "name": "process-card-reveal",
   "type": "registry:block",
   "title": "Process Card Reveal",
-  "description": "A process section where a numbered timeline fills, then the next stacked card slides and blurs into place. Hover pauses the loop; clicking a step jumps there. GSAP-driven and reduced-motion aware.",
+  "description": "Numbered steps on a timeline whose connector fills before the next card slides and blurs into place — image one way, copy the other. Hover pauses the loop; clicking a step jumps there.",
   "dependencies": [
     "gsap",
     "@gsap/react"

@@ -3,7 +3,7 @@
   "name": "text-roll-button",
   "type": "registry:ui",
   "title": "Text Roll Button",
-  "description": "A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware.",
+  "description": "A pill button whose label rolls up character by character on hover — the current text lifts out the top as a fresh copy rolls in from below, on a fine per-character stagger.",
   "dependencies": [
     "gsap",
     "@gsap/react"

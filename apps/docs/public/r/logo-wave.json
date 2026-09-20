@@ -3,7 +3,7 @@
   "name": "logo-wave",
   "type": "registry:ui",
   "title": "Logo Wave",
-  "description": "An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware.",
+  "description": "An endless logo strip where the mark nearest the midpoint rises and scales up while its neighbors step down into a wave. Hover pauses the marquee.",
   "dependencies": [
     "gsap",
     "@gsap/react"

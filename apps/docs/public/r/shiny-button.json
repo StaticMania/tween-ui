@@ -3,7 +3,7 @@
   "name": "shiny-button",
   "type": "registry:ui",
   "title": "Shiny Button",
-  "description": "A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware.",
+  "description": "A pill button with a diagonal light sweep that glides across on hover while the leading sparkle twinkles. Pure CSS — no GSAP dependency.",
   "dependencies": [],
   "registryDependencies": [],
   "cssVars": {

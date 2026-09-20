@@ -3,7 +3,7 @@
   "name": "cta-starfall",
   "type": "registry:block",
   "title": "CTA Starfall",
-  "description": "A dark call-to-action under a slow field of drifting stars, lit by a violet bloom at the top edge. The field is full on the first frame and pauses off-screen. GSAP-driven and reduced-motion aware.",
+  "description": "A dark closing section under a slow field of drifting stars lit by a violet bloom. The field is full on the first frame rather than spawning over time, and pauses off-screen and in background tabs.",
   "dependencies": [
     "gsap",
     "@gsap/react"

@@ -10,7 +10,7 @@ export const ui: RegistryEntry[] = [
     type: 'component',
     title: 'Icon Trail Button',
     description:
-      'A pill button whose icon slides open into a staggered chevron trail on hover and focus. CSS-driven, fully keyboard accessible, and reduced-motion aware.',
+      'A pill button whose icon pill expands on hover or focus, playing out a staggered chevron trail before it parks. CSS transitions and a small state machine — no animation library.',
     media: {
       // image: '/media/icon-trail-button/poster.png',
       // video: '/media/icon-trail-button/preview.mp4',
@@ -48,7 +48,7 @@ export default function Example() {
     type: 'component',
     title: 'Sliding Tabs',
     description:
-      'A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware.',
+      'A pill nav whose lime indicator scales in under the first tab, then slides to follow the pointer or keyboard focus. Leaving the nav returns it to the active tab.',
     media: {
       // image: '/media/sliding-tabs/poster.png',
       // video: '/media/sliding-tabs/preview.mp4',
@@ -89,7 +89,7 @@ export default function Example() {
     type: 'component',
     title: 'Avatar Reveal',
     description:
-      'Overlapping avatars that pop in with an elastic blur, then the caption slides in from the right. GSAP-driven and reduced-motion aware.',
+      'Three stacked avatars that scale and unblur in from the left on an elastic ease, then a caption slides in from the right.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -121,7 +121,7 @@ export default function Example() {
     type: 'component',
     title: 'Auth Modal',
     description:
-      'A sign-in dialog that fades the backdrop, then scales the panel in with staggered content. GSAP-driven and reduced-motion aware.',
+      'A sign-in dialog: the backdrop fades, the panel scales up, then the close button, title, providers and email field stagger in. Closing plays the sequence in reverse.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -163,7 +163,7 @@ export default function Example() {
     type: 'component',
     title: 'Number Counter',
     description:
-      'Digits that count up once when the number scrolls into view. GSAP ScrollTrigger plus Number Flow, and reduced-motion aware.',
+      'Digits that spin up once when the stat scrolls into view. ScrollTrigger fires it, Number Flow handles the count.',
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],
@@ -204,7 +204,7 @@ export default function Example() {
     type: 'component',
     title: 'Voice Sample Player',
     description:
-      'An audio player pill: on play the label slides away, a lime waveform equalizer slides in, and the icon morphs to pause. GSAP-driven and reduced-motion aware.',
+      'An audio player pill: press play and the name slides away, a lime waveform equalizer slides in and starts oscillating, and the icon morphs to pause. Pass a src to play real audio.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -243,7 +243,7 @@ export default function Example() {
     type: 'component',
     title: 'Flip Card',
     description:
-      'A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware.',
+      'A card that flips in 3D on hover or tap — the front rotates out while the back rotates in with its description, feature list and CTA staggering into place.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -286,7 +286,7 @@ export default function Example() {
     type: 'component',
     title: 'FAQ Accordion',
     description:
-      'A single-open accordion that animates its height open and reveals the answer line by line with a SplitText mask; the icon morphs from plus to minus. GSAP-driven and reduced-motion aware.',
+      'A single-open accordion that animates its height open while the answer reveals line by line through a SplitText mask and the icon morphs from plus to minus.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -323,7 +323,7 @@ export default function Example() {
     type: 'component',
     title: 'Shiny Button',
     description:
-      'A pill button with a diagonal light sweep that glides across on hover, plus a sparkle icon that twinkles. Pure CSS, keyboard accessible, and reduced-motion aware.',
+      'A pill button with a diagonal light sweep that glides across on hover while the leading sparkle twinkles. Pure CSS — no GSAP dependency.',
     media: {},
     dependencies: [], // CSS-only — no gsap
     registryDependencies: [],
@@ -355,7 +355,7 @@ export default function Example() {
     type: 'component',
     title: 'Text Roll Button',
     description:
-      'A pill button whose label rolls up character by character on hover, swapping to a fresh copy via a SplitText stagger. GSAP-driven, keyboard accessible, and reduced-motion aware.',
+      'A pill button whose label rolls up character by character on hover — the current text lifts out the top as a fresh copy rolls in from below, on a fine per-character stagger.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -387,7 +387,7 @@ export default function Example() {
     type: 'component',
     title: 'Slide Arrow Button',
     description:
-      'A pill button whose label rolls up on hover while a chevron slides out of its lime badge and a fresh one slides in. Pure CSS, keyboard accessible, and reduced-motion aware.',
+      'A pill button whose label rolls up on hover while the chevron slides out of its lime badge and a fresh one slides in from the left. Pure CSS — no GSAP dependency.',
     media: {},
     dependencies: [], // CSS-only — no gsap
     registryDependencies: [],
@@ -419,7 +419,7 @@ export default function Example() {
     type: 'component',
     title: 'Glow Button',
     description:
-      'A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware.',
+      'A pill button floating over a soft red, amber, violet and cyan glow that sharpens as the button lifts and a chevron slides through its slot. Pure CSS — no GSAP dependency.',
     media: {},
     dependencies: [], // CSS-only — no gsap
     registryDependencies: [],
@@ -451,7 +451,7 @@ export default function Example() {
     type: 'component',
     title: 'Logo Orbit',
     description:
-      'Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware.',
+      'Logos spaced evenly around a ring that rotates continuously, each mark counter-rotated so it always stays upright. Hover pauses the orbit.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -489,7 +489,7 @@ export default function Example() {
     type: 'component',
     title: 'Logo Cycle',
     description:
-      'A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware.',
+      'A logo row that holds a fixed count and cycles the extras: the current set staggers up and blurs out as the next slides in from below. Hover pauses the loop.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -532,7 +532,7 @@ export default function Example() {
     type: 'component',
     title: 'Logo Wave',
     description:
-      'An infinite logo strip whose center mark rises and scales, with neighbors forming a descending arc. GSAP-driven and reduced-motion aware.',
+      'An endless logo strip where the mark nearest the midpoint rises and scales up while its neighbors step down into a wave. Hover pauses the marquee.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -573,7 +573,7 @@ export default function Example() {
     type: 'component',
     title: 'Image Fan Slider',
     description:
-      'A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware.',
+      'A fan of photos that auto-advances — the active one large and sharp, its neighbors rotated and blurred on each side. Hover pauses. Pure CSS transitions.',
     media: {},
     dependencies: [],
     registryDependencies: [],

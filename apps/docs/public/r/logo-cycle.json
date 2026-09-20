@@ -3,7 +3,7 @@
   "name": "logo-cycle",
   "type": "registry:ui",
   "title": "Logo Cycle",
-  "description": "A logo row that swaps groups with a staggered blur-slide. GSAP-driven and reduced-motion aware.",
+  "description": "A logo row that holds a fixed count and cycles the extras: the current set staggers up and blurs out as the next slides in from below. Hover pauses the loop.",
   "dependencies": [
     "gsap",
     "@gsap/react"

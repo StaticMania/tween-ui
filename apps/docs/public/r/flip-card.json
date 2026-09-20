@@ -3,7 +3,7 @@
   "name": "flip-card",
   "type": "registry:ui",
   "title": "Flip Card",
-  "description": "A card that flips in 3D on hover (or tap on touch) to reveal a description, feature list, and CTA, with the back content staggering in. GSAP-driven and reduced-motion aware.",
+  "description": "A card that flips in 3D on hover or tap — the front rotates out while the back rotates in with its description, feature list and CTA staggering into place.",
   "dependencies": [
     "gsap",
     "@gsap/react"

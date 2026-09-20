@@ -3,7 +3,7 @@
   "name": "image-fan-slider",
   "type": "registry:ui",
   "title": "Image Fan Slider",
-  "description": "A fanned stack of images that auto-advances: the center is sharp, neighbors sit rotated and blurred. CSS-driven and reduced-motion aware.",
+  "description": "A fan of photos that auto-advances — the active one large and sharp, its neighbors rotated and blurred on each side. Hover pauses. Pure CSS transitions.",
   "dependencies": [],
   "registryDependencies": [],
   "cssVars": {

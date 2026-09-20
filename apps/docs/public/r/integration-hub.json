@@ -3,7 +3,7 @@
   "name": "integration-hub",
   "type": "registry:block",
   "title": "Integration Hub",
-  "description": "A hub-and-spoke integrations diagram: the center pops in, paths draw to six logos, then dots travel the lines. GSAP-driven and reduced-motion aware.",
+  "description": "A hub-and-spoke integrations diagram: the center pops in, paths draw out to six logos, then a dot travels each line. Uses MotionPathPlugin.",
   "dependencies": [
     "gsap",
     "@gsap/react"

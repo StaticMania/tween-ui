@@ -3,7 +3,7 @@
   "name": "logo-orbit",
   "type": "registry:ui",
   "title": "Logo Orbit",
-  "description": "Logos spaced evenly around a ring that rotates continuously while each logo stays upright. GSAP-driven and reduced-motion aware.",
+  "description": "Logos spaced evenly around a ring that rotates continuously, each mark counter-rotated so it always stays upright. Hover pauses the orbit.",
   "dependencies": [
     "gsap",
     "@gsap/react"

@@ -3,7 +3,7 @@
   "name": "sliding-tabs",
   "type": "registry:ui",
   "title": "Sliding Tabs",
-  "description": "A pill nav whose lime indicator scales in, then slides to the hovered or focused tab. GSAP-driven, keyboard accessible, and reduced-motion aware.",
+  "description": "A pill nav whose lime indicator scales in under the first tab, then slides to follow the pointer or keyboard focus. Leaving the nav returns it to the active tab.",
   "dependencies": [
     "gsap",
     "@gsap/react"

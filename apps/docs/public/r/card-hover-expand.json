@@ -3,7 +3,7 @@
   "name": "card-hover-expand",
   "type": "registry:block",
   "title": "Card Hover Expand",
-  "description": "A card row where hovering one widens it, fades the photo in, and drops the copy to the bottom. CSS-driven and reduced-motion aware.",
+  "description": "A card row where the hovered card grows wider, its photo fades in and the title drops to the bottom over a gradient. Every card stays expanded on small screens. Pure CSS.",
   "dependencies": [],
   "registryDependencies": [],
   "cssVars": {

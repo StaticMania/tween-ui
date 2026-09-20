@@ -1,22 +1,22 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { siteConfig } from '@/config/site';
 import { registry } from '@/lib/registry';
-import HeroTabWipe from '@/registry/tweenui/hero-tab-wipe';
+import { BlockMosaic } from './block-mosaic';
 import { RevealGroup } from './reveal-group';
 
-const FEATURED = 'hero-tab-wipe';
-const CHIP_LIMIT = 9;
+const FEATURED = ['tab-wipe', 'pricing-plan-switch', 'rating-carousel', 'cta-starfall'];
+const CHIP_LIMIT = 8;
 
 export function BlockSpotlight() {
   const blocks = registry.filter((entry) => entry.type === 'block');
-  const chips = blocks.filter((entry) => entry.name !== FEATURED).slice(0, CHIP_LIMIT);
-  const remaining = blocks.length - chips.length - 1;
+  const featured = FEATURED.flatMap((name) => blocks.filter((entry) => entry.name === name));
+  const chips = blocks.filter((entry) => !FEATURED.includes(entry.name)).slice(0, CHIP_LIMIT);
+  const remaining = blocks.length - chips.length - featured.length;
 
   return (
     <section id="blocks" aria-labelledby="blocks-title" className="pb-16 md:pb-24">
       <div className="main-container">
-        <RevealGroup className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <RevealGroup className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="flex flex-col gap-3.5 lg:col-span-5">
             <p
               data-reveal
@@ -67,27 +67,9 @@ export function BlockSpotlight() {
             </ul>
           </div>
 
-          <figure data-reveal className="lg:col-span-7">
-            <div className="bg-tween-ink stage-grid overflow-hidden rounded-2xl p-2 sm:p-5 dark:ring-1 dark:ring-white/10">
-              <div className="bg-background overflow-hidden rounded-xl">
-                <div className="border-border flex items-center gap-2 border-b px-3 py-2.5">
-                  <span className="flex gap-1.5" aria-hidden="true">
-                    <span className="bg-border-accented size-2.5 rounded-full" />
-                    <span className="bg-border-accented size-2.5 rounded-full" />
-                    <span className="bg-border-accented size-2.5 rounded-full" />
-                  </span>
-                  <span className="bg-muted text-dimmed ml-2 flex-1 truncate rounded-md px-2.5 py-1 text-center font-mono text-[11px]">
-                    {new URL(siteConfig.url).host}/block/{FEATURED}
-                  </span>
-                </div>
-                <HeroTabWipe className="px-2 py-4 sm:px-5 sm:py-6" />
-              </div>
-            </div>
-            <figcaption className="text-muted-foreground mt-4 font-mono text-xs">
-              {FEATURED} — wipes between slides on a clip-path edge; autoplays every 4s, and a click
-              wipes toward the tab
-            </figcaption>
-          </figure>
+          <div data-reveal className="lg:col-span-7">
+            <BlockMosaic entries={featured} />
+          </div>
         </RevealGroup>
       </div>
     </section>

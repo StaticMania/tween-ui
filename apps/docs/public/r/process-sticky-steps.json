@@ -3,7 +3,7 @@
   "name": "process-sticky-steps",
   "type": "registry:block",
   "title": "Process Sticky Steps",
-  "description": "A process section where a sticky heading and numbered buttons track the card in view. Clicking a step jumps there. Reduced-motion aware.",
+  "description": "A process block whose heading, divider and step numbers stay sticky inside the section while the cards scroll past them. No GSAP — just Intersection Observer.",
   "dependencies": [],
   "registryDependencies": [],
   "cssVars": {

@@ -177,12 +177,31 @@ export default function RatingCarousel({
     };
   }, [perView, count]);
 
+  /**
+   * Swiper 14's `slideToLoop` is a no-op once the loop has rearranged its
+   * slides, and `slideTo` clamps rather than wrapping — neither can reach the
+   * last slide. Stepping is what actually moves a looped carousel, because each
+   * step runs `loopFix` first, so the hops before the final one are taken at
+   * zero duration and only the last one animates.
+   */
   const goTo = (index: number) => {
-    setActiveIndex(index);
     const swiper = swiperRef.current;
     if (!swiper) return;
-    if (swiper.params.loop) swiper.slideToLoop(index);
-    else swiper.slideTo(index);
+
+    if (!swiper.params.loop) {
+      setActiveIndex(index);
+      swiper.slideTo(index);
+      return;
+    }
+
+    let delta = (((index - swiper.realIndex) % count) + count) % count;
+    if (delta * 2 > count) delta -= count;
+    if (delta === 0) return;
+
+    const step = (speed?: number) =>
+      delta > 0 ? swiper.slideNext(speed) : swiper.slidePrev(speed);
+    for (let remaining = Math.abs(delta); remaining > 1; remaining -= 1) step(0);
+    step();
   };
 
   return (
@@ -193,7 +212,7 @@ export default function RatingCarousel({
       className={cn('w-full', className)}
       {...props}
     >
-      <div className="mx-auto w-full max-w-full min-w-0 space-y-8">
+      <div className="mx-auto w-full max-w-[1290px] min-w-0 space-y-8">
         <div
           className="overflow-hidden rounded-3xl bg-[#045f64]/5 p-1 dark:bg-[#045f64]/20"
           onMouseEnter={() => swiperRef.current?.autoplay?.pause()}

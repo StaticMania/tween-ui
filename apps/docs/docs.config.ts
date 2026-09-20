@@ -12,6 +12,11 @@ export default defineDocsConfig({
     logo: { light: '/logo.svg', alt: 'Tween UI' },
   },
 
+  // Paused for now: hides the "Ask AI" launcher, its panel and the TOC's
+  // "Explain with AI" link, and turns off /api/assistant. The route files stay
+  // in place — delete this block to bring the assistant back.
+  assistant: { enabled: false },
+
   // No `socials` on purpose: docora renders those after the header's children
   // slot, which would put GitHub to the right of the theme toggle. `github.url`
   // below is the single source for the link, rendered by `HeaderActions`.
@@ -57,7 +62,7 @@ export default defineDocsConfig({
         title: 'Blocks',
         links: [
           { label: 'All blocks', href: '/components#blocks' },
-          { label: 'Hero Tab Wipe', href: '/block/hero-tab-wipe' },
+          { label: 'Tab Wipe', href: '/block/tab-wipe' },
           { label: 'Pricing Plan Switch', href: '/block/pricing-plan-switch' },
           { label: 'Testimonial Strip Wipe', href: '/block/testimonial-strip-wipe' },
           { label: 'CTA Starfall', href: '/block/cta-starfall' },
@@ -69,7 +74,7 @@ export default defineDocsConfig({
           { label: 'GitHub', href: 'https://github.com/StaticMania/tween-ui' },
           { label: 'Report an issue', href: 'https://github.com/StaticMania/tween-ui/issues' },
           { label: 'llms.txt', href: '/llms.txt' },
-          { label: 'MCP server', href: '/mcp' },
+          // { label: 'MCP server', href: '/mcp' }, // paused — /mcp still serves
         ],
       },
     ],

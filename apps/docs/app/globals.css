@@ -7,7 +7,10 @@
   --color-tween-teal-deep: #0f3f42;
   --color-tween-teal-soft: #9fd4d6;
   --color-tween-lime: #c6f56f;
-  --color-tween-ink: #12161f;
+  /* Dark surfaces sit in the brand's teal family rather than a neutral black —
+     `ink` is the raised card, `ink-deep` the canvas it lifts off. */
+  --color-tween-ink: #071d1b;
+  --color-tween-ink-deep: #03110f;
 
   --ease-tween: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-tween-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -264,6 +267,19 @@
 }
 body {
   font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* In dark mode the landing sits on deep teal instead of Docora's neutral
+   near-black, so the gaps between sections stay in the same colour family as
+   the hero and CTA cards. Scoped to the landing — the docs keep their theme. */
+.dark [data-landing] {
+  background-color: var(--color-tween-ink-deep);
+}
+.dark [data-landing] .tween-header {
+  background-color: color-mix(in oklch, var(--color-tween-ink-deep) 80%, transparent);
+}
+.dark [data-landing] footer {
+  background-color: color-mix(in oklch, var(--color-tween-ink) 55%, transparent);
 }
 
 /* Sidebar highlight pill. An emerald wash mixed from the theme's own --primary

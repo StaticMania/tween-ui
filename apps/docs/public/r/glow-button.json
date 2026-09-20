@@ -3,7 +3,7 @@
   "name": "glow-button",
   "type": "registry:ui",
   "title": "Glow Button",
-  "description": "A pill button floating over a soft, colorful glow that sharpens on hover while a chevron slides through. Pure CSS, keyboard accessible, and reduced-motion aware.",
+  "description": "A pill button floating over a soft red, amber, violet and cyan glow that sharpens as the button lifts and a chevron slides through its slot. Pure CSS — no GSAP dependency.",
   "dependencies": [],
   "registryDependencies": [],
   "cssVars": {
