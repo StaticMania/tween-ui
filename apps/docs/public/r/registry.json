@@ -303,13 +303,13 @@
       ]
     },
     {
-      "name": "hero-rotating-cards",
+      "name": "infinite-rotating-cards",
       "type": "registry:block",
-      "title": "Hero Rotating Cards",
+      "title": "Infinite Rotating Cards",
       "description": "A hero wheel of photo cards set on a large circle so only the top arc shows, spinning slowly so the next idea always comes into view.",
       "files": [
         {
-          "path": "components/tweenui/hero-rotating-cards.tsx",
+          "path": "components/tweenui/infinite-rotating-cards.tsx",
           "type": "registry:component"
         }
       ]
@@ -327,13 +327,13 @@
       ]
     },
     {
-      "name": "project-spotlight-grid",
+      "name": "card-spotlight-grid",
       "type": "registry:block",
-      "title": "Project Spotlight Grid",
+      "title": "Card Spotlight Grid",
       "description": "A staggered project grid — tile heights cycle every six cards — where the hovered tile tilts toward the cursor in 3D while its siblings scale back and dim. Pointer-only.",
       "files": [
         {
-          "path": "components/tweenui/project-spotlight-grid.tsx",
+          "path": "components/tweenui/card-spotlight-grid.tsx",
           "type": "registry:component"
         }
       ]
@@ -363,13 +363,13 @@
       ]
     },
     {
-      "name": "hero-tab-wipe",
+      "name": "tab-wipe",
       "type": "registry:block",
-      "title": "Hero Tab Wipe",
+      "title": "Tab Wipe",
       "description": "A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. The thumbnail strip is a real tablist, and the stage autoplays between clicks.",
       "files": [
         {
-          "path": "components/tweenui/hero-tab-wipe.tsx",
+          "path": "components/tweenui/tab-wipe.tsx",
           "type": "registry:component"
         }
       ]
@@ -387,13 +387,13 @@
       ]
     },
     {
-      "name": "line-sweep",
+      "name": "testimonial-line-sweep",
       "type": "registry:block",
-      "title": "Line Sweep",
+      "title": "Testimonial Line Sweep",
       "description": "A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText.",
       "files": [
         {
-          "path": "components/tweenui/line-sweep.tsx",
+          "path": "components/tweenui/testimonial-line-sweep.tsx",
           "type": "registry:component"
         }
       ]

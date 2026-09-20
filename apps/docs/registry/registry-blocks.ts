@@ -295,9 +295,9 @@ export default function Example() {
     },
   },
   {
-    name: 'hero-rotating-cards',
+    name: 'infinite-rotating-cards',
     type: 'block',
-    title: 'Hero Rotating Cards',
+    title: 'Infinite Rotating Cards',
     description:
       'A hero wheel of photo cards set on a large circle so only the top arc shows, spinning slowly so the next idea always comes into view.',
     media: {},
@@ -306,8 +306,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/hero-rotating-cards.tsx',
-        target: 'components/tweenui/hero-rotating-cards.tsx',
+        path: 'registry/tweenui/infinite-rotating-cards.tsx',
+        target: 'components/tweenui/infinite-rotating-cards.tsx',
         kind: 'react',
       },
     ],
@@ -315,14 +315,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/hero-rotating-cards.tsx',
+        reactSource: 'registry/tweenui/infinite-rotating-cards.tsx',
       },
     ],
     usage: {
-      react: `import HeroRotatingCards from '@/components/tweenui/hero-rotating-cards';
+      react: `import InfiniteRotatingCards from '@/components/tweenui/infinite-rotating-cards';
 
 export default function Example() {
-  return <HeroRotatingCards />;
+  return <InfiniteRotatingCards />;
 }`,
     },
   },
@@ -359,9 +359,9 @@ export default function Example() {
     },
   },
   {
-    name: 'project-spotlight-grid',
+    name: 'card-spotlight-grid',
     type: 'block',
-    title: 'Project Spotlight Grid',
+    title: 'Card Spotlight Grid',
     description:
       'A staggered project grid — tile heights cycle every six cards — where the hovered tile tilts toward the cursor in 3D while its siblings scale back and dim. Pointer-only.',
     media: {},
@@ -370,8 +370,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/project-spotlight-grid.tsx',
-        target: 'components/tweenui/project-spotlight-grid.tsx',
+        path: 'registry/tweenui/card-spotlight-grid.tsx',
+        target: 'components/tweenui/card-spotlight-grid.tsx',
         kind: 'react',
       },
     ],
@@ -379,14 +379,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/project-spotlight-grid.tsx',
+        reactSource: 'registry/tweenui/card-spotlight-grid.tsx',
       },
     ],
     usage: {
-      react: `import ProjectSpotlightGrid from '@/components/tweenui/project-spotlight-grid';
+      react: `import CardSpotlightGrid from '@/components/tweenui/card-spotlight-grid';
 
 export default function Example() {
-  return <ProjectSpotlightGrid />;
+  return <CardSpotlightGrid />;
 }`,
     },
   },
@@ -455,9 +455,9 @@ export default function Example() {
     },
   },
   {
-    name: 'hero-tab-wipe',
+    name: 'tab-wipe',
     type: 'block',
-    title: 'Hero Tab Wipe',
+    title: 'Tab Wipe',
     description:
       'A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. The thumbnail strip is a real tablist, and the stage autoplays between clicks.',
     media: {},
@@ -466,8 +466,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/hero-tab-wipe.tsx',
-        target: 'components/tweenui/hero-tab-wipe.tsx',
+        path: 'registry/tweenui/tab-wipe.tsx',
+        target: 'components/tweenui/tab-wipe.tsx',
         kind: 'react',
       },
     ],
@@ -475,14 +475,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/hero-tab-wipe.tsx',
+        reactSource: 'registry/tweenui/tab-wipe.tsx',
       },
     ],
     usage: {
-      react: `import HeroTabWipe from '@/components/tweenui/hero-tab-wipe';
+      react: `import TabWipe from '@/components/tweenui/tab-wipe';
 
 export default function Example() {
-  return <HeroTabWipe />;
+  return <TabWipe />;
 }`,
     },
   },
@@ -525,9 +525,9 @@ export default function Example() {
     },
   },
   {
-    name: 'line-sweep',
+    name: 'testimonial-line-sweep',
     type: 'block',
-    title: 'Line Sweep',
+    title: 'Testimonial Line Sweep',
     description:
       'A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText.',
     media: {},
@@ -536,8 +536,8 @@ export default function Example() {
     cssVars: {},
     files: [
       {
-        path: 'registry/tweenui/line-sweep.tsx',
-        target: 'components/tweenui/line-sweep.tsx',
+        path: 'registry/tweenui/testimonial-line-sweep.tsx',
+        target: 'components/tweenui/testimonial-line-sweep.tsx',
         kind: 'react',
       },
     ],
@@ -545,14 +545,14 @@ export default function Example() {
       {
         id: 'default',
         label: 'Preview',
-        reactSource: 'registry/tweenui/line-sweep.tsx',
+        reactSource: 'registry/tweenui/testimonial-line-sweep.tsx',
       },
     ],
     usage: {
-      react: `import LineSweep from '@/components/tweenui/line-sweep';
+      react: `import TestimonialLineSweep from '@/components/tweenui/testimonial-line-sweep';
 
 export default function Example() {
-  return <LineSweep />;
+  return <TestimonialLineSweep />;
 }`,
     },
   },

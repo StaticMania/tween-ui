@@ -102,12 +102,12 @@ describe('landing sections', () => {
     );
   });
 
-  it('frames the real hero-tab-wipe block beside links to the others', () => {
+  it('frames the real tab-wipe block beside links to the others', () => {
     render(<BlockSpotlight />);
     expect(screen.getByRole('tablist', { name: /choose a screen/i })).toBeInTheDocument();
 
     const otherBlocks = registry.filter(
-      (entry) => entry.type === 'block' && entry.name !== 'hero-tab-wipe'
+      (entry) => entry.type === 'block' && entry.name !== 'tab-wipe'
     );
     const firstChip = otherBlocks[0];
     if (!firstChip) throw new Error('registry has no blocks besides the featured one');

@@ -15,6 +15,7 @@ import { registryItemSchema, registrySchema } from 'shadcn/schema';
 import { codeToHtml } from 'shiki';
 import { siteConfig } from '../config/site';
 import { registry } from '../registry/index';
+import type { RegistryType } from '../registry/schema';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const appRoot = resolve(here, '..'); // apps/docs
@@ -32,24 +33,31 @@ const read = (rel: string) => readFile(join(appRoot, rel), 'utf8');
  * Gallery preview media is discovered on disk rather than listed by hand, so
  * adding a preview is "drop the file in and rebuild" — nothing to wire up.
  *
- * Any of these layouts work, whichever is easiest to export into:
- *   public/media/<name>-poster.webp   +  <name>-preview.mp4
- *   public/media/<name>.webp          +  <name>.mp4
- *   public/media/<name>/poster.webp   +  <name>/preview.mp4
+ * Files live under public/media/components or public/media/blocks, matching the
+ * entry's type. Any of these layouts work, whichever is easiest to export into:
+ *   <dir>/<name>-poster.webp   +  <name>-preview.mp4
+ *   <dir>/<name>.webp          +  <name>.mp4
+ *   <dir>/<name>/poster.webp   +  <name>/preview.mp4
  *
  * First extension listed wins, so a .webp beats a .png of the same entry.
+ * A .gif is accepted in the clip slot and the card renders it as an image, but
+ * it is last for a reason — see public/media/README.md.
  */
 const IMAGE_EXTENSIONS = ['webp', 'avif', 'png', 'jpg', 'jpeg'];
-const VIDEO_EXTENSIONS = ['mp4', 'webm'];
+const VIDEO_EXTENSIONS = ['mp4', 'webm', 'gif'];
 
-function findMedia(name: string): { image?: string; video?: string } {
+function findMedia(name: string, type: RegistryType): { image?: string; video?: string } {
+  // Media is filed by entry type — media/components, media/blocks — with the
+  // flat media/ kept as a fallback so a loose file still works.
+  const bases = [`media/${type}s`, 'media'];
+
   const pick = (extensions: string[], stems: string[]) => {
     for (const ext of extensions) {
-      const candidates = [
-        ...stems.map((stem) => `media/${name}-${stem}.${ext}`),
-        `media/${name}.${ext}`,
-        ...stems.map((stem) => `media/${name}/${stem}.${ext}`),
-      ];
+      const candidates = bases.flatMap((base) => [
+        ...stems.map((stem) => `${base}/${name}-${stem}.${ext}`),
+        `${base}/${name}.${ext}`,
+        ...stems.map((stem) => `${base}/${name}/${stem}.${ext}`),
+      ]);
       for (const rel of candidates) {
         if (existsSync(join(appRoot, 'public', rel))) return `/${rel}`;
       }
@@ -208,7 +216,7 @@ async function main() {
   const mediaLines: string[] = [];
   let withMedia = 0;
   for (const entry of registry) {
-    const found = findMedia(entry.name);
+    const found = findMedia(entry.name, entry.type);
     if (!found.image && !found.video) continue;
     withMedia += 1;
     mediaLines.push(`  '${entry.name}': ${JSON.stringify(found)},`);

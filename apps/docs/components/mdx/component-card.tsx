@@ -18,6 +18,13 @@ export function ComponentCard({ entry }: { entry: RegistryEntry }) {
   const { image, video } = entry.media ?? {};
 
   /**
+   * A GIF cannot go in a <video>, and it has no play/pause of its own either.
+   * Mounting it only while hovered is what gives it the same restart-from-the-
+   * top behaviour the video path gets from `currentTime = 0`.
+   */
+  const isGif = Boolean(video?.endsWith('.gif'));
+
+  /**
    * Hover starts the clip; leaving rewinds it. `play()` returns a promise that
    * rejects if a `pause()` lands first, which a quick mouse-over across the
    * grid does constantly — so the result is always swallowed.
@@ -76,7 +83,16 @@ export function ComponentCard({ entry }: { entry: RegistryEntry }) {
           />
         )}
 
-        {video && (
+        {video && isGif && active && (
+          <img
+            src={video}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        )}
+
+        {video && !isGif && (
           <video
             ref={videoRef}
             src={video}

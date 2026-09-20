@@ -1,25 +1,32 @@
 # Gallery preview media
 
 Drop files in, run `pnpm registry:build`, done. Nothing to wire up by hand —
-the build scans this folder and fills each entry's `media` field.
+the build scans these folders and fills each entry's `media` field.
+
+## Where files go
+
+`components/` for a component, `blocks/` for a block — matching the entry's
+`type`. The build looks in the folder for that type first and falls back to
+this one, so a loose file still works.
 
 ## Naming
 
 The filename must carry the **entry name** (`sliding-tabs`, `flip-card` …),
-because everything shares this one folder. Any of these layouts work:
+because every entry of a type shares one folder. Any of these layouts work:
 
 ```
-public/media/sliding-tabs-poster.webp   public/media/sliding-tabs-preview.mp4
-public/media/sliding-tabs.webp          public/media/sliding-tabs.mp4
-public/media/sliding-tabs/poster.webp   public/media/sliding-tabs/preview.mp4
+components/sliding-tabs-poster.webp   components/sliding-tabs-preview.mp4
+components/sliding-tabs.webp          components/sliding-tabs.mp4
+components/sliding-tabs/poster.webp   components/sliding-tabs/preview.mp4
 ```
 
 Poster only = a static card. Neither = "Preview coming soon". An entry that
 sets `media` by hand in `registry-ui.ts` / `registry-blocks.ts` overrides
 whatever is found here.
 
-Accepted: `.webp .avif .png .jpg .jpeg` for the poster, `.mp4 .webm` for the
-video. Earlier in that list wins, so a `.webp` beats a `.png` for the same entry.
+Accepted: `.webp .avif .png .jpg .jpeg` for the poster, `.mp4 .webm .gif` for
+the clip. Earlier in that list wins, so a `.webp` beats a `.png` for the same
+entry, and an `.mp4` beats a `.gif`.
 
 ## Specs
 
@@ -33,12 +40,15 @@ video. Earlier in that list wins, so a `.webp` beats a `.png` for the same entry
 The first video frame should match the poster, so the swap on hover is
 invisible.
 
-## Use mp4, not gif
+## Prefer mp4 over gif
 
-A GIF of the same clip runs 5-15x larger (256 colours, no real interframe
-compression), and it cannot be paused — it animates the moment it is on screen,
-which defeats both the hover behaviour and the `prefers-reduced-motion`
-handling the card does. `<video>` gives all of that for free.
+A GIF works — the card renders it as an image rather than a `<video>`, mounted
+only while hovered so it still starts from the top and still sits out
+`prefers-reduced-motion`. What it cannot do is look as good: 256 colours means
+banding on gradients and dithering on soft shadows, and matching an mp4's
+fidelity costs several times the bytes. Use one when the recording is flat UI
+with few colours; reach for mp4 for anything with a gradient, a blur or a
+photo.
 
 ## Recipe
 

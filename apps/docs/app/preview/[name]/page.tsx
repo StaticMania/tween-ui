@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { BlockStage } from '@/components/preview/block-stage';
 import { previewMetadata } from '@/lib/metadata';
 import { getEntry, registry } from '@/lib/registry';
+import { cn } from '@/lib/utils';
 
 type PreviewProps = Readonly<{
   params: Promise<{ name: string }>;
@@ -30,8 +31,15 @@ export default async function PreviewPage({ params }: PreviewProps) {
   return (
     // Blocks are capped at roughly 700px tall, so most are shorter than the
     // viewport. `justify-center` settles those in the middle; anything taller
-    // overflows and scrolls as normal.
-    <main className="flex min-h-svh flex-col justify-center">
+    // overflows and scrolls as normal. A block owns the full width, but a
+    // component is a single element that a column would otherwise stretch edge
+    // to edge, so those get centred instead.
+    <main
+      className={cn(
+        'flex min-h-svh flex-col justify-center',
+        entry.type === 'component' && 'items-center px-6'
+      )}
+    >
       <BlockStage name={entry.name} variant={entry.variants[0]?.id ?? 'default'} />
     </main>
   );

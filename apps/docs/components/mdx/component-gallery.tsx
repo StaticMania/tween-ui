@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 import { registry } from '@/lib/registry';
-// Preview-less cards for now. Switch back to './component-card' (v1) to bring
-// the poster + hover-video previews back once the media is in public/media.
-import { ComponentCardV2 as ComponentCard } from './component-card-v2';
+import type { RegistryEntry } from '@/registry/schema';
+import { ComponentCard } from './component-card';
 
 /**
  * Section heading for the gallery. `not-prose` opts the gallery out of docora's
@@ -35,13 +34,16 @@ function GallerySection({
 
 const GRID = 'grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3';
 
+/** Cards read in the same order as the sidebar, which sorts by its own label. */
+const byTitle = (a: RegistryEntry, b: RegistryEntry) => a.title.localeCompare(b.title);
+
 /**
  * Gallery page. Renders the registry as cards, with a "New" section first
  * (like the reference layout), then all components, then all blocks.
  */
 export function ComponentGallery() {
-  const components = registry.filter((e) => e.type === 'component');
-  const blocks = registry.filter((e) => e.type === 'block');
+  const components = registry.filter((e) => e.type === 'component').sort(byTitle);
+  const blocks = registry.filter((e) => e.type === 'block').sort(byTitle);
   const newest = components.filter((e) => e.isNew);
 
   return (

@@ -2,10 +2,10 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { registry } from '@/lib/registry';
-import HeroTabWipe from '@/registry/tweenui/hero-tab-wipe';
+import TabWipe from '@/registry/tweenui/tab-wipe';
 import { RevealGroup } from './reveal-group';
 
-const FEATURED = 'hero-tab-wipe';
+const FEATURED = 'tab-wipe';
 const CHIP_LIMIT = 9;
 
 export function BlockSpotlight() {
@@ -80,7 +80,7 @@ export function BlockSpotlight() {
                     {new URL(siteConfig.url).host}/block/{FEATURED}
                   </span>
                 </div>
-                <HeroTabWipe className="px-2 py-4 sm:px-5 sm:py-6" />
+                <TabWipe className="px-2 py-4 sm:px-5 sm:py-6" />
               </div>
             </div>
             <figcaption className="text-muted-foreground mt-4 font-mono text-xs">

@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, type ReactNode } from 'react';
-import { Check, Code2, Copy, Eye, RotateCw } from 'lucide-react';
-import { FullScreenPreview } from '@/components/preview/full-screen-preview';
+import { Check, Code2, Copy, ExternalLink, Eye, RotateCw } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { getEntry } from '@/lib/registry';
 import { cn, copyText } from '@/lib/utils';
@@ -75,8 +74,18 @@ export function ComponentPreview({
           </div>
         )}
         <div className="ml-auto flex items-center gap-1">
-          {/* Blocks are built for a full page, so offer one. */}
-          {isBlock && <FullScreenPreview name={name} title={entry.title} />}
+          {/* Blocks are built for a full page and the doc column is narrower
+              than that, so this is how you see one at its real width. */}
+          <a
+            href={`/preview/${name}`}
+            target="_blank"
+            rel="noreferrer"
+            title="Open in a new tab"
+            className="text-muted-foreground hover:text-highlighted hover:bg-muted inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium transition-colors"
+          >
+            <ExternalLink className="size-3.5" />
+            New tab
+          </a>
           <OpenIn
             name={name}
             title={entry.title}
