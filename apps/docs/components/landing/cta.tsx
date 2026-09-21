@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { useDocsConfig } from 'docora';
 import { ArrowRight, Check, Copy } from 'lucide-react';
+import { shadcnAddOneLiner } from '@/components/mdx/command-tabs';
 import { copyText } from '@/lib/utils';
 import IconTrailButton from '@/registry/tweenui/icon-trail-button';
 import { RevealGroup } from './reveal-group';
@@ -11,11 +11,11 @@ import { RevealGroup } from './reveal-group';
 const COPIED_MS = 1600;
 
 export function Cta() {
-  const config = useDocsConfig();
   const [isCopied, setIsCopied] = useState(false);
 
-  const siteUrl = config.site.url ?? '';
-  const installCommand = `npx shadcn@latest add ${siteUrl}/r/icon-trail-button.json`;
+  // One line, so it stays inside the pill — and it must work on a first paste,
+  // which rules out the namespace until it is listed upstream.
+  const installCommand = shadcnAddOneLiner('icon-trail-button').npm;
 
   const handleCopy = async () => {
     if (!(await copyText(installCommand))) return;

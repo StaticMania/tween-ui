@@ -1,7 +1,16 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { registryItemUrl, shadcnAddCommands } from '@/components/mdx/command-tabs';
+import {
+  registriesSnippet,
+  REGISTRY_LISTED,
+  registryItemRef,
+  registryItemUrl,
+  registryMapping,
+  shadcnAddCommands,
+  shadcnAddOneLiner,
+  shadcnRegistryAddCommands,
+} from '@/components/mdx/command-tabs';
 import { siteConfig } from '@/config/site';
 import { registry } from '@/lib/registry';
 
@@ -22,18 +31,79 @@ const installTabItems = ['1.component', '2.block'].flatMap((dir) =>
 describe('install commands', () => {
   it('builds an absolute registry item URL from a name', () => {
     expect(registryItemUrl('shiny-button')).toBe(`${siteConfig.url}/r/shiny-button.json`);
-    expect(registryItemUrl('@tweenui/shiny-button')).toBe(`${siteConfig.url}/r/shiny-button.json`);
+    expect(registryItemUrl('@tween-ui/shiny-button')).toBe(`${siteConfig.url}/r/shiny-button.json`);
+  });
+
+  it('namespaces an item name and passes URLs and other namespaces through', () => {
+    expect(registryItemRef('shiny-button')).toBe('@tween-ui/shiny-button');
+    expect(registryItemRef('@tween-ui/shiny-button')).toBe('@tween-ui/shiny-button');
+    expect(registryItemRef('@shadcn/button')).toBe('@shadcn/button');
+    expect(registryItemRef(`${siteConfig.url}/r/shiny-button.json`)).toBe(
+      `${siteConfig.url}/r/shiny-button.json`
+    );
+  });
+
+  it('maps the namespace to the item URL template the CLI expands', () => {
+    expect(JSON.parse(registriesSnippet)).toEqual({
+      registries: { '@tween-ui': `${siteConfig.url}/r/{name}.json` },
+    });
+  });
+
+  it('pairs the namespace with the item URL template for `registry add`', () => {
+    expect(registryMapping).toBe(`@tween-ui=${siteConfig.url}/r/{name}.json`);
   });
 
   it('adds every registry item in one command for each package manager', () => {
     const commands = shadcnAddCommands(['shiny-button', 'image-fan-slider']);
-    const items = `${siteConfig.url}/r/shiny-button.json ${siteConfig.url}/r/image-fan-slider.json`;
+    const items = '@tween-ui/shiny-button @tween-ui/image-fan-slider';
     expect(commands).toEqual({
       npm: `npx shadcn@latest add ${items}`,
       pnpm: `pnpm dlx shadcn@latest add ${items}`,
       yarn: `yarn dlx shadcn@latest add ${items}`,
       bun: `bunx shadcn@latest add ${items}`,
     });
+  });
+
+  // The mapping is per project, so it lives on the setup guide — never
+  // repeated on an item page, and never bundled into an install command.
+  it('keeps the one-time registry add out of the install commands', () => {
+    const setup = shadcnRegistryAddCommands();
+    expect(setup).toEqual({
+      npm: `npx shadcn@latest registry add "${registryMapping}"`,
+      pnpm: `pnpm dlx shadcn@latest registry add "${registryMapping}"`,
+      yarn: `yarn dlx shadcn@latest registry add "${registryMapping}"`,
+      bun: `bunx shadcn@latest registry add "${registryMapping}"`,
+    });
+    for (const command of Object.values(shadcnAddCommands(['shiny-button']))) {
+      expect(command).not.toContain('registry add');
+      expect(command).not.toContain('\n');
+    }
+  });
+
+  // The landing CTA is a single-line pill with no room to send people to
+  // the setup guide first, so its command has to work on a first paste.
+  it('keeps the one-liner installable without the namespace mapping', () => {
+    const commands = shadcnAddOneLiner('icon-trail-button');
+    for (const command of Object.values(commands)) {
+      expect(command).not.toContain('\n');
+      expect(command).not.toContain('registry add');
+    }
+    expect(commands.npm).toBe(`npx shadcn@latest add ${siteConfig.url}/r/icon-trail-button.json`);
+  });
+
+  // Flipping this is the whole switch-over: the setup pointers and the CTA's
+  // URL fallback drop away once the CLI resolves @tween-ui on its own.
+  it('still assumes the namespace is unlisted upstream', () => {
+    expect(REGISTRY_LISTED).toBe(false);
+  });
+
+  it('documents the one-time setup on its own page', () => {
+    const setupPage = readFileSync(
+      join(appRoot, 'content', '0.installation', '1.setup-guide.mdx'),
+      'utf8'
+    );
+    expect(setupPage).toContain('::registry-setup');
+    expect(setupPage).toContain(registriesSnippet.split('\n')[2]?.trim());
   });
 
   it('gives every registry entry a docs page with an install command', () => {

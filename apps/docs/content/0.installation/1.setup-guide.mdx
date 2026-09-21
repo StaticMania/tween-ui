@@ -1,0 +1,78 @@
+---
+title: Setup Guide
+description: Map the @tween-ui registry once per project, then install any component by name.
+icon: terminal
+---
+
+Tween UI ships through the [shadcn CLI](https://ui.shadcn.com/docs/cli). One
+command tells the CLI where `@tween-ui` lives, and after that every component
+and block installs by name.
+
+## Requirements
+
+An existing shadcn project — one with a `components.json` at its root. If you
+don't have one yet:
+
+```bash
+pnpm dlx shadcn@latest init
+```
+
+Tween UI components target **React 19** and **Tailwind CSS v4**. Components that
+animate with GSAP pull in `gsap` and `@gsap/react` when you install them; the
+CLI handles that.
+
+## Add the registry
+
+::registry-setup
+::
+
+That writes the namespace into your `components.json`:
+
+```json [components.json]
+{
+  "registries": {
+    "@tween-ui": "https://tween-ui.vercel.app/r/{name}.json"
+  }
+}
+```
+
+You can paste that block in by hand instead — the command just saves you the
+edit. Either way it is **once per project**, and it belongs in version control
+so the rest of your team gets it too.
+
+## Install a component
+
+::install-tabs{item="icon-trail-button"}
+::
+
+Several at a time works as well:
+
+```bash
+pnpm dlx shadcn@latest add @tween-ui/glow-button @tween-ui/flip-card
+```
+
+Each component lands as a single file in `components/tweenui/`, and from then
+on it is yours to edit.
+
+## Without the registry
+
+Every item is also reachable by URL, which needs no setup at all:
+
+```bash
+pnpm dlx shadcn@latest add https://tween-ui.vercel.app/r/icon-trail-button.json
+```
+
+Useful for a one-off, or for a project you'd rather not add a registry to.
+
+## Troubleshooting
+
+::note
+**`Unknown registry "@tween-ui"`** — the mapping is missing from this project's
+`components.json`. Run the command above, and check you have not typed
+`@tweenui`: the namespace has a hyphen.
+::
+
+::note
+**`registry add` is not a command** — you are on an older CLI. It arrived in
+shadcn v4; `shadcn@latest` picks it up, or add the `registries` block by hand.
+::
