@@ -1,11 +1,10 @@
 'use client';
 
 import { useRef } from 'react';
-import Link from 'next/link';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-import { ArrowRight, RotateCcw } from 'lucide-react';
+import { RotateCcw } from 'lucide-react';
 import { isIntroSettled, whenIntroSettled } from '@/lib/intro';
 import { prefersReducedMotion, TWEEN_EASE, tweenEase } from '@/lib/motion';
 import { cn } from '@/lib/utils';
@@ -15,7 +14,6 @@ import { RevealGroup } from './reveal-group';
 gsap.registerPlugin(useGSAP, MotionPathPlugin);
 
 const RULER_SECONDS = 2.4;
-/** Never leave the ruler waiting on an intro cue that failed to arrive. */
 const INTRO_TIMEOUT_MS = 3000;
 const CURVE_PATH = 'M0 400 C128 112 0 0 400 0';
 const TICKS = Array.from({ length: 13 }, (_, index) => index * 0.2);
@@ -106,8 +104,6 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
         });
       });
 
-      // The ruler narrates the hero's own reveal, so it starts when the intro
-      // releases the page rather than playing out unseen behind the overlay.
       if (isIntroSettled()) timeline.play();
       else {
         void Promise.race([
@@ -133,15 +129,24 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
     <section aria-labelledby="hero-title" className="px-2 pt-2 sm:px-4 sm:pt-4">
       <div
         ref={rootRef}
-        className="bg-tween-ink stage-grid relative flex min-h-[calc(100svh-4.5rem)] flex-col overflow-hidden rounded-2xl pt-16 pb-10 text-white sm:rounded-3xl sm:py-14 dark:ring-1 dark:ring-white/10"
+        className="bg-tween-ink bezel-on-ink relative isolate flex min-h-[calc(100dvh-4.5rem)] flex-col overflow-hidden rounded-[2rem] pt-16 pb-6 text-white sm:rounded-[2.5rem] sm:pt-20 sm:pb-8 dark:ring-1 dark:ring-white/10"
       >
+        <span
+          aria-hidden="true"
+          className="stage-grid pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_35%,black,transparent)]"
+        />
+        <span
+          aria-hidden="true"
+          className="stage-glow pointer-events-none absolute inset-0 -z-10"
+        />
+
         <RevealGroup trigger="load" delay={0.1} className="flex flex-1 flex-col">
           <div className="main-container flex flex-1 items-center">
-            <div className="grid w-full items-center gap-12 px-2 sm:gap-10 sm:px-0 lg:grid-cols-12 lg:gap-16">
+            <div className="grid w-full items-center gap-14 lg:grid-cols-12 lg:gap-12">
               <div className="text-center lg:col-span-7 lg:text-left">
                 <p
                   data-reveal
-                  className="border-tween-teal-soft/25 text-tween-teal-soft mb-6 inline-flex items-center gap-2.5 rounded-full border bg-white/[0.04] px-3.5 py-1.5 font-mono text-[11px] sm:text-xs"
+                  className="text-tween-teal-soft mb-8 inline-flex items-center gap-2.5 rounded-full bg-white/[0.04] py-2 pr-4 pl-2.5 text-[10px] leading-none font-medium tracking-[0.2em] uppercase ring-1 ring-white/10"
                 >
                   <span className="relative flex size-2 shrink-0" aria-hidden="true">
                     <span className="bg-tween-lime/70 absolute -inset-1 animate-ping rounded-full [animation-duration:2.4s] motion-reduce:hidden" />
@@ -154,7 +159,7 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
                 <h1
                   data-reveal-text
                   id="hero-title"
-                  className="text-[40px] leading-[1.05] font-medium tracking-[-0.035em] text-balance text-white sm:text-[52px] md:text-6xl lg:text-[76px]"
+                  className="text-[44px] leading-[0.98] font-medium tracking-[-0.045em] text-balance text-white sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px]"
                 >
                   Copy the source.
                   <br />
@@ -163,7 +168,7 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
 
                 <p
                   data-reveal-text
-                  className="mx-auto mt-6 max-w-[560px] text-[15px] leading-relaxed text-pretty text-white/70 sm:text-base md:text-lg lg:mx-0"
+                  className="mx-auto mt-8 max-w-[34rem] text-[15px] leading-relaxed text-pretty text-white/60 sm:text-base md:text-lg lg:mx-0"
                 >
                   Animated React components built with GSAP and Tailwind CSS. The CLI copies the
                   whole file into your project — there is no package to install and no API to learn.
@@ -171,164 +176,185 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
 
                 <div
                   data-reveal
-                  className="mx-auto mt-10 flex w-full max-w-72 flex-col gap-3 sm:mt-9 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start"
+                  className="mx-auto mt-12 flex w-full max-w-72 flex-col gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4 lg:justify-start"
                 >
                   <IconTrailButton href="/components" className="w-full justify-center sm:w-auto">
                     Browse components
                   </IconTrailButton>
-                  <Link
+                  <IconTrailButton
                     href="/components#blocks"
-                    className="group text-tween-lime focus-visible:ring-tween-lime inline-flex h-12 items-center justify-center gap-2 rounded-full px-2 text-base font-medium transition-colors hover:text-white focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
+                    className="w-full justify-center bg-white/[0.06] text-white ring-1 ring-white/12 ring-inset sm:w-auto"
                   >
                     Browse blocks
-                    <ArrowRight
-                      className="ease-tween size-4 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
-                      aria-hidden="true"
-                    />
-                  </Link>
+                  </IconTrailButton>
                 </div>
               </div>
 
-              <figure data-reveal className="flex flex-col items-center gap-3 lg:col-span-5">
-                <svg
-                  viewBox="-24 -24 472 472"
-                  role="img"
-                  aria-labelledby="hero-curve-title"
-                  className="w-full max-w-[230px] overflow-visible sm:max-w-[300px] lg:max-w-[420px]"
-                >
-                  <title id="hero-curve-title">
-                    The easing curve Tween UI components share, with a dot riding it
-                  </title>
-                  <line x1="0" y1="400" x2="400" y2="400" className="stroke-tween-teal-soft/30" />
-                  <line x1="0" y1="400" x2="0" y2="0" className="stroke-tween-teal-soft/30" />
-                  <line
-                    x1="0"
-                    y1="400"
-                    x2="400"
-                    y2="0"
-                    strokeDasharray="4 6"
-                    className="stroke-tween-teal-soft/20"
-                  />
-                  <line
-                    x1="0"
-                    y1="400"
-                    x2="128"
-                    y2="112"
-                    strokeDasharray="3 5"
-                    className="stroke-tween-teal-soft/45"
-                  />
-                  <line
-                    x1="400"
-                    y1="0"
-                    x2="0"
-                    y2="0"
-                    strokeDasharray="3 5"
-                    className="stroke-tween-teal-soft/45"
-                  />
-                  <circle
-                    cx="128"
-                    cy="112"
-                    r="5"
-                    strokeWidth="1.5"
-                    className="fill-tween-ink stroke-tween-teal-soft"
-                  />
-                  <circle
-                    cx="0"
-                    cy="0"
-                    r="5"
-                    strokeWidth="1.5"
-                    className="fill-tween-ink stroke-tween-teal-soft"
-                  />
-                  <path
-                    data-curve
-                    d={CURVE_PATH}
-                    pathLength={1}
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    className="stroke-tween-teal-soft fill-none [stroke-dasharray:1]"
-                  />
-                  {RIDERS.map((rider) => (
-                    <circle
-                      key={rider.id}
-                      data-rider-delay={rider.delay}
-                      r={rider.radius}
-                      className={rider.className}
+              <figure
+                data-reveal
+                className="bezel-shell mx-auto w-full max-w-[22rem] sm:max-w-[26rem] lg:col-span-5 lg:max-w-none"
+              >
+                <div className="bezel-core flex flex-col gap-6 p-6 sm:p-8">
+                  <div
+                    aria-hidden="true"
+                    className="text-tween-teal-soft/60 flex items-center justify-between text-[10px] font-medium tracking-[0.2em] uppercase"
+                  >
+                    <span>ease · tween</span>
+                    <span className="flex gap-1.5">
+                      <span className="size-1.5 rounded-full bg-white/15" />
+                      <span className="size-1.5 rounded-full bg-white/15" />
+                      <span className="bg-tween-lime size-1.5 rounded-full" />
+                    </span>
+                  </div>
+                  <svg
+                    viewBox="-24 -24 472 472"
+                    role="img"
+                    aria-labelledby="hero-curve-title"
+                    className="mx-auto w-full max-w-[360px] overflow-visible"
+                  >
+                    <title id="hero-curve-title">
+                      The easing curve Tween UI components share, with a dot riding it
+                    </title>
+                    <line x1="0" y1="400" x2="400" y2="400" className="stroke-tween-teal-soft/30" />
+                    <line x1="0" y1="400" x2="0" y2="0" className="stroke-tween-teal-soft/30" />
+                    <line
+                      x1="0"
+                      y1="400"
+                      x2="400"
+                      y2="0"
+                      strokeDasharray="4 6"
+                      className="stroke-tween-teal-soft/20"
                     />
-                  ))}
-                  <text x="404" y="414" className="fill-tween-teal-soft/70 font-mono text-[11px]">
-                    time
-                  </text>
-                  <text x="-6" y="-12" className="fill-tween-teal-soft/70 font-mono text-[11px]">
-                    value
-                  </text>
-                </svg>
-                <figcaption className="text-tween-teal-soft/80 font-mono text-xs">
-                  cubic-bezier({TWEEN_EASE})
-                </figcaption>
+                    <line
+                      x1="0"
+                      y1="400"
+                      x2="128"
+                      y2="112"
+                      strokeDasharray="3 5"
+                      className="stroke-tween-teal-soft/45"
+                    />
+                    <line
+                      x1="400"
+                      y1="0"
+                      x2="0"
+                      y2="0"
+                      strokeDasharray="3 5"
+                      className="stroke-tween-teal-soft/45"
+                    />
+                    <circle
+                      cx="128"
+                      cy="112"
+                      r="5"
+                      strokeWidth="1.5"
+                      className="fill-tween-ink stroke-tween-teal-soft"
+                    />
+                    <circle
+                      cx="0"
+                      cy="0"
+                      r="5"
+                      strokeWidth="1.5"
+                      className="fill-tween-ink stroke-tween-teal-soft"
+                    />
+                    <path
+                      data-curve
+                      d={CURVE_PATH}
+                      pathLength={1}
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      className="stroke-tween-teal-soft fill-none [stroke-dasharray:1]"
+                    />
+                    {RIDERS.map((rider) => (
+                      <circle
+                        key={rider.id}
+                        data-rider-delay={rider.delay}
+                        r={rider.radius}
+                        className={rider.className}
+                      />
+                    ))}
+                    <text x="404" y="414" className="fill-tween-teal-soft/70 font-mono text-[11px]">
+                      time
+                    </text>
+                    <text x="-6" y="-12" className="fill-tween-teal-soft/70 font-mono text-[11px]">
+                      value
+                    </text>
+                  </svg>
+                  <figcaption className="text-tween-teal-soft/80 border-t border-white/[0.06] pt-4 text-center font-mono text-xs">
+                    cubic-bezier({TWEEN_EASE})
+                  </figcaption>
+                </div>
               </figure>
             </div>
           </div>
 
-          <div data-reveal className="main-container mt-10 sm:mt-14">
-            <div className="text-tween-teal-soft/70 mb-3 flex items-center justify-between font-mono text-[11px]">
-              <span>timeline · {RULER_SECONDS}s · 4 tweens</span>
-              <button
-                type="button"
-                onClick={handleReplay}
-                className="border-tween-teal-soft/30 text-tween-teal-soft hover:border-tween-lime hover:text-tween-lime focus-visible:ring-tween-lime inline-flex h-7 items-center gap-1.5 rounded-full border px-2.5 transition-colors focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
-              >
-                <RotateCcw className="size-3" aria-hidden="true" />
-                Replay
-              </button>
-            </div>
-
-            <div
-              aria-hidden="true"
-              className="border-tween-teal-soft/25 relative h-6 border-t sm:h-7"
-            >
-              {TICKS.map((seconds, index) => {
-                const isMajor = index % 2 === 0;
-                const isKey = index === 0 || index === 6 || index === 12;
-                return (
-                  <span
-                    key={seconds}
-                    className={cn(
-                      'bg-tween-teal-soft/45 absolute top-0 w-px',
-                      isMajor ? 'h-3' : 'h-1.5'
-                    )}
-                    style={rulerPosition(seconds)}
+          <div data-reveal className="main-container">
+            <div className="bezel-shell mt-14 sm:mt-20">
+              <div className="bezel-core px-5 pt-4 pb-9 sm:px-7">
+                <div className="text-tween-teal-soft/70 mb-4 flex items-center justify-between font-mono text-[11px]">
+                  <span>timeline · {RULER_SECONDS}s · 4 tweens</span>
+                  <button
+                    type="button"
+                    onClick={handleReplay}
+                    className="group text-tween-teal-soft hover:text-tween-lime hover:ring-tween-lime/40 focus-visible:ring-tween-lime ease-tween inline-flex h-8 items-center gap-2 rounded-full bg-white/[0.04] py-1 pr-1 pl-3 ring-1 ring-white/10 transition-[color,box-shadow,transform] duration-500 focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98] motion-reduce:transition-none"
                   >
-                    {isMajor && (
+                    Replay
+                    <span
+                      aria-hidden="true"
+                      className="ease-tween grid size-6 place-items-center rounded-full bg-white/[0.06] transition-transform duration-700 group-hover:-rotate-180 motion-reduce:transition-none"
+                    >
+                      <RotateCcw strokeWidth={1.5} className="size-3" />
+                    </span>
+                  </button>
+                </div>
+
+                <div
+                  aria-hidden="true"
+                  className="border-tween-teal-soft/25 relative h-6 border-t sm:h-7"
+                >
+                  {TICKS.map((seconds, index) => {
+                    const isMajor = index % 2 === 0;
+                    const isKey = index === 0 || index === 6 || index === 12;
+                    return (
                       <span
+                        key={seconds}
                         className={cn(
-                          'text-tween-teal-soft/70 absolute top-4 left-0 font-mono text-[10px] whitespace-nowrap',
-                          index === 0 && 'translate-x-0',
-                          index === 12 && '-translate-x-full',
-                          index !== 0 && index !== 12 && '-translate-x-1/2',
-                          isKey ? 'block' : 'hidden md:block'
+                          'bg-tween-teal-soft/45 absolute top-0 w-px',
+                          isMajor ? 'h-3' : 'h-1.5'
                         )}
+                        style={rulerPosition(seconds)}
                       >
-                        {seconds.toFixed(1)}s
+                        {isMajor && (
+                          <span
+                            className={cn(
+                              'text-tween-teal-soft/70 absolute top-4 left-0 font-mono text-[10px] whitespace-nowrap',
+                              index === 0 && 'translate-x-0',
+                              index === 12 && '-translate-x-full',
+                              index !== 0 && index !== 12 && '-translate-x-1/2',
+                              isKey ? 'block' : 'hidden md:block'
+                            )}
+                          >
+                            {seconds.toFixed(1)}s
+                          </span>
+                        )}
                       </span>
-                    )}
-                  </span>
-                );
-              })}
-              {KEYFRAMES.map(({ label, at }) => (
-                <span key={label} className="absolute top-0 size-0" style={rulerPosition(at)}>
+                    );
+                  })}
+                  {KEYFRAMES.map(({ label, at }) => (
+                    <span key={label} className="absolute top-0 size-0" style={rulerPosition(at)}>
+                      <span
+                        data-marker-at={at}
+                        className="bg-tween-teal-soft/35 absolute -top-[4.5px] -left-[4.5px] size-[9px] rotate-45 rounded-[1px]"
+                      />
+                      <span className="text-tween-teal-soft/60 absolute top-4 left-0 hidden -translate-x-1/2 font-mono text-[10px] lg:block">
+                        {label}
+                      </span>
+                    </span>
+                  ))}
                   <span
-                    data-marker-at={at}
-                    className="bg-tween-teal-soft/35 absolute -top-[4.5px] -left-[4.5px] size-[9px] rotate-45 rounded-[1px]"
+                    data-playhead
+                    className="bg-tween-lime before:border-b-tween-lime absolute -top-px bottom-0 left-0 z-[1] w-px shadow-[0_0_12px_#c6f56f] before:absolute before:-bottom-0.5 before:left-1/2 before:-translate-x-1/2 before:border-x-[5px] before:border-b-[7px] before:border-x-transparent before:content-['']"
                   />
-                  <span className="text-tween-teal-soft/60 absolute top-4 left-0 hidden -translate-x-1/2 font-mono text-[10px] lg:block">
-                    {label}
-                  </span>
-                </span>
-              ))}
-              <span
-                data-playhead
-                className="bg-tween-lime before:border-b-tween-lime absolute -top-px bottom-0 left-0 z-[1] w-px shadow-[0_0_12px_#c6f56f] before:absolute before:-bottom-0.5 before:left-1/2 before:-translate-x-1/2 before:border-x-[5px] before:border-b-[7px] before:border-x-transparent before:content-['']"
-              />
+                </div>
+              </div>
             </div>
           </div>
         </RevealGroup>
