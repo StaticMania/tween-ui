@@ -88,13 +88,13 @@ describe('install commands', () => {
       expect(command).not.toContain('\n');
       expect(command).not.toContain('registry add');
     }
-    expect(commands.npm).toBe(`npx shadcn@latest add ${siteConfig.url}/r/icon-trail-button.json`);
+    expect(commands.npm).toBe('npx shadcn@latest add @tween-ui/icon-trail-button');
   });
 
-  // Flipping this is the whole switch-over: the setup pointers and the CTA's
-  // URL fallback drop away once the CLI resolves @tween-ui on its own.
-  it('still assumes the namespace is unlisted upstream', () => {
-    expect(REGISTRY_LISTED).toBe(false);
+  // Listed at ui.shadcn.com/r/registries.json, so the CLI resolves @tween-ui
+  // with no mapping and the setup pointers under each install tab drop away.
+  it('treats the namespace as listed upstream', () => {
+    expect(REGISTRY_LISTED).toBe(true);
   });
 
   it('documents the one-time setup on its own page', () => {

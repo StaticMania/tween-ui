@@ -84,14 +84,12 @@ export const registryItemRef = (name: string) =>
   /^(@|https?:)/.test(name) ? name : `${siteConfig.registryNamespace}/${name}`;
 
 /**
- * Is the namespace listed at ui.shadcn.com/r/registries.json yet? Until it is,
- * the CLI cannot resolve `@tween-ui` on its own, so every install command
- * carries the one-time `registry add` line that maps it.
- *
- * Flip to true once the upstream directory PR merges — that drops the setup
- * line from the docs, the README snippet and the landing CTA at once.
+ * Is the namespace listed at ui.shadcn.com/r/registries.json? It is, so the CLI
+ * resolves `@tween-ui` on its own and writes the mapping into components.json
+ * on first install. The `registry add` step is optional, and item pages no
+ * longer point people at it.
  */
-export const REGISTRY_LISTED = false;
+export const REGISTRY_LISTED = true;
 
 /** `@tween-ui=https://…/r/{name}.json`, the pair `registry add` takes. */
 export const registryMapping = `${siteConfig.registryNamespace}=${registryUrlTemplate}`;

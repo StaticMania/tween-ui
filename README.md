@@ -43,21 +43,16 @@ someone filed an issue.
 
 ## Quick start
 
-Point the [shadcn CLI](https://ui.shadcn.com/docs/cli) at the registry. Once
-per project:
-
-```bash
-pnpm dlx shadcn@latest registry add "@tween-ui=https://tween-ui.vercel.app/r/{name}.json"
-```
-
-Then add any component by name, as many at a time as you like:
+`@tween-ui` is listed in the shadcn registry directory, so the
+[shadcn CLI](https://ui.shadcn.com/docs/cli) resolves it with no setup. Add any
+component by name, as many at a time as you like:
 
 ```bash
 pnpm dlx shadcn@latest add @tween-ui/sliding-tabs
 ```
 
-Full details, including the no-setup URL form, are on
-[the setup guide](https://tween-ui.vercel.app/installation/setup-guide).
+Full details, including the optional `components.json` mapping and the URL
+form, are on [the setup guide](https://tween-ui.vercel.app/installation/setup-guide).
 
 That writes `components/tweenui/sliding-tabs.tsx` into your project. Use it
 like any local component:

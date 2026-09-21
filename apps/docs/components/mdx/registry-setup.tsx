@@ -3,8 +3,8 @@
 import { CommandTabs, shadcnRegistryAddCommands } from './command-tabs';
 
 /**
- * The one-time `registry add` command, for the setup page. Item pages link here
- * instead of repeating it — the mapping is per project, not per component.
+ * The optional `registry add` command, for the setup page. The mapping is per
+ * project, not per component, so item pages never repeat it.
  */
 export function RegistrySetup() {
   return (
