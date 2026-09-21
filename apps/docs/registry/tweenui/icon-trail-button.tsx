@@ -76,8 +76,11 @@ function useButtonIconSlide() {
     [clearTimer]
   );
 
-  const step = useCallback(
-    (btn: HTMLElement) => {
+  useEffect(() => {
+    const btn = buttonRef.current;
+    if (!btn) return;
+
+    const step = () => {
       const on = isButtonOn(btn);
 
       if (prefersReducedMotion()) {
@@ -91,7 +94,7 @@ function useButtonIconSlide() {
         if (stateRef.current === 'idle') {
           setState('expand');
           dirRef.current = 'in';
-          wait(EXPAND_MS, () => step(btn));
+          wait(EXPAND_MS, step);
           return;
         }
         if (dirRef.current === 'in' && timerRef.current) return;
@@ -105,22 +108,16 @@ function useButtonIconSlide() {
       if (stateRef.current === 'park') {
         setState('expand');
         dirRef.current = 'out';
-        wait(PARK_MS, () => step(btn));
+        wait(PARK_MS, step);
         return;
       }
       if (dirRef.current === 'out' && timerRef.current) return;
       clearTimer();
       setState('idle');
       dirRef.current = 'out';
-    },
-    [clearTimer, setState, wait]
-  );
+    };
 
-  useEffect(() => {
-    const btn = buttonRef.current;
-    if (!btn) return;
-
-    const sync = () => step(btn);
+    const sync = () => step();
     btn.addEventListener('pointerenter', sync);
     btn.addEventListener('pointerleave', sync);
     btn.addEventListener('focus', sync);
@@ -133,7 +130,7 @@ function useButtonIconSlide() {
       btn.removeEventListener('focus', sync);
       btn.removeEventListener('blur', sync);
     };
-  }, [clearTimer, step]);
+  }, [clearTimer, setState, wait]);
 
   return { iconState, buttonRef };
 }

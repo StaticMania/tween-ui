@@ -72,7 +72,9 @@ export default function VoiceSamplePlayer({
 
   // Keep the latest setter for the audio "ended" listener without re-creating audio.
   const endedRef = useRef<() => void>(() => {});
-  endedRef.current = () => setActive(false);
+  useEffect(() => {
+    endedRef.current = () => setActive(false);
+  }, [setActive]);
 
   // Create the audio element once per source.
   useEffect(() => {

@@ -64,7 +64,7 @@ export default defineDocsConfig({
           { label: 'All blocks', href: '/components#blocks' },
           { label: 'Tab Wipe', href: '/block/tab-wipe' },
           { label: 'Pricing Plan Switch', href: '/block/pricing-plan-switch' },
-          { label: 'Testimonial Strip Wipe', href: '/block/testimonial-strip-wipe' },
+          { label: 'Strip Wipe', href: '/block/strip-wipe' },
           { label: 'CTA Starfall', href: '/block/cta-starfall' },
         ],
       },
