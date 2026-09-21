@@ -14,37 +14,34 @@ export function BlockSpotlight() {
   const remaining = blocks.length - chips.length - featured.length;
 
   return (
-    <section id="blocks" aria-labelledby="blocks-title" className="pb-16 md:pb-24">
+    <section id="blocks" aria-labelledby="blocks-title" className="pb-24 md:pb-32">
       <div className="main-container">
-        <RevealGroup className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="flex flex-col gap-3.5 lg:col-span-5">
-            <p
-              data-reveal
-              className="text-tween-accent font-mono text-xs tracking-[0.08em] uppercase"
-            >
+        <RevealGroup className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+          <div className="flex flex-col gap-5 lg:sticky lg:top-28 lg:col-span-5 lg:self-start">
+            <p data-reveal className="eyebrow">
               Blocks
             </p>
             <h2
               data-reveal-text
               id="blocks-title"
-              className="text-highlighted text-3xl font-medium tracking-[-0.025em] text-balance md:text-[40px] md:leading-[1.1]"
+              className="text-highlighted text-4xl font-medium tracking-[-0.035em] text-balance md:text-5xl lg:text-[56px] lg:leading-[1.02]"
             >
               {blocks.length} full page sections.
             </h2>
             <p
               data-reveal-text
-              className="text-muted-foreground text-[15px] leading-relaxed text-pretty sm:text-base md:text-[17px]"
+              className="text-muted-foreground max-w-md text-[15px] leading-relaxed text-pretty sm:text-base md:text-[17px]"
             >
               Heroes, pricing tables, testimonials, CTAs. Same rules as the components: one file,
               copy it, change it.
             </p>
 
-            <ul data-reveal className="mt-3 flex flex-wrap gap-2">
+            <ul data-reveal className="mt-4 flex flex-wrap gap-2">
               {chips.map((entry) => (
                 <li key={entry.name}>
                   <Link
                     href={`/block/${entry.name}`}
-                    className="border-border text-muted-foreground hover:border-tween-accent/40 hover:text-highlighted inline-flex rounded-full border px-3 py-1.5 font-mono text-xs transition-colors duration-300 motion-reduce:transition-none"
+                    className="bg-highlighted/[0.03] text-muted-foreground ring-border hover:text-highlighted hover:ring-tween-accent/40 focus-visible:ring-tween-accent ease-tween inline-flex rounded-full px-3.5 py-1.5 font-mono text-xs ring-1 transition-[color,box-shadow] duration-500 focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
                   >
                     {entry.name}
                   </Link>
@@ -54,11 +51,12 @@ export function BlockSpotlight() {
                 <li>
                   <Link
                     href="/components#blocks"
-                    className="group text-tween-accent hover:text-highlighted inline-flex items-center gap-1.5 px-2 py-1.5 font-mono text-xs transition-colors"
+                    className="group text-tween-accent hover:text-highlighted inline-flex items-center gap-1.5 px-2 py-1.5 font-mono text-xs transition-colors duration-500"
                   >
                     +{remaining} more
                     <ArrowRight
-                      className="ease-tween size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transition-none"
+                      strokeWidth={1.5}
+                      className="ease-tween size-3.5 transition-transform duration-500 group-hover:translate-x-0.5 motion-reduce:transition-none"
                       aria-hidden="true"
                     />
                   </Link>

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { BlockSpotlight } from '@/components/landing/block-spotlight';
 import { Cta } from '@/components/landing/cta';
@@ -8,9 +8,11 @@ import { Preloader } from '@/components/landing/preloader';
 import { Showcase } from '@/components/landing/showcase';
 import { SHOWCASE_NAMES } from '@/components/landing/showcase-previews';
 import { Why } from '@/components/landing/why';
+import { LandingHeader } from '@/components/layout/landing-header';
 import { registry } from '@/lib/registry';
 
 const push = vi.fn();
+const { setSearchOpen } = vi.hoisted(() => ({ setSearchOpen: vi.fn() }));
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ push }),
@@ -18,6 +20,13 @@ vi.mock('next/navigation', () => ({
 }));
 
 vi.mock('docora', () => ({
+  SearchButton: ({ className }: { className?: string }) => (
+    <button type="button" className={className}>
+      Search
+    </button>
+  ),
+  ThemeToggle: () => null,
+  useSearch: () => ({ setOpen: setSearchOpen }),
   useDocsConfig: () => ({
     site: { name: 'Tween UI', url: 'https://tween-ui.vercel.app' },
     github: { url: 'https://github.com/StaticMania/tween-ui' },
@@ -170,5 +179,43 @@ describe('preloader', () => {
     const overlay = container.querySelector<HTMLElement>('[data-preloader]');
     expect(overlay?.style.display).toBe('none');
     expect(document.body.style.overflow).toBe('');
+  });
+});
+
+describe('landing header', () => {
+  it('starts as the full header and keeps the pill search out of reach', () => {
+    const { container } = render(<LandingHeader starCount={null} />);
+    expect(container.querySelector('header')).toHaveAttribute('data-scrolled', 'false');
+    expect(screen.getByRole('button', { name: 'Open search' }).closest('[inert]')).not.toBeNull();
+    expect(screen.getByRole('link', { name: /github/i }).closest('[inert]')).toBeNull();
+  });
+
+  it('swaps to the logo and search pill once the page scrolls', () => {
+    let notify: IntersectionObserverCallback = () => {};
+    const observe = vi.fn();
+    vi.stubGlobal(
+      'IntersectionObserver',
+      class {
+        constructor(callback: IntersectionObserverCallback) {
+          notify = callback;
+        }
+        observe = observe;
+        disconnect = vi.fn();
+      }
+    );
+
+    const { container } = render(<LandingHeader starCount={null} />);
+    expect(observe).toHaveBeenCalledOnce();
+    act(() =>
+      notify([{ isIntersecting: false } as IntersectionObserverEntry], {} as IntersectionObserver)
+    );
+
+    expect(container.querySelector('header')).toHaveAttribute('data-scrolled', 'true');
+    const pillSearch = screen.getByRole('button', { name: 'Open search' });
+    expect(pillSearch.closest('[inert]')).toBeNull();
+    fireEvent.click(pillSearch);
+    expect(setSearchOpen).toHaveBeenCalledWith(true);
+    expect(screen.getByRole('link', { name: /github/i }).closest('[inert]')).not.toBeNull();
+    vi.unstubAllGlobals();
   });
 });
