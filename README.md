@@ -43,14 +43,24 @@ someone filed an issue.
 
 ## Quick start
 
-Add any component with the [shadcn CLI](https://ui.shadcn.com/docs/cli):
+Point the [shadcn CLI](https://ui.shadcn.com/docs/cli) at the registry. Once
+per project:
 
 ```bash
-pnpm dlx shadcn@latest add https://tween-ui.vercel.app/r/sliding-tabs.json
+pnpm dlx shadcn@latest registry add "@tween-ui=https://tween-ui.vercel.app/r/{name}.json"
 ```
 
-That writes `components/tweenui/sliding-tabs.tsx` into your project. Use it like
-any local component:
+Then add any component by name, as many at a time as you like:
+
+```bash
+pnpm dlx shadcn@latest add @tween-ui/sliding-tabs
+```
+
+Full details, including the no-setup URL form, are on
+[the setup guide](https://tween-ui.vercel.app/installation/setup-guide).
+
+That writes `components/tweenui/sliding-tabs.tsx` into your project. Use it
+like any local component:
 
 ```tsx
 import SlidingTabs from '@/components/tweenui/sliding-tabs';
@@ -84,12 +94,12 @@ Browse them all at **[tween-ui.vercel.app/components](https://tween-ui.vercel.ap
 
 ## Requirements
 
-| | |
-| --- | --- |
-| React | 19 |
-| Tailwind CSS | v4 |
-| GSAP | 3.13+ (only for components that use it) |
-| TypeScript | 5.x |
+|              |                                         |
+| ------------ | --------------------------------------- |
+| React        | 19                                      |
+| Tailwind CSS | v4                                      |
+| GSAP         | 3.13+ (only for components that use it) |
+| TypeScript   | 5.x                                     |
 
 GSAP 3.13 made SplitText and DrawSVG free, which is what makes several of these
 components possible without a Club GreenSock licence.
@@ -107,6 +117,7 @@ apps/docs/
 │  ├─ tweenui/<name>.tsx   the shippable source — what the CLI copies
 │  └─ demos/<name>.tsx     what the docs preview renders
 ├─ content/
+│  ├─ 0.installation/     setup guide
 │  ├─ 1.component/<name>.mdx
 │  └─ 2.block/<name>.mdx
 ├─ public/r/*.json         generated — the shadcn registry items

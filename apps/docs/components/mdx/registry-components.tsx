@@ -4,6 +4,7 @@ import { ComponentPreview } from './component-preview';
 import { ComponentSource } from './component-source';
 import { InstallTabs } from './install-tabs';
 import { OpenIn } from './open-in';
+import { RegistrySetup } from './registry-setup';
 
 /**
  * Custom MDC components merged into Docora's default set via compileMdxFile.
@@ -15,4 +16,5 @@ export const mdxComponents: Record<string, ComponentType<Record<string, unknown>
   'install-tabs': InstallTabs as ComponentType<Record<string, unknown>>,
   'component-gallery': ComponentGallery as ComponentType<Record<string, unknown>>,
   'open-in': OpenIn as ComponentType<Record<string, unknown>>,
+  'registry-setup': RegistrySetup as ComponentType<Record<string, unknown>>,
 };

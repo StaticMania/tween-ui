@@ -12,9 +12,17 @@ function collectLeaves(items: NavItem[]): NavItem[] {
 }
 
 /**
+ * Catalog sections list registry items, so their size is worth showing. Guide
+ * sections like Installation are read, not browsed — a count there would just
+ * be noise.
+ */
+const isCatalog = (leaves: NavItem[]) =>
+  leaves.every((leaf) => /^\/(component|block)\//.test(leaf.href ?? ''));
+
+/**
  * Flatten each top-level section (Components, Blocks, …) so its pages sit
  * directly under the section instead of being nested inside per-category
- * folders, and append the total page count to the section label.
+ * folders, and append the page count to catalog section labels.
  *
  * The on-disk folder structure (and therefore page URLs) is untouched — this
  * only reshapes what the sidebar renders.
@@ -31,7 +39,7 @@ export function flattenSections(items: NavItem[]): NavItem[] {
 
     return {
       ...item,
-      label: `${item.label} (${leaves.length})`,
+      ...(isCatalog(leaves) ? { label: `${item.label} (${leaves.length})` } : {}),
       children: leaves,
     };
   });

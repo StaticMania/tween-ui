@@ -64,16 +64,71 @@ export function CommandTabs({ commands }: { commands: Record<PmId, string> }) {
 }
 
 export const registryItemUrl = (name: string) =>
-  `${siteConfig.url}/r/${name.replace(/^@tweenui\//, '')}.json`;
+  `${siteConfig.url}/r/${name.replace(`${siteConfig.registryNamespace}/`, '')}.json`;
 
+/** URL template users map to the namespace in their components.json. */
+export const registryUrlTemplate = `${siteConfig.url}/r/{name}.json`;
+
+/** The `registries` block a project needs once before installing by namespace. */
+export const registriesSnippet = JSON.stringify(
+  { registries: { [siteConfig.registryNamespace]: registryUrlTemplate } },
+  null,
+  2
+);
+
+/**
+ * Namespaced item ref — `@tween-ui/shiny-button`. The CLI resolves it through
+ * the `registries` map above; a full URL or another namespace passes through.
+ */
+export const registryItemRef = (name: string) =>
+  /^(@|https?:)/.test(name) ? name : `${siteConfig.registryNamespace}/${name}`;
+
+/**
+ * Is the namespace listed at ui.shadcn.com/r/registries.json yet? Until it is,
+ * the CLI cannot resolve `@tween-ui` on its own, so every install command
+ * carries the one-time `registry add` line that maps it.
+ *
+ * Flip to true once the upstream directory PR merges — that drops the setup
+ * line from the docs, the README snippet and the landing CTA at once.
+ */
+export const REGISTRY_LISTED = false;
+
+/** `@tween-ui=https://…/r/{name}.json`, the pair `registry add` takes. */
+export const registryMapping = `${siteConfig.registryNamespace}=${registryUrlTemplate}`;
+
+const RUNNERS: Record<PmId, string> = {
+  npm: 'npx shadcn@latest',
+  pnpm: 'pnpm dlx shadcn@latest',
+  yarn: 'yarn dlx shadcn@latest',
+  bun: 'bunx shadcn@latest',
+};
+
+const byPm = (build: (runner: string) => string) =>
+  Object.fromEntries(PMS.map(({ id }) => [id, build(RUNNERS[id])])) as Record<PmId, string>;
+
+/**
+ * The one-time `registry add`, which writes the namespace into the project's
+ * components.json. Lives on the setup page rather than on every item page —
+ * it is per project, not per component.
+ */
+export function shadcnRegistryAddCommands(): Record<PmId, string> {
+  return byPm((runner) => `${runner} registry add "${registryMapping}"`);
+}
+
+/** Install command per package manager, by namespaced item name. */
 export function shadcnAddCommands(names: string[]): Record<PmId, string> {
-  const item = names.map(registryItemUrl).join(' ');
-  return {
-    npm: `npx shadcn@latest add ${item}`,
-    pnpm: `pnpm dlx shadcn@latest add ${item}`,
-    yarn: `yarn dlx shadcn@latest add ${item}`,
-    bun: `bunx shadcn@latest add ${item}`,
-  };
+  const items = names.map(registryItemRef).join(' ');
+  return byPm((runner) => `${runner} add ${items}`);
+}
+
+/**
+ * Single line that works with no prior setup — for places with no room for the
+ * mapping step, like the landing CTA. Falls back to the item URL, which the CLI
+ * resolves without any `registries` entry.
+ */
+export function shadcnAddOneLiner(name: string): Record<PmId, string> {
+  const item = REGISTRY_LISTED ? registryItemRef(name) : registryItemUrl(name);
+  return byPm((runner) => `${runner} add ${item}`);
 }
 
 export function installCommands(deps: string): Record<PmId, string> {

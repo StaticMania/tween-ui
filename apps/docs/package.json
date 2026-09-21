@@ -39,7 +39,7 @@
     "jsdom": "^25.0.1",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "shadcn": "3.3.1",
+    "shadcn": "^4.21.0",
     "shiki": "^4.4.3",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.20.0",

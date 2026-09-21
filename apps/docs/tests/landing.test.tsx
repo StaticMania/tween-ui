@@ -139,9 +139,7 @@ describe('landing sections', () => {
 
   it('carries the install command and routes to the gallery', () => {
     render(<Cta />);
-    expect(
-      screen.getByText('npx shadcn@latest add https://tween-ui.vercel.app/r/icon-trail-button.json')
-    ).toBeInTheDocument();
+    expect(screen.getByText('npx shadcn@latest add @tween-ui/tab-wipe')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /browse components/i })).toHaveAttribute(
       'href',
       '/components'

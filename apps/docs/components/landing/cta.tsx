@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { useDocsConfig } from 'docora';
 import { Check, Copy } from 'lucide-react';
+import { shadcnAddCommands } from '@/components/mdx/command-tabs';
 import { copyText } from '@/lib/utils';
 import IconTrailButton from '@/registry/tweenui/icon-trail-button';
 import { RevealGroup } from './reveal-group';
@@ -10,11 +10,9 @@ import { RevealGroup } from './reveal-group';
 const COPIED_MS = 1600;
 
 export function Cta() {
-  const config = useDocsConfig();
   const [isCopied, setIsCopied] = useState(false);
 
-  const siteUrl = config.site.url ?? '';
-  const installCommand = `npx shadcn@latest add ${siteUrl}/r/icon-trail-button.json`;
+  const installCommand = shadcnAddCommands(['tab-wipe']).npm;
 
   const handleCopy = async () => {
     if (!(await copyText(installCommand))) return;

@@ -18,7 +18,7 @@
     "hooks": "@/hooks"
   },
   "registries": {
-    "@tweenui": "https://tween-ui.vercel.app/r/{name}.json"
+    "@tween-ui": "https://tween-ui.vercel.app/r/{name}.json"
   },
   "iconLibrary": "lucide"
 }
