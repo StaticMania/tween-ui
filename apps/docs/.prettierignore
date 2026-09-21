@@ -1,5 +1,10 @@
 .next
 node_modules
 public/r
-registry/__sources__.generated.ts
 pnpm-lock.yaml
+
+# Written by `pnpm registry:build`. CI rebuilds them and fails on any diff, so
+# they must stay byte-for-byte what the generator emits — never reformat them.
+registry/__sources__.generated.ts
+registry/__index__.generated.tsx
+registry/__media__.generated.ts
