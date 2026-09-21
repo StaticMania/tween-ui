@@ -606,4 +606,43 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'morphing-text',
+    type: 'component',
+    title: 'Morphing Text',
+    description:
+      'A headline whose last word cycles through a list with a gooey blur morph — an SVG alpha threshold fuses the outgoing and incoming words into one liquid shape while the slot eases between word widths.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/morphing-text.tsx',
+        target: 'components/tweenui/morphing-text.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/morphing-text.tsx',
+      },
+    ],
+    usage: {
+      react: `import MorphingText from '@/components/tweenui/morphing-text';
+
+export default function Example() {
+  return (
+    <MorphingText
+      prefix="Motion that feels like"
+      words={['magic', 'water', 'silk', 'gravity']}
+      className="text-6xl font-medium tracking-tight"
+    />
+  );
+}`,
+    },
+  },
 ];

@@ -26,6 +26,7 @@ export const demos: Record<string, ComponentType> = {
   'logo-cycle:default': dynamic(() => import('./demos/logo-cycle')),
   'logo-wave:default': dynamic(() => import('./demos/logo-wave')),
   'image-fan-slider:default': dynamic(() => import('./demos/image-fan-slider')),
+  'morphing-text:default': dynamic(() => import('./demos/morphing-text')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process-sticky-steps')),

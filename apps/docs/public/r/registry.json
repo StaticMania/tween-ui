@@ -196,6 +196,18 @@
       ]
     },
     {
+      "name": "morphing-text",
+      "type": "registry:ui",
+      "title": "Morphing Text",
+      "description": "A headline whose last word cycles through a list with a gooey blur morph — an SVG alpha threshold fuses the outgoing and incoming words into one liquid shape while the slot eases between word widths.",
+      "files": [
+        {
+          "path": "components/tweenui/morphing-text.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",
