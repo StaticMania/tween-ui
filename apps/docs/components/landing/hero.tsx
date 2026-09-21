@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import { ArrowRight, RotateCcw } from 'lucide-react';
+import { isIntroSettled, whenIntroSettled } from '@/lib/intro';
 import { prefersReducedMotion, TWEEN_EASE, tweenEase } from '@/lib/motion';
 import { cn } from '@/lib/utils';
 import IconTrailButton from '@/registry/tweenui/icon-trail-button';
@@ -14,6 +15,8 @@ import { RevealGroup } from './reveal-group';
 gsap.registerPlugin(useGSAP, MotionPathPlugin);
 
 const RULER_SECONDS = 2.4;
+/** Never leave the ruler waiting on an intro cue that failed to arrive. */
+const INTRO_TIMEOUT_MS = 3000;
 const CURVE_PATH = 'M0 400 C128 112 0 0 400 0';
 const TICKS = Array.from({ length: 13 }, (_, index) => index * 0.2);
 const KEYFRAMES = [
@@ -103,7 +106,15 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
         });
       });
 
-      timeline.play();
+      // The ruler narrates the hero's own reveal, so it starts when the intro
+      // releases the page rather than playing out unseen behind the overlay.
+      if (isIntroSettled()) timeline.play();
+      else {
+        void Promise.race([
+          whenIntroSettled(),
+          new Promise((resolve) => window.setTimeout(resolve, INTRO_TIMEOUT_MS)),
+        ]).then(() => timeline.play());
+      }
     },
     { scope: rootRef }
   );

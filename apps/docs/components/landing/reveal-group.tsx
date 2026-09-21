@@ -32,9 +32,11 @@ export type RevealGroupProps = Readonly<{
  * ride up from behind a mask. Everything animates in document order off a
  * single stagger, so copy, buttons and figures move together.
  *
- * Nothing is hidden in CSS — the from-states are set by GSAP at build time, so
- * if the animation never runs the section simply renders as authored. Splits
- * are reverted once the reveal lands, leaving the markup free to reflow.
+ * Targets are hidden by the stylesheet from the first paint (see globals.css),
+ * so the server HTML never shows them in their finished state before they
+ * animate. Every path that skips the animation shows them explicitly, and the
+ * intro cue is raced against a timeout, so nothing is left hidden. Splits are
+ * reverted once the reveal lands, leaving the markup free to reflow.
  */
 export function RevealGroup({
   children,
@@ -47,11 +49,18 @@ export function RevealGroup({
   useGSAP(
     () => {
       const root = rootRef.current;
-      const fonts = document.fonts;
-      if (!root || !fonts || prefersReducedMotion()) return;
+      if (!root) return;
 
       const targets = gsap.utils.toArray<HTMLElement>('[data-reveal], [data-reveal-text]', root);
       if (targets.length === 0) return;
+
+      // The stylesheet hides targets before the first paint, so any path that
+      // skips the animation has to show them itself.
+      const fonts = document.fonts;
+      if (!fonts || prefersReducedMotion()) {
+        gsap.set(targets, { autoAlpha: 1 });
+        return;
+      }
 
       const splits: SplitText[] = [];
       let isCancelled = false;
@@ -74,11 +83,21 @@ export function RevealGroup({
           if (target.dataset.revealText !== undefined) {
             const split = SplitText.create(target, { type: 'lines', mask: 'lines' });
             splits.push(split);
+            // Lines start below their masks, so the element itself can be shown
+            // now — in the same frame, before anything can paint.
             timeline.from(split.lines, { yPercent: 110, duration: 0.9, stagger: 0.07 }, at);
+            gsap.set(target, { autoAlpha: 1 });
             return;
           }
 
-          timeline.from(target, { y: 24, autoAlpha: 0, duration: 0.8 }, at);
+          // `fromTo`, not `from`: the stylesheet already has the target hidden,
+          // and `from` would read that hidden state as where to animate *to*.
+          timeline.fromTo(
+            target,
+            { y: 24, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.8 },
+            at
+          );
         });
       };
 

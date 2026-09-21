@@ -256,6 +256,19 @@
   }
 }
 
+/* Everything GSAP animates in starts hidden from the first paint. Left visible,
+   the server HTML paints it in its finished state, the script then snaps it to
+   its from-state after hydration, and it animates back in — a visible flash on
+   first load. `visibility` rather than `display` keeps its layout, so SplitText
+   still measures real line breaks. Gated on scripting so no-JS visitors see
+   everything, and on motion so reduced-motion visitors never wait on a reveal. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-landing] :is([data-reveal], [data-reveal-text]),
+  [data-preloader] :is([data-intro-brand], [data-intro-plot], [data-intro-rail]) {
+    visibility: hidden;
+  }
+}
+
 /* Outfit as the site-wide typeface (overrides Docora's default sans).
    Components carry their own colors/easing inline — no @theme tokens needed. */
 :root {
