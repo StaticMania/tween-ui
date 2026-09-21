@@ -171,7 +171,9 @@ export default function LogoWallShuffle({
     { scope: rootRef, dependencies: [tileCount, logos.length] }
   );
 
-  let tileIndex = -1;
+  const columnStarts = columns.map((_, columnIndex) =>
+    columns.slice(0, columnIndex).reduce((total, size) => total + size, 0)
+  );
 
   return (
     <section
@@ -199,8 +201,8 @@ export default function LogoWallShuffle({
                 columnIndex % 2 === 1 && 'lg:translate-y-10'
               )}
             >
-              {Array.from({ length: size }, () => {
-                tileIndex += 1;
+              {Array.from({ length: size }, (_, row) => {
+                const tileIndex = columnStarts[columnIndex] + row;
                 const tile = tiles[tileIndex];
                 const logo = logos[tile?.logo ?? 0];
                 const leaving = tile?.leaving != null ? logos[tile.leaving] : undefined;
