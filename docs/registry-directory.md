@@ -74,16 +74,14 @@ PR body:
 Once merged, the namespace is published immediately. Registry Health starts
 monitoring afterwards; it does not gate publication.
 
-## After it merges
+## After it merged
 
-Flip `REGISTRY_LISTED` to `true` in
+`@tween-ui` is listed, and `REGISTRY_LISTED` is `true` in
 [`components/mdx/command-tabs.tsx`](../apps/docs/components/mdx/command-tabs.tsx).
-That is the whole switch-over: the "set up the registry first" line under every
-install tab disappears, and the landing CTA moves from the item URL to
-`@tween-ui/icon-trail-button`. The setup page stays useful — the mapping is
-still valid, just no longer required — so reword it rather than delete it, and
-update the README quick start to match. `pnpm test` will tell you what else
-still assumes the unlisted state.
+The "set up the registry first" line under every install tab is gone, and
+`shadcnAddOneLiner` emits `@tween-ui/<name>` instead of the item URL. The setup
+page stays, reworded: the mapping is still valid and the CLI writes it on first
+install, but it is no longer required. The README quick start matches.
 
 ## Requirements, and how this registry meets them
 

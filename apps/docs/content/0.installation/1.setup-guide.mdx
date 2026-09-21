@@ -1,12 +1,12 @@
 ---
 title: Setup Guide
-description: Map the @tween-ui registry once per project, then install any component by name.
+description: Install any Tween UI component by name through the @tween-ui registry.
 icon: terminal
 ---
 
-Tween UI ships through the [shadcn CLI](https://ui.shadcn.com/docs/cli). One
-command tells the CLI where `@tween-ui` lives, and after that every component
-and block installs by name.
+Tween UI ships through the [shadcn CLI](https://ui.shadcn.com/docs/cli).
+`@tween-ui` is listed in the shadcn registry directory, so the CLI already knows
+where it lives: every component and block installs by name, with no setup.
 
 ## Requirements
 
@@ -20,25 +20,6 @@ pnpm dlx shadcn@latest init
 Tween UI components target **React 19** and **Tailwind CSS v4**. Components that
 animate with GSAP pull in `gsap` and `@gsap/react` when you install them; the
 CLI handles that.
-
-## Add the registry
-
-::registry-setup
-::
-
-That writes the namespace into your `components.json`:
-
-```json [components.json]
-{
-  "registries": {
-    "@tween-ui": "https://tween-ui.vercel.app/r/{name}.json"
-  }
-}
-```
-
-You can paste that block in by hand instead — the command just saves you the
-edit. Either way it is **once per project**, and it belongs in version control
-so the rest of your team gets it too.
 
 ## Install a component
 
@@ -54,9 +35,31 @@ pnpm dlx shadcn@latest add @tween-ui/glow-button @tween-ui/flip-card
 Each component lands as a single file in `components/tweenui/`, and from then
 on it is yours to edit.
 
+## Add the registry (optional)
+
+On the first install the CLI writes the namespace into your `components.json`
+for you:
+
+```json [components.json]
+{
+  "registries": {
+    "@tween-ui": "https://tween-ui.vercel.app/r/{name}.json"
+  }
+}
+```
+
+To add it up front instead — say, to commit it before anyone on the team
+installs anything — run:
+
+::registry-setup
+::
+
+Or paste the block above in by hand. Either way it belongs in version control,
+so the rest of your team resolves `@tween-ui` the same way.
+
 ## Without the registry
 
-Every item is also reachable by URL, which needs no setup at all:
+Every item is also reachable by URL:
 
 ```bash
 pnpm dlx shadcn@latest add https://tween-ui.vercel.app/r/icon-trail-button.json
@@ -67,9 +70,9 @@ Useful for a one-off, or for a project you'd rather not add a registry to.
 ## Troubleshooting
 
 ::note
-**`Unknown registry "@tween-ui"`** — the mapping is missing from this project's
-`components.json`. Run the command above, and check you have not typed
-`@tweenui`: the namespace has a hyphen.
+**`Unknown registry "@tween-ui"`** — check you have not typed `@tweenui`: the
+namespace has a hyphen. If the spelling is right, the CLI could not reach the
+shadcn registry directory; add the mapping above and it resolves without it.
 ::
 
 ::note
