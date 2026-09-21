@@ -1,4 +1,5 @@
 {
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "tween-ui",
   "homepage": "https://tween-ui.vercel.app",
   "items": [

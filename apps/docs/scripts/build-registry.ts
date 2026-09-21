@@ -162,7 +162,14 @@ async function main() {
     });
   }
 
-  const registryIndex = { name: 'tween-ui', homepage: registryUrl, items: index };
+  // `$schema` and a flat `/r` layout are what the shadcn registry directory
+  // validates when listing a namespace — see docs/registry-directory.md.
+  const registryIndex = {
+    $schema: 'https://ui.shadcn.com/schema/registry.json',
+    name: 'tween-ui',
+    homepage: registryUrl,
+    items: index,
+  };
   const parsedIndex = registrySchema.safeParse(registryIndex);
   if (!parsedIndex.success) {
     throw new Error(
