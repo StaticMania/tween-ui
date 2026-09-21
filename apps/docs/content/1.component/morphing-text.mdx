@@ -1,0 +1,86 @@
+---
+title: Morphing Text
+description: A headline whose last word melts into the next with a gooey blur morph.
+icon: type
+---
+
+The last word of a headline **cycles through a list**. The outgoing word blurs
+and fades while the incoming one sharpens, and an **SVG alpha threshold** fuses
+the two into a single liquid shape mid-morph. The word slot **eases between
+word widths**, so the surrounding text makes room smoothly — or set
+`fixedWidth` to keep it perfectly still. The loop only runs while the headline
+is on screen. Driven by GSAP and ScrollTrigger.
+
+::component-preview{name="morphing-text" size="lg"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="morphing-text"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="morphing-text"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import MorphingText from '@/components/tweenui/morphing-text';
+
+export default function Page() {
+  return (
+    <MorphingText
+      prefix={'Motion that feels\nlike'}
+      words={['magic', 'water', 'silk', 'gravity']}
+      className="text-center text-6xl font-medium tracking-tight"
+      wordClassName="text-teal-700"
+    />
+  );
+}
+```
+
+:::
+::
+
+The word inherits the headline's font, size and color, so style it with
+`className` like any other text. Use `wordClassName` to set the morphing word
+apart. Without a `prefix`, it renders an inline `<span>` you can drop into
+your own heading.
+
+## Props
+
+| Prop            | Type                                            | Default           | Description                                                                                   |
+| --------------- | ----------------------------------------------- | ----------------- | --------------------------------------------------------------------------------------------- |
+| `words`         | `string[]`                                      | —                 | Words to cycle through. The first renders on the server and is what screen readers hear.      |
+| `prefix`        | `string`                                        | —                 | Text before the word. `\n` starts a new line; the last line never wraps away from the word.   |
+| `as`            | `'h1' \| 'h2' \| 'h3' \| 'h4' \| 'p' \| 'span'` | `'h2'` / `'span'` | Element to render. `h2` when there is a prefix, `span` when there is not.                     |
+| `morphDuration` | `number`                                        | `1.2`             | Length of each morph, in seconds.                                                             |
+| `pauseDuration` | `number`                                        | `1.8`             | How long each word rests before morphing, in seconds.                                         |
+| `maxBlur`       | `number`                                        | `16`              | Blur ceiling while a word is fully dissolved, in pixels.                                      |
+| `fixedWidth`    | `boolean`                                       | `false`           | Keep the slot at the first word's width so nearby text never moves; longer words overflow it. |
+| `wordAlign`     | `'left' \| 'center' \| 'right'`                 | `'left'`          | Alignment of the word inside its slot.                                                        |
+| `wordClassName` | `string`                                        | —                 | Extra classes for the morphing word.                                                          |
+
+Extends native HTML attributes (`className`, `style`, `id`, …). With a single
+word, it renders static text and no loop is created.
+
+## Accessibility
+
+::note
+Screen readers hear the first word once, in a visually hidden copy, rather
+than a headline that keeps changing; the animated layer is `aria-hidden`. Under
+`prefers-reduced-motion: reduce` the first word stays in place, crisp — no
+blur, no width change, and the loop never starts.
+::
