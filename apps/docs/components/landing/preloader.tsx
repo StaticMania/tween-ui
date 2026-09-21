@@ -87,10 +87,22 @@ export function Preloader() {
       const timeline = gsap.timeline({ onComplete: dismiss });
       const ridePath = { motionPath: { path: CURVE_PATH }, duration: SCRUB, ease: 'none' } as const;
 
+      // These three are hidden by the stylesheet from the first paint, so each
+      // tween states its end explicitly rather than reading it off the element.
       timeline
-        .from('[data-intro-brand]', { y: 14, autoAlpha: 0, duration: 0.5, ease }, 0)
-        .from('[data-intro-plot]', { autoAlpha: 0, scale: 0.94, duration: 0.5, ease }, 0.15)
-        .from('[data-intro-rail]', { autoAlpha: 0, duration: 0.4, ease }, 0.3)
+        .fromTo(
+          '[data-intro-brand]',
+          { y: 14, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 0.5, ease },
+          0
+        )
+        .fromTo(
+          '[data-intro-plot]',
+          { autoAlpha: 0, scale: 0.94 },
+          { autoAlpha: 1, scale: 1, duration: 0.5, ease },
+          0.15
+        )
+        .fromTo('[data-intro-rail]', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4, ease }, 0.3)
         .from('[data-intro-curve]', { drawSVG: '0%', duration: SCRUB, ease: 'none' }, 0.35)
         .to('[data-intro-dot]', ridePath, 0.35)
         .to('[data-intro-halo]', ridePath, 0.35)
@@ -119,6 +131,9 @@ export function Preloader() {
           0.35
         )
         .to('[data-intro-panel]', { autoAlpha: 0, y: -10, duration: 0.35, ease }, 1.6)
+        // Release the hero as the wipe begins rather than when it ends, so its
+        // reveal plays while the page is being uncovered instead of after.
+        .call(markIntroSettled, undefined, 1.65)
         .to(
           wipe,
           {
