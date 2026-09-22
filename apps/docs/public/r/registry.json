@@ -446,6 +446,18 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "cube-roll-item",
+      "type": "registry:block",
+      "title": "Cube Roll Item",
+      "description": "A numbered section index where each row is a 3D drum that rolls a quarter turn onto a filled face on hover. The roll follows the pointer — in from the top rolls down, out through the bottom keeps rolling down — while the rules draw in on load.",
+      "files": [
+        {
+          "path": "components/tweenui/cube-roll-item.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
