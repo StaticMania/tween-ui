@@ -652,4 +652,37 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'cube-roll-item',
+    type: 'block',
+    title: 'Cube Roll Item',
+    description:
+      'A numbered section index where each row is a 3D drum that rolls a quarter turn onto a filled face on hover. The roll follows the pointer — in from the top rolls down, out through the bottom keeps rolling down — while the rules draw in on load.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/cube-roll-item.tsx',
+        target: 'components/tweenui/cube-roll-item.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/cube-roll-item.tsx',
+      },
+    ],
+    usage: {
+      react: `import CubeRollItem from '@/components/tweenui/cube-roll-item';
+
+export default function Example() {
+  return <CubeRollItem />;
+}`,
+    },
+  },
 ];

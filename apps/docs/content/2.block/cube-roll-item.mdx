@@ -1,0 +1,94 @@
+---
+title: Cube Roll Item
+description: A numbered section index whose rows roll like 3D drums toward the pointer.
+icon: rotate-3d
+---
+
+A numbered index of page sections. Every row is a **four-sided drum**: hover it
+and it rolls a quarter turn onto a **filled face** with an arrow. The roll
+**follows the pointer** — come in from the top and it rolls down, leave through
+the bottom and it keeps rolling down instead of reversing. On load the rules
+draw in while the drums flip over one by one, flashing their filled face on the
+way past — held until web fonts are ready so the text never swaps mid-reveal.
+GSAP.
+
+::component-preview{name="cube-roll-item" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="cube-roll-item"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="cube-roll-item"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import CubeRollItem from '@/components/tweenui/cube-roll-item';
+
+export default function Page() {
+  return <CubeRollItem />;
+}
+```
+
+:::
+::
+
+Pass your own rows — they are numbered `001`, `002`, … in order:
+
+```tsx [app/page.tsx]
+import CubeRollItem from '@/components/tweenui/cube-roll-item';
+
+export default function Page() {
+  return (
+    <CubeRollItem
+      aria-label="On this page"
+      items={[
+        { title: 'Concept', label: 'Why we built it', href: '#concept' },
+        { title: 'Features', label: 'What it does', href: '#features' },
+        { title: 'Pricing', label: 'Plans & limits', href: '#pricing' },
+      ]}
+    />
+  );
+}
+```
+
+The resting faces are painted `white` / `#0d1117` so the hidden sides of the
+drum never show through. If your section uses another background, change those
+two colors in `Face` to match it.
+
+## Props
+
+| Prop         | Type                  | Default      | Description                    |
+| ------------ | --------------------- | ------------ | ------------------------------ |
+| `items`      | `CubeRollItemEntry[]` | 4-row sample | Rows in the list, in order.    |
+| `aria-label` | `string`              | `'Sections'` | Accessible name for the `nav`. |
+
+Each item is `{ title, label?, href }`. Extends native `<nav>` attributes
+(`className`, `style`, …).
+
+## Accessibility
+
+::note
+The block is a `<nav>` with a list of real links; each link's name is its
+number, title and label, and the three extra drum faces are `aria-hidden`.
+Keyboard focus (`:focus-visible`) rolls the row onto its filled face just like
+hover. The roll is pointer-only, so touch devices keep the resting face. Under
+`prefers-reduced-motion: reduce` there is no intro — the rules and rows are
+drawn from the first frame — and hover or focus swaps straight to the filled
+face with no roll.
+::

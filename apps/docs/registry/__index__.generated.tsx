@@ -47,6 +47,7 @@ export const demos: Record<string, ComponentType> = {
   'cta-starfall:default': dynamic(() => import('./demos/cta-starfall')),
   'pricing-usage-slider:default': dynamic(() => import('./demos/pricing-usage-slider')),
   'grid-cascade:default': dynamic(() => import('./demos/grid-cascade')),
+  'cube-roll-item:default': dynamic(() => import('./demos/cube-roll-item')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {
