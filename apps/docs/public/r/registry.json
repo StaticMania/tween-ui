@@ -458,6 +458,18 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "shutter-slider",
+      "type": "registry:block",
+      "title": "Shutter Slider",
+      "description": "An autoplaying feature slider. Each image opens through vertical slats that alternate from the top and bottom, the headline letters roll in like drum faces, copy lines rise through masks and the caption pulls into focus — all mirrored when you travel back.",
+      "files": [
+        {
+          "path": "components/tweenui/shutter-slider.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

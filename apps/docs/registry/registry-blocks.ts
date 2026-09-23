@@ -685,4 +685,37 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'shutter-slider',
+    type: 'block',
+    title: 'Shutter Slider',
+    description:
+      'An autoplaying feature slider. Each image opens through vertical slats that alternate from the top and bottom, the headline letters roll in like drum faces, copy lines rise through masks and the caption pulls into focus — all mirrored when you travel back.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/shutter-slider.tsx',
+        target: 'components/tweenui/shutter-slider.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/shutter-slider.tsx',
+      },
+    ],
+    usage: {
+      react: `import ShutterSlider from '@/components/tweenui/shutter-slider';
+
+export default function Example() {
+  return <ShutterSlider />;
+}`,
+    },
+  },
 ];

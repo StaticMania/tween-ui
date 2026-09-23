@@ -45,4 +45,5 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'pricing-usage-slider': {"image":"/media/blocks/pricing-usage-slider-poster.webp","video":"/media/blocks/pricing-usage-slider-preview.mp4"},
   'grid-cascade': {"image":"/media/blocks/grid-cascade-poster.webp","video":"/media/blocks/grid-cascade-preview.mp4"},
   'cube-roll-item': {"image":"/media/blocks/cube-roll-item-poster.webp","video":"/media/blocks/cube-roll-item-preview.mp4"},
+  'shutter-slider': {"image":"/media/blocks/shutter-slider-poster.webp","video":"/media/blocks/shutter-slider-preview.mp4"},
 };
