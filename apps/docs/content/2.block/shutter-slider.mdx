@@ -1,0 +1,118 @@
+---
+title: Shutter Slider
+description: An autoplaying feature slider whose images open through alternating slats.
+icon: blinds
+---
+
+A feature slider for landing and product pages. Each new image **opens through
+vertical slats** — every other slat from the top, the rest from the bottom, in
+a wave from the side you're heading to — while the old picture sinks back and
+dims beneath it. The **headline letters roll in like drum faces**, the copy
+**rises line by line** through masks and the caption **pulls into focus** from
+its centre. Every move is **mirrored when you go back**. The counters roll like
+an odometer and the progress line doubles as the autoplay clock. GSAP.
+
+::component-preview{name="shutter-slider" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="shutter-slider"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="shutter-slider"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import ShutterSlider from '@/components/tweenui/shutter-slider';
+
+export default function Page() {
+  return <ShutterSlider />;
+}
+```
+
+:::
+::
+
+Pass your own slides. Images of any shape are cropped to the same 2:1 frame:
+
+```tsx [app/page.tsx]
+import ShutterSlider from '@/components/tweenui/shutter-slider';
+
+export default function Page() {
+  return (
+    <ShutterSlider
+      aria-label="Why us"
+      autoplay={8}
+      slides={[
+        {
+          heading: 'Made to measure',
+          image: '/images/studio.jpg',
+          imageAlt: 'A sunlit design studio',
+          description: 'Every project starts with a conversation, not a template.',
+          caption: 'Designed with you',
+        },
+        {
+          heading: 'Built to last',
+          image: '/images/detail.jpg',
+          description: 'Materials chosen to age well and keep their character.',
+          caption: 'Honest materials',
+        },
+      ]}
+    />
+  );
+}
+```
+
+The sample photos are from [Unsplash](https://unsplash.com/license), free to use
+under the Unsplash License. The background (`#eef1f4` / `#15130f` in dark mode)
+and the terracotta accent live in the `className` strings on the `section` and
+the pagination row, so you can restyle them in place.
+
+## Props
+
+| Prop         | Type             | Default        | Description                                       |
+| ------------ | ---------------- | -------------- | ------------------------------------------------- |
+| `slides`     | `ShutterSlide[]` | 3-slide sample | Slides, in order.                                 |
+| `autoplay`   | `number`         | `6`            | Seconds each slide holds. `0` turns autoplay off. |
+| `aria-label` | `string`         | `'Highlights'` | Accessible name for the carousel.                 |
+
+Each slide is `{ heading, image, imageAlt?, description, caption? }`. Extends
+native `<section>` attributes (`className`, `style`, …).
+
+## Behavior
+
+- **Stable height** — all slides share one grid cell, so the section is always
+  as tall as its tallest slide and nothing below it jumps between slides.
+- **Autoplay** pauses while the pointer is over the slider, while it is off
+  screen and while the tab is hidden.
+- **Swipe** left or right on touch screens; **← / →** step while focus is inside.
+- **Resizing** re-splits the copy lines, so each line mask always matches the
+  real wrapping.
+- Text is split once **web fonts are ready**, so lines never break in a
+  fallback font.
+
+## Accessibility
+
+::note
+The slider is a `section` with `aria-roledescription="carousel"`, and each slide
+is a group labelled "1 of 3" and so on. Inactive slides are `visibility: hidden`,
+so screen readers only reach the current one. The prev and next controls are
+real buttons with labels; the rolling counters and the shutter slats are
+`aria-hidden`. Under `prefers-reduced-motion: reduce` there is no autoplay and
+no motion — the controls swap slides instantly.
+::

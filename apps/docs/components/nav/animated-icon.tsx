@@ -103,6 +103,7 @@ const PLAY: Record<string, Play> = {
   'list-ordered': wave,
   'list-collapse': wave,
   layers: wave,
+  blinds: wave,
   'move-right': nudge,
   'unfold-horizontal': nudge,
   'circle-arrow-right': nudge,
