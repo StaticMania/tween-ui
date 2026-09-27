@@ -645,4 +645,49 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'wordmark-reveal',
+    type: 'component',
+    title: 'Wordmark Reveal',
+    description:
+      'A display wordmark that assembles itself on the first scroll — every letter turns in on its own vertical axis, then a script line leans in along the baseline. A cue holds the screen until you answer it, or it plays on mount with `instant`. ScrollTrigger and SplitText.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/wordmark-reveal.tsx',
+        target: 'components/tweenui/wordmark-reveal.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'scroll',
+        label: 'Scroll',
+        reactSource: 'registry/tweenui/wordmark-reveal.tsx',
+      },
+      {
+        id: 'instant',
+        label: 'Instant',
+        reactSource: 'registry/tweenui/wordmark-reveal.tsx',
+      },
+    ],
+    usage: {
+      react: `import WordmarkReveal from '@/components/tweenui/wordmark-reveal';
+
+export default function Example() {
+  return (
+    <WordmarkReveal
+      title={'Tween\\nUI'}
+      script="in motion"
+      cue="Scroll down to reveal"
+      className="font-serif text-6xl"
+    />
+  );
+}`,
+    },
+  },
 ];

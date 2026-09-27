@@ -208,6 +208,18 @@
       ]
     },
     {
+      "name": "wordmark-reveal",
+      "type": "registry:ui",
+      "title": "Wordmark Reveal",
+      "description": "A display wordmark that assembles itself on the first scroll — every letter turns in on its own vertical axis, then a script line leans in along the baseline. A cue holds the screen until you answer it, or it plays on mount with `instant`. ScrollTrigger and SplitText.",
+      "files": [
+        {
+          "path": "components/tweenui/wordmark-reveal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",
