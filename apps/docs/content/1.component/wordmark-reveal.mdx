@@ -1,0 +1,106 @@
+---
+title: Wordmark Reveal
+description: A display wordmark that assembles letter by letter the moment you scroll.
+icon: signature
+---
+
+A brand name set as a display lockup. Every letter **turns in on its own vertical
+axis** and rises into place, then an optional **script line leans in along the
+baseline** — left to right, so its joins close in reading order rather than all at
+once. A cue holds the screen until you answer it. Driven by GSAP, ScrollTrigger and
+SplitText.
+
+## Scroll
+
+The default. Being on screen is not enough: a wordmark that opens a page is on
+screen the moment it loads, so it also waits for the scroller to travel
+`scrollOffset` pixels. That first nudge down the page is the cue being answered.
+Placed further down a page, it has already been scrolled past that mark, so it plays
+as it comes into view.
+
+::component-preview{name="wordmark-reveal" variant="scroll" size="xl"}
+::
+
+In a nested scroll area, wrap it in `[data-wordmark-scroller]` so ScrollTrigger
+watches that container instead of the window.
+
+## Instant
+
+Plays as soon as it mounts. The cue is dropped — there is nothing left to ask for.
+Pass `instant`.
+
+::component-preview{name="wordmark-reveal" variant="instant" size="lg"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="wordmark-reveal"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="wordmark-reveal"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import WordmarkReveal from '@/components/tweenui/wordmark-reveal';
+
+export default function Page() {
+  return (
+    <WordmarkReveal
+      title={'Tween\nUI'}
+      script="in motion"
+      cue="Scroll down to reveal"
+      className="font-serif text-6xl"
+    />
+  );
+}
+```
+
+:::
+::
+
+The lockup carries no typeface of its own. `className` sets the type scale for the
+whole thing and the script line is sized and spaced in `em` against it, so a serif, a
+grotesque or a variable display face all keep the same proportions. Setting an actual
+script face? Pull the line back up over the wordmark with
+`scriptClassName="-mt-[0.4em] translate-x-[3%]"` — its swash tail leaves room that an upright italic
+does not.
+
+## Props
+
+| Prop              | Type                                   | Default                   | Description                                      |
+| ----------------- | -------------------------------------- | ------------------------- | ------------------------------------------------ |
+| `title`           | `string`                               | —                         | The wordmark. `\n` starts a new line.            |
+| `script`          | `string`                               | —                         | Script line that leans in underneath.            |
+| `cue`             | `string`                               | `'Scroll down to reveal'` | Held on screen until the reveal starts.          |
+| `instant`         | `boolean`                              | `false`                   | Play on mount instead of waiting for a scroll.   |
+| `scrollOffset`    | `number`                               | `80`                      | Pixels the scroller must travel before it plays. |
+| `duration`        | `number`                               | `1.1`                     | Seconds one letter takes to land.                |
+| `as`              | `'h1' \| 'h2' \| 'h3' \| 'p' \| 'div'` | `'h1'`                    | Element rendered for the wordmark.               |
+| `scriptClassName` | `string`                               | —                         | Extra classes for the script line.               |
+| `cueClassName`    | `string`                               | —                         | Extra classes for the cue.                       |
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` the text is never split and never moves —
+the wordmark renders in its finished state and the cue is hidden, since there is
+nothing to wait for. SplitText labels the split heading with its own text and hides
+the letter spans, so screen readers read the wordmark as one string rather than
+letter by letter, and the cue is `aria-hidden` because it describes a pointer
+gesture. A page too short to scroll plays on sight rather than waiting for a scroll
+that can never happen.
+::
