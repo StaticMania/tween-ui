@@ -555,7 +555,7 @@ export default function ShutterSlider({
                 type="button"
                 data-shutter-prev
                 aria-label="Previous slide"
-                className="flex h-12 items-center gap-4 pl-2 transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-current motion-reduce:transition-none"
+                className="flex h-12 cursor-pointer items-center gap-4 pl-2 transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-current motion-reduce:transition-none"
               >
                 <Chevron back />
                 <span
@@ -576,7 +576,7 @@ export default function ShutterSlider({
                 type="button"
                 data-shutter-next
                 aria-label="Next slide"
-                className="flex h-12 items-center gap-4 pr-2 transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-current motion-reduce:transition-none"
+                className="flex h-12 cursor-pointer items-center gap-4 pr-2 transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-current motion-reduce:transition-none"
               >
                 <span
                   data-shutter-count="next"
