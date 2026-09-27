@@ -482,6 +482,18 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "testimonial-reel-focus",
+      "type": "registry:block",
+      "title": "Testimonial Reel Focus",
+      "description": "A reel of testimonial cards wider than the window, run sideways by vertical page scroll from inside a sticky stage. Each card rises as it crosses in, so scrolling sends a swell along the row; a tick strip reads the run back like a scrubber, and hovering a card pulls it into focus while the rest of the row dims and blurs behind it.",
+      "files": [
+        {
+          "path": "components/tweenui/testimonial-reel-focus.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

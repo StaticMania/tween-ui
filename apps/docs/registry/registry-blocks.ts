@@ -718,4 +718,37 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'testimonial-reel-focus',
+    type: 'block',
+    title: 'Testimonial Reel Focus',
+    description:
+      'A reel of testimonial cards wider than the window, run sideways by vertical page scroll from inside a sticky stage. Each card rises as it crosses in, so scrolling sends a swell along the row; a tick strip reads the run back like a scrubber, and hovering a card pulls it into focus while the rest of the row dims and blurs behind it.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/testimonial-reel-focus.tsx',
+        target: 'components/tweenui/testimonial-reel-focus.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/testimonial-reel-focus.tsx',
+      },
+    ],
+    usage: {
+      react: `import TestimonialReelFocus from '@/components/tweenui/testimonial-reel-focus';
+
+export default function Example() {
+  return <TestimonialReelFocus />;
+}`,
+    },
+  },
 ];

@@ -1,0 +1,147 @@
+---
+title: Testimonial Reel Focus
+description: A reel of testimonial cards run sideways by vertical scroll, with a tick-strip scrubber and hover focus.
+icon: gallery-horizontal
+---
+
+A testimonial section for landing pages. The cards sit in a row **wider than the
+window**, shown through a sticky stage, and the page's vertical scroll is spent
+**running that row sideways** — the runway is one viewport plus exactly the
+distance the row has to travel, so the reel starts the moment the stage lands
+and finishes on the last card. Underneath, a strip of 2px ticks **reads the run
+back like a scrubber**: a seven-bar window rides the head and tapers either
+side. Every card **waits below its line until it crosses in from the right**,
+and the whole row **flexes while it travels** — cards ahead of centre swing low,
+the ones behind ride high, by however fast you are scrolling — so eight cards
+read as one strip of film being drawn past. It falls flat the moment you stop.
+Hover and **the rest of the reel drops back and blurs** while the one you are
+reading stays sharp and its edge warms to the accent. GSAP.
+
+::component-preview{name="testimonial-reel-focus" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="testimonial-reel-focus"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="testimonial-reel-focus"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import TestimonialReelFocus from '@/components/tweenui/testimonial-reel-focus';
+
+export default function Page() {
+  return <TestimonialReelFocus />;
+}
+```
+
+:::
+::
+
+Pass your own voices. Add or remove one and the reel renumbers itself,
+re-measures its runway and rebuilds the scrubber — there is nothing to keep in
+sync by hand:
+
+```tsx [app/page.tsx]
+import TestimonialReelFocus from '@/components/tweenui/testimonial-reel-focus';
+
+export default function Page() {
+  return (
+    <TestimonialReelFocus
+      aria-label="What residents say"
+      items={[
+        {
+          name: 'Maya Rahman',
+          role: 'Resident, Casa 07',
+          quote: 'The gate closes and the noise stops. Six months in, I still notice it.',
+          tag: 'Phase I · Villa',
+          metric: 'Handover on time',
+        },
+        {
+          name: 'Daniel Osei',
+          role: 'Partner, Osei & Reyes',
+          initials: 'DO',
+          hue: 214,
+          quote: 'Twenty-five homes that had to look unbothered in twenty years.',
+          tag: 'Architecture',
+          metric: '25 of 25 placed',
+        },
+      ]}
+    />
+  );
+}
+```
+
+There are **no image requests**: each avatar is a monogram over a gradient built
+from its `hue`, with a grain overlay on top. Leave `initials` and `hue` off and
+they are derived from the name and the card's position. Quotes are plain text —
+the curly quotes belong to the component.
+
+Card size and reel geometry are CSS variables in the `className` strings
+(`--reel-card-w`, `--reel-card-h`, `--reel-gap`, `--reel-edge`), and the accent
+is `--reel-accent` (`#045f64`, `#c6f56f` in dark mode), so you can restyle the
+whole reel in place. The row lines its inset up with the 1290px container the
+rest of the library uses, at every width.
+
+## Props
+
+| Prop         | Type                    | Default            | Description                          |
+| ------------ | ----------------------- | ------------------ | ------------------------------------ |
+| `items`      | `TestimonialReelItem[]` | 8-voice sample     | The voices, in reel order.           |
+| `hint`       | `string`                | `'Hover to focus'` | Note at the end of the scrubber row. |
+| `aria-label` | `string`                | `'Testimonials'`   | Accessible name for the section.     |
+
+Each item is `{ name, role, quote, tag, metric, initials?, hue? }`. Extends
+native `<section>` attributes (`className`, `style`, …).
+
+The block is the reel and nothing else — no heading, no copy, no figures — so it
+sits under whatever section heading the page already has.
+
+## Behavior
+
+- **The runway is measured, not guessed** — the section is one viewport tall
+  plus the row's overflow, so the reel never stops short of the last card and
+  never idles at the end.
+- **The counter and the scrubber read the same fraction**, so the number beside
+  the strip always agrees with the lit bar.
+- **The wave is scroll-linked, not timed** — a card rises as it enters and
+  lowers again if you scroll back, so it reads the same whichever way you go.
+- **The flex follows speed, not position** — it leans with the scroller, tips
+  the other way when you reverse, caps itself on a flung scroll, and releases on
+  a tween a beat after you stop.
+- **It pins against whatever actually scrolls** — the window on a normal page, or
+  the nearest scrolling ancestor when the reel is dropped into a panel, a drawer
+  or the preview above. That is the same element `position: sticky` picks, so
+  the two can never disagree.
+- **Resizing** re-measures the runway and refits the strip to its new width.
+- **A row that already fits** — a very wide window, or two or three cards —
+  skips the pinning entirely and stays a plain horizontal strip.
+- **Hover focus** is pointer-only: on touch every card stays at full strength.
+
+## Accessibility
+
+::note
+The reel is a `section` labelled by its own heading, and the cards are a real
+list — each one keeps its place in the reading order whether or not it is on
+screen. The scrubber is a `progressbar` with `aria-valuenow` and an
+`aria-valuetext` of "3 of 8"; its bars, the monograms, the accent dots and the
+quote glyph are all `aria-hidden`. With no heading of its own the section
+carries an `aria-label` — override it to say what these voices are about. Under `prefers-reduced-motion: reduce`
+nothing is pinned and nothing is tweened — the row becomes a natively
+scrollable strip and the scrubber reads that scroller instead.
+::
