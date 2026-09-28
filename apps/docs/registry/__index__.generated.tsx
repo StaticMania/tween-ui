@@ -51,6 +51,7 @@ export const demos: Record<string, ComponentType> = {
   'grid-cascade:default': dynamic(() => import('./demos/grid-cascade')),
   'cube-roll-item:default': dynamic(() => import('./demos/cube-roll-item')),
   'shutter-slider:default': dynamic(() => import('./demos/shutter-slider')),
+  'testimonial-reel-focus:default': dynamic(() => import('./demos/testimonial-reel-focus')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {
