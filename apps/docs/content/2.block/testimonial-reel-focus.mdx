@@ -123,8 +123,7 @@ sits under whatever section heading the page already has.
   lowers again if you scroll back, so it reads the same whichever way you go.
 - **The flex follows speed, not position** — it leans with the scroller, tips
   the other way when you reverse, caps itself on a flung scroll, and releases on
-  a tween a beat after you stop. It has the most to read from when the page
-  scrolls smoothly — see [Smooth scrolling](#smooth-scrolling).
+  a tween a beat after you stop.
 - **It pins against whatever actually scrolls** — the window on a normal page, or
   the nearest scrolling ancestor when the reel is dropped into a panel, a drawer
   or the preview above. That is the same element `position: sticky` picks, so
@@ -133,56 +132,6 @@ sits under whatever section heading the page already has.
 - **A row that already fits** — a very wide window, or two or three cards —
   skips the pinning entirely and stays a plain horizontal strip.
 - **Hover focus** is pointer-only: on touch every card stays at full strength.
-
-## Smooth scrolling
-
-The reel spends scroll rather than time, so it is only ever as smooth as the
-scrolling that drives it. A wheel notch moves the page in one jump, and the row
-jumps with it. Adding a smooth-scroll library — [Lenis](https://lenis.darkroom.engineering)
-is the usual choice — turns those jumps into a glide, and because the lean is
-driven by scroll _velocity_ it has something continuous to read: the row bows
-into the movement and eases out of it instead of snapping. It is the single
-biggest thing you can do for how this block feels, and it costs a few lines:
-
-```tsx [app/providers.tsx]
-'use client';
-
-import { useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Lenis from 'lenis';
-
-gsap.registerPlugin(ScrollTrigger);
-
-export function SmoothScroll() {
-  useEffect(() => {
-    // Respect the setting — smoothing a scroll is motion too.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const lenis = new Lenis();
-    // Lenis moves the page outside the browser's own scroll, so ScrollTrigger
-    // has to be told; and Lenis runs off GSAP's ticker so the two share a clock.
-    lenis.on('scroll', ScrollTrigger.update);
-    const raf = (time: number) => lenis.raf(time * 1000);
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      gsap.ticker.remove(raf);
-      lenis.destroy();
-    };
-  }, []);
-
-  return null;
-}
-```
-
-::note
-Nothing here is required — the block works on plain native scroll, and that is
-what the preview above is using. If the reel is inside a scrolling panel rather
-than the page, give Lenis that element as its `wrapper` and `content`, so it
-smooths the same scroller the reel pins against.
-::
 
 ## Accessibility
 
