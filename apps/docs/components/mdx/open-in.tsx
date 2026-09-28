@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ComponentType, type SVGProps } from 'react';
 import { usePathname } from 'next/navigation';
-import { Check, ChevronDown, Copy, FileText, Wand2 } from 'lucide-react';
+import { Bot, Check, ChevronDown, Copy, FileText, Wand2 } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 import { cn, copyText } from '@/lib/utils';
 import { ClaudeMark, CursorMark, GithubMark, OpenAIMark, T3Mark } from './brand-icons';
@@ -32,10 +32,18 @@ function buildPrompt(rawUrl: string, title: string) {
   );
 }
 
+function buildMcpPrompt(name: string) {
+  const item = `${siteConfig.registryNamespace}/${name}`;
+  return (
+    `Use the shadcn MCP to add ${item} to my project. ` +
+    `Check ${item}-demo for usage and pass real props instead of guessing them.`
+  );
+}
+
 export function OpenIn({ name, title, githubHref }: OpenInProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [copied, setCopied] = useState<'md' | 'prompt' | null>(null);
+  const [copied, setCopied] = useState<'md' | 'prompt' | 'mcp' | null>(null);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -57,7 +65,7 @@ export function OpenIn({ name, title, githubHref }: OpenInProps) {
   const promptText = buildPrompt(rawUrl, title);
   const prompt = encodeURIComponent(promptText);
 
-  const flag = (which: 'md' | 'prompt') => {
+  const flag = (which: 'md' | 'prompt' | 'mcp') => {
     setCopied(which);
     setTimeout(() => setCopied(null), 1600);
   };
@@ -75,6 +83,11 @@ export function OpenIn({ name, title, githubHref }: OpenInProps) {
   const copyPrompt = async () => {
     await copyText(promptText);
     flag('prompt');
+  };
+
+  const copyMcpPrompt = async () => {
+    await copyText(buildMcpPrompt(name));
+    flag('mcp');
   };
 
   const links: Array<{ label: string; href: string; icon: IconType }> = [
@@ -136,6 +149,19 @@ export function OpenIn({ name, title, githubHref }: OpenInProps) {
               <Wand2 className="size-4 shrink-0" />
             )}
             {copied === 'prompt' ? 'Copied Prompt' : 'Copy Prompt'}
+          </button>
+          <button
+            type="button"
+            role="menuitem"
+            onClick={copyMcpPrompt}
+            className="text-muted-foreground hover:text-highlighted hover:bg-muted flex w-full items-center gap-2 rounded-md px-2.5 py-1.5 text-sm transition-colors"
+          >
+            {copied === 'mcp' ? (
+              <Check className="size-4 shrink-0" />
+            ) : (
+              <Bot className="size-4 shrink-0" />
+            )}
+            {copied === 'mcp' ? 'Copied MCP Prompt' : 'Copy MCP Prompt'}
           </button>
           <div className="bg-border my-1 h-px" />
           {links.map((item) => (
