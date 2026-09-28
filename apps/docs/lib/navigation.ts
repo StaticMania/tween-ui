@@ -34,13 +34,15 @@ export function flattenSections(items: NavItem[]): NavItem[] {
       return item;
     }
 
-    const leaves = collectLeaves(item.children).sort((a, b) => a.label.localeCompare(b.label));
+    const leaves = collectLeaves(item.children);
     if (leaves.length === 0) return item;
+
+    if (!isCatalog(leaves)) return { ...item, children: leaves };
 
     return {
       ...item,
-      ...(isCatalog(leaves) ? { label: `${item.label} (${leaves.length})` } : {}),
-      children: leaves,
+      label: `${item.label} (${leaves.length})`,
+      children: leaves.sort((a, b) => a.label.localeCompare(b.label)),
     };
   });
 }
