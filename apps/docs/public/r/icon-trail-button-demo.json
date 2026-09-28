@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon-trail-button-demo",
+  "type": "registry:example",
+  "title": "Icon Trail Button Demo",
+  "description": "Usage examples for Icon Trail Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/icon-trail-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/icon-trail-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import IconTrailButton from '@/components/tweenui/icon-trail-button';\n\nexport default function Page() {\n  return <IconTrailButton>Get started</IconTrailButton>;\n}"
+    }
+  ]
+}

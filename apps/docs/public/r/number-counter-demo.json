@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "number-counter-demo",
+  "type": "registry:example",
+  "title": "Number Counter Demo",
+  "description": "Usage examples for Number Counter.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/number-counter.json"
+  ],
+  "files": [
+    {
+      "path": "examples/number-counter-demo.tsx",
+      "type": "registry:example",
+      "content": "import NumberCounter from '@/components/tweenui/number-counter';\n\nexport default function Page() {\n  return (\n    <p>\n      <NumberCounter value={150} instant />+ projects delivered\n    </p>\n  );\n}"
+    }
+  ]
+}

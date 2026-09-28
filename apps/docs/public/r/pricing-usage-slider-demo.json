@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pricing-usage-slider-demo",
+  "type": "registry:example",
+  "title": "Pricing Usage Slider Demo",
+  "description": "Usage examples for Pricing Usage Slider.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/pricing-usage-slider.json"
+  ],
+  "files": [
+    {
+      "path": "examples/pricing-usage-slider-demo.tsx",
+      "type": "registry:example",
+      "content": "import PricingUsageSlider from '@/components/tweenui/pricing-usage-slider';\n\nexport default function Page() {\n  return <PricingUsageSlider />;\n}"
+    },
+    {
+      "path": "examples/pricing-usage-slider-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import PricingUsageSlider from '@/components/tweenui/pricing-usage-slider';\n\nexport default function Page() {\n  return (\n    <PricingUsageSlider\n      title=\"Flexible pricing for every creator\"\n      plans={[\n        {\n          name: 'Creator',\n          description: 'Best for solo creators publishing weekly',\n          price: 79,\n          priceNote: 'Cancel or pause any time',\n          popular: true,\n          features: ['600+ minutes monthly', 'One cloned voice', 'Commercial license'],\n          cta: 'Upgrade now',\n          onClick: () => router.push('/signup'),\n        },\n        {\n          name: 'Scale',\n          description: 'Pay for the volume your team actually uses',\n          range: { min: 399, max: 1200, defaultValue: 750, label: 'Drag to set your volume' },\n          features: ['Custom SLA and volume', 'Unlimited cloned voices', 'SSO and SAML'],\n          cta: 'Contact sales',\n          onClick: () => router.push('/sales'),\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

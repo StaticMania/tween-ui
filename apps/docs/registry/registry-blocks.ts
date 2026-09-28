@@ -561,7 +561,7 @@ export default function Example() {
     type: 'block',
     title: 'CTA Starfall',
     description:
-      'A dark closing section under a slow field of drifting stars lit by a violet bloom. The field is full on the first frame rather than spawning over time, and pauses off-screen and in background tabs.',
+      'A dark call-to-action section under a slow field of drifting stars lit by a violet bloom. The field is full on the first frame rather than spawning over time, and pauses off-screen and in background tabs.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: ['shiny-button'],
@@ -750,5 +750,6 @@ export default function Example() {
   return <TestimonialReelFocus />;
 }`,
     },
+    docs: 'The reel is driven by vertical scroll, so place it on a page that scrolls. It pins against the window, or against the nearest scrolling ancestor when it sits inside a panel or drawer. With reduced motion on it stays a plain horizontal strip.',
   },
 ];

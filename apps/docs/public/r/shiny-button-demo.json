@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shiny-button-demo",
+  "type": "registry:example",
+  "title": "Shiny Button Demo",
+  "description": "Usage examples for Shiny Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/shiny-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/shiny-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import ShinyButton from '@/components/tweenui/shiny-button';\n\nexport default function Page() {\n  return <ShinyButton onClick={() => console.log('clicked')}>Get started</ShinyButton>;\n}"
+    }
+  ]
+}

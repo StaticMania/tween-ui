@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-wall-shuffle-demo",
+  "type": "registry:example",
+  "title": "Logo Wall Shuffle Demo",
+  "description": "Usage examples for Logo Wall Shuffle.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/logo-wall-shuffle.json"
+  ],
+  "files": [
+    {
+      "path": "examples/logo-wall-shuffle-demo.tsx",
+      "type": "registry:example",
+      "content": "import LogoWallShuffle from '@/components/tweenui/logo-wall-shuffle';\n\nconst LOGOS = [\n  { src: '/logos/slack.svg', alt: 'Slack' },\n  { src: '/logos/figma.svg', alt: 'Figma' },\n  { src: '/logos/notion.svg', alt: 'Notion' },\n  { src: '/logos/linear.svg', srcDark: '/logos/linear-dark.svg', alt: 'Linear' },\n];\n\nexport default function Page() {\n  return <LogoWallShuffle logos={LOGOS} />;\n}"
+    },
+    {
+      "path": "examples/logo-wall-shuffle-demo-2.tsx",
+      "type": "registry:example",
+      "content": "<LogoWallShuffle logos={LOGOS} columns={[2, 3, 4, 3, 2]} />"
+    }
+  ]
+}

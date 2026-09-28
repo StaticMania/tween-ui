@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "text-roll-button-demo",
+  "type": "registry:example",
+  "title": "Text Roll Button Demo",
+  "description": "Usage examples for Text Roll Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/text-roll-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/text-roll-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import TextRollButton from '@/components/tweenui/text-roll-button';\n\nexport default function Page() {\n  return <TextRollButton onClick={() => console.log('clicked')}>Try now</TextRollButton>;\n}"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "team-scatter-focus-demo",
+  "type": "registry:example",
+  "title": "Team Scatter Focus Demo",
+  "description": "Usage examples for Team Scatter Focus.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/team-scatter-focus.json"
+  ],
+  "files": [
+    {
+      "path": "examples/team-scatter-focus-demo.tsx",
+      "type": "registry:example",
+      "content": "import TeamScatterFocus from '@/components/tweenui/team-scatter-focus';\n\nexport default function Page() {\n  return <TeamScatterFocus />;\n}"
+    },
+    {
+      "path": "examples/team-scatter-focus-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import TeamScatterFocus from '@/components/tweenui/team-scatter-focus';\n\nexport default function Page() {\n  return (\n    <TeamScatterFocus\n      title=\"Meet the studio\"\n      members={[\n        {\n          name: 'John Smith',\n          role: 'CEO & Founder',\n          image: '/team/john.jpg',\n          href: '/team/john-smith',\n          social: 'https://x.com/john',\n        },\n        {\n          name: 'William Finley',\n          role: 'Lead Designer',\n          image: '/team/william.jpg',\n          href: '/team/william-finley',\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

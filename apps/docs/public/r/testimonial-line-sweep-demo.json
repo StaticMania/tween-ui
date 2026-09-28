@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial-line-sweep-demo",
+  "type": "registry:example",
+  "title": "Testimonial Line Sweep Demo",
+  "description": "Usage examples for Testimonial Line Sweep.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/testimonial-line-sweep.json"
+  ],
+  "files": [
+    {
+      "path": "examples/testimonial-line-sweep-demo.tsx",
+      "type": "registry:example",
+      "content": "import TestimonialLineSweep from '@/components/tweenui/testimonial-line-sweep';\n\nexport default function Page() {\n  return <TestimonialLineSweep />;\n}"
+    },
+    {
+      "path": "examples/testimonial-line-sweep-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import TestimonialLineSweep from '@/components/tweenui/testimonial-line-sweep';\n\nexport default function Page() {\n  return (\n    <TestimonialLineSweep\n      title=\"What our clients say about us\"\n      items={[\n        {\n          quoteStart: 'We replaced four tools with one workflow, and',\n          quoteHighlight: 'the team shipped its first release two weeks early.',\n          quoteEnd: 'Nobody has asked to go back.',\n          name: 'Maya Collins',\n          jobTitle: 'Head of Operations',\n          image: '/people/maya.jpg',\n        },\n        {\n          quoteStart: 'Reporting used to take a full day each month.',\n          quoteHighlight: 'Now it runs itself and lands in our inbox.',\n          quoteEnd: 'That time went back into the roadmap.',\n          name: 'Ethan Brooks',\n          jobTitle: 'President of Sales',\n          image: '/people/ethan.jpg',\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

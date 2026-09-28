@@ -14,8 +14,8 @@ import { fileURLToPath } from 'node:url';
 import { registryItemSchema, registrySchema } from 'shadcn/schema';
 import { codeToHtml } from 'shiki';
 import { siteConfig } from '../config/site';
-import { registry } from '../registry/index';
-import type { RegistryType } from '../registry/schema';
+import { hrefFor, registry } from '../registry/index';
+import type { RegistryEntry, RegistryType } from '../registry/schema';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const appRoot = resolve(here, '..'); // apps/docs
@@ -81,6 +81,57 @@ const snippet = async (code: string, lang: Lang) => ({
   codeHtml: await highlight(code, lang),
 });
 
+const SAMPLE_IMAGE_HOSTS = ['images.unsplash.com', 'cdn.simpleicons.org'];
+
+function gsapPlugins(source: string) {
+  const names = [...source.matchAll(/registerPlugin\(([^)]*)\)/g)].flatMap((call) =>
+    (call[1] ?? '').split(',').map((name) => name.trim())
+  );
+  return [...new Set(names)].filter((name) => name && name !== 'useGSAP');
+}
+
+function itemDocs(entry: RegistryEntry, source: string) {
+  const lines = [`Docs, props and examples: ${registryUrl}${hrefFor(entry)}`];
+  const plugins = gsapPlugins(source);
+  if (plugins.length > 0) {
+    lines.push(
+      `GSAP plugins (${plugins.join(', ')}) are registered inside the component, so there is nothing to set up.`
+    );
+  }
+  const hosts = SAMPLE_IMAGE_HOSTS.filter((host) => source.includes(`https://${host}/`));
+  if (hosts.length > 0) {
+    lines.push(
+      `The sample content loads images from ${hosts.join(' and ')}. Replace them with your own before shipping.`
+    );
+  }
+  if (entry.docs) lines.push(entry.docs);
+  return lines.join('\n');
+}
+
+async function usageExamples(entry: RegistryEntry) {
+  const folder = entry.type === 'block' ? '2.block' : '1.component';
+  const page = join(appRoot, 'content', folder, `${entry.name}.mdx`);
+  if (!existsSync(page)) return [entry.usage.react];
+  const usage = (await readFile(page, 'utf8'))
+    .split(/^## /m)
+    .find((section) => section.startsWith('Usage\n'));
+  const snippets = [...(usage ?? '').matchAll(/```tsx[^\n]*\n([\s\S]*?)```/g)].map((match) =>
+    (match[1] ?? '').trimEnd()
+  );
+  return snippets.length > 0 ? snippets : [entry.usage.react];
+}
+
+async function writeItem(item: { name: string } & Record<string, unknown>) {
+  const parsed = registryItemSchema.safeParse(item);
+  if (!parsed.success) {
+    throw new Error(
+      `${item.name} — emitted JSON is not a valid shadcn registry item:\n` +
+        JSON.stringify(parsed.error.issues, null, 2)
+    );
+  }
+  await writeFile(join(publicR, `${item.name}.json`), JSON.stringify(item, null, 2));
+}
+
 /** Map a registry file to a shadcn registry-item file type. */
 function shadcnFileType(path: string) {
   if (/(^|\/)use-[^/]+\.ts$/.test(path) || path.includes('/hooks/')) return 'registry:hook';
@@ -140,25 +191,41 @@ async function main() {
         ),
       },
       files: shadcnFiles,
+      docs: itemDocs(entry, shadcnFiles.map((f) => f.content).join('\n')),
     };
 
     // Our RegistryEntry is the authoring shape; this is the shadcn wire shape.
     // Parsing here means a bad translation fails the build instead of the CLI.
-    const parsed = registryItemSchema.safeParse(item);
-    if (!parsed.success) {
-      throw new Error(
-        `${entry.name} — emitted JSON is not a valid shadcn registry item:\n` +
-          JSON.stringify(parsed.error.issues, null, 2)
-      );
-    }
-
-    await writeFile(join(publicR, `${entry.name}.json`), JSON.stringify(item, null, 2));
+    await writeItem(item);
     index.push({
       name: entry.name,
       type: item.type,
       title: entry.title,
       description: entry.description,
       files: shadcnFiles.map((f) => ({ path: f.path, type: f.type })),
+    });
+
+    const exampleFiles = (await usageExamples(entry)).map((content, i) => ({
+      path: `examples/${entry.name}-demo${i === 0 ? '' : `-${i + 1}`}.tsx`,
+      type: 'registry:example',
+      content,
+    }));
+    const example = {
+      $schema: 'https://ui.shadcn.com/schema/registry-item.json',
+      name: `${entry.name}-demo`,
+      type: 'registry:example',
+      title: `${entry.title} Demo`,
+      description: `Usage examples for ${entry.title}.`,
+      registryDependencies: [resolveRegistryDependency(entry.name)],
+      files: exampleFiles,
+    };
+    await writeItem(example);
+    index.push({
+      name: example.name,
+      type: example.type,
+      title: example.title,
+      description: example.description,
+      files: exampleFiles.map((f) => ({ path: f.path, type: f.type })),
     });
   }
 

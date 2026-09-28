@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial-reel-focus-demo",
+  "type": "registry:example",
+  "title": "Testimonial Reel Focus Demo",
+  "description": "Usage examples for Testimonial Reel Focus.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/testimonial-reel-focus.json"
+  ],
+  "files": [
+    {
+      "path": "examples/testimonial-reel-focus-demo.tsx",
+      "type": "registry:example",
+      "content": "import TestimonialReelFocus from '@/components/tweenui/testimonial-reel-focus';\n\nexport default function Page() {\n  return <TestimonialReelFocus />;\n}"
+    },
+    {
+      "path": "examples/testimonial-reel-focus-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import TestimonialReelFocus from '@/components/tweenui/testimonial-reel-focus';\n\nexport default function Page() {\n  return (\n    <TestimonialReelFocus\n      aria-label=\"What residents say\"\n      items={[\n        {\n          name: 'Maya Rahman',\n          role: 'Resident, Casa 07',\n          quote: 'The gate closes and the noise stops. Six months in, I still notice it.',\n          tag: 'Phase I · Villa',\n          metric: 'Handover on time',\n        },\n        {\n          name: 'Daniel Osei',\n          role: 'Partner, Osei & Reyes',\n          initials: 'DO',\n          hue: 214,\n          quote: 'Twenty-five homes that had to look unbothered in twenty years.',\n          tag: 'Architecture',\n          metric: '25 of 25 placed',\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

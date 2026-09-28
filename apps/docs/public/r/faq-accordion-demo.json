@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "faq-accordion-demo",
+  "type": "registry:example",
+  "title": "FAQ Accordion Demo",
+  "description": "Usage examples for FAQ Accordion.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/faq-accordion.json"
+  ],
+  "files": [
+    {
+      "path": "examples/faq-accordion-demo.tsx",
+      "type": "registry:example",
+      "content": "import FaqAccordion from '@/components/tweenui/faq-accordion';\n\nconst items = [\n  { question: 'What is Tween UI?', answer: 'GSAP & CSS animated components for React.' },\n  { question: 'How do I install it?', answer: 'Copy the source, or add it with the CLI.' },\n  { question: 'Does it respect reduced motion?', answer: 'Yes — every component does.' },\n];\n\nexport default function Page() {\n  return <FaqAccordion items={items} />;\n}"
+    }
+  ]
+}

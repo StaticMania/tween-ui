@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "glow-button-demo",
+  "type": "registry:example",
+  "title": "Glow Button Demo",
+  "description": "Usage examples for Glow Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/glow-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/glow-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import GlowButton from '@/components/tweenui/glow-button';\n\nexport default function Page() {\n  return <GlowButton onClick={() => console.log('clicked')}>Get started</GlowButton>;\n}"
+    }
+  ]
+}

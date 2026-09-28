@@ -61,4 +61,5 @@ export interface RegistryEntry {
   usage: {
     react: string;
   };
+  docs?: string;
 }

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "strip-wipe-demo",
+  "type": "registry:example",
+  "title": "Strip Wipe Demo",
+  "description": "Usage examples for Strip Wipe.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/strip-wipe.json"
+  ],
+  "files": [
+    {
+      "path": "examples/strip-wipe-demo.tsx",
+      "type": "registry:example",
+      "content": "import StripWipe from '@/components/tweenui/strip-wipe';\n\nexport default function Page() {\n  return <StripWipe />;\n}"
+    },
+    {
+      "path": "examples/strip-wipe-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import StripWipe from '@/components/tweenui/strip-wipe';\n\nconst testimonials = [\n  {\n    id: 'maya',\n    image: '/photos/maya.jpg',\n    imageAlt: 'Maya, operations lead',\n    quote: 'Handoffs used to live in three chats. Now the pipeline updates itself.',\n  },\n  {\n    id: 'jon',\n    image: '/photos/jon.jpg',\n    imageAlt: 'Jon, founder',\n    quote: 'We shipped the first automation in an afternoon and never looked back.',\n  },\n];\n\nexport default function Page() {\n  return <StripWipe testimonials={testimonials} directional={false} />;\n}"
+    }
+  ]
+}

@@ -121,7 +121,7 @@ export default function Example() {
     type: 'component',
     title: 'Auth Modal',
     description:
-      'A sign-in dialog: the backdrop fades, the panel scales up, then the close button, title, providers and email field stagger in. Closing plays the sequence in reverse.',
+      'A login modal: the backdrop fades, the panel scales up, then the close button, title, sign-in providers and email field stagger in. Closing plays the sequence in reverse.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -163,7 +163,7 @@ export default function Example() {
     type: 'component',
     title: 'Number Counter',
     description:
-      'Digits that spin up once when the stat scrolls into view. ScrollTrigger fires it, Number Flow handles the count.',
+      'An animated stats counter whose digits spin up once when the stat scrolls into view. ScrollTrigger fires it, Number Flow handles the count.',
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],
@@ -573,7 +573,7 @@ export default function Example() {
     type: 'component',
     title: 'Image Fan Slider',
     description:
-      'A fan of photos that auto-advances — the active one large and sharp, its neighbors rotated and blurred on each side. Hover pauses. Pure CSS transitions.',
+      'An image gallery slider: a fan of photos that auto-advances — the active one large and sharp, its neighbors rotated and blurred on each side. Hover pauses. Pure CSS transitions.',
     media: {},
     dependencies: [],
     registryDependencies: [],
@@ -611,7 +611,7 @@ export default function Example() {
     type: 'component',
     title: 'Morphing Text',
     description:
-      'A headline whose last word cycles through a list with a gooey blur morph — an SVG alpha threshold fuses the outgoing and incoming words into one liquid shape while the slot eases between word widths.',
+      'A headline text animation whose last word cycles through a list with a gooey blur morph — an SVG alpha threshold fuses the outgoing and incoming words into one liquid shape while the slot eases between word widths.',
     isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
@@ -650,7 +650,7 @@ export default function Example() {
     type: 'component',
     title: 'Wordmark Reveal',
     description:
-      'A display wordmark that assembles itself on the first scroll — every letter turns in on its own vertical axis, then a script line leans in along the baseline. A cue holds the screen until you answer it, or it plays on mount with `instant`. ScrollTrigger and SplitText.',
+      'A display wordmark text reveal that assembles itself on the first scroll — every letter turns in on its own vertical axis, then a script line leans in along the baseline. A cue holds the screen until you answer it, or it plays on mount with `instant`. ScrollTrigger and SplitText.',
     isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],

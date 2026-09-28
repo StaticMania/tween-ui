@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "blog-hover-expand-demo",
+  "type": "registry:example",
+  "title": "Blog Hover Expand Demo",
+  "description": "Usage examples for Blog Hover Expand.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/blog-hover-expand.json"
+  ],
+  "files": [
+    {
+      "path": "examples/blog-hover-expand-demo.tsx",
+      "type": "registry:example",
+      "content": "import BlogHoverExpand from '@/components/tweenui/blog-hover-expand';\n\nexport default function Page() {\n  return <BlogHoverExpand />;\n}"
+    },
+    {
+      "path": "examples/blog-hover-expand-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import BlogHoverExpand from '@/components/tweenui/blog-hover-expand';\n\nexport default function Page() {\n  return (\n    <BlogHoverExpand\n      posts={[\n        {\n          title: 'How to brief an AI creative team',\n          date: 'March 12, 2026',\n          tags: ['Ads'],\n          image: '/photos/brief.jpg',\n          imageAlt: 'Campaign briefing',\n          href: '/blog/brief',\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

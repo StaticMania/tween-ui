@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-photo-headline-demo",
+  "type": "registry:example",
+  "title": "CTA Photo Headline Demo",
+  "description": "Usage examples for CTA Photo Headline.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/cta-photo-headline.json"
+  ],
+  "files": [
+    {
+      "path": "examples/cta-photo-headline-demo.tsx",
+      "type": "registry:example",
+      "content": "import CtaPhotoHeadline from '@/components/tweenui/cta-photo-headline';\n\nexport default function Page() {\n  return <CtaPhotoHeadline />;\n}"
+    },
+    {
+      "path": "examples/cta-photo-headline-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import CtaPhotoHeadline from '@/components/tweenui/cta-photo-headline';\n\nexport default function Page() {\n  return (\n    <CtaPhotoHeadline\n      ctaLabel=\"Browse the blocks\"\n      onCtaClick={() => console.log('cta')}\n      avatars={[\n        { src: '/photos/one.jpg', alt: 'Motion designer' },\n        { src: '/photos/two.jpg', alt: 'Frontend engineer' },\n        { src: '/photos/three.jpg', alt: 'Product designer' },\n        { src: '/photos/four.jpg', alt: 'AI engineer' },\n      ]}\n      inlineImage={{ src: '/photos/ai-interface.jpg', alt: 'AI interface' }}\n      accentImage={{ src: '/photos/motion.jpg', alt: 'Motion form' }}\n    />\n  );\n}"
+    }
+  ]
+}

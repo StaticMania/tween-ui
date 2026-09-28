@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-cycle-demo",
+  "type": "registry:example",
+  "title": "Logo Cycle Demo",
+  "description": "Usage examples for Logo Cycle.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/logo-cycle.json"
+  ],
+  "files": [
+    {
+      "path": "examples/logo-cycle-demo.tsx",
+      "type": "registry:example",
+      "content": "import LogoCycle from '@/components/tweenui/logo-cycle';\n\nconst logos = [\n  { src: '/logos/slack.svg', alt: 'Slack' },\n  { src: '/logos/figma.svg', alt: 'Figma' },\n  { src: '/logos/github.svg', alt: 'GitHub' },\n  { src: '/logos/linear.svg', alt: 'Linear' },\n  { src: '/logos/notion.svg', alt: 'Notion' },\n  { src: '/logos/vercel.svg', alt: 'Vercel' },\n  { src: '/logos/react.svg', alt: 'React' },\n  { src: '/logos/tailwind.svg', alt: 'Tailwind CSS' },\n];\n\nexport default function Page() {\n  return <LogoCycle logos={logos} visibleCount={6} />;\n}"
+    }
+  ]
+}

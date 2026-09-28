@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sliding-tabs-demo",
+  "type": "registry:example",
+  "title": "Sliding Tabs Demo",
+  "description": "Usage examples for Sliding Tabs.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/sliding-tabs.json"
+  ],
+  "files": [
+    {
+      "path": "examples/sliding-tabs-demo.tsx",
+      "type": "registry:example",
+      "content": "import SlidingTabs from '@/components/tweenui/sliding-tabs';\n\nconst items = [\n  { value: 'home', label: 'Home' },\n  { value: 'about', label: 'About' },\n  { value: 'services', label: 'Service' },\n  { value: 'projects', label: 'Projects' },\n  { value: 'team', label: 'Team' },\n  { value: 'blog', label: 'Blog' },\n];\n\nexport default function Page() {\n  return <SlidingTabs items={items} defaultValue=\"home\" />;\n}"
+    }
+  ]
+}

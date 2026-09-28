@@ -62,6 +62,24 @@ describe('registry integrity', () => {
         }
       });
 
+      it('imports itself on its docs page from the path the CLI installs it to', () => {
+        const folder = entry.type === 'block' ? '2.block' : '1.component';
+        const page = readFileSync(abs(`content/${folder}/${entry.name}.mdx`), 'utf8');
+        const installPath = `@/${entry.files[0]?.target.replace(/\.tsx?$/, '')}`;
+        const imports = [...page.matchAll(/from '(@\/components\/tweenui\/[^']+)'/g)]
+          .map((match) => match[1])
+          .filter((path) => path?.endsWith(`/${entry.name}`));
+        expect(imports.length).toBeGreaterThan(0);
+        for (const path of imports) expect(path).toBe(installPath);
+      });
+
+      it('has a generated usage example that installs the item', () => {
+        const example = JSON.parse(readFileSync(abs(`public/r/${entry.name}-demo.json`), 'utf8'));
+        expect(example.type).toBe('registry:example');
+        expect(example.files.length).toBeGreaterThan(0);
+        expect(example.registryDependencies[0]).toMatch(new RegExp(`/r/${entry.name}\\.json$`));
+      });
+
       it('ships registry dependencies as absolute URLs the shadcn CLI can fetch', () => {
         const item = JSON.parse(readFileSync(abs(`public/r/${entry.name}.json`), 'utf8'));
         for (const dep of item.registryDependencies) {

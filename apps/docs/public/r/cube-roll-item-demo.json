@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cube-roll-item-demo",
+  "type": "registry:example",
+  "title": "Cube Roll Item Demo",
+  "description": "Usage examples for Cube Roll Item.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/cube-roll-item.json"
+  ],
+  "files": [
+    {
+      "path": "examples/cube-roll-item-demo.tsx",
+      "type": "registry:example",
+      "content": "import CubeRollItem from '@/components/tweenui/cube-roll-item';\n\nexport default function Page() {\n  return <CubeRollItem />;\n}"
+    },
+    {
+      "path": "examples/cube-roll-item-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import CubeRollItem from '@/components/tweenui/cube-roll-item';\n\nexport default function Page() {\n  return (\n    <CubeRollItem\n      aria-label=\"On this page\"\n      items={[\n        { title: 'Concept', label: 'Why we built it', href: '#concept' },\n        { title: 'Features', label: 'What it does', href: '#features' },\n        { title: 'Pricing', label: 'Plans & limits', href: '#pricing' },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

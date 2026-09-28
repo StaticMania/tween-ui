@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "integration-hub-demo",
+  "type": "registry:example",
+  "title": "Integration Hub Demo",
+  "description": "Usage examples for Integration Hub.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/integration-hub.json"
+  ],
+  "files": [
+    {
+      "path": "examples/integration-hub-demo.tsx",
+      "type": "registry:example",
+      "content": "import IntegrationHub from '@/components/tweenui/integration-hub';\n\nexport default function Page() {\n  return <IntegrationHub />;\n}"
+    },
+    {
+      "path": "examples/integration-hub-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import IntegrationHub from '@/components/tweenui/integration-hub';\n\nexport default function Page() {\n  return (\n    <IntegrationHub\n      left={[\n        { src: '/logos/slack.svg', alt: 'Slack' },\n        { src: '/logos/github.svg', alt: 'GitHub' },\n        { src: '/logos/figma.svg', alt: 'Figma' },\n      ]}\n      right={[\n        { src: '/logos/linear.svg', alt: 'Linear' },\n        { src: '/logos/notion.svg', srcDark: '/logos/notion-dark.svg', alt: 'Notion' },\n        { src: '/logos/zoom.svg', alt: 'Zoom' },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}
