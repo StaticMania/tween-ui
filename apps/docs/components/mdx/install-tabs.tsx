@@ -6,6 +6,7 @@ import { siteConfig } from '@/config/site';
 import { CommandTabs, REGISTRY_LISTED, shadcnAddCommands } from './command-tabs';
 
 const SETUP_PATH = '/installation/setup-guide';
+const MCP_PATH = '/installation/mcp';
 
 /** shadcn install command across package managers. `item` is the registry item name. */
 export function InstallTabs({ item }: { item: string }) {
@@ -25,6 +26,13 @@ export function InstallTabs({ item }: { item: string }) {
           once per project, then this command works anywhere in it.
         </p>
       )}
+      <p className="text-muted-foreground mt-2 text-sm">
+        Using an AI editor?{' '}
+        <Link href={MCP_PATH} className="text-highlighted underline underline-offset-4">
+          Set up MCP
+        </Link>{' '}
+        once, then just ask for it in plain words.
+      </p>
     </div>
   );
 }
