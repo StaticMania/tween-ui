@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "voice-sample-player-demo",
+  "type": "registry:example",
+  "title": "Voice Sample Player Demo",
+  "description": "Usage examples for Voice Sample Player.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/voice-sample-player.json"
+  ],
+  "files": [
+    {
+      "path": "examples/voice-sample-player-demo.tsx",
+      "type": "registry:example",
+      "content": "import VoiceSamplePlayer from '@/components/tweenui/voice-sample-player';\n\nexport default function Page() {\n  return (\n    <VoiceSamplePlayer\n      name=\"Ada Lovelace\"\n      description=\"British female · warm & precise\"\n      avatar=\"/avatars/ada.jpg\"\n      src=\"/audio/ada-sample.mp3\"\n    />\n  );\n}"
+    },
+    {
+      "path": "examples/voice-sample-player-demo-2.tsx",
+      "type": "registry:example",
+      "content": "const [activeId, setActiveId] = useState<string | null>(null);\n\n<VoiceSamplePlayer\n  name=\"Ada Lovelace\"\n  playing={activeId === 'ada'}\n  onPlayingChange={(next) => setActiveId(next ? 'ada' : null)}\n/>;"
+    }
+  ]
+}

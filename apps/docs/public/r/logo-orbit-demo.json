@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-orbit-demo",
+  "type": "registry:example",
+  "title": "Logo Orbit Demo",
+  "description": "Usage examples for Logo Orbit.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/logo-orbit.json"
+  ],
+  "files": [
+    {
+      "path": "examples/logo-orbit-demo.tsx",
+      "type": "registry:example",
+      "content": "import LogoOrbit from '@/components/tweenui/logo-orbit';\n\nconst logos = [\n  { src: '/logos/slack.svg', alt: 'Slack' },\n  { src: '/logos/figma.svg', alt: 'Figma' },\n  { src: '/logos/github.svg', alt: 'GitHub' },\n  { src: '/logos/linear.svg', alt: 'Linear' },\n];\n\nexport default function Page() {\n  return <LogoOrbit logos={logos} size={320} speed={1} />;\n}"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "process-sticky-steps-demo",
+  "type": "registry:example",
+  "title": "Process Sticky Steps Demo",
+  "description": "Usage examples for Process Sticky Steps.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/process-sticky-steps.json"
+  ],
+  "files": [
+    {
+      "path": "examples/process-sticky-steps-demo.tsx",
+      "type": "registry:example",
+      "content": "import ProcessStickySteps from '@/components/tweenui/process-sticky-steps';\n\nexport default function Page() {\n  return <ProcessStickySteps />;\n}"
+    },
+    {
+      "path": "examples/process-sticky-steps-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import ProcessStickySteps from '@/components/tweenui/process-sticky-steps';\n\nconst steps = [\n  {\n    id: 'write',\n    title: 'Write or paste script',\n    description: 'Draft your message or drop in ready-to-go text.',\n    image: '/photos/script.jpg',\n    imageAlt: 'Writing a script',\n    overlay: '/photos/script-overlay.png',\n    overlayAlt: 'Script editor',\n    overlayPosition: 'right',\n  },\n  {\n    id: 'generate',\n    title: 'Generate and download',\n    description: 'Get studio-quality audio in seconds.',\n    image: '/photos/download.jpg',\n    imageAlt: 'Downloading audio',\n  },\n];\n\nexport default function Page() {\n  return (\n    <ProcessStickySteps\n      title={\n        <>\n          Create stunning voiceover in{' '}\n          <span className=\"text-[#045f64] dark:text-[#c6f56f]\">2 simple steps</span>\n        </>\n      }\n      steps={steps}\n    />\n  );\n}"
+    }
+  ]
+}

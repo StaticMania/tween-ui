@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "infinite-rotating-cards-demo",
+  "type": "registry:example",
+  "title": "Infinite Rotating Cards Demo",
+  "description": "Usage examples for Infinite Rotating Cards.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/infinite-rotating-cards.json"
+  ],
+  "files": [
+    {
+      "path": "examples/infinite-rotating-cards-demo.tsx",
+      "type": "registry:example",
+      "content": "import InfiniteRotatingCards from '@/components/tweenui/infinite-rotating-cards';\n\nexport default function Page() {\n  return <InfiniteRotatingCards />;\n}"
+    },
+    {
+      "path": "examples/infinite-rotating-cards-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import InfiniteRotatingCards from '@/components/tweenui/infinite-rotating-cards';\n\nexport default function Page() {\n  return (\n    <InfiniteRotatingCards\n      title=\"Motion that actually ships\"\n      cards={[\n        { title: 'Brand motion', image: '/photos/brand.jpg', imageAlt: 'Brand frames' },\n        { title: 'Product UI', image: '/photos/ui.jpg', imageAlt: 'Product UI' },\n        { title: 'Launch pages', image: '/photos/launch.jpg', imageAlt: 'Launch page' },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

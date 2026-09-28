@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "image-fan-slider-demo",
+  "type": "registry:example",
+  "title": "Image Fan Slider Demo",
+  "description": "Usage examples for Image Fan Slider.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/image-fan-slider.json"
+  ],
+  "files": [
+    {
+      "path": "examples/image-fan-slider-demo.tsx",
+      "type": "registry:example",
+      "content": "import ImageFanSlider from '@/components/tweenui/image-fan-slider';\n\nconst images = [\n  { src: '/photos/one.jpg', alt: 'Portrait one' },\n  { src: '/photos/two.jpg', alt: 'Portrait two' },\n  { src: '/photos/three.jpg', alt: 'Portrait three' },\n  { src: '/photos/four.jpg', alt: 'Portrait four' },\n  { src: '/photos/five.jpg', alt: 'Portrait five' },\n];\n\nexport default function Page() {\n  return <ImageFanSlider images={images} />;\n}"
+    }
+  ]
+}

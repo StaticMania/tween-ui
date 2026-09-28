@@ -1,0 +1,124 @@
+---
+title: MCP
+description: Let your AI editor find, read and install Tween UI components through the shadcn MCP server.
+icon: bot
+---
+
+Tween UI is a shadcn registry, so it works with the
+[shadcn MCP server](https://ui.shadcn.com/docs/mcp) as it is. There is no
+separate Tween UI server to install: once `@tween-ui` is in your project's
+`components.json`, an assistant like Claude Code, Cursor or VS Code can browse
+the catalog, read what a component does and install it by name — the same files
+the CLI would give you, in the same place.
+
+## Requirements
+
+An existing shadcn project, the same as for a normal install — see the
+[Setup Guide](/installation/setup-guide) if you don't have one yet.
+
+The registry has to be in `components.json` **before** you use the MCP server.
+The CLI writes it for you on the first install, but the MCP server only searches
+the registries that are already listed there, so on a fresh project it would not
+see Tween UI at all. Add it up front:
+
+::registry-setup
+::
+
+Or paste it in by hand:
+
+```json [components.json]
+{
+  "registries": {
+    "@tween-ui": "https://tween-ui.vercel.app/r/{name}.json"
+  }
+}
+```
+
+## Set up your editor
+
+From your project root, run the command for your editor. It writes the MCP
+config file for you:
+
+| Editor      | Command                                             | Writes               |
+| ----------- | --------------------------------------------------- | -------------------- |
+| Claude Code | `pnpm dlx shadcn@latest mcp init --client claude`   | `.mcp.json`          |
+| Cursor      | `pnpm dlx shadcn@latest mcp init --client cursor`   | `.cursor/mcp.json`   |
+| VS Code     | `pnpm dlx shadcn@latest mcp init --client vscode`   | `.vscode/mcp.json`   |
+| Codex       | `pnpm dlx shadcn@latest mcp init --client codex`    | `.codex/config.toml` |
+| OpenCode    | `pnpm dlx shadcn@latest mcp init --client opencode` | `opencode.json`      |
+
+Then restart the editor, or reload its MCP servers, so it picks up the new
+config. Some editors list a new server as off until you switch it on.
+
+To write the config yourself instead, this is what the command adds for Claude
+Code and Cursor:
+
+```json [.mcp.json]
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+Commit the config file together with `components.json`, so everyone on the team
+gets the same setup.
+
+## Try it
+
+Ask for what you want in plain words. The assistant searches the catalog, reads
+the match and runs the install:
+
+- "Show me the Tween UI blocks for testimonials."
+- "Add the Tween UI pricing plan switch to the pricing page."
+- "Find a Tween UI logo strip that scrolls on its own and install it."
+- "Which Tween UI components need GSAP?"
+
+Installed items land in `components/tweenui/`, and dependencies like `gsap` and
+`@gsap/react` are installed with them — exactly as with
+`shadcn add @tween-ui/<name>`.
+
+## What the assistant can do
+
+The shadcn MCP server gives the assistant these tools, and each one works on
+Tween UI once the registry is listed:
+
+| Tool                                | What it does                                                           |
+| ----------------------------------- | ---------------------------------------------------------------------- |
+| `list_items_in_registries`          | Lists every component, block and example in `@tween-ui`.               |
+| `search_items_in_registries`        | Fuzzy-searches item names, titles and descriptions.                    |
+| `view_items_in_registries`          | Shows an item's description, type, files and dependencies.             |
+| `get_item_examples_from_registries` | Returns the usage code from an item's docs page, e.g. `tab-wipe-demo`. |
+| `get_add_command_for_items`         | Returns the install command, e.g. `shadcn add @tween-ui/tab-wipe`.     |
+| `get_audit_checklist`               | A checklist to run after installing, to catch missing imports.         |
+
+Search matches words in each item's name, title and description, so describing
+the section you want — "a testimonial section that scrolls sideways" — tends to
+find more than guessing at a component name.
+
+Every component and block has a matching `<name>-demo` example with the same
+code as the Usage section of its page, so the assistant can pass real props
+instead of guessing them. After an install, the CLI also prints a short note:
+a link to the item's page, which GSAP plugins it registers for itself, and
+anything else worth knowing before you ship it.
+
+## Troubleshooting
+
+::note
+**`No registries are configured`** — `@tween-ui` is not in `components.json`
+yet. Add it with the command under [Requirements](#requirements), then ask again.
+::
+
+::note
+**An item is not found** — item names take the registry prefix, with a hyphen:
+`@tween-ui/tab-wipe`, not `@tweenui/tab-wipe` or `tab-wipe` on its own.
+::
+
+::note
+**The server does not show up in the editor** — check the config file landed in
+the project root you opened, and restart the editor. The server runs through
+`npx`, so Node.js has to be installed and on your `PATH`.
+::

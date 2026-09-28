@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slide-arrow-button-demo",
+  "type": "registry:example",
+  "title": "Slide Arrow Button Demo",
+  "description": "Usage examples for Slide Arrow Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/slide-arrow-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/slide-arrow-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import SlideArrowButton from '@/components/tweenui/slide-arrow-button';\n\nexport default function Page() {\n  return <SlideArrowButton onClick={() => console.log('clicked')}>Get started</SlideArrowButton>;\n}"
+    }
+  ]
+}

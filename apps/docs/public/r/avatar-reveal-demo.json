@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar-reveal-demo",
+  "type": "registry:example",
+  "title": "Avatar Reveal Demo",
+  "description": "Usage examples for Avatar Reveal.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/avatar-reveal.json"
+  ],
+  "files": [
+    {
+      "path": "examples/avatar-reveal-demo.tsx",
+      "type": "registry:example",
+      "content": "import AvatarReveal from '@/components/tweenui/avatar-reveal';\n\nexport default function Page() {\n  return <AvatarReveal>2,000+ teams shipping faster this week.</AvatarReveal>;\n}"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tab-wipe-demo",
+  "type": "registry:example",
+  "title": "Tab Wipe Demo",
+  "description": "Usage examples for Tab Wipe.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/tab-wipe.json"
+  ],
+  "files": [
+    {
+      "path": "examples/tab-wipe-demo.tsx",
+      "type": "registry:example",
+      "content": "import TabWipe from '@/components/tweenui/tab-wipe';\n\nexport default function Page() {\n  return <TabWipe />;\n}"
+    },
+    {
+      "path": "examples/tab-wipe-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import TabWipe from '@/components/tweenui/tab-wipe';\n\nexport default function Page() {\n  return (\n    <TabWipe\n      slides={[\n        { image: '/shots/board.png', alt: 'Workflow board' },\n        {\n          image: '/shots/reports.png',\n          alt: 'Performance dashboard',\n          tabImage: '/shots/reports-thumb.png',\n        },\n        { image: '/shots/team.png', alt: 'Team planning' },\n      ]}\n    />\n  );\n}"
+    },
+    {
+      "path": "examples/tab-wipe-demo-3.tsx",
+      "type": "registry:example",
+      "content": "<section className=\"space-y-10 text-center\">\n  <h1 className=\"text-5xl font-medium\">Manage everything. Grow faster.</h1>\n  <TabWipe className=\"py-0\" />\n</section>"
+    }
+  ]
+}

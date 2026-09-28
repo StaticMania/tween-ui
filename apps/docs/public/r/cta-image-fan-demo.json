@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-image-fan-demo",
+  "type": "registry:example",
+  "title": "CTA Image Fan Demo",
+  "description": "Usage examples for CTA Image Fan.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/cta-image-fan.json"
+  ],
+  "files": [
+    {
+      "path": "examples/cta-image-fan-demo.tsx",
+      "type": "registry:example",
+      "content": "import CtaImageFan from '@/components/tweenui/cta-image-fan';\n\nexport default function Page() {\n  return <CtaImageFan />;\n}"
+    },
+    {
+      "path": "examples/cta-image-fan-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import CtaImageFan from '@/components/tweenui/cta-image-fan';\n\nexport default function Page() {\n  return (\n    <CtaImageFan\n      ctaLabel=\"Get started\"\n      onCtaClick={() => console.log('cta')}\n      images={[\n        { src: '/photos/one.jpg', alt: 'Portrait one' },\n        { src: '/photos/two.jpg', alt: 'Portrait two' },\n        { src: '/photos/three.jpg', alt: 'Portrait three' },\n        { src: '/photos/four.jpg', alt: 'Portrait four' },\n        { src: '/photos/five.jpg', alt: 'Portrait five' },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

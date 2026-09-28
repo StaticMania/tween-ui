@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flip-card-demo",
+  "type": "registry:example",
+  "title": "Flip Card Demo",
+  "description": "Usage examples for Flip Card.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/flip-card.json"
+  ],
+  "files": [
+    {
+      "path": "examples/flip-card-demo.tsx",
+      "type": "registry:example",
+      "content": "import FlipCard from '@/components/tweenui/flip-card';\n\nexport default function Page() {\n  return (\n    <FlipCard\n      eyebrow=\"(01)\"\n      title=\"Web Design\"\n      subtitle=\"Interfaces that convert\"\n      description=\"Research-led product and marketing design, from wireframe to polished UI.\"\n      image=\"/services/web-design.jpg\"\n      features={['UX & UI design', 'Design systems', 'Prototyping']}\n      href=\"/services/web-design\"\n      ctaText=\"Explore service\"\n    />\n  );\n}"
+    }
+  ]
+}

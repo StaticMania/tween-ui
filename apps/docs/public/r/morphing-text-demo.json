@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "morphing-text-demo",
+  "type": "registry:example",
+  "title": "Morphing Text Demo",
+  "description": "Usage examples for Morphing Text.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/morphing-text.json"
+  ],
+  "files": [
+    {
+      "path": "examples/morphing-text-demo.tsx",
+      "type": "registry:example",
+      "content": "import MorphingText from '@/components/tweenui/morphing-text';\n\nexport default function Page() {\n  return (\n    <MorphingText\n      prefix={'Motion that feels\\nlike'}\n      words={['magic', 'water', 'silk', 'gravity']}\n      className=\"text-center text-6xl font-medium tracking-tight\"\n      wordClassName=\"text-teal-700\"\n    />\n  );\n}"
+    }
+  ]
+}

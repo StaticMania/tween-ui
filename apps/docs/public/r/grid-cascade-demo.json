@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "grid-cascade-demo",
+  "type": "registry:example",
+  "title": "Grid Cascade Demo",
+  "description": "Usage examples for Grid Cascade.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/grid-cascade.json"
+  ],
+  "files": [
+    {
+      "path": "examples/grid-cascade-demo.tsx",
+      "type": "registry:example",
+      "content": "import GridCascade from '@/components/tweenui/grid-cascade';\n\nexport default function Page() {\n  return <GridCascade />;\n}"
+    },
+    {
+      "path": "examples/grid-cascade-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import GridCascade from '@/components/tweenui/grid-cascade';\n\nexport default function Page() {\n  return (\n    <GridCascade\n      title=\"What our users say\"\n      items={[\n        {\n          name: 'Maya Collins',\n          position: 'Head of Operations',\n          review: 'We replaced four tools with one workflow and shipped two weeks early.',\n          image: '/people/maya.jpg',\n          link: 'https://x.com/maya',\n        },\n        {\n          name: 'Ethan Brooks',\n          position: 'President of Sales',\n          review: 'Reporting used to take a day a month. Now it lands in our inbox.',\n          image: '/people/ethan.jpg',\n        },\n      ]}\n    />\n  );\n}"
+    },
+    {
+      "path": "examples/grid-cascade-demo-3.tsx",
+      "type": "registry:example",
+      "content": "<GridCascade perPage={2} loop={false} />"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "process-card-reveal-demo",
+  "type": "registry:example",
+  "title": "Process Card Reveal Demo",
+  "description": "Usage examples for Process Card Reveal.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/process-card-reveal.json"
+  ],
+  "files": [
+    {
+      "path": "examples/process-card-reveal-demo.tsx",
+      "type": "registry:example",
+      "content": "import ProcessCardReveal from '@/components/tweenui/process-card-reveal';\n\nexport default function Page() {\n  return <ProcessCardReveal />;\n}"
+    },
+    {
+      "path": "examples/process-card-reveal-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import ProcessCardReveal from '@/components/tweenui/process-card-reveal';\n\nconst steps = [\n  {\n    id: 'discover',\n    title: 'Discover',\n    description: 'Map the workflow and pick the trigger that starts every run.',\n    image: '/photos/discover.jpg',\n    imageAlt: 'Whiteboard session',\n    details: [\n      { title: 'Kickoff workshop', description: 'Align on the outcome in one sitting.' },\n      { title: 'Trigger catalog', description: 'Choose from the apps you already use.' },\n    ],\n  },\n  {\n    id: 'launch',\n    title: 'Launch',\n    description: 'Ship the flow, watch the first runs, and share it with the team.',\n    image: '/photos/launch.jpg',\n    imageAlt: 'Team launching a workflow',\n    details: [\n      { title: 'Live monitoring', description: 'Catch failed runs the moment they happen.' },\n      { title: 'Shared ownership', description: 'Invite teammates with clear permissions.' },\n    ],\n  },\n];\n\nexport default function Page() {\n  return <ProcessCardReveal steps={steps} />;\n}"
+    }
+  ]
+}

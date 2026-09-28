@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pricing-plan-switch-demo",
+  "type": "registry:example",
+  "title": "Pricing Plan Switch Demo",
+  "description": "Usage examples for Pricing Plan Switch.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/pricing-plan-switch.json"
+  ],
+  "files": [
+    {
+      "path": "examples/pricing-plan-switch-demo.tsx",
+      "type": "registry:example",
+      "content": "import PricingPlanSwitch from '@/components/tweenui/pricing-plan-switch';\n\nexport default function Page() {\n  return <PricingPlanSwitch />;\n}"
+    },
+    {
+      "path": "examples/pricing-plan-switch-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import PricingPlanSwitch from '@/components/tweenui/pricing-plan-switch';\n\nconst plans = [\n  {\n    id: 'starter',\n    name: 'Starter',\n    subtitle: 'For early-stage teams',\n    description: 'Core automation and a shared workspace to keep momentum.',\n    monthly: 2500,\n    yearly: 25000,\n    includedCount: 5,\n  },\n  {\n    id: 'pro',\n    name: 'Pro',\n    subtitle: 'For growing teams',\n    description: 'Advanced automation, priority workflows, and deeper analytics.',\n    monthly: 4190,\n    yearly: 41900,\n    includedCount: 7,\n  },\n];\n\nconst features = [\n  'Unlimited workflows',\n  'Team workspace',\n  'Email support',\n  'Advanced automation',\n  'Priority queue',\n  'Usage analytics',\n  'Role-based access',\n];\n\nexport default function Page() {\n  return <PricingPlanSwitch plans={plans} features={features} ctaHref=\"/signup\" />;\n}"
+    }
+  ]
+}

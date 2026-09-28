@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "column-drift-demo",
+  "type": "registry:example",
+  "title": "Column Drift Demo",
+  "description": "Usage examples for Column Drift.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/column-drift.json"
+  ],
+  "files": [
+    {
+      "path": "examples/column-drift-demo.tsx",
+      "type": "registry:example",
+      "content": "import ColumnDrift from '@/components/tweenui/column-drift';\n\nexport default function Page() {\n  return <ColumnDrift />;\n}"
+    },
+    {
+      "path": "examples/column-drift-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import ColumnDrift from '@/components/tweenui/column-drift';\n\nconst review = (name: string, jobTitle: string, image: string) => ({\n  name,\n  jobTitle,\n  image,\n  quoteBefore: 'The rebuild shipped in three weeks,',\n  quoteHighlight: 'and conversions moved the same month.',\n  quoteAfter: 'Worth every call.',\n  stars: 5,\n});\n\nexport default function Page() {\n  return (\n    <ColumnDrift\n      title=\"Trusted by teams that ship\"\n      columns={[\n        [review('Liam Harper', 'Head of Growth', '/avatars/liam.jpg')],\n        [review('Ethan Brooks', 'President of Sales', '/avatars/ethan.jpg')],\n        [review('Ava Sinclair', 'Marketing Head', '/avatars/ava.jpg')],\n      ]}\n    />\n  );\n}"
+    },
+    {
+      "path": "examples/column-drift-demo-3.tsx",
+      "type": "registry:example",
+      "content": "<ColumnDrift rating={null} />"
+    }
+  ]
+}

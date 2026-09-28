@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-wave-demo",
+  "type": "registry:example",
+  "title": "Logo Wave Demo",
+  "description": "Usage examples for Logo Wave.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/logo-wave.json"
+  ],
+  "files": [
+    {
+      "path": "examples/logo-wave-demo.tsx",
+      "type": "registry:example",
+      "content": "import LogoWave from '@/components/tweenui/logo-wave';\n\nconst logos = [\n  { src: '/logos/slack.svg', alt: 'Slack' },\n  { src: '/logos/figma.svg', alt: 'Figma' },\n  { src: '/logos/github.svg', alt: 'GitHub' },\n  { src: '/logos/linear.svg', alt: 'Linear' },\n  { src: '/logos/notion.svg', alt: 'Notion' },\n  { src: '/logos/vercel.svg', alt: 'Vercel' },\n];\n\nexport default function Page() {\n  return <LogoWave logos={logos} duration={30} />;\n}"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shutter-slider-demo",
+  "type": "registry:example",
+  "title": "Shutter Slider Demo",
+  "description": "Usage examples for Shutter Slider.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/shutter-slider.json"
+  ],
+  "files": [
+    {
+      "path": "examples/shutter-slider-demo.tsx",
+      "type": "registry:example",
+      "content": "import ShutterSlider from '@/components/tweenui/shutter-slider';\n\nexport default function Page() {\n  return <ShutterSlider />;\n}"
+    },
+    {
+      "path": "examples/shutter-slider-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import ShutterSlider from '@/components/tweenui/shutter-slider';\n\nexport default function Page() {\n  return (\n    <ShutterSlider\n      aria-label=\"Why us\"\n      autoplay={8}\n      slides={[\n        {\n          heading: 'Made to measure',\n          image: '/images/studio.jpg',\n          imageAlt: 'A sunlit design studio',\n          description: 'Every project starts with a conversation, not a template.',\n          caption: 'Designed with you',\n        },\n        {\n          heading: 'Built to last',\n          image: '/images/detail.jpg',\n          description: 'Materials chosen to age well and keep their character.',\n          caption: 'Honest materials',\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

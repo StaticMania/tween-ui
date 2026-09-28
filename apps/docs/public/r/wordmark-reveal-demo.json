@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wordmark-reveal-demo",
+  "type": "registry:example",
+  "title": "Wordmark Reveal Demo",
+  "description": "Usage examples for Wordmark Reveal.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/wordmark-reveal.json"
+  ],
+  "files": [
+    {
+      "path": "examples/wordmark-reveal-demo.tsx",
+      "type": "registry:example",
+      "content": "import WordmarkReveal from '@/components/tweenui/wordmark-reveal';\n\nexport default function Page() {\n  return (\n    <WordmarkReveal\n      title={'Tween\\nUI'}\n      script=\"in motion\"\n      cue=\"Scroll down to reveal\"\n      className=\"font-serif text-6xl\"\n    />\n  );\n}"
+    }
+  ]
+}

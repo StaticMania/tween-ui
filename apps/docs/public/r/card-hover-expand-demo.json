@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-hover-expand-demo",
+  "type": "registry:example",
+  "title": "Card Hover Expand Demo",
+  "description": "Usage examples for Card Hover Expand.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/card-hover-expand.json"
+  ],
+  "files": [
+    {
+      "path": "examples/card-hover-expand-demo.tsx",
+      "type": "registry:example",
+      "content": "import CardHoverExpand from '@/components/tweenui/card-hover-expand';\n\nexport default function Page() {\n  return <CardHoverExpand />;\n}"
+    },
+    {
+      "path": "examples/card-hover-expand-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import CardHoverExpand from '@/components/tweenui/card-hover-expand';\n\nexport default function Page() {\n  return (\n    <CardHoverExpand\n      cards={[\n        {\n          step: '.01',\n          label: 'Motion first',\n          title: 'Hover systems that feel native',\n          image: '/photos/motion.jpg',\n          imageAlt: 'Hover interaction review',\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

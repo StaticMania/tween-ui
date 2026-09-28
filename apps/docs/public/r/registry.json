@@ -16,6 +16,18 @@
       ]
     },
     {
+      "name": "icon-trail-button-demo",
+      "type": "registry:example",
+      "title": "Icon Trail Button Demo",
+      "description": "Usage examples for Icon Trail Button.",
+      "files": [
+        {
+          "path": "examples/icon-trail-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "sliding-tabs",
       "type": "registry:ui",
       "title": "Sliding Tabs",
@@ -24,6 +36,18 @@
         {
           "path": "components/tweenui/sliding-tabs.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "sliding-tabs-demo",
+      "type": "registry:example",
+      "title": "Sliding Tabs Demo",
+      "description": "Usage examples for Sliding Tabs.",
+      "files": [
+        {
+          "path": "examples/sliding-tabs-demo.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -40,10 +64,22 @@
       ]
     },
     {
+      "name": "avatar-reveal-demo",
+      "type": "registry:example",
+      "title": "Avatar Reveal Demo",
+      "description": "Usage examples for Avatar Reveal.",
+      "files": [
+        {
+          "path": "examples/avatar-reveal-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "auth-modal",
       "type": "registry:ui",
       "title": "Auth Modal",
-      "description": "A sign-in dialog: the backdrop fades, the panel scales up, then the close button, title, providers and email field stagger in. Closing plays the sequence in reverse.",
+      "description": "A login modal: the backdrop fades, the panel scales up, then the close button, title, sign-in providers and email field stagger in. Closing plays the sequence in reverse.",
       "files": [
         {
           "path": "components/tweenui/auth-modal.tsx",
@@ -52,14 +88,38 @@
       ]
     },
     {
+      "name": "auth-modal-demo",
+      "type": "registry:example",
+      "title": "Auth Modal Demo",
+      "description": "Usage examples for Auth Modal.",
+      "files": [
+        {
+          "path": "examples/auth-modal-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "number-counter",
       "type": "registry:ui",
       "title": "Number Counter",
-      "description": "Digits that spin up once when the stat scrolls into view. ScrollTrigger fires it, Number Flow handles the count.",
+      "description": "An animated stats counter whose digits spin up once when the stat scrolls into view. ScrollTrigger fires it, Number Flow handles the count.",
       "files": [
         {
           "path": "components/tweenui/number-counter.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "number-counter-demo",
+      "type": "registry:example",
+      "title": "Number Counter Demo",
+      "description": "Usage examples for Number Counter.",
+      "files": [
+        {
+          "path": "examples/number-counter-demo.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -76,6 +136,22 @@
       ]
     },
     {
+      "name": "voice-sample-player-demo",
+      "type": "registry:example",
+      "title": "Voice Sample Player Demo",
+      "description": "Usage examples for Voice Sample Player.",
+      "files": [
+        {
+          "path": "examples/voice-sample-player-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/voice-sample-player-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "flip-card",
       "type": "registry:ui",
       "title": "Flip Card",
@@ -84,6 +160,18 @@
         {
           "path": "components/tweenui/flip-card.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "flip-card-demo",
+      "type": "registry:example",
+      "title": "Flip Card Demo",
+      "description": "Usage examples for Flip Card.",
+      "files": [
+        {
+          "path": "examples/flip-card-demo.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -100,6 +188,18 @@
       ]
     },
     {
+      "name": "faq-accordion-demo",
+      "type": "registry:example",
+      "title": "FAQ Accordion Demo",
+      "description": "Usage examples for FAQ Accordion.",
+      "files": [
+        {
+          "path": "examples/faq-accordion-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "shiny-button",
       "type": "registry:ui",
       "title": "Shiny Button",
@@ -108,6 +208,18 @@
         {
           "path": "components/tweenui/shiny-button.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "shiny-button-demo",
+      "type": "registry:example",
+      "title": "Shiny Button Demo",
+      "description": "Usage examples for Shiny Button.",
+      "files": [
+        {
+          "path": "examples/shiny-button-demo.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -124,6 +236,18 @@
       ]
     },
     {
+      "name": "text-roll-button-demo",
+      "type": "registry:example",
+      "title": "Text Roll Button Demo",
+      "description": "Usage examples for Text Roll Button.",
+      "files": [
+        {
+          "path": "examples/text-roll-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "slide-arrow-button",
       "type": "registry:ui",
       "title": "Slide Arrow Button",
@@ -132,6 +256,18 @@
         {
           "path": "components/tweenui/slide-arrow-button.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "slide-arrow-button-demo",
+      "type": "registry:example",
+      "title": "Slide Arrow Button Demo",
+      "description": "Usage examples for Slide Arrow Button.",
+      "files": [
+        {
+          "path": "examples/slide-arrow-button-demo.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -148,6 +284,18 @@
       ]
     },
     {
+      "name": "glow-button-demo",
+      "type": "registry:example",
+      "title": "Glow Button Demo",
+      "description": "Usage examples for Glow Button.",
+      "files": [
+        {
+          "path": "examples/glow-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "logo-orbit",
       "type": "registry:ui",
       "title": "Logo Orbit",
@@ -156,6 +304,18 @@
         {
           "path": "components/tweenui/logo-orbit.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-orbit-demo",
+      "type": "registry:example",
+      "title": "Logo Orbit Demo",
+      "description": "Usage examples for Logo Orbit.",
+      "files": [
+        {
+          "path": "examples/logo-orbit-demo.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -172,6 +332,18 @@
       ]
     },
     {
+      "name": "logo-cycle-demo",
+      "type": "registry:example",
+      "title": "Logo Cycle Demo",
+      "description": "Usage examples for Logo Cycle.",
+      "files": [
+        {
+          "path": "examples/logo-cycle-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "logo-wave",
       "type": "registry:ui",
       "title": "Logo Wave",
@@ -184,10 +356,22 @@
       ]
     },
     {
+      "name": "logo-wave-demo",
+      "type": "registry:example",
+      "title": "Logo Wave Demo",
+      "description": "Usage examples for Logo Wave.",
+      "files": [
+        {
+          "path": "examples/logo-wave-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "image-fan-slider",
       "type": "registry:ui",
       "title": "Image Fan Slider",
-      "description": "A fan of photos that auto-advances — the active one large and sharp, its neighbors rotated and blurred on each side. Hover pauses. Pure CSS transitions.",
+      "description": "An image gallery slider: a fan of photos that auto-advances — the active one large and sharp, its neighbors rotated and blurred on each side. Hover pauses. Pure CSS transitions.",
       "files": [
         {
           "path": "components/tweenui/image-fan-slider.tsx",
@@ -196,10 +380,22 @@
       ]
     },
     {
+      "name": "image-fan-slider-demo",
+      "type": "registry:example",
+      "title": "Image Fan Slider Demo",
+      "description": "Usage examples for Image Fan Slider.",
+      "files": [
+        {
+          "path": "examples/image-fan-slider-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "morphing-text",
       "type": "registry:ui",
       "title": "Morphing Text",
-      "description": "A headline whose last word cycles through a list with a gooey blur morph — an SVG alpha threshold fuses the outgoing and incoming words into one liquid shape while the slot eases between word widths.",
+      "description": "A headline text animation whose last word cycles through a list with a gooey blur morph — an SVG alpha threshold fuses the outgoing and incoming words into one liquid shape while the slot eases between word widths.",
       "files": [
         {
           "path": "components/tweenui/morphing-text.tsx",
@@ -208,14 +404,38 @@
       ]
     },
     {
+      "name": "morphing-text-demo",
+      "type": "registry:example",
+      "title": "Morphing Text Demo",
+      "description": "Usage examples for Morphing Text.",
+      "files": [
+        {
+          "path": "examples/morphing-text-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "wordmark-reveal",
       "type": "registry:ui",
       "title": "Wordmark Reveal",
-      "description": "A display wordmark that assembles itself on the first scroll — every letter turns in on its own vertical axis, then a script line leans in along the baseline. A cue holds the screen until you answer it, or it plays on mount with `instant`. ScrollTrigger and SplitText.",
+      "description": "A display wordmark text reveal that assembles itself on the first scroll — every letter turns in on its own vertical axis, then a script line leans in along the baseline. A cue holds the screen until you answer it, or it plays on mount with `instant`. ScrollTrigger and SplitText.",
       "files": [
         {
           "path": "components/tweenui/wordmark-reveal.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "wordmark-reveal-demo",
+      "type": "registry:example",
+      "title": "Wordmark Reveal Demo",
+      "description": "Usage examples for Wordmark Reveal.",
+      "files": [
+        {
+          "path": "examples/wordmark-reveal-demo.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -232,6 +452,22 @@
       ]
     },
     {
+      "name": "pricing-plan-switch-demo",
+      "type": "registry:example",
+      "title": "Pricing Plan Switch Demo",
+      "description": "Usage examples for Pricing Plan Switch.",
+      "files": [
+        {
+          "path": "examples/pricing-plan-switch-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/pricing-plan-switch-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "process-card-reveal",
       "type": "registry:block",
       "title": "Process Card Reveal",
@@ -240,6 +476,22 @@
         {
           "path": "components/tweenui/process-card-reveal.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "process-card-reveal-demo",
+      "type": "registry:example",
+      "title": "Process Card Reveal Demo",
+      "description": "Usage examples for Process Card Reveal.",
+      "files": [
+        {
+          "path": "examples/process-card-reveal-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/process-card-reveal-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -256,6 +508,22 @@
       ]
     },
     {
+      "name": "process-sticky-steps-demo",
+      "type": "registry:example",
+      "title": "Process Sticky Steps Demo",
+      "description": "Usage examples for Process Sticky Steps.",
+      "files": [
+        {
+          "path": "examples/process-sticky-steps-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/process-sticky-steps-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "strip-wipe",
       "type": "registry:block",
       "title": "Strip Wipe",
@@ -264,6 +532,22 @@
         {
           "path": "components/tweenui/strip-wipe.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "strip-wipe-demo",
+      "type": "registry:example",
+      "title": "Strip Wipe Demo",
+      "description": "Usage examples for Strip Wipe.",
+      "files": [
+        {
+          "path": "examples/strip-wipe-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/strip-wipe-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -280,6 +564,26 @@
       ]
     },
     {
+      "name": "rating-carousel-demo",
+      "type": "registry:example",
+      "title": "Rating Carousel Demo",
+      "description": "Usage examples for Rating Carousel.",
+      "files": [
+        {
+          "path": "examples/rating-carousel-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/rating-carousel-demo-2.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/rating-carousel-demo-3.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "cta-image-fan",
       "type": "registry:block",
       "title": "CTA Image Fan",
@@ -288,6 +592,22 @@
         {
           "path": "components/tweenui/cta-image-fan.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-image-fan-demo",
+      "type": "registry:example",
+      "title": "CTA Image Fan Demo",
+      "description": "Usage examples for CTA Image Fan.",
+      "files": [
+        {
+          "path": "examples/cta-image-fan-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/cta-image-fan-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -304,6 +624,22 @@
       ]
     },
     {
+      "name": "cta-photo-headline-demo",
+      "type": "registry:example",
+      "title": "CTA Photo Headline Demo",
+      "description": "Usage examples for CTA Photo Headline.",
+      "files": [
+        {
+          "path": "examples/cta-photo-headline-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/cta-photo-headline-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "blog-hover-expand",
       "type": "registry:block",
       "title": "Blog Hover Expand",
@@ -312,6 +648,22 @@
         {
           "path": "components/tweenui/blog-hover-expand.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "blog-hover-expand-demo",
+      "type": "registry:example",
+      "title": "Blog Hover Expand Demo",
+      "description": "Usage examples for Blog Hover Expand.",
+      "files": [
+        {
+          "path": "examples/blog-hover-expand-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/blog-hover-expand-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -328,6 +680,22 @@
       ]
     },
     {
+      "name": "integration-hub-demo",
+      "type": "registry:example",
+      "title": "Integration Hub Demo",
+      "description": "Usage examples for Integration Hub.",
+      "files": [
+        {
+          "path": "examples/integration-hub-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/integration-hub-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "infinite-rotating-cards",
       "type": "registry:block",
       "title": "Infinite Rotating Cards",
@@ -336,6 +704,22 @@
         {
           "path": "components/tweenui/infinite-rotating-cards.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "infinite-rotating-cards-demo",
+      "type": "registry:example",
+      "title": "Infinite Rotating Cards Demo",
+      "description": "Usage examples for Infinite Rotating Cards.",
+      "files": [
+        {
+          "path": "examples/infinite-rotating-cards-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/infinite-rotating-cards-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -352,6 +736,22 @@
       ]
     },
     {
+      "name": "card-hover-expand-demo",
+      "type": "registry:example",
+      "title": "Card Hover Expand Demo",
+      "description": "Usage examples for Card Hover Expand.",
+      "files": [
+        {
+          "path": "examples/card-hover-expand-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/card-hover-expand-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "card-spotlight-grid",
       "type": "registry:block",
       "title": "Card Spotlight Grid",
@@ -360,6 +760,22 @@
         {
           "path": "components/tweenui/card-spotlight-grid.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "card-spotlight-grid-demo",
+      "type": "registry:example",
+      "title": "Card Spotlight Grid Demo",
+      "description": "Usage examples for Card Spotlight Grid.",
+      "files": [
+        {
+          "path": "examples/card-spotlight-grid-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/card-spotlight-grid-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -376,6 +792,26 @@
       ]
     },
     {
+      "name": "column-drift-demo",
+      "type": "registry:example",
+      "title": "Column Drift Demo",
+      "description": "Usage examples for Column Drift.",
+      "files": [
+        {
+          "path": "examples/column-drift-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/column-drift-demo-2.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/column-drift-demo-3.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "team-scatter-focus",
       "type": "registry:block",
       "title": "Team Scatter Focus",
@@ -384,6 +820,22 @@
         {
           "path": "components/tweenui/team-scatter-focus.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "team-scatter-focus-demo",
+      "type": "registry:example",
+      "title": "Team Scatter Focus Demo",
+      "description": "Usage examples for Team Scatter Focus.",
+      "files": [
+        {
+          "path": "examples/team-scatter-focus-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/team-scatter-focus-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -400,6 +852,26 @@
       ]
     },
     {
+      "name": "tab-wipe-demo",
+      "type": "registry:example",
+      "title": "Tab Wipe Demo",
+      "description": "Usage examples for Tab Wipe.",
+      "files": [
+        {
+          "path": "examples/tab-wipe-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/tab-wipe-demo-2.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/tab-wipe-demo-3.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "logo-wall-shuffle",
       "type": "registry:block",
       "title": "Logo Wall Shuffle",
@@ -408,6 +880,22 @@
         {
           "path": "components/tweenui/logo-wall-shuffle.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-wall-shuffle-demo",
+      "type": "registry:example",
+      "title": "Logo Wall Shuffle Demo",
+      "description": "Usage examples for Logo Wall Shuffle.",
+      "files": [
+        {
+          "path": "examples/logo-wall-shuffle-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/logo-wall-shuffle-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -424,14 +912,46 @@
       ]
     },
     {
+      "name": "testimonial-line-sweep-demo",
+      "type": "registry:example",
+      "title": "Testimonial Line Sweep Demo",
+      "description": "Usage examples for Testimonial Line Sweep.",
+      "files": [
+        {
+          "path": "examples/testimonial-line-sweep-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/testimonial-line-sweep-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "cta-starfall",
       "type": "registry:block",
       "title": "CTA Starfall",
-      "description": "A dark closing section under a slow field of drifting stars lit by a violet bloom. The field is full on the first frame rather than spawning over time, and pauses off-screen and in background tabs.",
+      "description": "A dark call-to-action section under a slow field of drifting stars lit by a violet bloom. The field is full on the first frame rather than spawning over time, and pauses off-screen and in background tabs.",
       "files": [
         {
           "path": "components/tweenui/cta-starfall.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-starfall-demo",
+      "type": "registry:example",
+      "title": "CTA Starfall Demo",
+      "description": "Usage examples for CTA Starfall.",
+      "files": [
+        {
+          "path": "examples/cta-starfall-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/cta-starfall-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -448,6 +968,22 @@
       ]
     },
     {
+      "name": "pricing-usage-slider-demo",
+      "type": "registry:example",
+      "title": "Pricing Usage Slider Demo",
+      "description": "Usage examples for Pricing Usage Slider.",
+      "files": [
+        {
+          "path": "examples/pricing-usage-slider-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/pricing-usage-slider-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "grid-cascade",
       "type": "registry:block",
       "title": "Grid Cascade",
@@ -456,6 +992,26 @@
         {
           "path": "components/tweenui/grid-cascade.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "grid-cascade-demo",
+      "type": "registry:example",
+      "title": "Grid Cascade Demo",
+      "description": "Usage examples for Grid Cascade.",
+      "files": [
+        {
+          "path": "examples/grid-cascade-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/grid-cascade-demo-2.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/grid-cascade-demo-3.tsx",
+          "type": "registry:example"
         }
       ]
     },
@@ -472,6 +1028,22 @@
       ]
     },
     {
+      "name": "cube-roll-item-demo",
+      "type": "registry:example",
+      "title": "Cube Roll Item Demo",
+      "description": "Usage examples for Cube Roll Item.",
+      "files": [
+        {
+          "path": "examples/cube-roll-item-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/cube-roll-item-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "shutter-slider",
       "type": "registry:block",
       "title": "Shutter Slider",
@@ -484,6 +1056,22 @@
       ]
     },
     {
+      "name": "shutter-slider-demo",
+      "type": "registry:example",
+      "title": "Shutter Slider Demo",
+      "description": "Usage examples for Shutter Slider.",
+      "files": [
+        {
+          "path": "examples/shutter-slider-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/shutter-slider-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "testimonial-reel-focus",
       "type": "registry:block",
       "title": "Testimonial Reel Focus",
@@ -492,6 +1080,22 @@
         {
           "path": "components/tweenui/testimonial-reel-focus.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-reel-focus-demo",
+      "type": "registry:example",
+      "title": "Testimonial Reel Focus Demo",
+      "description": "Usage examples for Testimonial Reel Focus.",
+      "files": [
+        {
+          "path": "examples/testimonial-reel-focus-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/testimonial-reel-focus-demo-2.tsx",
+          "type": "registry:example"
         }
       ]
     }

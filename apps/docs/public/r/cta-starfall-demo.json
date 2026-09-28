@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-starfall-demo",
+  "type": "registry:example",
+  "title": "CTA Starfall Demo",
+  "description": "Usage examples for CTA Starfall.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/cta-starfall.json"
+  ],
+  "files": [
+    {
+      "path": "examples/cta-starfall-demo.tsx",
+      "type": "registry:example",
+      "content": "import CtaStarfall from '@/components/tweenui/cta-starfall';\n\nexport default function Page() {\n  return <CtaStarfall />;\n}"
+    },
+    {
+      "path": "examples/cta-starfall-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import CtaStarfall from '@/components/tweenui/cta-starfall';\n\nexport default function Page() {\n  return (\n    <CtaStarfall\n      title=\"Ship the whole workflow, not just the design\"\n      description=\"Automate the handoff and keep the team in one place.\"\n      action={{ label: 'Start free trial', onClick: () => router.push('/signup') }}\n    />\n  );\n}"
+    }
+  ]
+}

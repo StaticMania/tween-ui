@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card-spotlight-grid-demo",
+  "type": "registry:example",
+  "title": "Card Spotlight Grid Demo",
+  "description": "Usage examples for Card Spotlight Grid.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/card-spotlight-grid.json"
+  ],
+  "files": [
+    {
+      "path": "examples/card-spotlight-grid-demo.tsx",
+      "type": "registry:example",
+      "content": "import CardSpotlightGrid from '@/components/tweenui/card-spotlight-grid';\n\nexport default function Page() {\n  return <CardSpotlightGrid />;\n}"
+    },
+    {
+      "path": "examples/card-spotlight-grid-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import CardSpotlightGrid from '@/components/tweenui/card-spotlight-grid';\n\nexport default function Page() {\n  return (\n    <CardSpotlightGrid\n      title=\"Selected work\"\n      description=\"Six builds from the last year.\"\n      projects={[\n        {\n          title: 'Northwind',\n          excerpt: 'Brand & site',\n          image: '/work/northwind.jpg',\n          imageAlt: 'Northwind brand system',\n          href: '/work/northwind',\n        },\n        {\n          title: 'Lumen',\n          excerpt: 'Product UI',\n          image: '/work/lumen.jpg',\n          imageAlt: 'Lumen product interface',\n          href: '/work/lumen',\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}
