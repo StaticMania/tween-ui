@@ -19,6 +19,7 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'text-roll-button': {"image":"/media/components/text-roll-button-poster.webp","video":"/media/components/text-roll-button-preview.mp4"},
   'slide-arrow-button': {"image":"/media/components/slide-arrow-button-poster.webp","video":"/media/components/slide-arrow-button-preview.mp4"},
   'glow-button': {"image":"/media/components/glow-button-poster.webp","video":"/media/components/glow-button-preview.mp4"},
+  'magnetic-button': {"image":"/media/components/magnetic-button-poster.webp","video":"/media/components/magnetic-button-preview.mp4"},
   'logo-orbit': {"image":"/media/components/logo-orbit-poster.webp","video":"/media/components/logo-orbit-preview.mp4"},
   'logo-cycle': {"image":"/media/components/logo-cycle-poster.webp","video":"/media/components/logo-cycle-preview.mp4"},
   'logo-wave': {"image":"/media/components/logo-wave-poster.webp","video":"/media/components/logo-wave-preview.mp4"},

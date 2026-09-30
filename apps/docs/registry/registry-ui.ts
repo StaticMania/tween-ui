@@ -447,6 +447,39 @@ export default function Example() {
     },
   },
   {
+    name: 'magnetic-button',
+    type: 'component',
+    title: 'Magnetic Button',
+    description:
+      'A pill button pulled toward the cursor once it comes near, its label drifting a little further for parallax depth, then easing back to rest when the cursor leaves the field.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/magnetic-button.tsx',
+        target: 'components/tweenui/magnetic-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/magnetic-button.tsx',
+      },
+    ],
+    usage: {
+      react: `import MagneticButton from '@/components/tweenui/magnetic-button';
+
+export default function Example() {
+  return <MagneticButton onClick={() => {}}>Get started</MagneticButton>;
+}`,
+    },
+  },
+  {
     name: 'logo-orbit',
     type: 'component',
     title: 'Logo Orbit',

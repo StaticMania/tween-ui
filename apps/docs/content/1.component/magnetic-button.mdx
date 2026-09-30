@@ -1,0 +1,79 @@
+---
+title: Magnetic Button
+description: A pill button pulled toward the cursor, its label drifting further for depth.
+icon: magnet
+---
+
+A pill button with a **magnetic field** around it. Once the cursor comes within
+reach, the button **leans toward it** and grows a touch, while the label
+**drifts a little further** for a sense of depth. Leave the field and it
+**eases back to rest**. It is a real `<button>`, so `onClick`, `type`,
+`disabled`, and refs all work. Driven by GSAP.
+
+::component-preview{name="magnetic-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="magnetic-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="magnetic-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import MagneticButton from '@/components/tweenui/magnetic-button';
+
+export default function Page() {
+  return (
+    <MagneticButton strength={0.4} field={80} onClick={() => console.log('clicked')}>
+      Get started
+    </MagneticButton>
+  );
+}
+```
+
+:::
+::
+
+While the cursor is in the field the button carries a `data-active` attribute,
+so restyle that state with Tailwind — for example
+`className="bg-black text-white data-[active]:bg-white data-[active]:text-black"`.
+
+## Props
+
+Extends every native `<button>` attribute (`onClick`, `type`, `disabled`, `ref`, …).
+
+| Prop         | Type                              | Default    | Description                                                        |
+| ------------ | --------------------------------- | ---------- | ------------------------------------------------------------------ |
+| `children`   | `ReactNode`                       | —          | Button label.                                                      |
+| `strength`   | `number`                          | `0.35`     | How strongly the button follows the cursor, from `0` to `1`.       |
+| `field`      | `number`                          | `60`       | Distance around the button, in pixels, where the pull begins.      |
+| `parallax`   | `number`                          | `0.35`     | Extra drift of the label on top of the button's own.               |
+| `hoverScale` | `number`                          | `1.05`     | Scale while the cursor is inside the field.                        |
+| `duration`   | `number`                          | `0.6`      | How long the button takes to catch up with the cursor, in seconds. |
+| `type`       | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type.                                                |
+| `className`  | `string`                          | —          | Merged with the base styles.                                       |
+
+## Accessibility
+
+::note
+It renders a native `<button>`, so keyboard and screen-reader behaviour come for
+free, and keyboard focus shows the active colors with a visible ring. The pull
+is skipped entirely on touch devices, for disabled buttons, and under
+`prefers-reduced-motion: reduce`.
+::
