@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "magnetic-button-demo",
+  "type": "registry:example",
+  "title": "Magnetic Button Demo",
+  "description": "Usage examples for Magnetic Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/magnetic-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/magnetic-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import MagneticButton from '@/components/tweenui/magnetic-button';\n\nexport default function Page() {\n  return (\n    <MagneticButton strength={0.4} field={80} onClick={() => console.log('clicked')}>\n      Get started\n    </MagneticButton>\n  );\n}"
+    }
+  ]
+}

@@ -296,6 +296,30 @@
       ]
     },
     {
+      "name": "magnetic-button",
+      "type": "registry:ui",
+      "title": "Magnetic Button",
+      "description": "A pill button pulled toward the cursor once it comes near, its label drifting a little further for parallax depth, then easing back to rest when the cursor leaves the field.",
+      "files": [
+        {
+          "path": "components/tweenui/magnetic-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "magnetic-button-demo",
+      "type": "registry:example",
+      "title": "Magnetic Button Demo",
+      "description": "Usage examples for Magnetic Button.",
+      "files": [
+        {
+          "path": "examples/magnetic-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "logo-orbit",
       "type": "registry:ui",
       "title": "Logo Orbit",

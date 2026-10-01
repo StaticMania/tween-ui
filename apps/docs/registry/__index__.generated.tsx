@@ -22,6 +22,7 @@ export const demos: Record<string, ComponentType> = {
   'text-roll-button:default': dynamic(() => import('./demos/text-roll-button')),
   'slide-arrow-button:default': dynamic(() => import('./demos/slide-arrow-button')),
   'glow-button:default': dynamic(() => import('./demos/glow-button')),
+  'magnetic-button:default': dynamic(() => import('./demos/magnetic-button')),
   'logo-orbit:default': dynamic(() => import('./demos/logo-orbit')),
   'logo-cycle:default': dynamic(() => import('./demos/logo-cycle')),
   'logo-wave:default': dynamic(() => import('./demos/logo-wave')),
