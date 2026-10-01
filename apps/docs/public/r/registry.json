@@ -1122,6 +1122,34 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "kinetic-type-ring",
+      "type": "registry:block",
+      "title": "Kinetic Type Ring",
+      "description": "A phrase wrapped once around a ring in real 3D. A falling dot pulls the letters out of a blur, then drag or scroll spins the ring.",
+      "files": [
+        {
+          "path": "components/tweenui/kinetic-type-ring.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "kinetic-type-ring-demo",
+      "type": "registry:example",
+      "title": "Kinetic Type Ring Demo",
+      "description": "Usage examples for Kinetic Type Ring.",
+      "files": [
+        {
+          "path": "examples/kinetic-type-ring-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/kinetic-type-ring-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

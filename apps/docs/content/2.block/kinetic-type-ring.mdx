@@ -1,0 +1,117 @@
+---
+title: Kinetic Type Ring
+description: A phrase wrapped once around a ring standing in real 3D, pulled into focus by a falling dot.
+icon: disc-3
+---
+
+A hero band for a studio or product page. The phrase is wrapped **once around a
+ring** built in real 3D — every letter gets an arc as wide as the letter itself,
+so `I` and `W` sit evenly instead of on a fixed grid, and the type size is
+solved from the stage so the loop closes at any width. The letters begin as
+**soft, oversized blurs**; a dot **falls in and squashes on impact**, and that
+**pulls them into focus** in a sweep that rolls round from the letter nearest
+you to the far side of the ring. Then it idles, letters **dimming as they travel
+behind**, and you can **drag, scroll or arrow-key** it round. GSAP.
+
+::component-preview{name="kinetic-type-ring" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="kinetic-type-ring"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="kinetic-type-ring"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import KineticTypeRing from '@/components/tweenui/kinetic-type-ring';
+
+export default function Page() {
+  return <KineticTypeRing />;
+}
+```
+
+:::
+::
+
+Pass your own phrase. It is repeated verbatim, so end it with the same separator
+it uses inside — otherwise the loop reads with a seam where it joins:
+
+```tsx [app/page.tsx]
+import KineticTypeRing from '@/components/tweenui/kinetic-type-ring';
+
+export default function Page() {
+  return <KineticTypeRing text="STUDIO · BRAND · MOTION · TYPE · " speed={10} tilt={-22} />;
+}
+```
+
+The ink background (`#141414`), the bone type (`#efebe3`) and the white dot
+live in the `className` strings, so you can restyle them in place.
+The stage is a 16:9 box — full width, capped at `80vh` — so the ring keeps the
+same proportions in a hero, a narrow column or a phone. Give the section its own
+height with `className` if that does not suit the page.
+
+## Props
+
+| Prop    | Type     | Default              | Description                                                      |
+| ------- | -------- | -------------------- | ---------------------------------------------------------------- |
+| `text`  | `string` | `'KINETIC TYPE · …'` | The phrase wrapped around the ring.                              |
+| `speed` | `number` | `14`                 | Idle spin in degrees per second.                                 |
+| `tilt`  | `number` | `-16`                | Resting camera tilt in degrees. Negative looks down on the ring. |
+
+Extends native `<section>` attributes (`className`, `style`, …).
+
+## Behavior
+
+- **The type size is solved, not set** — every glyph is measured once, and the
+  size that both wraps the string round the ring exactly once _and_ fits the
+  whole ring inside the stage is worked out from the total. The fit accounts
+  for the perspective, which magnifies the front of the ring, and for the tilt,
+  which is what makes it tall.
+- **It re-solves on any box change**, through a `ResizeObserver` — so it fits a
+  resized window, a drawer opening beside it, or a container that grows with
+  its content, and fills the same share of the stage at every width.
+- **The blur is sized to the ring** — a fixed radius would smudge a phone and
+  barely register in a hero, so it is a share of the ring's own radius.
+- **Depth shading** — each letter is coloured by the cosine of its angle, so it
+  fades towards the back of the ring and lights up as it comes round.
+- **One writer per element** — the solve places the outer span on the ring,
+  GSAP only ever touches the glyph inside it. Nothing races for the transform,
+  so a resize mid-reveal cannot wipe a tween.
+- **Drag** or **scroll** adds spin velocity that decays back to the idle rate;
+  moving the pointer up and down nudges the camera tilt.
+- **The dot carries the momentum.** Whatever is pushing the ring — a scroll
+  forward, a scroll back, a drag, an arrow key — swells or shrinks the dot with
+  it, and it eases back to its resting size as the push decays. It only starts
+  once the dot has landed, so it never fights the squash on impact.
+- **← / →** spin the ring while the stage has focus.
+- **Nothing starts until the stage can be measured.** The first paint often
+  beats layout, so the intro waits for the first solve — from the observer if
+  need be — rather than playing to an empty stage.
+
+## Accessibility
+
+::note
+The ring is built from one span per letter and is `aria-hidden`, so screen
+readers get the phrase once from a visually-hidden paragraph instead of letter
+by letter. The stage is focusable with a visible focus ring and the arrow keys
+do what dragging does; `touch-pan-y` keeps the page scrollable past it on a
+phone. Under `prefers-reduced-motion: reduce` the ring is laid out and shaded
+but nothing moves — the dot sits in the middle, the letters are already sharp
+and the ring does not spin.
+::

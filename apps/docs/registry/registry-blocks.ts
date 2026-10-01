@@ -752,4 +752,38 @@ export default function Example() {
     },
     docs: 'The reel is driven by vertical scroll, so place it on a page that scrolls. It pins against the window, or against the nearest scrolling ancestor when it sits inside a panel or drawer. With reduced motion on it stays a plain horizontal strip.',
   },
+  {
+    name: 'kinetic-type-ring',
+    type: 'block',
+    title: 'Kinetic Type Ring',
+    description:
+      'A phrase wrapped once around a ring in real 3D. A falling dot pulls the letters out of a blur, then drag or scroll spins the ring.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/kinetic-type-ring.tsx',
+        target: 'components/tweenui/kinetic-type-ring.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/kinetic-type-ring.tsx',
+      },
+    ],
+    usage: {
+      react: `import KineticTypeRing from '@/components/tweenui/kinetic-type-ring';
+
+export default function Example() {
+  return <KineticTypeRing />;
+}`,
+    },
+    docs: 'The type size is solved from the stage, so the phrase wraps the ring exactly once at any width. Give the section its own height with `className` when the default clamp does not suit the page.',
+  },
 ];
