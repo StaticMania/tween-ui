@@ -29,15 +29,19 @@ export default async function PreviewPage({ params }: PreviewProps) {
   if (!entry) notFound();
 
   return (
-    // Blocks are capped at roughly 700px tall, so most are shorter than the
-    // viewport. `justify-center` settles those in the middle; anything taller
-    // overflows and scrolls as normal. A block owns the full width, but a
-    // component is a single element that a column would otherwise stretch edge
-    // to edge, so those get centred instead.
+    // The single `1fr` row is the whole viewport, which offers a block the
+    // screen height without imposing it: `items-center` leaves a block at the
+    // height its content asks for, centred as before, while one that sizes
+    // itself off its parent — the kinetic ring — resolves `h-full` against the
+    // row and fills the screen. Anything taller than the row still overflows
+    // and scrolls as normal. A component is a single element that a column
+    // would stretch edge to edge, so those stay centred and padded instead.
     <main
       className={cn(
-        'flex min-h-svh flex-col justify-center',
-        entry.type === 'component' && 'items-center px-6'
+        'min-h-svh',
+        entry.type === 'component'
+          ? 'flex flex-col items-center justify-center px-6'
+          : 'grid grid-rows-[1fr] items-center'
       )}
     >
       <BlockStage name={entry.name} variant={entry.variants[0]?.id ?? 'default'} />

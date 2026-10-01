@@ -49,4 +49,5 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'cube-roll-item': {"image":"/media/blocks/cube-roll-item-poster.webp","video":"/media/blocks/cube-roll-item-preview.mp4"},
   'shutter-slider': {"image":"/media/blocks/shutter-slider-poster.webp","video":"/media/blocks/shutter-slider-preview.mp4"},
   'testimonial-reel-focus': {"image":"/media/blocks/testimonial-reel-focus-poster.webp","video":"/media/blocks/testimonial-reel-focus-preview.mp4"},
+  'kinetic-type-ring': {"image":"/media/blocks/kinetic-type-ring-poster.webp","video":"/media/blocks/kinetic-type-ring-preview.mp4"},
 };

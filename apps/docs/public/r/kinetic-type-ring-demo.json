@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kinetic-type-ring-demo",
+  "type": "registry:example",
+  "title": "Kinetic Type Ring Demo",
+  "description": "Usage examples for Kinetic Type Ring.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/kinetic-type-ring.json"
+  ],
+  "files": [
+    {
+      "path": "examples/kinetic-type-ring-demo.tsx",
+      "type": "registry:example",
+      "content": "import KineticTypeRing from '@/components/tweenui/kinetic-type-ring';\n\nexport default function Page() {\n  return <KineticTypeRing />;\n}"
+    },
+    {
+      "path": "examples/kinetic-type-ring-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import KineticTypeRing from '@/components/tweenui/kinetic-type-ring';\n\nexport default function Page() {\n  return <KineticTypeRing text=\"STUDIO · BRAND · MOTION · TYPE · \" speed={10} tilt={-22} />;\n}"
+    }
+  ]
+}
