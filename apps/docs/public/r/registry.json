@@ -1174,6 +1174,34 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "footer-wordmark-rise",
+      "type": "registry:block",
+      "title": "Footer Wordmark Rise",
+      "description": "A dark site footer that rises into view over a glow swelling off the bottom edge, closed by a giant wordmark fitted to the column whose letters climb out of their masks one by one.",
+      "files": [
+        {
+          "path": "components/tweenui/footer-wordmark-rise.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-wordmark-rise-demo",
+      "type": "registry:example",
+      "title": "Footer Wordmark Rise Demo",
+      "description": "Usage examples for Footer Wordmark Rise.",
+      "files": [
+        {
+          "path": "examples/footer-wordmark-rise-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/footer-wordmark-rise-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

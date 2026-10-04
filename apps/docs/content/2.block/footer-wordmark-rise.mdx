@@ -1,0 +1,142 @@
+---
+title: Footer Wordmark Rise
+description: A dark site footer closed by a giant wordmark whose letters climb out of their masks.
+icon: panel-bottom
+---
+
+The last thing on the page. A **teal glow with a lime core swells up off
+the bottom edge** as the footer comes into view, the link rows **rise in one after the
+other**, and the brand name, set **as wide as the column**, lifts out of the
+baseline **letter by letter**. Every link label **rolls letter by letter** on
+hover while a **1px underline slides through**: in from the left, out to the
+right. GSAP with ScrollTrigger and SplitText.
+
+::component-preview{name="footer-wordmark-rise" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="footer-wordmark-rise"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="footer-wordmark-rise"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/layout.tsx]
+import FooterWordmarkRise from '@/components/tweenui/footer-wordmark-rise';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <FooterWordmarkRise />
+      </body>
+    </html>
+  );
+}
+```
+
+:::
+::
+
+It ships dressed as the Tween UI footer: the Tween mark, the site's own
+component, block and community links, and the repository's license, changelog
+and contributing guide. Swap in your own brand, logo and links. Columns,
+socials and legal links are all plain arrays:
+
+```tsx [app/layout.tsx]
+import FooterWordmarkRise from '@/components/tweenui/footer-wordmark-rise';
+
+<FooterWordmarkRise
+  brand="Northwind"
+  logo={<img src="/logo.svg" alt="" className="size-7" />}
+  description="Outdoor gear, built to be repaired."
+  columns={[
+    {
+      heading: 'Shop',
+      links: [
+        { label: 'Jackets', href: '/shop/jackets' },
+        { label: 'Packs', href: '/shop/packs' },
+      ],
+    },
+    {
+      heading: 'Help',
+      links: [
+        { label: 'Repairs', href: '/repairs' },
+        { label: 'support@northwind.co', href: 'mailto:support@northwind.co' },
+      ],
+    },
+  ]}
+  socials={[{ label: 'Instagram', href: 'https://instagram.com/northwind', icon: 'instagram' }]}
+  legal={[{ label: 'Privacy', href: '/privacy' }]}
+/>;
+```
+
+The colors are the Tween UI palette: the deep ink surface (`#03110f`), soft
+teal type (`#9fd4d6`), the teal glow (`#045f64`) and the lime accent
+(`#c6f56f`) for hovers and focus rings. They live in the
+`className` strings, so you can restyle them in place.
+
+## Props
+
+| Prop          | Type             | Default                              | Description                                                           |
+| ------------- | ---------------- | ------------------------------------ | --------------------------------------------------------------------- |
+| `brand`       | `string`         | `'Tween UI'`                         | Name beside the logo and in the giant wordmark.                       |
+| `logo`        | `ReactNode`      | The Tween UI mark                    | Mark shown before the brand name. Make it `aria-hidden` or `alt=""`.  |
+| `description` | `string`         | The Tween UI tagline                 | Paragraph under the logo.                                             |
+| `columns`     | `FooterColumn[]` | Components, Blocks, Community        | Link columns: `{ heading, links: { label, href }[] }`.                |
+| `socials`     | `FooterSocial[]` | GitHub                               | Round icon links: `{ label, href, icon }`. Pass `[]` to drop the row. |
+| `legal`       | `FooterLink[]`   | MIT License, Changelog, Contributing | Links in the bottom bar.                                              |
+| `copyright`   | `string`         | `© <year> <brand>`                   | Notice at the bottom left.                                            |
+
+`icon` is one of `'x' | 'instagram' | 'linkedin' | 'dribbble' | 'github'`.
+Links starting with `http` open in a new tab; site paths and `mailto:` stay in
+place. Extends native `<footer>` attributes (`className`, `id`, …).
+
+## Behavior
+
+- **The wordmark is solved, not set.** Its font size is scaled until the ink
+  of the name spans the column exactly, so a four-letter name and a ten-letter
+  one both run edge to edge. A `ResizeObserver` re-solves it whenever the
+  column changes width.
+- **It waits for your fonts.** The split and the final fit run once
+  `document.fonts` is ready (or after 1.5s), so the letters are never measured
+  in a fallback face. Splitting drops kerning pairs, so it fits a second time
+  after the split.
+- **Played, not scrubbed.** The entrance starts when the footer's top reaches
+  85% of the viewport and the wordmark when its own box reaches 90%, then each
+  runs at its own pace however fast you scroll. Scrolling back above lowers
+  them again.
+- **The wordmark fades into the glow.** A soft-teal-to-clear gradient is clipped
+  to the letters. Each split letter carries its own copy, because a parent's
+  `background-clip: text` does not reach transformed children. On phones the
+  gradient flips to fade downward.
+
+## Accessibility
+
+::note
+The footer is a `<footer>` landmark with a `<nav aria-label="Footer">`, and
+each column is a list labelled by its own heading. Rolling labels are drawn
+from `aria-hidden` letters, with the real label in a visually-hidden span, so
+screen readers read each link as one word. Social links are named
+`<brand> on <network>` and open in a new tab. The giant wordmark is decorative
+and `aria-hidden`; the brand is announced once, from the logo link. Every link
+has a visible focus ring. Under `prefers-reduced-motion: reduce` nothing rises
+or rolls: the footer and wordmark are drawn in place, and the hover roll and
+underline become instant.
+::
