@@ -320,6 +320,30 @@
       ]
     },
     {
+      "name": "dot-bloom-button",
+      "type": "registry:ui",
+      "title": "Dot Bloom Button",
+      "description": "A button whose leading dot blooms into a fill that floods the whole surface on hover, while the label rolls up to a fresh copy and flips to the contrasting color.",
+      "files": [
+        {
+          "path": "components/tweenui/dot-bloom-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "dot-bloom-button-demo",
+      "type": "registry:example",
+      "title": "Dot Bloom Button Demo",
+      "description": "Usage examples for Dot Bloom Button.",
+      "files": [
+        {
+          "path": "examples/dot-bloom-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "logo-orbit",
       "type": "registry:ui",
       "title": "Logo Orbit",

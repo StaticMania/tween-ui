@@ -480,6 +480,39 @@ export default function Example() {
     },
   },
   {
+    name: 'dot-bloom-button',
+    type: 'component',
+    title: 'Dot Bloom Button',
+    description:
+      'A button whose leading dot blooms into a fill that floods the whole surface on hover, while the label rolls up to a fresh copy and flips to the contrasting color.',
+    isNew: true,
+    media: {},
+    dependencies: [],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/dot-bloom-button.tsx',
+        target: 'components/tweenui/dot-bloom-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/dot-bloom-button.tsx',
+      },
+    ],
+    usage: {
+      react: `import DotBloomButton from '@/components/tweenui/dot-bloom-button';
+
+export default function Example() {
+  return <DotBloomButton onClick={() => {}}>Get started</DotBloomButton>;
+}`,
+    },
+  },
+  {
     name: 'logo-orbit',
     type: 'component',
     title: 'Logo Orbit',

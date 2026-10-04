@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dot-bloom-button",
+  "type": "registry:ui",
+  "title": "Dot Bloom Button",
+  "description": "A button whose leading dot blooms into a fill that floods the whole surface on hover, while the label rolls up to a fresh copy and flips to the contrasting color.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "cssVars": {
+    "theme": {}
+  },
+  "files": [
+    {
+      "path": "components/tweenui/dot-bloom-button.tsx",
+      "type": "registry:component",
+      "target": "components/tweenui/dot-bloom-button.tsx",
+      "content": "import type { ComponentPropsWithRef } from 'react';\nimport { cn } from '@/lib/utils';\n\nexport interface DotBloomButtonProps extends ComponentPropsWithRef<'button'> {\n  children: string;\n  variant?: 'primary' | 'secondary';\n}\n\nconst variants = {\n  primary:\n    'bg-[#045f64] text-[#c6f56f] [--bloom:#c6f56f] hover:text-[#045f64] focus-visible:text-[#045f64]',\n  secondary:\n    'bg-[#c6f56f] text-[#045f64] [--bloom:#045f64] hover:text-[#c6f56f] focus-visible:text-[#c6f56f]',\n};\n\nconst roll =\n  'block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full group-focus-visible:-translate-y-full motion-reduce:transition-none motion-reduce:group-hover:translate-y-0 motion-reduce:group-focus-visible:translate-y-0';\n\nexport default function DotBloomButton({\n  children,\n  className,\n  variant = 'primary',\n  type = 'button',\n  ...props\n}: DotBloomButtonProps) {\n  return (\n    <button\n      type={type}\n      className={cn(\n        'group relative isolate inline-flex h-11 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-md px-5 text-sm font-medium tracking-wide whitespace-nowrap uppercase transition-colors duration-400 ease-[cubic-bezier(0.65,0,0.35,1)] focus-visible:ring-2 focus-visible:ring-[#045f64] focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-60 motion-reduce:transition-none dark:ring-offset-[#12161F]',\n        variants[variant],\n        className\n      )}\n      {...props}\n    >\n      <span aria-hidden=\"true\" className=\"size-1.5 flex-none rounded-full bg-current text-left\">\n        <span className=\"pointer-events-none absolute -z-10 aspect-square w-[calc(200%+100px)] -translate-x-[calc(50%-3px)] -translate-y-[calc(50%-3px)] scale-0 rounded-full bg-(--bloom) transition-transform duration-650 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:scale-100 group-focus-visible:scale-100 motion-reduce:transition-none\" />\n      </span>\n      <span className=\"relative block overflow-hidden leading-5\">\n        <span className={roll}>{children}</span>\n        <span\n          aria-hidden=\"true\"\n          className={cn(roll, 'absolute top-full left-0 motion-reduce:hidden')}\n        >\n          {children}\n        </span>\n      </span>\n    </button>\n  );\n}\n"
+    }
+  ],
+  "docs": "Docs, props and examples: https://tween-ui.vercel.app/component/dot-bloom-button"
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dot-bloom-button-demo",
+  "type": "registry:example",
+  "title": "Dot Bloom Button Demo",
+  "description": "Usage examples for Dot Bloom Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/dot-bloom-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/dot-bloom-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import DotBloomButton from '@/components/tweenui/dot-bloom-button';\n\nexport default function Page() {\n  return (\n    <DotBloomButton variant=\"secondary\" onClick={() => console.log('clicked')}>\n      Book a call\n    </DotBloomButton>\n  );\n}"
+    }
+  ]
+}
