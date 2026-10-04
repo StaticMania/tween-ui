@@ -1,0 +1,72 @@
+---
+title: Dot Bloom Button
+description: A button whose leading dot blooms into a fill that floods the surface on hover.
+icon: circle-dot
+---
+
+Hover or focus the button and its **leading dot blooms** into a circle that
+floods the whole surface, while the label **rolls up** to a fresh copy and
+flips to the contrasting color. The bloom is sized against the button, so it
+reaches every corner at any width. It is a real `<button>`, so `onClick`,
+`type`, `disabled`, and refs all work. Pure CSS — no GSAP dependency.
+
+::component-preview{name="dot-bloom-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="dot-bloom-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="dot-bloom-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import DotBloomButton from '@/components/tweenui/dot-bloom-button';
+
+export default function Page() {
+  return (
+    <DotBloomButton variant="secondary" onClick={() => console.log('clicked')}>
+      Book a call
+    </DotBloomButton>
+  );
+}
+```
+
+:::
+::
+
+## Props
+
+Extends every native `<button>` attribute (`onClick`, `type`, `disabled`, `ref`, …).
+
+| Prop        | Type                              | Default     | Description                                                  |
+| ----------- | --------------------------------- | ----------- | ------------------------------------------------------------ |
+| `children`  | `string`                          | —           | Button label (a string — it is duplicated for the roll).     |
+| `variant`   | `'primary' \| 'secondary'`        | `'primary'` | `primary` blooms lime over teal, `secondary` teal over lime. |
+| `type`      | `'button' \| 'submit' \| 'reset'` | `'button'`  | Native button type.                                          |
+| `className` | `string`                          | —           | Merged with the base styles.                                 |
+
+## Accessibility
+
+::note
+It renders a native `<button>`; the visible label supplies its accessible name
+and the dot and rolled-in duplicate are `aria-hidden`. Hover and keyboard focus
+both trigger the bloom, and a focus ring is included. Under
+`prefers-reduced-motion: reduce` the colors swap without the bloom or roll
+animating.
+::
