@@ -786,4 +786,38 @@ export default function Example() {
     },
     docs: 'The type size is solved from the stage, so the phrase wraps the ring exactly once at any width. Give the section its own height with `className` when the default clamp does not suit the page.',
   },
+  {
+    name: 'footer-wordmark-rise',
+    type: 'block',
+    title: 'Footer Wordmark Rise',
+    description:
+      'A dark site footer that rises into view over a glow swelling off the bottom edge, closed by a giant wordmark fitted to the column whose letters climb out of their masks one by one.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/footer-wordmark-rise.tsx',
+        target: 'components/tweenui/footer-wordmark-rise.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/footer-wordmark-rise.tsx',
+      },
+    ],
+    usage: {
+      react: `import FooterWordmarkRise from '@/components/tweenui/footer-wordmark-rise';
+
+export default function Example() {
+  return <FooterWordmarkRise />;
+}`,
+    },
+    docs: 'The wordmark is sized from the column, not from a font size, so any brand name spans the footer edge to edge. Pass your own `columns`, `socials` and `legal` links.',
+  },
 ];

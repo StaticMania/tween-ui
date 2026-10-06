@@ -55,6 +55,7 @@ export const demos: Record<string, ComponentType> = {
   'shutter-slider:default': dynamic(() => import('./demos/shutter-slider')),
   'testimonial-reel-focus:default': dynamic(() => import('./demos/testimonial-reel-focus')),
   'kinetic-type-ring:default': dynamic(() => import('./demos/kinetic-type-ring')),
+  'footer-wordmark-rise:default': dynamic(() => import('./demos/footer-wordmark-rise')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

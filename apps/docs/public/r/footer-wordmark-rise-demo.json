@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer-wordmark-rise-demo",
+  "type": "registry:example",
+  "title": "Footer Wordmark Rise Demo",
+  "description": "Usage examples for Footer Wordmark Rise.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/footer-wordmark-rise.json"
+  ],
+  "files": [
+    {
+      "path": "examples/footer-wordmark-rise-demo.tsx",
+      "type": "registry:example",
+      "content": "import FooterWordmarkRise from '@/components/tweenui/footer-wordmark-rise';\n\nexport default function RootLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <html lang=\"en\">\n      <body>\n        {children}\n        <FooterWordmarkRise />\n      </body>\n    </html>\n  );\n}"
+    },
+    {
+      "path": "examples/footer-wordmark-rise-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import FooterWordmarkRise from '@/components/tweenui/footer-wordmark-rise';\n\n<FooterWordmarkRise\n  brand=\"Northwind\"\n  logo={<img src=\"/logo.svg\" alt=\"\" className=\"size-7\" />}\n  description=\"Outdoor gear, built to be repaired.\"\n  columns={[\n    {\n      heading: 'Shop',\n      links: [\n        { label: 'Jackets', href: '/shop/jackets' },\n        { label: 'Packs', href: '/shop/packs' },\n      ],\n    },\n    {\n      heading: 'Help',\n      links: [\n        { label: 'Repairs', href: '/repairs' },\n        { label: 'support@northwind.co', href: 'mailto:support@northwind.co' },\n      ],\n    },\n  ]}\n  socials={[{ label: 'Instagram', href: 'https://instagram.com/northwind', icon: 'instagram' }]}\n  legal={[{ label: 'Privacy', href: '/privacy' }]}\n/>;"
+    }
+  ]
+}

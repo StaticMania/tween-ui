@@ -122,6 +122,7 @@ const PLAY: Record<string, Play> = {
   'image-plus': flip,
   'gallery-vertical-end': flip,
   'mouse-pointer-click': bounce,
+  'panel-bottom': bounce,
   'square-mouse-pointer': bounce,
   hash: bounce,
   type: bounce,
