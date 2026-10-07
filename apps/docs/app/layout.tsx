@@ -3,6 +3,7 @@ import { DocsRoot, isAssistantEnabled } from 'docora';
 import docsConfig from '../docs.config';
 import { rootMetadata, rootViewport } from '../lib/metadata';
 import { flattenSections } from '../lib/navigation';
+import { isNewHref } from '../lib/new-items';
 import { source } from '../lib/source';
 import './globals.css';
 
@@ -14,7 +15,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <DocsRoot
       config={docsConfig}
-      navigation={flattenSections(await source.getNavigation())}
+      navigation={flattenSections(await source.getNavigation(), isNewHref)}
       assistantEnabled={isAssistantEnabled(docsConfig.assistant)}
     >
       {children}
