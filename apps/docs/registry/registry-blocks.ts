@@ -820,4 +820,72 @@ export default function Example() {
     },
     docs: 'The wordmark is sized from the column, not from a font size, so any brand name spans the footer edge to edge. Pass your own `columns`, `socials` and `legal` links.',
   },
+  {
+    name: 'loader-line-fold',
+    type: 'block',
+    title: 'Loader Line Fold',
+    description:
+      'A page preloader: the wordmark rises letter by letter while a hairline fills with a counter riding its tip. Once the page is ready the line travels to the middle, folds into a single point, and the page opens out of that point to every edge.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/loader-line-fold.tsx',
+        target: 'components/tweenui/loader-line-fold.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/loader-line-fold.tsx',
+      },
+    ],
+    usage: {
+      react: `import LoaderLineFold from '@/components/tweenui/loader-line-fold';
+
+export default function Example() {
+  return <LoaderLineFold />;
+}`,
+    },
+    docs: 'Wrap the hero it should open onto, or pass `fullscreen` to cover the viewport on first load. The counter holds at 90% until fonts and every image inside have decoded.',
+  },
+  {
+    name: 'loader-iris-ring',
+    type: 'block',
+    title: 'Loader Iris Ring',
+    description:
+      'A page preloader built around a ring gauge: the arc fills in uneven steps while images flash through its lens and four corner counters sync and go live. Then an iris opens from the lens and the ring flies into the logo in your nav.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/loader-iris-ring.tsx',
+        target: 'components/tweenui/loader-iris-ring.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/loader-iris-ring.tsx',
+      },
+    ],
+    usage: {
+      react: `import LoaderIrisRing from '@/components/tweenui/loader-iris-ring';
+
+export default function Example() {
+  return <LoaderIrisRing />;
+}`,
+    },
+    docs: 'Put `IrisRingMark` (or any element with `data-loader-target`) in your nav and the ring lands on it. Without a target the ring swells and fades out instead.',
+  },
 ];

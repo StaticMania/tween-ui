@@ -1,0 +1,134 @@
+---
+title: Loader Line Fold
+description: A preloader whose progress line folds into a point and opens the page out of it.
+icon: fold-horizontal
+---
+
+A first-load preloader for portfolio and studio sites. The **wordmark rises
+letter by letter** out of its masks while a **1px hairline fills** along the
+bottom edge, a zero-padded **counter riding its tip**. The counter holds at
+90% until your page is actually ready. Then the letters leave upward, the
+**line travels to the middle** of the screen and **folds into a single
+point**, and the page **opens out of that point to every edge**, width
+leading height, settling out of a dim 125% zoom as it does. GSAP with
+SplitText and CustomEase.
+
+::component-preview{name="loader-line-fold" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="loader-line-fold"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="loader-line-fold"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import LoaderLineFold from '@/components/tweenui/loader-line-fold';
+
+export default function Page() {
+  return <LoaderLineFold />;
+}
+```
+
+:::
+::
+
+It ships dressed as Tween UI: the Tween UI wordmark over the deep ink sheet,
+opening onto a plain white placeholder hero. Swap in your own wordmark and
+pass your hero as `children`.
+
+On its own it fills its section. For a real first
+load, pass `fullscreen` and wrap the hero the loader should open onto. It
+covers the viewport and locks scrolling until the page has opened. Start your
+hero's own entrance from `onComplete`, which fires the moment the page begins
+to open:
+
+```tsx [app/page.tsx]
+'use client';
+
+import { useState } from 'react';
+import Hero from '@/components/hero';
+import LoaderLineFold from '@/components/tweenui/loader-line-fold';
+
+export default function Page() {
+  const [opened, setOpened] = useState(false);
+
+  return (
+    <LoaderLineFold
+      fullscreen
+      wordmark="Northwind"
+      location="Oslo"
+      timeZone="Europe/Oslo"
+      credit="Outdoor gear ©2026"
+      onComplete={() => setOpened(true)}
+    >
+      <Hero play={opened} />
+    </LoaderLineFold>
+  );
+}
+```
+
+The colors are the Tween UI palette: the deep ink sheet (`#03110f`) with a
+teal glow (`#045f64`) off the bottom edge and a light film grain, pale type
+(`#e8f3f2`), soft teal meta (`#9fd4d6`), and the lime accent (`#c6f56f`) for
+the progress line and counter. They live in the `className` strings, so you
+can restyle them in place.
+
+## Props
+
+| Prop          | Type                     | Default                      | Description                                                            |
+| ------------- | ------------------------ | ---------------------------- | ---------------------------------------------------------------------- |
+| `wordmark`    | `string`                 | `'Tween UI'`                 | The word that rises letter by letter.                                  |
+| `location`    | `string`                 | `'Local time'`               | Left of the meta row, before the live clock.                           |
+| `timeZone`    | `string`                 | The visitor's own            | IANA zone for the clock, e.g. `'Europe/Oslo'`.                         |
+| `credit`      | `string`                 | `<wordmark> ©<year>`         | Right of the meta row.                                                 |
+| `minDuration` | `number`                 | `1.6`                        | Seconds the counter takes to reach 90%, however fast the page loads.   |
+| `ready`       | `() => Promise<unknown>` | Fonts and every image inside | Resolves when the page is ready to open.                               |
+| `fullscreen`  | `boolean`                | `false`                      | Cover the viewport and lock page scroll, instead of filling the block. |
+| `onComplete`  | `() => void`             |                              | Fires as the page starts opening out of the centre point.              |
+| `children`    | `ReactNode`              | A white placeholder hero     | What the loader opens onto.                                            |
+
+Extends native `<section>` attributes (`className`, `id`, …).
+
+## Behavior
+
+- **Honest progress.** The counter eases to 90% over `minDuration`, then
+  waits for `ready` (by default `document.fonts` plus a `decode()` of every
+  image in `children`, capped at 6 seconds) before running the last 10%.
+- **The hole is a polygon.** The opening is an even-odd `clip-path` cut into
+  one dark sheet, so the page underneath is never moved or re-rendered. It
+  is only uncovered.
+- **The word is sized from its stage.** Type is set in container units, so
+  the wordmark spans the same share of the block in the docs preview as it
+  does across a full screen.
+- **Letters keep their overhang.** Each letter mask is padded on every side
+  and pulled back with negative margins, so tight tracking never clips the
+  curve of an S or the foot of an A.
+- **It goes away when it is done.** Once the page is open the overlay
+  unmounts and scrolling is released.
+
+## Accessibility
+
+::note
+The overlay is `aria-hidden`: the wordmark, counter and clock are decoration,
+and the section carries `aria-busy` until the page has opened. Under
+`prefers-reduced-motion: reduce` there is no loader at all. The overlay is
+hidden by CSS before any script runs, nothing is split, and `onComplete`
+fires straight away.
+::

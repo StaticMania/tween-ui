@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "loader-iris-ring-demo",
+  "type": "registry:example",
+  "title": "Loader Iris Ring Demo",
+  "description": "Usage examples for Loader Iris Ring.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/loader-iris-ring.json"
+  ],
+  "files": [
+    {
+      "path": "examples/loader-iris-ring-demo.tsx",
+      "type": "registry:example",
+      "content": "import LoaderIrisRing from '@/components/tweenui/loader-iris-ring';\n\nexport default function Page() {\n  return <LoaderIrisRing />;\n}"
+    },
+    {
+      "path": "examples/loader-iris-ring-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import LoaderIrisRing, { IrisRingMark } from '@/components/tweenui/loader-iris-ring';\n\nexport default function Page() {\n  return (\n    <LoaderIrisRing\n      fullscreen\n      modules={[\n        { label: 'Orders', count: 862 },\n        { label: 'Returns', count: 41 },\n        { label: 'Reviews', count: 1290 },\n        { label: 'Stock', count: 5310 },\n      ]}\n      frames={['/loader/01.jpg', '/loader/02.jpg', '/loader/03.jpg']}\n      caption={{ loading: 'Counting stock', done: 'All in' }}\n    >\n      <header className=\"flex items-center gap-2.5 p-6\">\n        <IrisRingMark />\n        <span className=\"font-bold\">Northwind</span>\n      </header>\n      <main>{/* … */}</main>\n    </LoaderIrisRing>\n  );\n}"
+    }
+  ]
+}
