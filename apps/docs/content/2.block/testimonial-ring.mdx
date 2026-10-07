@@ -1,0 +1,132 @@
+---
+title: Testimonial Ring
+description: Testimonial cards on a 3D ring you drag, spin and snap, over a reflecting grid floor.
+icon: cylinder
+---
+
+A proof section for landing pages. The customer cards stand **on a 3D ring**,
+each one **reflected** in the dark below it, over a **grid floor that slides
+as the ring turns**. **Drag** it and it spins with your hand, keeps going on
+the **inertia** of your release and **snaps** to the nearest card. **Click** a
+side card to swing it to the front, use the **arrow buttons** or **← / →**,
+or just **scroll**: the ring turns three cards as the section passes through
+the window. Cards **darken as they turn away**. Whichever card reaches the
+front **blurs its quote, name and label in** while the metric **rolls on
+Number Flow**. Hover a card with a mouse and a **lime "Drag" plate** pops in
+under the pointer; grab the ring and it **squeezes to "Spin"** and **leans
+like jelly** into the way you pull. GSAP with ScrollTrigger.
+
+::component-preview{name="testimonial-ring" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="testimonial-ring"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="testimonial-ring"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import TestimonialRing from '@/components/tweenui/testimonial-ring';
+
+export default function Page() {
+  return <TestimonialRing />;
+}
+```
+
+:::
+::
+
+Pass your own title and testimonials. Each one carries the metric that rolls
+in when its card comes to the front:
+
+```tsx [app/page.tsx]
+import TestimonialRing from '@/components/tweenui/testimonial-ring';
+
+export default function Page() {
+  return (
+    <TestimonialRing
+      title="What teams ship with it."
+      testimonials={[
+        {
+          quote: 'We cut our release checklist in half the first month.',
+          name: 'Ana Silva',
+          role: 'Engineering Manager',
+          company: 'Northwind',
+          image: '/people/ana.jpg',
+          metric: { value: 48, suffix: '%', label: 'shorter release checklist' },
+        },
+        // …
+      ]}
+    />
+  );
+}
+```
+
+The colors are the Tween UI palette: the deep ink surface (`#03110f`) and
+cards (`#071d1b`), pale type (`#e8f3f2`), soft teal labels and grid lines
+(`#9fd4d6`), and the lime accent (`#c6f56f`) for the metrics and focus rings.
+They live in the `className` strings, so you can restyle them in place. The
+sample people and companies are fictional; the portraits are from
+[Unsplash](https://unsplash.com/license), free to use under the Unsplash
+License.
+
+## Props
+
+| Prop           | Type                | Default                 | Description                          |
+| -------------- | ------------------- | ----------------------- | ------------------------------------ |
+| `title`        | `string`            | `'In their own words.'` | Heading beside the arrow buttons.    |
+| `testimonials` | `RingTestimonial[]` | 6 sample customers      | The cards, in order around the ring. |
+
+Each testimonial is `{ quote, name, role, company, image, imageAlt?, metric }`,
+and `metric` is `{ value, prefix?, suffix?, label }`. Extends native
+`<section>` attributes (`className`, `id`, …).
+
+## Behavior
+
+- **The ring always closes.** Testimonials repeat until there are at least ten
+  cards, so the circle has no gap however many you pass.
+- **The radius is solved from the card.** Card width follows the section
+  (container units), and the ring's radius is worked out from it so the cards
+  sit edge to edge at any size. A `ResizeObserver` re-solves it.
+- **Spin, then settle.** Drag and scroll feed one target angle that the ring
+  eases towards every frame. A release projects the flick's velocity forward
+  and snaps to the card it would land on; scrolling snaps a quarter second
+  after it stops.
+- **The drag plate answers the cards, not the floor.** It replaces the cursor
+  only while a card is under the pointer, checked every frame so it still
+  follows a ring that turns under a still mouse; the floor, the gaps and the
+  reflections keep the grab cursor. Once you are holding the ring it stays
+  until you let go. Touch screens keep the native behavior.
+- **It only works when you can see it.** The frame loop runs while the
+  section is in the viewport and stops when it leaves.
+- **Cards at the back are hidden.** Anything more than 100° from the front is
+  `visibility: hidden`, so the far side never shows through.
+
+## Accessibility
+
+::note
+The section is a labelled `carousel`. The 3D ring is decoration and is
+`aria-hidden`; the testimonial in front is repeated below it as real text,
+with the quote in a `blockquote` that announces politely when it changes.
+The arrow buttons are labelled, and **← / →** work anywhere inside the
+section. Under `prefers-reduced-motion: reduce` the ring jumps straight to
+each card instead of spinning, scrolling no longer turns it, the text swaps
+without the blur, the metric changes without rolling, and the drag plate is
+never shown: the native grab cursor stays.
+::

@@ -52,4 +52,7 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'testimonial-reel-focus': {"image":"/media/blocks/testimonial-reel-focus-poster.webp","video":"/media/blocks/testimonial-reel-focus-preview.mp4"},
   'kinetic-type-ring': {"image":"/media/blocks/kinetic-type-ring-poster.webp","video":"/media/blocks/kinetic-type-ring-preview.mp4"},
   'footer-wordmark-rise': {"image":"/media/blocks/footer-wordmark-rise-poster.webp","video":"/media/blocks/footer-wordmark-rise-preview.mp4"},
+  'loader-line-fold': {"image":"/media/blocks/loader-line-fold-poster.webp","video":"/media/blocks/loader-line-fold-preview.mp4"},
+  'loader-iris-ring': {"image":"/media/blocks/loader-iris-ring-poster.webp","video":"/media/blocks/loader-iris-ring-preview.mp4"},
+  'testimonial-ring': {"image":"/media/blocks/testimonial-ring-poster.webp","video":"/media/blocks/testimonial-ring-preview.mp4"},
 };

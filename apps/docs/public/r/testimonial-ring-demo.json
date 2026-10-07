@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "testimonial-ring-demo",
+  "type": "registry:example",
+  "title": "Testimonial Ring Demo",
+  "description": "Usage examples for Testimonial Ring.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/testimonial-ring.json"
+  ],
+  "files": [
+    {
+      "path": "examples/testimonial-ring-demo.tsx",
+      "type": "registry:example",
+      "content": "import TestimonialRing from '@/components/tweenui/testimonial-ring';\n\nexport default function Page() {\n  return <TestimonialRing />;\n}"
+    },
+    {
+      "path": "examples/testimonial-ring-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import TestimonialRing from '@/components/tweenui/testimonial-ring';\n\nexport default function Page() {\n  return (\n    <TestimonialRing\n      title=\"What teams ship with it.\"\n      testimonials={[\n        {\n          quote: 'We cut our release checklist in half the first month.',\n          name: 'Ana Silva',\n          role: 'Engineering Manager',\n          company: 'Northwind',\n          image: '/people/ana.jpg',\n          metric: { value: 48, suffix: '%', label: 'shorter release checklist' },\n        },\n        // …\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}

@@ -1202,6 +1202,90 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "loader-line-fold",
+      "type": "registry:block",
+      "title": "Loader Line Fold",
+      "description": "A page preloader: the wordmark rises letter by letter while a hairline fills with a counter riding its tip. Once the page is ready the line travels to the middle, folds into a single point, and the page opens out of that point to every edge.",
+      "files": [
+        {
+          "path": "components/tweenui/loader-line-fold.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "loader-line-fold-demo",
+      "type": "registry:example",
+      "title": "Loader Line Fold Demo",
+      "description": "Usage examples for Loader Line Fold.",
+      "files": [
+        {
+          "path": "examples/loader-line-fold-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/loader-line-fold-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "loader-iris-ring",
+      "type": "registry:block",
+      "title": "Loader Iris Ring",
+      "description": "A page preloader built around a ring gauge: the arc fills in uneven steps while images flash through its lens and four corner counters sync and go live. Then an iris opens from the lens and the ring flies into the logo in your nav.",
+      "files": [
+        {
+          "path": "components/tweenui/loader-iris-ring.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "loader-iris-ring-demo",
+      "type": "registry:example",
+      "title": "Loader Iris Ring Demo",
+      "description": "Usage examples for Loader Iris Ring.",
+      "files": [
+        {
+          "path": "examples/loader-iris-ring-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/loader-iris-ring-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-ring",
+      "type": "registry:block",
+      "title": "Testimonial Ring",
+      "description": "Testimonial cards stood on a 3D ring over a reflecting grid floor. Drag it and it spins with inertia before snapping to a card; scrolling turns it too. Whichever card comes to the front blurs its quote in and rolls its metric on Number Flow.",
+      "files": [
+        {
+          "path": "components/tweenui/testimonial-ring.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-ring-demo",
+      "type": "registry:example",
+      "title": "Testimonial Ring Demo",
+      "description": "Usage examples for Testimonial Ring.",
+      "files": [
+        {
+          "path": "examples/testimonial-ring-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/testimonial-ring-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

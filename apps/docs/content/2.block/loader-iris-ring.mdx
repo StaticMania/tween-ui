@@ -1,0 +1,137 @@
+---
+title: Loader Iris Ring
+description: A ring-gauge preloader that opens an iris from its lens and lands in your logo.
+icon: loader-circle
+---
+
+A first-load preloader for product and dashboard sites. A **ring gauge
+swings in** and its **arc fills in uneven steps**, a glowing dot riding the
+end of it, while **photos flash through its lens** and the percentage
+**rolls on Number Flow**. In the corners, four counters **sync, count up and
+go live** one after another. At 100% the dot pulses, the lens empties, and
+an **iris opens from the lens** to uncover the page settling in from a 112%
+zoom. The **ring flies into the logo in your nav**, thinning its stroke and
+shrinking its dot so it lands as the mark itself. GSAP and Number Flow.
+
+::component-preview{name="loader-iris-ring" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="loader-iris-ring"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="loader-iris-ring"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import LoaderIrisRing from '@/components/tweenui/loader-iris-ring';
+
+export default function Page() {
+  return <LoaderIrisRing />;
+}
+```
+
+:::
+::
+
+It ships dressed as Tween UI: the corners count the library's components,
+blocks, test suites and motion-safe items, the lens flashes free tech photos
+(code, circuit boards, dashboards), and the iris opens onto a white placeholder hero with a Tween UI nav.
+
+On its own it fills its section. For a real
+first load, pass `fullscreen` and wrap the page. Put `IrisRingMark` in your
+nav and the ring lands on it. Any element with `data-loader-target` works,
+and the ring is sized to 25/32 of that element's width:
+
+```tsx [app/page.tsx]
+import LoaderIrisRing, { IrisRingMark } from '@/components/tweenui/loader-iris-ring';
+
+export default function Page() {
+  return (
+    <LoaderIrisRing
+      fullscreen
+      modules={[
+        { label: 'Orders', count: 862 },
+        { label: 'Returns', count: 41 },
+        { label: 'Reviews', count: 1290 },
+        { label: 'Stock', count: 5310 },
+      ]}
+      frames={['/loader/01.jpg', '/loader/02.jpg', '/loader/03.jpg']}
+      caption={{ loading: 'Counting stock', done: 'All in' }}
+    >
+      <header className="flex items-center gap-2.5 p-6">
+        <IrisRingMark />
+        <span className="font-bold">Northwind</span>
+      </header>
+      <main>{/* … */}</main>
+    </LoaderIrisRing>
+  );
+}
+```
+
+The colors are the Tween UI palette: the deep ink veil (`#03110f`) with a
+teal glow (`#045f64`) off the bottom edge, pale type (`#e8f3f2`), soft teal
+labels (`#9fd4d6`), and the lime accent (`#c6f56f`) for the dot, the `%` and
+the Ready state. They live in the `className` strings, so you can restyle
+them in place. The ring takes on the target mark's `color` (and the fill of
+its `data-loader-target-dot`, if it has one) during the flight, so it lands
+matching a light or dark nav. The sample photos are from
+[Unsplash](https://unsplash.com/license), free to use under the Unsplash
+License.
+
+## Props
+
+| Prop         | Type                         | Default                                      | Description                                                            |
+| ------------ | ---------------------------- | -------------------------------------------- | ---------------------------------------------------------------------- |
+| `modules`    | `LoaderModule[]`             | Components, Blocks, Test suites, Motion-safe | Corner counters: `{ label, count }`. Four fill the corners.            |
+| `frames`     | `string[]`                   | 8 Unsplash tech photos                       | Images flashed through the lens, about 0.3s each.                      |
+| `status`     | `{ waiting, syncing, live }` | `'Queued'`, `'Tweening'`, `'Ready'`          | Words for a counter's three states.                                    |
+| `caption`    | `{ loading, done }`          | `'Warming up timelines'`, `'Ready to tween'` | Caption under the percentage.                                          |
+| `fullscreen` | `boolean`                    | `false`                                      | Cover the viewport and lock page scroll, instead of filling the block. |
+| `onComplete` | `() => void`                 |                                              | Fires as the iris opens and the page settles in.                       |
+| `children`   | `ReactNode`                  | A white placeholder hero                     | What the iris opens onto.                                              |
+
+Extends native `<section>` attributes (`className`, `id`, …).
+
+## Behavior
+
+- **A fixed run, about five seconds.** Unlike a progress bar it does not wait
+  on the network. The gauge stops on eleven uneven steps, so the load reads as
+  real work rather than a linear sweep.
+- **The iris is a mask.** The dark veil carries a `radial-gradient` mask
+  whose clear centre starts at the lens and grows past the corners, so the
+  page underneath is uncovered, never moved.
+- **The flight lands on the settled logo.** The page is still zooming from
+  112% when the ring takes off, so the landing spot is measured at scale 1.
+  The ring arrives where the mark will be, not where it was. The arc's
+  stroke and the dot are solved to the mark's proportions on the way.
+- **No target, no flight.** Without a `data-loader-target` the ring swells
+  and fades out at the centre instead.
+- **It goes away when it is done.** The overlay unmounts once the page has
+  settled, and the target mark gets its own small pop as the ring hands off.
+
+## Accessibility
+
+::note
+The overlay is `aria-hidden`: the gauge, counters and flashing frames are
+decoration, and the section carries `aria-busy` until the page has opened.
+The target mark is hidden while the ring is in the air and restored when it
+lands. Under `prefers-reduced-motion: reduce` there is no loader at all. The
+overlay is hidden by CSS before any script runs, and `onComplete` fires
+straight away.
+::

@@ -90,12 +90,27 @@ const pop: Play = (svg) =>
     }
   );
 
+const squeeze: Play = (svg) =>
+  void gsap.fromTo(
+    svg,
+    { scaleX: 1 },
+    {
+      scaleX: 0.6,
+      duration: 0.2,
+      ease: 'power2.inOut',
+      transformOrigin: '50% 50%',
+      repeat: 1,
+      yoyo: true,
+    }
+  );
+
 /**
  * Icon name → hover motion. Grouped by what the glyph depicts, so a whole
  * family reads the same way; anything unlisted falls back to `pop`.
  */
 const PLAY: Record<string, Play> = {
   'rotate-cw': spin,
+  'loader-circle': spin,
   orbit: spin,
   rainbow: spin,
   'audio-lines': wave,
@@ -116,8 +131,10 @@ const PLAY: Record<string, Play> = {
   'badge-dollar-sign': pulse,
   megaphone: pulse,
   music: pulse,
+  'fold-horizontal': squeeze,
   'flip-horizontal': flip,
   'gallery-horizontal': flip,
+  cylinder: flip,
   images: flip,
   'image-plus': flip,
   'gallery-vertical-end': flip,

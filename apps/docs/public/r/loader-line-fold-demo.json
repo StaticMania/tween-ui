@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "loader-line-fold-demo",
+  "type": "registry:example",
+  "title": "Loader Line Fold Demo",
+  "description": "Usage examples for Loader Line Fold.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/loader-line-fold.json"
+  ],
+  "files": [
+    {
+      "path": "examples/loader-line-fold-demo.tsx",
+      "type": "registry:example",
+      "content": "import LoaderLineFold from '@/components/tweenui/loader-line-fold';\n\nexport default function Page() {\n  return <LoaderLineFold />;\n}"
+    },
+    {
+      "path": "examples/loader-line-fold-demo-2.tsx",
+      "type": "registry:example",
+      "content": "'use client';\n\nimport { useState } from 'react';\nimport Hero from '@/components/hero';\nimport LoaderLineFold from '@/components/tweenui/loader-line-fold';\n\nexport default function Page() {\n  const [opened, setOpened] = useState(false);\n\n  return (\n    <LoaderLineFold\n      fullscreen\n      wordmark=\"Northwind\"\n      location=\"Oslo\"\n      timeZone=\"Europe/Oslo\"\n      credit=\"Outdoor gear ©2026\"\n      onComplete={() => setOpened(true)}\n    >\n      <Hero play={opened} />\n    </LoaderLineFold>\n  );\n}"
+    }
+  ]
+}
