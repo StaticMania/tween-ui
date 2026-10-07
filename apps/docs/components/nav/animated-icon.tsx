@@ -110,6 +110,7 @@ const squeeze: Play = (svg) =>
  */
 const PLAY: Record<string, Play> = {
   'rotate-cw': spin,
+  atom: spin,
   'loader-circle': spin,
   orbit: spin,
   rainbow: spin,

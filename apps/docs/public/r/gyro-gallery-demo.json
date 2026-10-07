@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "gyro-gallery-demo",
+  "type": "registry:example",
+  "title": "Gyro Gallery Demo",
+  "description": "Usage examples for Gyro Gallery.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/gyro-gallery.json"
+  ],
+  "files": [
+    {
+      "path": "examples/gyro-gallery-demo.tsx",
+      "type": "registry:example",
+      "content": "import GyroGallery from '@/components/tweenui/gyro-gallery';\n\nexport default function Page() {\n  return <GyroGallery />;\n}"
+    },
+    {
+      "path": "examples/gyro-gallery-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import GyroGallery from '@/components/tweenui/gyro-gallery';\n\nexport default function Work() {\n  return (\n    <GyroGallery\n      title=\"Selected work.\"\n      description=\"Point near a project to bring it forward, click to open it.\"\n      items={[\n        {\n          title: 'Northwind rebrand',\n          kind: 'Identity',\n          image: '/work/northwind.jpg',\n          href: '/work/northwind',\n        },\n        { title: 'Halden app', kind: 'Product', image: '/work/halden.jpg', href: '/work/halden' },\n        // …\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}
