@@ -8,6 +8,7 @@ export const ui: RegistryEntry[] = [
   {
     name: 'icon-trail-button',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Icon Trail Button',
     description:
       'A pill button whose icon pill expands on hover or focus, playing out a staggered chevron trail before it parks. CSS transitions and a small state machine — no animation library.',
@@ -46,6 +47,7 @@ export default function Example() {
   {
     name: 'sliding-tabs',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Sliding Tabs',
     description:
       'A pill nav whose lime indicator scales in under the first tab, then slides to follow the pointer or keyboard focus. Leaving the nav returns it to the active tab.',
@@ -87,6 +89,7 @@ export default function Example() {
   {
     name: 'avatar-reveal',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Avatar Reveal',
     description:
       'Three stacked avatars that scale and unblur in from the left on an elastic ease, then a caption slides in from the right.',
@@ -119,6 +122,7 @@ export default function Example() {
   {
     name: 'auth-modal',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Auth Modal',
     description:
       'A login modal: the backdrop fades, the panel scales up, then the close button, title, sign-in providers and email field stagger in. Closing plays the sequence in reverse.',
@@ -161,6 +165,7 @@ export default function Example() {
   {
     name: 'number-counter',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Number Counter',
     description:
       'An animated stats counter whose digits spin up once when the stat scrolls into view. ScrollTrigger fires it, Number Flow handles the count.',
@@ -202,6 +207,7 @@ export default function Example() {
   {
     name: 'voice-sample-player',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Voice Sample Player',
     description:
       'An audio player pill: press play and the name slides away, a lime waveform equalizer slides in and starts oscillating, and the icon morphs to pause. Pass a src to play real audio.',
@@ -241,6 +247,7 @@ export default function Example() {
   {
     name: 'flip-card',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Flip Card',
     description:
       'A card that flips in 3D on hover or tap — the front rotates out while the back rotates in with its description, feature list and CTA staggering into place.',
@@ -284,6 +291,7 @@ export default function Example() {
   {
     name: 'faq-accordion',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'FAQ Accordion',
     description:
       'A single-open accordion that animates its height open while the answer reveals line by line through a SplitText mask and the icon morphs from plus to minus.',
@@ -321,6 +329,7 @@ export default function Example() {
   {
     name: 'shiny-button',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Shiny Button',
     description:
       'A pill button with a diagonal light sweep that glides across on hover while the leading sparkle twinkles. Pure CSS — no GSAP dependency.',
@@ -353,6 +362,7 @@ export default function Example() {
   {
     name: 'text-roll-button',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Text Roll Button',
     description:
       'A pill button whose label rolls up character by character on hover — the current text lifts out the top as a fresh copy rolls in from below, on a fine per-character stagger.',
@@ -385,6 +395,7 @@ export default function Example() {
   {
     name: 'slide-arrow-button',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Slide Arrow Button',
     description:
       'A pill button whose label rolls up on hover while the chevron slides out of its lime badge and a fresh one slides in from the left. Pure CSS — no GSAP dependency.',
@@ -417,6 +428,7 @@ export default function Example() {
   {
     name: 'glow-button',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Glow Button',
     description:
       'A pill button floating over a soft red, amber, violet and cyan glow that sharpens as the button lifts and a chevron slides through its slot. Pure CSS — no GSAP dependency.',
@@ -449,10 +461,10 @@ export default function Example() {
   {
     name: 'magnetic-button',
     type: 'component',
+    addedAt: '2026-09-30',
     title: 'Magnetic Button',
     description:
       'A pill button pulled toward the cursor once it comes near, its label drifting a little further for parallax depth, then easing back to rest when the cursor leaves the field.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -482,10 +494,10 @@ export default function Example() {
   {
     name: 'dot-bloom-button',
     type: 'component',
+    addedAt: '2026-10-04',
     title: 'Dot Bloom Button',
     description:
       'A button whose leading dot blooms into a fill that floods the whole surface on hover, while the label rolls up to a fresh copy and flips to the contrasting color.',
-    isNew: true,
     media: {},
     dependencies: [],
     registryDependencies: [],
@@ -515,6 +527,7 @@ export default function Example() {
   {
     name: 'logo-orbit',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Logo Orbit',
     description:
       'Logos spaced evenly around a ring that rotates continuously, each mark counter-rotated so it always stays upright. Hover pauses the orbit.',
@@ -553,6 +566,7 @@ export default function Example() {
   {
     name: 'logo-cycle',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Logo Cycle',
     description:
       'A logo row that holds a fixed count and cycles the extras: the current set staggers up and blurs out as the next slides in from below. Hover pauses the loop.',
@@ -596,6 +610,7 @@ export default function Example() {
   {
     name: 'logo-wave',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Logo Wave',
     description:
       'An endless logo strip where the mark nearest the midpoint rises and scales up while its neighbors step down into a wave. Hover pauses the marquee.',
@@ -637,6 +652,7 @@ export default function Example() {
   {
     name: 'image-fan-slider',
     type: 'component',
+    addedAt: '2026-09-09',
     title: 'Image Fan Slider',
     description:
       'An image gallery slider: a fan of photos that auto-advances — the active one large and sharp, its neighbors rotated and blurred on each side. Hover pauses. Pure CSS transitions.',
@@ -675,10 +691,10 @@ export default function Example() {
   {
     name: 'morphing-text',
     type: 'component',
+    addedAt: '2026-09-21',
     title: 'Morphing Text',
     description:
       'A headline text animation whose last word cycles through a list with a gooey blur morph — an SVG alpha threshold fuses the outgoing and incoming words into one liquid shape while the slot eases between word widths.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -714,10 +730,10 @@ export default function Example() {
   {
     name: 'wordmark-reveal',
     type: 'component',
+    addedAt: '2026-09-27',
     title: 'Wordmark Reveal',
     description:
       'A display wordmark text reveal that assembles itself on the first scroll — every letter turns in on its own vertical axis, then a script line leans in along the baseline. A cue holds the screen until you answer it, or it plays on mount with `instant`. ScrollTrigger and SplitText.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
