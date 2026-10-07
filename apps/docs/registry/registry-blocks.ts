@@ -888,4 +888,38 @@ export default function Example() {
     },
     docs: 'Put `IrisRingMark` (or any element with `data-loader-target`) in your nav and the ring lands on it. Without a target the ring swells and fades out instead.',
   },
+  {
+    name: 'testimonial-ring',
+    type: 'block',
+    title: 'Testimonial Ring',
+    description:
+      'Testimonial cards stood on a 3D ring over a reflecting grid floor. Drag it and it spins with inertia before snapping to a card; scrolling turns it too. Whichever card comes to the front blurs its quote in and rolls its metric on Number Flow.',
+    isNew: true,
+    media: {},
+    dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/testimonial-ring.tsx',
+        target: 'components/tweenui/testimonial-ring.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/testimonial-ring.tsx',
+      },
+    ],
+    usage: {
+      react: `import TestimonialRing from '@/components/tweenui/testimonial-ring';
+
+export default function Example() {
+  return <TestimonialRing />;
+}`,
+    },
+    docs: 'Pass your own `testimonials`; the ring repeats them until it has at least ten cards, so three or thirty both close the circle.',
+  },
 ];

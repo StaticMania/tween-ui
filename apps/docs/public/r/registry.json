@@ -1258,6 +1258,34 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "testimonial-ring",
+      "type": "registry:block",
+      "title": "Testimonial Ring",
+      "description": "Testimonial cards stood on a 3D ring over a reflecting grid floor. Drag it and it spins with inertia before snapping to a card; scrolling turns it too. Whichever card comes to the front blurs its quote in and rolls its metric on Number Flow.",
+      "files": [
+        {
+          "path": "components/tweenui/testimonial-ring.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-ring-demo",
+      "type": "registry:example",
+      "title": "Testimonial Ring Demo",
+      "description": "Usage examples for Testimonial Ring.",
+      "files": [
+        {
+          "path": "examples/testimonial-ring-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/testimonial-ring-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
