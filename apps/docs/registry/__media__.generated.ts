@@ -55,4 +55,5 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'loader-line-fold': {"image":"/media/blocks/loader-line-fold-poster.webp","video":"/media/blocks/loader-line-fold-preview.mp4"},
   'loader-iris-ring': {"image":"/media/blocks/loader-iris-ring-poster.webp","video":"/media/blocks/loader-iris-ring-preview.mp4"},
   'testimonial-ring': {"image":"/media/blocks/testimonial-ring-poster.webp","video":"/media/blocks/testimonial-ring-preview.mp4"},
+  'gyro-gallery': {"image":"/media/blocks/gyro-gallery-poster.webp","video":"/media/blocks/gyro-gallery-preview.mp4"},
 };
