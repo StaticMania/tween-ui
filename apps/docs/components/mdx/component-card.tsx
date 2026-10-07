@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { prefersReducedMotion } from '@/lib/motion';
+import { isNewItem } from '@/lib/new-items';
 import { hrefFor } from '@/lib/registry';
 import { cn } from '@/lib/utils';
 import type { RegistryEntry } from '@/registry/schema';
@@ -63,8 +64,8 @@ export function ComponentCard({ entry }: { entry: RegistryEntry }) {
     >
       <div className="flex items-start justify-between gap-2">
         <h3 className="text-highlighted text-sm font-semibold">{entry.title}</h3>
-        {entry.isNew && (
-          <span className="rounded-full border border-[#045f64]/30 bg-[#045f64]/10 px-2 py-0.5 text-[10px] font-semibold tracking-wide text-[#045f64] uppercase">
+        {isNewItem(entry.name) && (
+          <span className="border-tween-accent/30 bg-tween-accent/10 text-tween-accent rounded-full border px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
             New
           </span>
         )}

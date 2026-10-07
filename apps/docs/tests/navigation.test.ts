@@ -37,4 +37,34 @@ describe('flattenSections', () => {
       'Shiny Button',
     ]);
   });
+
+  it('marks only the catalog pages it is told are new', () => {
+    const [installation, components] = flattenSections(
+      [
+        { label: 'Installation', children: [page('Setup Guide', '/installation/setup-guide')] },
+        {
+          label: 'Components',
+          children: [
+            page('Shiny Button', '/component/shiny-button'),
+            page('Flip Card', '/component/flip-card'),
+          ],
+        },
+      ],
+      (href) => href === '/component/shiny-button' || href === '/installation/setup-guide'
+    );
+
+    expect(installation?.children?.[0]).not.toHaveProperty('isNew');
+    expect(components?.children?.map((child) => [child.label, child.isNew ?? false])).toEqual([
+      ['Flip Card', false],
+      ['Shiny Button', true],
+    ]);
+  });
+
+  it('marks nothing when no picker is given', () => {
+    const [components] = flattenSections([
+      { label: 'Components', children: [page('Flip Card', '/component/flip-card')] },
+    ]);
+
+    expect(components?.children?.[0]?.isNew).toBeUndefined();
+  });
 });

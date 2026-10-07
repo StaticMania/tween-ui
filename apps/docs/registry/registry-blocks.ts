@@ -9,6 +9,7 @@ export const blocks: RegistryEntry[] = [
   {
     name: 'pricing-plan-switch',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Pricing Plan Switch',
     description:
       'A pricing section where picking a plan morphs the name badge, crossfades the description and spins the price with Number Flow, while the checklist lights up its included rows. A monthly/yearly toggle re-spins the price.',
@@ -41,6 +42,7 @@ export default function Example() {
   {
     name: 'process-card-reveal',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Process Card Reveal',
     description:
       'Numbered steps on a timeline whose connector fills before the next card slides and blurs into place — image one way, copy the other. Hover pauses the loop; clicking a step jumps there.',
@@ -73,6 +75,7 @@ export default function Example() {
   {
     name: 'process-sticky-steps',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Process Sticky Steps',
     description:
       'A process block whose heading, divider and step numbers stay sticky inside the section while the cards scroll past them. No GSAP — just Intersection Observer.',
@@ -105,6 +108,7 @@ export default function Example() {
   {
     name: 'strip-wipe',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Strip Wipe',
     description:
       'A split testimonial slider whose photo wipes in as tiled strips beside the quote, the index ticking over on Number Flow. Prev and next reverse the wipe direction.',
@@ -137,6 +141,7 @@ export default function Example() {
   {
     name: 'rating-carousel',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Rating Carousel',
     description:
       'A Swiper testimonial row of rating cards: drag or swipe it, and off-window cards fade and blur as they leave. Autoplay pauses on hover, and dots jump to a card.',
@@ -169,6 +174,7 @@ export default function Example() {
   {
     name: 'cta-image-fan',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'CTA Image Fan',
     description:
       'A call-to-action with a fanned photo stack auto-advancing above the headline and a shiny button below. Built from Image Fan Slider and Shiny Button.',
@@ -201,6 +207,7 @@ export default function Example() {
   {
     name: 'cta-photo-headline',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'CTA Photo Headline',
     description:
       'A call-to-action where avatars pop in above a heading with two photos tucked into the copy — a pill that grows from the left, then a tilted square that drops into place.',
@@ -233,6 +240,7 @@ export default function Example() {
   {
     name: 'blog-hover-expand',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Blog Hover Expand',
     description:
       'A three-post blog row where the hovered card grows wider, its photo scales and tilts, and the title draws an underline. Pure CSS.',
@@ -265,6 +273,7 @@ export default function Example() {
   {
     name: 'integration-hub',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Integration Hub',
     description:
       'A hub-and-spoke integrations diagram: the center pops in, paths draw out to six logos, then a dot travels each line. Uses MotionPathPlugin.',
@@ -297,6 +306,7 @@ export default function Example() {
   {
     name: 'infinite-rotating-cards',
     type: 'block',
+    addedAt: '2026-09-20',
     title: 'Infinite Rotating Cards',
     description:
       'A hero wheel of photo cards set on a large circle so only the top arc shows, spinning slowly so the next idea always comes into view.',
@@ -329,6 +339,7 @@ export default function Example() {
   {
     name: 'card-hover-expand',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Card Hover Expand',
     description:
       'A card row where the hovered card grows wider, its photo fades in and the title drops to the bottom over a gradient. Every card stays expanded on small screens. Pure CSS.',
@@ -361,6 +372,7 @@ export default function Example() {
   {
     name: 'card-spotlight-grid',
     type: 'block',
+    addedAt: '2026-09-20',
     title: 'Card Spotlight Grid',
     description:
       'A staggered project grid — tile heights cycle every six cards — where the hovered tile tilts toward the cursor in 3D while its siblings scale back and dim. Pointer-only.',
@@ -393,6 +405,7 @@ export default function Example() {
   {
     name: 'column-drift',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Column Drift',
     description:
       'Three columns of review cards that swing in from the sides as the section scrolls, then drift past each other at different speeds. Cards lift on hover with an underline wipe. GSAP + ScrollTrigger.',
@@ -425,6 +438,7 @@ export default function Example() {
   {
     name: 'team-scatter-focus',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Team Scatter Focus',
     description:
       'A scattered team collage whose cards each fly in from their own direction, then blur and shrink back from whichever one you hover. Falls back to a stacked grid below lg.',
@@ -457,6 +471,7 @@ export default function Example() {
   {
     name: 'tab-wipe',
     type: 'block',
+    addedAt: '2026-09-20',
     title: 'Tab Wipe',
     description:
       'A centered screenshot stage that wipes between slides on a clip-path edge while the incoming shot settles out of a slight scale and drift. The thumbnail strip is a real tablist, and the stage autoplays between clicks.',
@@ -489,6 +504,7 @@ export default function Example() {
   {
     name: 'logo-wall-shuffle',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Logo Wall Shuffle',
     description:
       'An integrations wall of staggered logo tiles where one mark at a time lifts away and the next rises in behind it. Every tile is visited before any repeats, and the loop pauses off-screen and in background tabs.',
@@ -527,6 +543,7 @@ export default function Example() {
   {
     name: 'testimonial-line-sweep',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Testimonial Line Sweep',
     description:
       'A paged testimonial pair whose text sweeps out line by line behind masks while the portrait irises shut, then the next quote arrives the same way. Pages with buttons or arrow keys. GSAP + SplitText.',
@@ -559,6 +576,7 @@ export default function Example() {
   {
     name: 'cta-starfall',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'CTA Starfall',
     description:
       'A dark call-to-action section under a slow field of drifting stars lit by a violet bloom. The field is full on the first frame rather than spawning over time, and pauses off-screen and in background tabs.',
@@ -591,6 +609,7 @@ export default function Example() {
   {
     name: 'pricing-usage-slider',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Pricing Usage Slider',
     description:
       'A two-plan pricing section where the second card prices itself from a volume slider, the figure spinning with Number Flow as you drag while the track fills behind the handle.',
@@ -623,6 +642,7 @@ export default function Example() {
   {
     name: 'grid-cascade',
     type: 'block',
+    addedAt: '2026-09-09',
     title: 'Grid Cascade',
     description:
       'A three-up testimonial grid that pages a whole set at a time — the current cards drop away on a stagger, then the next set cascades in from above, so the two never overlap mid-flight.',
@@ -655,10 +675,10 @@ export default function Example() {
   {
     name: 'cube-roll-item',
     type: 'block',
+    addedAt: '2026-09-22',
     title: 'Cube Roll Item',
     description:
       'A numbered section index where each row is a 3D drum that rolls a quarter turn onto a filled face on hover. The roll follows the pointer — in from the top rolls down, out through the bottom keeps rolling down — while the rules draw in on load.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -688,10 +708,10 @@ export default function Example() {
   {
     name: 'shutter-slider',
     type: 'block',
+    addedAt: '2026-09-23',
     title: 'Shutter Slider',
     description:
       'An autoplaying feature slider. Each image opens through vertical slats that alternate from the top and bottom, the headline letters roll in like drum faces, copy lines rise through masks and the caption pulls into focus — all mirrored when you travel back.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -721,10 +741,10 @@ export default function Example() {
   {
     name: 'testimonial-reel-focus',
     type: 'block',
+    addedAt: '2026-09-27',
     title: 'Testimonial Reel Focus',
     description:
       'A reel of testimonial cards wider than the window, run sideways by vertical page scroll from inside a sticky stage. Each card rises as it crosses in, so scrolling sends a swell along the row; a tick strip reads the run back like a scrubber, and hovering a card pulls it into focus while the rest of the row dims and blurs behind it.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -755,10 +775,10 @@ export default function Example() {
   {
     name: 'kinetic-type-ring',
     type: 'block',
+    addedAt: '2026-10-01',
     title: 'Kinetic Type Ring',
     description:
       'A phrase wrapped once around a ring in real 3D. A falling dot pulls the letters out of a blur, then drag or scroll spins the ring.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -789,10 +809,10 @@ export default function Example() {
   {
     name: 'footer-wordmark-rise',
     type: 'block',
+    addedAt: '2026-10-04',
     title: 'Footer Wordmark Rise',
     description:
       'A dark site footer that rises into view over a glow swelling off the bottom edge, closed by a giant wordmark fitted to the column whose letters climb out of their masks one by one.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -823,10 +843,10 @@ export default function Example() {
   {
     name: 'loader-line-fold',
     type: 'block',
+    addedAt: '2026-10-07',
     title: 'Loader Line Fold',
     description:
       'A page preloader: the wordmark rises letter by letter while a hairline fills with a counter riding its tip. Once the page is ready the line travels to the middle, folds into a single point, and the page opens out of that point to every edge.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -857,10 +877,10 @@ export default function Example() {
   {
     name: 'loader-iris-ring',
     type: 'block',
+    addedAt: '2026-10-07',
     title: 'Loader Iris Ring',
     description:
       'A page preloader built around a ring gauge: the arc fills in uneven steps while images flash through its lens and four corner counters sync and go live. Then an iris opens from the lens and the ring flies into the logo in your nav.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],
@@ -891,10 +911,10 @@ export default function Example() {
   {
     name: 'testimonial-ring',
     type: 'block',
+    addedAt: '2026-10-07',
     title: 'Testimonial Ring',
     description:
       'Testimonial cards stood on a 3D ring over a reflecting grid floor. Drag it and it spins with inertia before snapping to a card; scrolling turns it too. Whichever card comes to the front blurs its quote in and rolls its metric on Number Flow.',
-    isNew: true,
     media: {},
     dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
     registryDependencies: [],

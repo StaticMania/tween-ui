@@ -43,8 +43,12 @@ export interface RegistryEntry {
   type: RegistryType;
   title: string;
   description: string;
-  /** Show a "New" badge and list under the New section on the home gallery. */
-  isNew?: boolean;
+  /**
+   * The day the item joined the registry, as `YYYY-MM-DD`. The newest few of
+   * each type wear a "New" badge in the sidebar and on their gallery card
+   * (see `lib/new-items.ts`), so a fresh item pushes the oldest badge off.
+   */
+  addedAt: string;
   /** Gallery card media slot (between title and description). */
   media?: RegistryMedia;
   /** npm deps a consumer needs (e.g. "gsap"). Empty for CSS-only. */

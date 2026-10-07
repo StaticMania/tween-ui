@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { NavItem } from 'docora';
 import gsap from 'gsap';
+import type { TweenNavItem } from '@/lib/navigation';
 import { cn } from '@/lib/utils';
 import { AnimatedIcon } from './animated-icon';
 
@@ -24,7 +25,7 @@ function NavTree({
   onNavigate,
   rows,
 }: Readonly<{
-  items: NavItem[];
+  items: TweenNavItem[];
   level: number;
   onNavigate?: () => void;
   rows: RowState;
@@ -72,6 +73,11 @@ function NavTree({
                   />
                 )}
                 <span className="truncate">{item.label}</span>
+                {item.isNew && (
+                  <span className="border-tween-accent/30 bg-tween-accent/10 text-tween-accent ms-auto shrink-0 rounded-full border px-1.5 py-px text-[9px] leading-[14px] font-semibold tracking-wide uppercase">
+                    New
+                  </span>
+                )}
               </Link>
             ) : (
               <span className={cn(ROW, 'text-highlighted font-semibold')}>

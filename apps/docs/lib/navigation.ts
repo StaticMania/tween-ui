@@ -1,5 +1,11 @@
 import type { NavItem } from 'docora';
 
+/** A sidebar row, plus whether its page is one of the newest items. */
+export type TweenNavItem = Omit<NavItem, 'children'> & {
+  isNew?: boolean;
+  children?: TweenNavItem[];
+};
+
 /** Collect every linkable leaf page beneath the given nav items, depth-first. */
 function collectLeaves(items: NavItem[]): NavItem[] {
   return items.flatMap((item) =>
@@ -26,8 +32,14 @@ const isCatalog = (leaves: NavItem[]) =>
  *
  * The on-disk folder structure (and therefore page URLs) is untouched — this
  * only reshapes what the sidebar renders.
+ *
+ * `isNew` picks the catalog pages that get a "New" badge; it is passed in so
+ * this stays a pure reshape of whatever tree it is given.
  */
-export function flattenSections(items: NavItem[]): NavItem[] {
+export function flattenSections(
+  items: NavItem[],
+  isNew: (href: string) => boolean = () => false
+): TweenNavItem[] {
   return items.map((item) => {
     // Only transform section groups: no link of their own, but with children.
     if (item.href !== undefined || !item.children || item.children.length === 0) {
@@ -42,7 +54,9 @@ export function flattenSections(items: NavItem[]): NavItem[] {
     return {
       ...item,
       label: `${item.label} (${leaves.length})`,
-      children: leaves.sort((a, b) => a.label.localeCompare(b.label)),
+      children: leaves
+        .sort((a, b) => a.label.localeCompare(b.label))
+        .map((leaf) => (leaf.href && isNew(leaf.href) ? { ...leaf, isNew: true } : leaf)),
     };
   });
 }

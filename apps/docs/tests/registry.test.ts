@@ -19,6 +19,13 @@ describe('registry integrity', () => {
         expect(entry.description).toBeTruthy();
       });
 
+      it('records the day it was added as a real YYYY-MM-DD date', () => {
+        expect(entry.addedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(new Date(`${entry.addedAt}T00:00:00Z`).toISOString().slice(0, 10)).toBe(
+          entry.addedAt
+        );
+      });
+
       it('declares a cssVars object (may be empty when values are inline)', () => {
         expect(typeof entry.cssVars).toBe('object');
       });
