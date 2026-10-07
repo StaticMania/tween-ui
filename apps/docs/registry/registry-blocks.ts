@@ -942,4 +942,38 @@ export default function Example() {
     },
     docs: 'Pass your own `testimonials`; the ring repeats them until it has at least ten cards, so three or thirty both close the circle.',
   },
+  {
+    name: 'gyro-gallery',
+    type: 'block',
+    addedAt: '2026-10-07',
+    title: 'Gyro Gallery',
+    description:
+      'Gallery tiles riding three concentric, counter-rotating orbits on one tilted plane, like the rings of a gyroscope. The rig turns to face the pointer and calms as it nears; pointing near a piece brings it forward on a lime spoke from the core with its name beside it, and a click opens it. Page scroll winds the rings and swivels the plane.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/gyro-gallery.tsx',
+        target: 'components/tweenui/gyro-gallery.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/gyro-gallery.tsx',
+      },
+    ],
+    usage: {
+      react: `import GyroGallery from '@/components/tweenui/gyro-gallery';
+
+export default function Example() {
+  return <GyroGallery />;
+}`,
+    },
+    docs: 'Pass your own `items`; the three orbits hold 24 tiles and repeat your items around them, so even a handful fills the rig.',
+  },
 ];

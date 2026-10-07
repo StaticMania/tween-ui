@@ -1286,6 +1286,34 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "gyro-gallery",
+      "type": "registry:block",
+      "title": "Gyro Gallery",
+      "description": "Gallery tiles riding three concentric, counter-rotating orbits on one tilted plane, like the rings of a gyroscope. The rig turns to face the pointer and calms as it nears; pointing near a piece brings it forward on a lime spoke from the core with its name beside it, and a click opens it. Page scroll winds the rings and swivels the plane.",
+      "files": [
+        {
+          "path": "components/tweenui/gyro-gallery.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "gyro-gallery-demo",
+      "type": "registry:example",
+      "title": "Gyro Gallery Demo",
+      "description": "Usage examples for Gyro Gallery.",
+      "files": [
+        {
+          "path": "examples/gyro-gallery-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/gyro-gallery-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
