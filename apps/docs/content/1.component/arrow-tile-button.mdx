@@ -1,0 +1,75 @@
+---
+title: Arrow Tile Button
+description: A label slab paired with a detached arrow tile, in a springy tilt and a sliding swap variant.
+icon: square-arrow-right
+---
+
+A label slab sits beside its own **square arrow tile**, and the pair animates
+two ways. In `tilt`, the tile **knocks the word**: it leans into the slab, the
+slab is shoved back and springs into place, and the letters **topple in a wave**
+that travels away from the tile before bouncing upright. In `swap`, the tile **takes the lead**: it rolls across to the front of the
+label, its arrow spinning a full turn, while the label slides aside and its
+letters **lift in a wake** behind it. Pressing either variant squashes the whole
+button. It is a real `<button>`, so `onClick`, `type`,
+`disabled`, and refs all work. Pure CSS — no GSAP dependency.
+
+::component-preview{name="arrow-tile-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="arrow-tile-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="arrow-tile-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import ArrowTileButton from '@/components/tweenui/arrow-tile-button';
+
+export default function Page() {
+  return (
+    <ArrowTileButton variant="swap" onClick={() => console.log('clicked')}>
+      Book a call
+    </ArrowTileButton>
+  );
+}
+```
+
+:::
+::
+
+## Props
+
+Extends every native `<button>` attribute (`onClick`, `type`, `disabled`, `ref`, …).
+
+| Prop        | Type                              | Default    | Description                                                                                        |
+| ----------- | --------------------------------- | ---------- | -------------------------------------------------------------------------------------------------- |
+| `children`  | `string`                          | —          | Button label (a string — split into letters for the wave).                                         |
+| `variant`   | `'tilt' \| 'swap'`                | `'tilt'`   | `tilt` knocks the letters over from the tile, `swap` rolls the tile to the front of the lime slab. |
+| `type`      | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type.                                                                                |
+| `className` | `string`                          | —          | Merged with the base styles.                                                                       |
+
+## Accessibility
+
+::note
+It renders a native `<button>`; the visible label supplies its accessible name,
+while the split letters and the arrow tile are
+`aria-hidden`. Hover and
+keyboard focus both trigger the motion, and a focus ring is included. Under
+`prefers-reduced-motion: reduce` the transitions are switched off.
+::

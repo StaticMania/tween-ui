@@ -525,6 +525,72 @@ export default function Example() {
     },
   },
   {
+    name: 'arrow-tile-button',
+    type: 'component',
+    addedAt: '2026-10-08',
+    title: 'Arrow Tile Button',
+    description:
+      'A label slab paired with a detached arrow tile: the tilt variant has the tile knock the slab so its letters topple in a wave away from it and spring upright, and the swap variant rolls the tile to the front as the letters lift in its wake.',
+    media: {},
+    dependencies: [],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/arrow-tile-button.tsx',
+        target: 'components/tweenui/arrow-tile-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/arrow-tile-button.tsx',
+      },
+    ],
+    usage: {
+      react: `import ArrowTileButton from '@/components/tweenui/arrow-tile-button';
+
+export default function Example() {
+  return <ArrowTileButton onClick={() => {}}>Get started</ArrowTileButton>;
+}`,
+    },
+  },
+  {
+    name: 'focus-frame-button',
+    type: 'component',
+    addedAt: '2026-10-08',
+    title: 'Focus Frame Button',
+    description:
+      'A framed button that locks on like a viewfinder on hover: the hairline folds into its corners, the brackets snap shut while the label rolls up and a fresh return arrow slides in.',
+    media: {},
+    dependencies: [],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/focus-frame-button.tsx',
+        target: 'components/tweenui/focus-frame-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/focus-frame-button.tsx',
+      },
+    ],
+    usage: {
+      react: `import FocusFrameButton from '@/components/tweenui/focus-frame-button';
+
+export default function Example() {
+  return <FocusFrameButton onClick={() => {}}>Talk to the team</FocusFrameButton>;
+}`,
+    },
+  },
+  {
     name: 'logo-orbit',
     type: 'component',
     addedAt: '2026-09-09',
