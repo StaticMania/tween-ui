@@ -392,6 +392,30 @@
       ]
     },
     {
+      "name": "slant-morph-button",
+      "type": "registry:ui",
+      "title": "Slant Morph Button",
+      "description": "A slanted label and arrow tile whose diagonal seam smoothly flips its lean like a hinge on hover with GSAP MorphSVG, while the colors trade places and a fresh arrow slides through.",
+      "files": [
+        {
+          "path": "components/tweenui/slant-morph-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "slant-morph-button-demo",
+      "type": "registry:example",
+      "title": "Slant Morph Button Demo",
+      "description": "Usage examples for Slant Morph Button.",
+      "files": [
+        {
+          "path": "examples/slant-morph-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "logo-orbit",
       "type": "registry:ui",
       "title": "Logo Orbit",

@@ -26,6 +26,7 @@ export const demos: Record<string, ComponentType> = {
   'dot-bloom-button:default': dynamic(() => import('./demos/dot-bloom-button')),
   'arrow-tile-button:default': dynamic(() => import('./demos/arrow-tile-button')),
   'focus-frame-button:default': dynamic(() => import('./demos/focus-frame-button')),
+  'slant-morph-button:default': dynamic(() => import('./demos/slant-morph-button')),
   'logo-orbit:default': dynamic(() => import('./demos/logo-orbit')),
   'logo-cycle:default': dynamic(() => import('./demos/logo-cycle')),
   'logo-wave:default': dynamic(() => import('./demos/logo-wave')),

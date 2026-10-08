@@ -591,6 +591,39 @@ export default function Example() {
     },
   },
   {
+    name: 'slant-morph-button',
+    type: 'component',
+    addedAt: '2026-10-08',
+    title: 'Slant Morph Button',
+    description:
+      'A slanted label and arrow tile whose diagonal seam smoothly flips its lean like a hinge on hover with GSAP MorphSVG, while the colors trade places and a fresh arrow slides through.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/slant-morph-button.tsx',
+        target: 'components/tweenui/slant-morph-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/slant-morph-button.tsx',
+      },
+    ],
+    usage: {
+      react: `import SlantMorphButton from '@/components/tweenui/slant-morph-button';
+
+export default function Example() {
+  return <SlantMorphButton onClick={() => {}}>Discover the library</SlantMorphButton>;
+}`,
+    },
+  },
+  {
     name: 'logo-orbit',
     type: 'component',
     addedAt: '2026-09-09',

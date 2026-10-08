@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slant-morph-button-demo",
+  "type": "registry:example",
+  "title": "Slant Morph Button Demo",
+  "description": "Usage examples for Slant Morph Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/slant-morph-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/slant-morph-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import SlantMorphButton from '@/components/tweenui/slant-morph-button';\n\nexport default function Page() {\n  return (\n    <SlantMorphButton onClick={() => console.log('clicked')}>Discover the library</SlantMorphButton>\n  );\n}"
+    }
+  ]
+}
