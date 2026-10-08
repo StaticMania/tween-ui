@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "focus-frame-button-demo",
+  "type": "registry:example",
+  "title": "Focus Frame Button Demo",
+  "description": "Usage examples for Focus Frame Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/focus-frame-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/focus-frame-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import FocusFrameButton from '@/components/tweenui/focus-frame-button';\n\nexport default function Page() {\n  return (\n    <FocusFrameButton onClick={() => console.log('clicked')}>Talk to the team</FocusFrameButton>\n  );\n}"
+    }
+  ]
+}

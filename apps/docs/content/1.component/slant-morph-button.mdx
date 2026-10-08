@@ -1,0 +1,69 @@
+---
+title: Slant Morph Button
+description: A slanted label and arrow tile whose diagonal seam smoothly morphs from / to \ on hover, like a hinge.
+icon: square-slash
+---
+
+A monospace label slab meets a slanted arrow tile along a diagonal seam. Hover
+or focus it and the seam **swings like a hinge**: both edges are genuinely
+reshaped with GSAP MorphSVG, easing the diagonal from `/` to `\` in one smooth
+stroke, rather than crossfading two pictures. At the same time the colors
+trade places and a fresh arrow slides through. It is a real `<button>`, so
+`onClick`, `type`, `disabled`, and refs all work.
+
+::component-preview{name="slant-morph-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="slant-morph-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="slant-morph-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import SlantMorphButton from '@/components/tweenui/slant-morph-button';
+
+export default function Page() {
+  return (
+    <SlantMorphButton onClick={() => console.log('clicked')}>Discover the library</SlantMorphButton>
+  );
+}
+```
+
+:::
+::
+
+## Props
+
+Extends every native `<button>` attribute (`onClick`, `type`, `disabled`, `ref`, …).
+
+| Prop        | Type                              | Default    | Description                  |
+| ----------- | --------------------------------- | ---------- | ---------------------------- |
+| `children`  | `string`                          | —          | Button label.                |
+| `type`      | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type.          |
+| `className` | `string`                          | —          | Merged with the base styles. |
+
+## Accessibility
+
+::note
+It renders a native `<button>`; the visible label supplies its accessible name
+and the seam, tile and arrows are `aria-hidden`. Hover and keyboard focus both
+trigger the morph. Under `prefers-reduced-motion: reduce`, or on touch screens
+without hover, the shapes stay put and only the colors change.
+::

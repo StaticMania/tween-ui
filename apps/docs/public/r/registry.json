@@ -344,6 +344,78 @@
       ]
     },
     {
+      "name": "arrow-tile-button",
+      "type": "registry:ui",
+      "title": "Arrow Tile Button",
+      "description": "A label slab paired with a detached arrow tile: the tilt variant has the tile knock the slab so its letters topple in a wave away from it and spring upright, and the swap variant rolls the tile to the front as the letters lift in its wake.",
+      "files": [
+        {
+          "path": "components/tweenui/arrow-tile-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "arrow-tile-button-demo",
+      "type": "registry:example",
+      "title": "Arrow Tile Button Demo",
+      "description": "Usage examples for Arrow Tile Button.",
+      "files": [
+        {
+          "path": "examples/arrow-tile-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "focus-frame-button",
+      "type": "registry:ui",
+      "title": "Focus Frame Button",
+      "description": "A framed button that locks on like a viewfinder on hover: the hairline folds into its corners, the brackets snap shut while the label rolls up and a fresh return arrow slides in.",
+      "files": [
+        {
+          "path": "components/tweenui/focus-frame-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "focus-frame-button-demo",
+      "type": "registry:example",
+      "title": "Focus Frame Button Demo",
+      "description": "Usage examples for Focus Frame Button.",
+      "files": [
+        {
+          "path": "examples/focus-frame-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "slant-morph-button",
+      "type": "registry:ui",
+      "title": "Slant Morph Button",
+      "description": "A slanted label and arrow tile whose diagonal seam smoothly flips its lean like a hinge on hover with GSAP MorphSVG, while the colors trade places and a fresh arrow slides through.",
+      "files": [
+        {
+          "path": "components/tweenui/slant-morph-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "slant-morph-button-demo",
+      "type": "registry:example",
+      "title": "Slant Morph Button Demo",
+      "description": "Usage examples for Slant Morph Button.",
+      "files": [
+        {
+          "path": "examples/slant-morph-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "logo-orbit",
       "type": "registry:ui",
       "title": "Logo Orbit",

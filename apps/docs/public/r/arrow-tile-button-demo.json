@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "arrow-tile-button-demo",
+  "type": "registry:example",
+  "title": "Arrow Tile Button Demo",
+  "description": "Usage examples for Arrow Tile Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/arrow-tile-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/arrow-tile-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import ArrowTileButton from '@/components/tweenui/arrow-tile-button';\n\nexport default function Page() {\n  return (\n    <ArrowTileButton variant=\"swap\" onClick={() => console.log('clicked')}>\n      Book a call\n    </ArrowTileButton>\n  );\n}"
+    }
+  ]
+}

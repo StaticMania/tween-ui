@@ -1,0 +1,72 @@
+---
+title: Focus Frame Button
+description: A framed button whose hairline frame locks onto it like a viewfinder on hover.
+icon: scan
+---
+
+A lime button sits inside a hairline frame. Hover or focus it and the frame
+**locks on like a viewfinder**: each side of the hairline splits and folds back
+into its corner, the four corner brackets **snap shut** around the button with
+a springy overshoot. Meanwhile
+the label **rolls up** to a fresh copy and a new return arrow **slides in**,
+pushing the old one out. It is a real
+`<button>`, so `onClick`, `type`, `disabled`, and refs all work. Pure CSS — no
+GSAP dependency.
+
+::component-preview{name="focus-frame-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="focus-frame-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="focus-frame-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import FocusFrameButton from '@/components/tweenui/focus-frame-button';
+
+export default function Page() {
+  return (
+    <FocusFrameButton onClick={() => console.log('clicked')}>Talk to the team</FocusFrameButton>
+  );
+}
+```
+
+:::
+::
+
+## Props
+
+Extends every native `<button>` attribute (`onClick`, `type`, `disabled`, `ref`, …).
+
+| Prop        | Type                              | Default    | Description                                              |
+| ----------- | --------------------------------- | ---------- | -------------------------------------------------------- |
+| `children`  | `string`                          | —          | Button label (a string — it is duplicated for the roll). |
+| `type`      | `'button' \| 'submit' \| 'reset'` | `'button'` | Native button type.                                      |
+| `className` | `string`                          | —          | Merged with the base styles.                             |
+
+## Accessibility
+
+::note
+It renders a native `<button>`; the visible label supplies its accessible name,
+while the rolled label copy, the frame and the arrows are `aria-hidden`.
+Keyboard focus triggers the same lock-on as hover, so the closing corners double
+as the focus indicator. Under `prefers-reduced-motion: reduce` the transitions
+are switched off.
+::
