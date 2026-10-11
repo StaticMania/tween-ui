@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navbar-push-menu-demo",
+  "type": "registry:example",
+  "title": "Navbar Push Menu Demo",
+  "description": "Usage examples for Navbar Push Menu.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/navbar-push-menu.json"
+  ],
+  "files": [
+    {
+      "path": "examples/navbar-push-menu-demo.tsx",
+      "type": "registry:example",
+      "content": "import NavbarPushMenu from '@/components/tweenui/navbar-push-menu';\n\nexport default function Page() {\n  return <NavbarPushMenu />;\n}"
+    },
+    {
+      "path": "examples/navbar-push-menu-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import NavbarPushMenu from '@/components/tweenui/navbar-push-menu';\n\nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return (\n    <NavbarPushMenu\n      brand=\"Northwind\"\n      currentHref=\"/work\"\n      links={[\n        { label: 'Home', href: '/', image: '/menu/home.jpg' },\n        { label: 'Work', href: '/work', image: '/menu/work.jpg' },\n        { label: 'Studio', href: '/studio', image: '/menu/studio.jpg' },\n        { label: 'Contact', href: '/contact', image: '/menu/contact.jpg' },\n      ]}\n    >\n      {children}\n    </NavbarPushMenu>\n  );\n}"
+    }
+  ]
+}

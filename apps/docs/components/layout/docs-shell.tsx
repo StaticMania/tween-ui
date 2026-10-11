@@ -1,6 +1,7 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import { useLayoutEffect, useRef, type ReactNode } from 'react';
+import { usePathname } from 'next/navigation';
 import { SiteHeader, TableOfContents, useDocsConfig, type TocEntry } from 'docora';
 import { MobileNav } from '@/components/nav/mobile-nav';
 import { SidebarNav } from '@/components/nav/sidebar-nav';
@@ -17,6 +18,39 @@ export type DocsShellProps = Readonly<{
   className?: string;
 }>;
 
+let sidebarScrollTop = 0;
+
+function useSidebarScroll() {
+  const sidebarRef = useRef<HTMLElement>(null);
+  const pathname = usePathname();
+
+  useLayoutEffect(() => {
+    const sidebar = sidebarRef.current;
+    if (!sidebar) return;
+    sidebar.scrollTop = sidebarScrollTop;
+
+    const activeRow = sidebar.querySelector<HTMLElement>(
+      `[data-nav-row="${CSS.escape(pathname)}"]`
+    );
+    if (activeRow) {
+      const sidebarBox = sidebar.getBoundingClientRect();
+      const rowBox = activeRow.getBoundingClientRect();
+      const isHidden = rowBox.top < sidebarBox.top || rowBox.bottom > sidebarBox.bottom;
+      if (isHidden) {
+        sidebar.scrollTop += rowBox.top - sidebarBox.top - (sidebarBox.height - rowBox.height) / 2;
+      }
+    }
+
+    const handleScroll = () => {
+      sidebarScrollTop = sidebar.scrollTop;
+    };
+    sidebar.addEventListener('scroll', handleScroll, { passive: true });
+    return () => sidebar.removeEventListener('scroll', handleScroll);
+  }, [pathname]);
+
+  return sidebarRef;
+}
+
 /**
  * Docora's `DocsLayout`, but rendering our own `SidebarNav` (the upstream
  * layout hardcodes its own and exposes no sidebar slot). Keep the shell's
@@ -24,6 +58,7 @@ export type DocsShellProps = Readonly<{
  */
 export function DocsShell({ children, toc = [], page, starCount, className }: DocsShellProps) {
   const config = useDocsConfig();
+  const sidebarRef = useSidebarScroll();
 
   const navigation = config.navigation ?? [];
   const hasSidebar = navigation.length > 0;
@@ -45,7 +80,10 @@ export function DocsShell({ children, toc = [], page, starCount, className }: Do
 
       <div className="max-w-8xl mx-auto flex w-full flex-1 gap-8 px-4 sm:px-6">
         {hasSidebar && (
-          <aside className="no-scrollbar sticky top-16 -ml-2.5 hidden h-[calc(100svh-4rem)] w-64 shrink-0 overflow-y-auto py-8 pr-4 pl-2.5 lg:block">
+          <aside
+            ref={sidebarRef}
+            className="no-scrollbar sticky top-16 -ml-2.5 hidden h-[calc(100svh-4rem)] w-64 shrink-0 overflow-y-auto py-8 pr-4 pl-2.5 lg:block"
+          >
             <SidebarNav items={navigation} />
           </aside>
         )}

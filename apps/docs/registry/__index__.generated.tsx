@@ -63,6 +63,9 @@ export const demos: Record<string, ComponentType> = {
   'loader-iris-ring:default': dynamic(() => import('./demos/loader-iris-ring')),
   'testimonial-ring:default': dynamic(() => import('./demos/testimonial-ring')),
   'gyro-gallery:default': dynamic(() => import('./demos/gyro-gallery')),
+  'navbar-push-menu:default': dynamic(() => import('./demos/navbar-push-menu')),
+  'navbar-pill-glide:default': dynamic(() => import('./demos/navbar-pill-glide')),
+  'navbar-corner-panel:default': dynamic(() => import('./demos/navbar-corner-panel')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

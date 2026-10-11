@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navbar-pill-glide-demo",
+  "type": "registry:example",
+  "title": "Navbar Pill Glide Demo",
+  "description": "Usage examples for Navbar Pill Glide.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/navbar-pill-glide.json"
+  ],
+  "files": [
+    {
+      "path": "examples/navbar-pill-glide-demo.tsx",
+      "type": "registry:example",
+      "content": "import NavbarPillGlide from '@/components/tweenui/navbar-pill-glide';\n\nexport default function Page() {\n  return <NavbarPillGlide />;\n}"
+    },
+    {
+      "path": "examples/navbar-pill-glide-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import NavbarPillGlide from '@/components/tweenui/navbar-pill-glide';\n\nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return (\n    <NavbarPillGlide\n      brand=\"Kairo\"\n      currentHref=\"/pricing\"\n      email=\"hello@kairo.studio\"\n      primaryAction={{ label: 'Start free', href: '/signup' }}\n      secondaryAction={{ label: 'Book a demo', href: '/demo' }}\n      links={[\n        { label: 'Home', href: '/', image: '/menu/home.jpg' },\n        { label: 'Customers', href: '/customers', image: '/menu/customers.jpg' },\n        { label: 'Pricing', href: '/pricing', image: '/menu/pricing.jpg' },\n        { label: 'Journal', href: '/journal', image: '/menu/journal.jpg' },\n      ]}\n    >\n      {children}\n    </NavbarPillGlide>\n  );\n}"
+    }
+  ]
+}

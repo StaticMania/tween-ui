@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navbar-corner-panel-demo",
+  "type": "registry:example",
+  "title": "Navbar Corner Panel Demo",
+  "description": "Usage examples for Navbar Corner Panel.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/navbar-corner-panel.json"
+  ],
+  "files": [
+    {
+      "path": "examples/navbar-corner-panel-demo.tsx",
+      "type": "registry:example",
+      "content": "import NavbarCornerPanel from '@/components/tweenui/navbar-corner-panel';\n\nexport default function Page() {\n  return <NavbarCornerPanel />;\n}"
+    },
+    {
+      "path": "examples/navbar-corner-panel-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import NavbarCornerPanel from '@/components/tweenui/navbar-corner-panel';\n\nexport default function Layout({ children }: { children: React.ReactNode }) {\n  return (\n    <NavbarCornerPanel\n      brand=\"Atelier\"\n      currentHref=\"/work\"\n      links={[\n        { label: 'Home', href: '/' },\n        { label: 'Work', href: '/work' },\n        { label: 'Studio', href: '/studio' },\n        { label: 'Contact', href: '/contact' },\n      ]}\n      socials={[\n        { label: 'LinkedIn', href: 'https://linkedin.com/company/atelier' },\n        { label: 'Instagram', href: 'https://instagram.com/atelier' },\n      ]}\n    >\n      {children}\n    </NavbarCornerPanel>\n  );\n}"
+    }
+  ]
+}

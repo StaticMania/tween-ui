@@ -1,0 +1,130 @@
+---
+title: Navbar Push Menu
+description: A navbar whose menu waits behind the page, which steps back into a card to show it.
+icon: panel-top
+---
+
+A site navbar where the menu is **already there, behind the page**. Press
+**Menu** and the page **drops into a rounded, inset card**, uncovering a row of
+link cards that **wipe up one after another**, each poster **settling from a
+slight zoom** and its label rising after it. The toggle **fills lime** and its
+two bars **cross into an X**. **Click the page card**, press **Escape** or the
+toggle again and everything slides back. Scroll the page and the bar **gets out
+of the way going down** and **comes back going up**, with a **progressive blur**
+under it once you leave the top. GSAP with CustomEase.
+
+::component-preview{name="navbar-push-menu"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="navbar-push-menu"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="navbar-push-menu"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import NavbarPushMenu from '@/components/tweenui/navbar-push-menu';
+
+export default function Page() {
+  return <NavbarPushMenu />;
+}
+```
+
+:::
+::
+
+It ships dressed as the Tween UI site, with a single hero as the page and the
+library's own gallery posters on the menu cards. It fills the screen height
+(`h-svh`, never shorter than 560px), and the bar, the menu and the hero share a
+`max-w-7xl` container. Put your page inside it and pass your own `links`:
+
+```tsx [app/layout.tsx]
+import NavbarPushMenu from '@/components/tweenui/navbar-push-menu';
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <NavbarPushMenu
+      brand="Northwind"
+      currentHref="/work"
+      links={[
+        { label: 'Home', href: '/', image: '/menu/home.jpg' },
+        { label: 'Work', href: '/work', image: '/menu/work.jpg' },
+        { label: 'Studio', href: '/studio', image: '/menu/studio.jpg' },
+        { label: 'Contact', href: '/contact', image: '/menu/contact.jpg' },
+      ]}
+    >
+      {children}
+    </NavbarPushMenu>
+  );
+}
+```
+
+The colors are the Tween UI palette: the deep ink stage (`#03110f`) behind the
+menu, a slightly lifted page card (`#071d1b`) with a teal glow (`#045f64`),
+pale type (`#e8f3f2`), soft teal labels (`#9fd4d6`) and the lime accent
+(`#c6f56f`) on the open toggle and the link for the page you are on. They live
+in the `className` strings, so you can restyle them in place.
+
+## Props
+
+| Prop          | Type                   | Default            | Description                                    |
+| ------------- | ---------------------- | ------------------ | ---------------------------------------------- |
+| `brand`       | `string`               | `'Tween UI'`       | Name beside the logo, and the section's label. |
+| `logo`        | `ReactNode`            | The Tween UI mark  | Shown before the brand name.                   |
+| `homeHref`    | `string`               | `'/'`              | Where the logo links.                          |
+| `links`       | `NavbarPushMenuLink[]` | Six Tween UI pages | The menu cards, in order.                      |
+| `currentHref` | `string`               | `'/'`              | The page you are on; its card is marked lime.  |
+| `children`    | `ReactNode`            | A sample hero      | The page that steps back when the menu opens.  |
+
+Each link is `{ label, href, image }`. Extends native `<section>` attributes
+(`className`, `style`, …).
+
+## Behavior
+
+- **The page moves, the menu does not.** The menu is laid out behind the page
+  the whole time. Opening it slides the page down by the height of the card
+  row and shrinks it in from the sides into a card with 16px corners, so the
+  band always fits the cards you pass: one row of six on large screens, rows
+  of three below that.
+- **One curve for the whole move.** The page, the card wipes and the labels
+  share a single `cubic-bezier(0.5, 0, 0, 1)`: a slow start and a long, soft
+  landing. The cards follow the page in by 60ms each.
+- **Closing is quicker and cleaner.** The cards fade out first so nothing
+  flashes back while the page rises over them.
+- **The page you are on just closes.** Its card is marked lime and
+  `aria-current="page"`; clicking it closes the menu instead of reloading.
+- **Hovering a card quiets the others.** The rest of the row dims to half,
+  the hovered poster eases in by 5% and its arrow turns.
+- **Headroom on the page's own scroll.** Near the top the bar is always
+  shown. Past that it hides when you scroll down by more than a few pixels
+  and returns when you scroll up, and a six-layer progressive blur fades in
+  beneath it. While the menu is open it stays put.
+- **It keeps fitting.** Resize while the menu is open and the card is
+  re-measured to the new band.
+
+## Accessibility
+
+::note
+The toggle is a real button with `aria-expanded` and `aria-controls`, and its
+name switches between Open menu and Close menu. The menu is a labelled `nav`
+that is `inert` while closed, and the page is `inert` while the menu is open,
+so the tab order only ever holds what you can see. Escape closes the menu and
+returns focus to the toggle. Under `prefers-reduced-motion: reduce` the menu
+opens and closes at once with no wipe, zoom or roll.
+::
