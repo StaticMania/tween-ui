@@ -59,4 +59,7 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'loader-iris-ring': {"image":"/media/blocks/loader-iris-ring-poster.webp","video":"/media/blocks/loader-iris-ring-preview.mp4"},
   'testimonial-ring': {"image":"/media/blocks/testimonial-ring-poster.webp","video":"/media/blocks/testimonial-ring-preview.mp4"},
   'gyro-gallery': {"image":"/media/blocks/gyro-gallery-poster.webp","video":"/media/blocks/gyro-gallery-preview.mp4"},
+  'navbar-push-menu': {"image":"/media/blocks/navbar-push-menu-poster.webp","video":"/media/blocks/navbar-push-menu-preview.mp4"},
+  'navbar-pill-glide': {"image":"/media/blocks/navbar-pill-glide-poster.webp","video":"/media/blocks/navbar-pill-glide-preview.mp4"},
+  'navbar-corner-panel': {"image":"/media/blocks/navbar-corner-panel-poster.webp","video":"/media/blocks/navbar-corner-panel-preview.mp4"},
 };
