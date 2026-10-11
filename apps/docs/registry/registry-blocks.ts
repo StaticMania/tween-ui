@@ -976,4 +976,106 @@ export default function Example() {
     },
     docs: 'Pass your own `items`; the three orbits hold 24 tiles and repeat your items around them, so even a handful fills the rig.',
   },
+  {
+    name: 'navbar-push-menu',
+    type: 'block',
+    addedAt: '2026-10-11',
+    title: 'Navbar Push Menu',
+    description:
+      'A navbar whose menu sits behind the page. Opening it pushes the page down into a rounded, inset card and wipes the link cards up one after another, each poster settling as it lands, while the toggle fills lime and its bars cross. The bar hides as you scroll down the page, returns on the way up and blurs what passes beneath it.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/navbar-push-menu.tsx',
+        target: 'components/tweenui/navbar-push-menu.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/navbar-push-menu.tsx',
+      },
+    ],
+    usage: {
+      react: `import NavbarPushMenu from '@/components/tweenui/navbar-push-menu';
+
+export default function Example() {
+  return <NavbarPushMenu />;
+}`,
+    },
+    docs: 'Pass your own `links` and put your page inside as `children`; the menu band grows to fit however many cards you give it.',
+  },
+  {
+    name: 'navbar-pill-glide',
+    type: 'block',
+    addedAt: '2026-10-11',
+    title: 'Navbar Pill Glide',
+    description:
+      'A navbar with its links in a frosted pill, where a soft highlight glides to whichever link you point at and a lime line along the pill tracks how far down the page you are. The logo dot circles its ring as you scroll, the bar slips away going down, and on narrow screens a round toggle wipes the full menu open from where it sits, with large rolling links and a poster that swaps as you hover them.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/navbar-pill-glide.tsx',
+        target: 'components/tweenui/navbar-pill-glide.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/navbar-pill-glide.tsx',
+      },
+    ],
+    usage: {
+      react: `import NavbarPillGlide from '@/components/tweenui/navbar-pill-glide';
+
+export default function Example() {
+  return <NavbarPillGlide />;
+}`,
+    },
+    docs: 'Pass your own `links` and put your page inside as `children`; every link but home goes in the pill, and all of them fill the mobile menu.',
+  },
+  {
+    name: 'navbar-corner-panel',
+    type: 'block',
+    addedAt: '2026-10-11',
+    title: 'Navbar Corner Panel',
+    description:
+      'A navbar that keeps its whole menu in one small frosted square in the corner. Opening it grows the square into a tall panel whose links drop in with their underlines drawing out, while the page dims behind and a lime close bubble follows the pointer.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/navbar-corner-panel.tsx',
+        target: 'components/tweenui/navbar-corner-panel.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/navbar-corner-panel.tsx',
+      },
+    ],
+    usage: {
+      react: `import NavbarCornerPanel from '@/components/tweenui/navbar-corner-panel';
+
+export default function Example() {
+  return <NavbarCornerPanel />;
+}`,
+    },
+    docs: 'Pass your own `links` and `socials` and put your page inside as `children`; the panel sizes itself to the screen it opens on.',
+  },
 ];

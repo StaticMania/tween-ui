@@ -37,6 +37,7 @@ export default async function PreviewPage({ params }: PreviewProps) {
     // and scrolls as normal. A component is a single element that a column
     // would stretch edge to edge, so those stay centred and padded instead.
     <main
+      data-block-stage=""
       className={cn(
         'min-h-svh',
         entry.type === 'component'

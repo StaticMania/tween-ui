@@ -1386,6 +1386,90 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "navbar-push-menu",
+      "type": "registry:block",
+      "title": "Navbar Push Menu",
+      "description": "A navbar whose menu sits behind the page. Opening it pushes the page down into a rounded, inset card and wipes the link cards up one after another, each poster settling as it lands, while the toggle fills lime and its bars cross. The bar hides as you scroll down the page, returns on the way up and blurs what passes beneath it.",
+      "files": [
+        {
+          "path": "components/tweenui/navbar-push-menu.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-push-menu-demo",
+      "type": "registry:example",
+      "title": "Navbar Push Menu Demo",
+      "description": "Usage examples for Navbar Push Menu.",
+      "files": [
+        {
+          "path": "examples/navbar-push-menu-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/navbar-push-menu-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-pill-glide",
+      "type": "registry:block",
+      "title": "Navbar Pill Glide",
+      "description": "A navbar with its links in a frosted pill, where a soft highlight glides to whichever link you point at and a lime line along the pill tracks how far down the page you are. The logo dot circles its ring as you scroll, the bar slips away going down, and on narrow screens a round toggle wipes the full menu open from where it sits, with large rolling links and a poster that swaps as you hover them.",
+      "files": [
+        {
+          "path": "components/tweenui/navbar-pill-glide.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-pill-glide-demo",
+      "type": "registry:example",
+      "title": "Navbar Pill Glide Demo",
+      "description": "Usage examples for Navbar Pill Glide.",
+      "files": [
+        {
+          "path": "examples/navbar-pill-glide-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/navbar-pill-glide-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "navbar-corner-panel",
+      "type": "registry:block",
+      "title": "Navbar Corner Panel",
+      "description": "A navbar that keeps its whole menu in one small frosted square in the corner. Opening it grows the square into a tall panel whose links drop in with their underlines drawing out, while the page dims behind and a lime close bubble follows the pointer.",
+      "files": [
+        {
+          "path": "components/tweenui/navbar-corner-panel.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-corner-panel-demo",
+      "type": "registry:example",
+      "title": "Navbar Corner Panel Demo",
+      "description": "Usage examples for Navbar Corner Panel.",
+      "files": [
+        {
+          "path": "examples/navbar-corner-panel-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/navbar-corner-panel-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

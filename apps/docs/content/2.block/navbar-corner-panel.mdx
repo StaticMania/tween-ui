@@ -1,0 +1,128 @@
+---
+title: Navbar Corner Panel
+description: A navbar whose whole menu folds into one frosted square in the corner and grows out of it.
+icon: panel-right-open
+---
+
+A site navbar that keeps everything in **one small frosted square in the top
+right corner**. Press it and the square **grows from its corner into a tall
+panel**. The links **drop in from above** one after another, each with an
+underline **drawing out beneath it**, and the social links follow at the foot.
+The page **dims behind it**, and outside the panel a **lime close bubble
+follows the pointer**: click anywhere out there to put it away. GSAP.
+
+::component-preview{name="navbar-corner-panel"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="navbar-corner-panel"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="navbar-corner-panel"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import NavbarCornerPanel from '@/components/tweenui/navbar-corner-panel';
+
+export default function Page() {
+  return <NavbarCornerPanel />;
+}
+```
+
+:::
+::
+
+It ships dressed as the Tween UI site, with a single hero as the page. It fills
+the screen height (`h-svh`, never shorter than 560px), and the logo and the
+corner square sit on a `max-w-7xl` container. Put your page inside it and pass
+your own links and socials:
+
+```tsx [app/layout.tsx]
+import NavbarCornerPanel from '@/components/tweenui/navbar-corner-panel';
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <NavbarCornerPanel
+      brand="Atelier"
+      currentHref="/work"
+      links={[
+        { label: 'Home', href: '/' },
+        { label: 'Work', href: '/work' },
+        { label: 'Studio', href: '/studio' },
+        { label: 'Contact', href: '/contact' },
+      ]}
+      socials={[
+        { label: 'LinkedIn', href: 'https://linkedin.com/company/atelier' },
+        { label: 'Instagram', href: 'https://instagram.com/atelier' },
+      ]}
+    >
+      {children}
+    </NavbarCornerPanel>
+  );
+}
+```
+
+The colors are the Tween UI palette: the deep ink stage (`#03110f`), a lifted
+frosted ink for the square and the panel (`#071d1b`), pale type (`#e8f3f2`),
+soft teal for quiet links and lines (`#9fd4d6`) and the lime accent
+(`#c6f56f`) on the current page's arrow, the social arrows and the close
+bubble. They live in the `className` strings, so you can restyle them in place.
+
+## Props
+
+| Prop          | Type                      | Default                 | Description                                         |
+| ------------- | ------------------------- | ----------------------- | --------------------------------------------------- |
+| `brand`       | `string`                  | `'Tween UI'`            | Name beside the logo, and the section's label.      |
+| `logo`        | `ReactNode`               | The Tween UI mark       | Shown before the brand name.                        |
+| `homeHref`    | `string`                  | `'/'`                   | Where the logo links.                               |
+| `links`       | `NavbarCornerPanelLink[]` | Four Tween UI pages     | The large links in the panel, in order.             |
+| `currentHref` | `string`                  | `'/'`                   | The page you are on; its arrow points down in lime. |
+| `socials`     | `NavbarCornerPanelLink[]` | GitHub, issues, changes | The small links at the foot of the panel.           |
+| `children`    | `ReactNode`               | A sample hero           | The page under the bar.                             |
+
+Links are `{ label, href }`. Extends native `<section>` attributes
+(`className`, `style`, …).
+
+## Behavior
+
+- **It grows from the corner it sits in.** The panel is anchored to the
+  square's top right corner and only its width and height change, so it opens
+  down and to the left over half a second. It stops the same distance from the
+  bottom as the square sits from the top.
+- **Its width follows the screen.** About a third of the block on large
+  screens (340 to 440px), half on tablets, and the full width less the gutter
+  on phones. The link size steps up only when the panel is wide enough for it,
+  so long labels stay inside.
+- **Closing tidies up first.** Links lift away, then the panel folds back into
+  the square.
+- **Click outside, or press Escape.** Anywhere outside the panel closes it; on
+  a mouse the lime bubble marks that, on touch it stays hidden. The link for
+  the page you are on also just closes the menu.
+- **It keeps fitting.** Resize with the menu open and the panel is
+  re-measured.
+
+## Accessibility
+
+::note
+The square is a real button with `aria-expanded` and `aria-controls`, its name
+switching between Open menu and Close menu. The panel holds a labelled `nav`
+and is `inert` while closed; the page is `inert` while it is open. Escape
+closes the menu and returns focus to the square. Under
+`prefers-reduced-motion: reduce` the panel and its links appear and disappear
+at once.
+::
