@@ -13,7 +13,6 @@
 # Tween UI
 
 Animated React components built with [GSAP](https://gsap.com) and Tailwind CSS.
-**36 of them** — 16 components and 20 page-level blocks.
 
 There is no package to install. The CLI copies a component's entire `.tsx` file
 into your project, and from that moment it is your code: rename it, restyle it,
