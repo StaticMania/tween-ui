@@ -134,6 +134,7 @@ const PLAY: Record<string, Play> = {
   'badge-dollar-sign': pulse,
   megaphone: pulse,
   music: pulse,
+  activity: pulse,
   'fold-horizontal': squeeze,
   'flip-horizontal': flip,
   'gallery-horizontal': flip,

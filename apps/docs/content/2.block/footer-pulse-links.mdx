@@ -1,0 +1,145 @@
+---
+title: Footer Pulse Links
+description: A dark site footer whose links roll into lime over a heartbeat line, closed by a wordmark that leans toward your pointer.
+icon: activity
+---
+
+A site footer built around two hovers. Point at any link and its label **rolls
+up letter by letter** with a **lime copy rising in from below**, while a
+**heartbeat line draws itself in** underneath: a flat rule with one sharp pulse
+in the middle. Below the links, the brand name is set **as wide as the
+column**. Its letters **rise in one by one** when it scrolls into view, then
+**lift and tilt toward your pointer** as you move over it, settling back when
+you leave. The last word is lime. GSAP with ScrollTrigger.
+
+::component-preview{name="footer-pulse-links" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="footer-pulse-links"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="footer-pulse-links"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/layout.tsx]
+import FooterPulseLinks from '@/components/tweenui/footer-pulse-links';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <FooterPulseLinks />
+      </body>
+    </html>
+  );
+}
+```
+
+:::
+::
+
+It ships dressed as the Tween UI footer: the Tween mark, the site's own
+component, block and community links, and the repository's license, changelog
+and contributing guide. Swap in your own brand, logo and links. Columns,
+socials and legal links are all plain arrays:
+
+```tsx [app/layout.tsx]
+import FooterPulseLinks from '@/components/tweenui/footer-pulse-links';
+
+<FooterPulseLinks
+  brand="North Wind"
+  logo={<img src="/logo.svg" alt="" className="size-7" />}
+  description="Outdoor gear, built to be repaired."
+  columns={[
+    {
+      heading: 'Shop',
+      links: [
+        { label: 'Jackets', href: '/shop/jackets' },
+        { label: 'Packs', href: '/shop/packs' },
+      ],
+    },
+    {
+      heading: 'Help',
+      links: [
+        { label: 'Repairs', href: '/repairs' },
+        { label: 'support@northwind.co', href: 'mailto:support@northwind.co' },
+      ],
+    },
+  ]}
+  socials={[{ label: 'Instagram', href: 'https://instagram.com/northwind', icon: 'instagram' }]}
+  legal={[{ label: 'Privacy', href: '/privacy' }]}
+/>;
+```
+
+The colors are the Tween UI palette: the deep ink surface (`#03110f`), soft
+teal type (`#9fd4d6`), the teal glow (`#045f64`) and the lime accent
+(`#c6f56f`) on the rolled letters, the heartbeat line, the last word of the
+wordmark and the focus rings. They live in the `className` strings, so you can
+restyle them in place.
+
+## Props
+
+| Prop          | Type                  | Default                              | Description                                                           |
+| ------------- | --------------------- | ------------------------------------ | --------------------------------------------------------------------- |
+| `brand`       | `string`              | `'Tween UI'`                         | Name beside the logo and in the wordmark. Its last word is lime.      |
+| `logo`        | `ReactNode`           | The Tween UI mark                    | Mark shown before the brand name. Make it `aria-hidden` or `alt=""`.  |
+| `description` | `string`              | The Tween UI tagline                 | Paragraph under the logo.                                             |
+| `columns`     | `FooterPulseColumn[]` | Components, Blocks, Community        | Link columns: `{ heading, links: { label, href }[] }`.                |
+| `socials`     | `FooterPulseSocial[]` | GitHub                               | Round icon links: `{ label, href, icon }`. Pass `[]` to drop the row. |
+| `legal`       | `FooterPulseLink[]`   | MIT License, Changelog, Contributing | Links in the bottom bar, with the same roll and heartbeat line.       |
+| `copyright`   | `string`              | `© <year> <brand>`                   | Notice at the bottom left.                                            |
+
+`icon` is one of `'x' | 'instagram' | 'linkedin' | 'dribbble' | 'github'`.
+Links starting with `http` open in a new tab; site paths and `mailto:` stay in
+place. Extends native `<footer>` attributes (`className`, `id`, …).
+
+## Behavior
+
+- **Each letter rolls on its own clock.** Every link letter carries a lime copy
+  of itself one line below. On hover the pair slides up a full line, each
+  letter 16ms after the one before, so the label ripples left to right.
+- **The heartbeat line draws, it does not slide.** The underline is an SVG path
+  with a normalised length of 1, so its dash (one unit of line, two of gap) moves from offset 1 to 0 over 700ms
+  however wide the link is. Leaving the link draws it back out.
+- **The wordmark leans toward you.** Each letter lifts by how close the pointer
+  is, up to 18% of the type size, and tilts away from the side the pointer is
+  on. The lift eases toward its target every frame, so it trails the pointer
+  softly and settles back when you leave. The loop only runs while something
+  is moving.
+- **The wordmark is solved, not set.** Its font size is scaled until the name
+  spans the column exactly, and a `ResizeObserver` re-solves it whenever the
+  column changes width, once more after your fonts load.
+- **Hover only where there is hover.** The wordmark only follows a fine
+  pointer, and the link roll waits for a real hover, so a tap on a phone
+  follows the link without a half-played roll. Keyboard focus plays the link
+  motion too.
+
+## Accessibility
+
+::note
+The footer is a `<footer>` landmark with a `<nav aria-label="Footer">`, and
+each column is a list labelled by its own heading. Rolling labels are drawn
+from `aria-hidden` letters, with the real label in a visually-hidden span, so
+screen readers read each link as one word. Social links are named
+`<brand> on <network>` and open in a new tab. The wordmark is decorative and
+`aria-hidden`; the brand is announced once, from the logo link. Every link has
+a visible lime focus ring. Under `prefers-reduced-motion: reduce` the wordmark
+is drawn in place, and the roll and the line switch at once.
+::

@@ -1470,6 +1470,34 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "footer-pulse-links",
+      "type": "registry:block",
+      "title": "Footer Pulse Links",
+      "description": "A dark site footer where every link label rolls up letter by letter into lime on hover while a heartbeat line draws itself in underneath, closed by a wordmark fitted to the column whose letters rise in and then lift and tilt toward the pointer.",
+      "files": [
+        {
+          "path": "components/tweenui/footer-pulse-links.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-pulse-links-demo",
+      "type": "registry:example",
+      "title": "Footer Pulse Links Demo",
+      "description": "Usage examples for Footer Pulse Links.",
+      "files": [
+        {
+          "path": "examples/footer-pulse-links-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/footer-pulse-links-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }
