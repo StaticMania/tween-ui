@@ -1078,4 +1078,38 @@ export default function Example() {
     },
     docs: 'Pass your own `links` and `socials` and put your page inside as `children`; the panel sizes itself to the screen it opens on.',
   },
+  {
+    name: 'footer-pulse-links',
+    type: 'block',
+    addedAt: '2026-10-12',
+    title: 'Footer Pulse Links',
+    description:
+      'A dark site footer where every link label rolls up letter by letter into lime on hover while a heartbeat line draws itself in underneath, closed by a wordmark fitted to the column whose letters rise in and then lift and tilt toward the pointer.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/footer-pulse-links.tsx',
+        target: 'components/tweenui/footer-pulse-links.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/footer-pulse-links.tsx',
+      },
+    ],
+    usage: {
+      react: `import FooterPulseLinks from '@/components/tweenui/footer-pulse-links';
+
+export default function Example() {
+  return <FooterPulseLinks />;
+}`,
+    },
+    docs: 'Pass your own `columns`, `socials` and `legal` links; the link hover is plain CSS and only the wordmark uses GSAP.',
+  },
 ];

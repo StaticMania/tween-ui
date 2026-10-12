@@ -66,6 +66,7 @@ export const demos: Record<string, ComponentType> = {
   'navbar-push-menu:default': dynamic(() => import('./demos/navbar-push-menu')),
   'navbar-pill-glide:default': dynamic(() => import('./demos/navbar-pill-glide')),
   'navbar-corner-panel:default': dynamic(() => import('./demos/navbar-corner-panel')),
+  'footer-pulse-links:default': dynamic(() => import('./demos/footer-pulse-links')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {
