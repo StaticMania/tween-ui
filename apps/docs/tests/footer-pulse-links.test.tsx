@@ -120,9 +120,10 @@ describe('Footer Pulse Links', () => {
       queued = null;
       run(0);
     }
-    expect(letters[0]?.style.transform).toMatch(
-      /translate3d\(0, -0\.0\dpx|translate3d\(0, 0\.00px/
+    const settled = Number(
+      /translate3d\(0, (-?[\d.]+)px/.exec(letters[0]?.style.transform ?? '')?.[1]
     );
+    expect(Math.abs(settled)).toBeLessThan(0.1);
   });
 
   it('leaves the wordmark still on touch screens', () => {

@@ -113,16 +113,21 @@ place. Extends native `<footer>` attributes (`className`, `id`, …).
 ## Behavior
 
 - **Each letter rolls on its own clock.** Every link letter carries a lime copy
-  of itself one line below. On hover the pair slides up a full line, each
-  letter 16ms after the one before, so the label ripples left to right.
+  of itself one line below. On hover the pair slides up a full line over
+  700ms, each letter 22ms after the one before, on a soft-start
+  `cubic-bezier(0.45, 0, 0.15, 1)`, so the label ripples left to right
+  without a snap.
 - **The heartbeat line draws, it does not slide.** The underline is an SVG path
-  with a normalised length of 1, so its dash (one unit of line, two of gap) moves from offset 1 to 0 over 700ms
-  however wide the link is. Leaving the link draws it back out.
+  with a normalised length of 1, so its dash (one unit of line, two of gap)
+  moves from offset 1 to 0 over 900ms on the same curve, however wide the link
+  is. Leaving the link draws it back out.
 - **The wordmark leans toward you.** Each letter lifts by how close the pointer
-  is, up to 18% of the type size, and tilts away from the side the pointer is
-  on. The lift eases toward its target every frame, so it trails the pointer
-  softly and settles back when you leave. The loop only runs while something
-  is moving.
+  is, up to 18% of the type size, and tilts away from the pointer, the tilt
+  fading smoothly through zero as the pointer passes over the letter. Lift and
+  tilt ease toward their targets on a 160ms time constant measured in real
+  time, so the motion feels the same at 60Hz and 120Hz. Letter centres are
+  measured from layout, not from their moving boxes, so nothing wobbles. The
+  loop only runs while something is moving.
 - **The wordmark is solved, not set.** Its font size is scaled until the name
   spans the column exactly, and a `ResizeObserver` re-solves it whenever the
   column changes width, once more after your fonts load.

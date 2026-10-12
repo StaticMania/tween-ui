@@ -96,6 +96,8 @@ const TWEEN_MARK = (
 
 const EASE_OUT = 'ease-[cubic-bezier(0.16,1,0.3,1)]';
 
+const EASE_ROLL = 'ease-[cubic-bezier(0.45,0,0.15,1)]';
+
 const focusRing =
   'rounded-xs focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c6f56f]';
 
@@ -148,13 +150,13 @@ function RollLabel({ label }: { label: string }) {
             key={`${char}-${index}`}
             data-char={char}
             className={cn(
-              'relative inline-block whitespace-pre transition-[translate] duration-550',
-              EASE_OUT,
+              'relative inline-block whitespace-pre transition-[translate] duration-700',
+              EASE_ROLL,
               'after:absolute after:top-full after:left-0 after:text-[#c6f56f] after:content-[attr(data-char)]',
               'group-hover/link:-translate-y-full group-focus-visible/link:-translate-y-full',
               'motion-reduce:transition-none'
             )}
-            style={{ transitionDelay: `${index * 16}ms` }}
+            style={{ transitionDelay: `${index * 22}ms` }}
           >
             {char}
           </span>
@@ -180,8 +182,8 @@ function PulseUnderline() {
         strokeLinejoin="round"
         pathLength={1}
         className={cn(
-          'transition-[stroke-dashoffset] duration-700 [stroke-dasharray:1_2] [stroke-dashoffset:1]',
-          EASE_OUT,
+          'transition-[stroke-dashoffset] duration-900 [stroke-dasharray:1_2] [stroke-dashoffset:1]',
+          EASE_ROLL,
           'group-hover/link:[stroke-dashoffset:0] group-focus-visible/link:[stroke-dashoffset:0]',
           'motion-reduce:transition-none'
         )}
@@ -222,33 +224,58 @@ function LinkGroup({ column }: { column: FooterPulseColumn }) {
   );
 }
 
+const LIFT_SETTLE_MS = 160;
+
 const followPointer = (mark: HTMLElement, letters: HTMLElement[]) => {
   const lifts = letters.map(() => 0);
+  const tilts = letters.map(() => 0);
   const pointer = { x: 0, y: 0, isInside: false };
+  let centers: { x: number; y: number }[] = [];
   let frame = 0;
+  let lastTime = 0;
 
-  const tick = () => {
+  const measure = () => {
+    centers = letters.map((letter) => ({
+      x: letter.offsetLeft + letter.offsetWidth / 2,
+      y: letter.offsetTop + letter.offsetHeight / 2,
+    }));
+  };
+
+  const tick = (time: number) => {
     frame = 0;
+    const elapsed = lastTime ? Math.min(64, time - lastTime) : 16;
+    lastTime = time;
+    const blend = 1 - Math.exp(-elapsed / LIFT_SETTLE_MS);
+    if (centers.length !== letters.length) measure();
+
     const size = parseFloat(getComputedStyle(mark).fontSize) || 120;
     const maxLift = Math.min(70, size * 0.18);
     const radius = size * 1.9 + 170;
+    const origin = mark.getBoundingClientRect();
     let isMoving = false;
 
     letters.forEach((letter, index) => {
-      const lift = lifts[index] ?? 0;
-      const box = letter.getBoundingClientRect();
-      const dx = pointer.x - (box.left + box.width / 2);
-      const dy = pointer.y - (box.top + box.height / 2 + lift);
+      const center = centers[index] ?? { x: 0, y: 0 };
+      const dx = pointer.x - (origin.left + center.x);
+      const dy = pointer.y - (origin.top + center.y);
       const reach = pointer.isInside ? Math.max(0, 1 - Math.hypot(dx, dy) / radius) : 0;
-      const target = reach * reach * (3 - 2 * reach) * maxLift;
-      const next = lift + (target - lift) * 0.18;
-      if (Math.abs(target - next) > 0.06) isMoving = true;
-      lifts[index] = next;
-      const tilt = (dx > 0 ? -1 : 1) * (maxLift ? next / maxLift : 0) * 4.5;
-      letter.style.transform = `translate3d(0, ${(-next).toFixed(2)}px, 0) rotate(${tilt.toFixed(2)}deg)`;
+      const eased = reach * reach * (3 - 2 * reach);
+      const side = Math.max(-1, Math.min(1, dx / (radius * 0.35)));
+      const lift = (lifts[index] ?? 0) + (eased * maxLift - (lifts[index] ?? 0)) * blend;
+      const tilt = (tilts[index] ?? 0) + (-side * eased * 4.5 - (tilts[index] ?? 0)) * blend;
+      if (Math.abs(eased * maxLift - lift) > 0.05 || Math.abs(-side * eased * 4.5 - tilt) > 0.01) {
+        isMoving = true;
+      }
+      lifts[index] = lift;
+      tilts[index] = tilt;
+      letter.style.transform = `translate3d(0, ${(-lift).toFixed(3)}px, 0) rotate(${tilt.toFixed(3)}deg)`;
     });
 
-    if (isMoving || pointer.isInside) frame = requestAnimationFrame(tick);
+    if (isMoving || pointer.isInside) {
+      frame = requestAnimationFrame(tick);
+    } else {
+      lastTime = 0;
+    }
   };
 
   const wake = () => {
@@ -267,10 +294,13 @@ const followPointer = (mark: HTMLElement, letters: HTMLElement[]) => {
     wake();
   };
 
+  const observer = new ResizeObserver(measure);
+  observer.observe(mark);
   mark.addEventListener('pointermove', handleMove);
   mark.addEventListener('pointerleave', handleLeave);
 
   return () => {
+    observer.disconnect();
     mark.removeEventListener('pointermove', handleMove);
     mark.removeEventListener('pointerleave', handleLeave);
     cancelAnimationFrame(frame);
@@ -449,7 +479,7 @@ export default function FooterPulseLinks({
           <p
             ref={markRef}
             aria-hidden="true"
-            className="pt-6 pb-2 text-center text-[length:min(20vw,240px)] leading-none font-bold tracking-[0.02em] whitespace-nowrap uppercase select-none"
+            className="relative pt-6 pb-2 text-center text-[length:min(20vw,240px)] leading-none font-bold tracking-[0.02em] whitespace-nowrap uppercase select-none"
           >
             <span ref={wordRef} className="-mr-[0.02em] inline-block">
               {Array.from(brand).map((char, index) => (
@@ -460,7 +490,7 @@ export default function FooterPulseLinks({
                     'inline-block bg-clip-text whitespace-pre text-transparent will-change-transform',
                     index >= lastWordStart
                       ? 'bg-[linear-gradient(to_top,rgb(198_245_111/0.15)_13%,rgb(198_245_111/0.95)_100%)]'
-                      : 'bg-[linear-gradient(to_top,rgb(159_212_214/0)_13%,rgb(159_212_214/0.7)_100%)]'
+                      : 'bg-[linear-gradient(to_top,rgb(232_243_242/0.12)_4%,rgb(240_248_247/0.82)_38%,rgb(255_255_255/1)_100%)]'
                   )}
                 >
                   {char}
