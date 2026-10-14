@@ -1112,4 +1112,45 @@ export default function Example() {
     },
     docs: 'Pass your own `columns`, `socials` and `legal` links; the link hover is plain CSS and only the wordmark uses GSAP.',
   },
+  {
+    name: 'arc-carousel',
+    type: 'block',
+    addedAt: '2026-10-14',
+    title: 'Arc Carousel',
+    description:
+      'A showcase carousel whose cards hang on a downward arc, each one further out turned a little more. Stepping swings the whole arc round, the centre card easing up in size under a lime outline, and a card that wraps past the edge keeps travelling off-screen while it comes back in from the far side. Swipe, drag, the arrow keys or a click on a side card all step it.',
+    media: {},
+    dependencies: [],
+    registryDependencies: [],
+    cssVars: {
+      '--color-tween-teal': '#045f64',
+      '--color-tween-teal-soft': '#9fd4d6',
+      '--color-tween-lime': '#c6f56f',
+      '--color-tween-ink': '#071d1b',
+      '--color-tween-ink-deep': '#03110f',
+      '--ease-tween': 'cubic-bezier(0.32, 0.72, 0, 1)',
+    },
+    files: [
+      {
+        path: 'registry/tweenui/arc-carousel.tsx',
+        target: 'components/tweenui/arc-carousel.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/arc-carousel.tsx',
+      },
+    ],
+    usage: {
+      react: `import ArcCarousel from '@/components/tweenui/arc-carousel';
+
+export default function Example() {
+  return <ArcCarousel />;
+}`,
+    },
+    docs: 'Colors come from the Tween UI theme tokens (`tween-ink-deep`, `tween-lime`, …), which the CLI adds to your `@theme`. Pass your own `items`; seven or more keep the arc full, since three cards show on each side of the centre.',
+  },
 ];

@@ -1,0 +1,151 @@
+---
+title: Arc Carousel
+description: A showcase carousel whose cards hang on a downward arc and swing round it as you step.
+icon: gallery-horizontal-end
+---
+
+A showcase for a handful of pieces, laid out on a curve. The cards **hang on a
+downward arc**, each one further from the centre sitting a little lower and
+**turned a little more**, three to a side. **Step** and the whole arc swings
+round: every card glides to its neighbour's slot on a slow, weighted curve,
+while the one arriving in the middle **eases up in size** and takes a **lime
+outline**. A card that wraps past the edge **keeps travelling off-screen**
+while it comes back in **from the far side**, so the loop never snaps.
+**Swipe**, **drag**, use the **arrow keys**, or **click a side card** to bring
+it to the centre. Plain CSS transitions, no animation library.
+
+::component-preview{name="arc-carousel" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="arc-carousel"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="arc-carousel"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import ArcCarousel from '@/components/tweenui/arc-carousel';
+
+export default function Page() {
+  return <ArcCarousel />;
+}
+```
+
+:::
+::
+
+It ships with eight sample projects. Pass your own as `items`, and point the
+button wherever the full list lives:
+
+```tsx [app/page.tsx]
+import ArcCarousel from '@/components/tweenui/arc-carousel';
+
+export default function Page() {
+  return (
+    <ArcCarousel
+      badge="Just in"
+      title="New this season."
+      description="Fresh drops from the workshop, restocked every Friday."
+      cta={{ label: 'Shop the collection', href: '/shop' }}
+      items={[
+        {
+          title: 'Field Jacket',
+          tag: 'Outerwear',
+          meta: '$240',
+          image: '/shop/jacket.jpg',
+          href: '/shop/jacket',
+        },
+        {
+          title: 'Day Pack',
+          tag: 'Bags',
+          meta: '$120',
+          image: '/shop/pack.jpg',
+          href: '/shop/pack',
+        },
+        // …
+      ]}
+    />
+  );
+}
+```
+
+The colors are the Tween UI theme tokens, used as Tailwind classes rather than
+raw hex: `tween-ink-deep` (`#03110f`) for the stage and the edge fades,
+`tween-ink` (`#071d1b`) under each photo, a `tween-teal` (`#045f64`) glow
+behind the arc, `tween-teal-soft` (`#9fd4d6`) for the supporting text and
+`tween-lime` (`#c6f56f`) on the badge, the centre card's outline and arrow,
+and the button. The CLI adds them to your `@theme`; with a manual install,
+copy the CSS block from the Manual tab into your global stylesheet. Change a
+token there and the block follows.
+
+## Props
+
+| Prop          | Type                                      | Default                              | Description                                        |
+| ------------- | ----------------------------------------- | ------------------------------------ | -------------------------------------------------- |
+| `items`       | `ArcCarouselItem[]`                       | Eight sample projects                | The cards on the arc.                              |
+| `badge`       | `string`                                  | `'Featured work'`                    | Pill above the title. Pass `''` to drop it.        |
+| `title`       | `string`                                  | `'Projects we shipped this season.'` | Heading, and the carousel's accessible name.       |
+| `description` | `string`                                  | How to browse                        | Line under the heading. Pass `''` to drop it.      |
+| `cta`         | `{ label: string; href: string } \| null` | `View all projects`                  | Button between the arrows. Pass `null` to drop it. |
+
+Each item is `{ title, image, tag?, meta?, href? }`. The `tag` is the chip on
+the top left of the card and `meta` the line under the title. With an `href`
+the centre card is a link and shows a round arrow. Extends native `<section>`
+attributes (`className`, `style`, …).
+
+## Behavior
+
+- **One card size, one arc.** Every card is 312 × 430px and the slots are
+  fixed offsets from the centre, so the curve keeps its shape whatever the
+  content. Below 1024px of container width the whole arc scales to 80%, and
+  below 768px to 62%, so it fits a phone without relaying out.
+- **Wraps without a jump.** When a card has to move from one end of the loop
+  to the other, a copy of it carries on off the near edge and fades, while
+  the card itself is placed past the far edge and slides in. The copy is
+  removed once its move has finished.
+- **Side cards step, the centre card opens.** A click on a side card moves
+  the arc one step toward it instead of following its link, and a swipe or
+  drag of more than 50px sideways steps it the other way and swallows the
+  click that ends it. Vertical swipes still scroll the page.
+- **The centre card steps forward.** Side cards sit under a light shade of
+  the stage color; the centre card loses it, grows 5%, takes a lime outline
+  and turns its arrow lime, so the eye lands on it first.
+- **The edges fade, the arc does not stop.** The soft fades on both sides sit
+  above the cards, so the outer ones run out into the background instead of
+  being cut off by the edge of the section.
+- **Light on the browser.** Cards move on `transform` and `opacity` only,
+  with no blur. Photos come at 1x and 2x with fixed dimensions; the five
+  nearest the centre load first and the rest lazily.
+- **It is in place before it runs.** The first layout is written into the
+  markup, so the arc renders already curved and nothing flashes into place
+  on load.
+
+## Accessibility
+
+::note
+The carousel is a focusable group with `aria-roledescription="carousel"`,
+named by the title, and the left and right arrow keys step it while it has
+focus. Each card is a slide labelled `n of total: title`; cards off the
+centre are hidden from screen readers and out of the tab order, so only the
+card you are looking at can be reached. The current card is announced
+politely after every step. The arrows are real buttons with labels and every
+control has a visible lime focus ring. Under `prefers-reduced-motion: reduce`
+the cards fade between slots instead of travelling, and the centre card does
+not grow.
+::
