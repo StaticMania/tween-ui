@@ -63,4 +63,5 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'navbar-pill-glide': {"image":"/media/blocks/navbar-pill-glide-poster.webp","video":"/media/blocks/navbar-pill-glide-preview.mp4"},
   'navbar-corner-panel': {"image":"/media/blocks/navbar-corner-panel-poster.webp","video":"/media/blocks/navbar-corner-panel-preview.mp4"},
   'footer-pulse-links': {"image":"/media/blocks/footer-pulse-links-poster.webp","video":"/media/blocks/footer-pulse-links-preview.mp4"},
+  'arc-carousel': {"image":"/media/blocks/arc-carousel-poster.webp","video":"/media/blocks/arc-carousel-preview.mp4"},
 };

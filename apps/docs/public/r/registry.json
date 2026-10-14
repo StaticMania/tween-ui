@@ -1498,6 +1498,38 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "arc-carousel",
+      "type": "registry:block",
+      "title": "Arc Carousel",
+      "description": "A showcase carousel whose cards hang on a downward arc, each one further out turned a little more. Stepping swings the whole arc round, the centre card easing up in size under a lime outline, and a card that wraps past the edge keeps travelling off-screen while it comes back in from the far side. Swipe, drag, the arrow keys or a click on a side card all step it.",
+      "files": [
+        {
+          "path": "components/tweenui/arc-carousel.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "arc-carousel-demo",
+      "type": "registry:example",
+      "title": "Arc Carousel Demo",
+      "description": "Usage examples for Arc Carousel.",
+      "files": [
+        {
+          "path": "examples/arc-carousel-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/arc-carousel-demo-2.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/arc-carousel-demo-3.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

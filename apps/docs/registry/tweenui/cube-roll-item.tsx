@@ -270,7 +270,7 @@ export default function CubeRollItem({
       <span
         data-roll-rule
         aria-hidden="true"
-        className="block h-px origin-left bg-[#045f64] dark:bg-[#9fd4d6]/60"
+        className="bg-tween-teal dark:bg-tween-teal-soft/60 block h-px origin-left"
       />
     </nav>
   );

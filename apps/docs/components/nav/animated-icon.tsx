@@ -138,6 +138,7 @@ const PLAY: Record<string, Play> = {
   'fold-horizontal': squeeze,
   'flip-horizontal': flip,
   'gallery-horizontal': flip,
+  'gallery-horizontal-end': flip,
   cylinder: flip,
   images: flip,
   'image-plus': flip,
