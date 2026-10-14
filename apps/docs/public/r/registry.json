@@ -1524,6 +1524,10 @@
         {
           "path": "examples/arc-carousel-demo-2.tsx",
           "type": "registry:example"
+        },
+        {
+          "path": "examples/arc-carousel-demo-3.tsx",
+          "type": "registry:example"
         }
       ]
     }

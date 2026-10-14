@@ -94,6 +94,18 @@ and the button. The CLI adds them to your `@theme`; with a manual install,
 copy the CSS block from the Manual tab into your global stylesheet. Change a
 token there and the block follows.
 
+### Autoplay
+
+Autoplay is on by default: a new card takes the centre every 5 seconds, and a
+pause / play button sits beside the arrows with a lime ring filling up as the
+current card's time runs out. Set the pace with `interval`, or turn it off with
+`autoplay={false}`, which also drops the button:
+
+```tsx [app/page.tsx]
+<ArcCarousel interval={4000} />      // a new card every 4s
+<ArcCarousel autoplay={false} />     // steps only when the viewer does
+```
+
 ## Props
 
 | Prop          | Type                                      | Default                              | Description                                        |
@@ -103,6 +115,8 @@ token there and the block follows.
 | `title`       | `string`                                  | `'Projects we shipped this season.'` | Heading, and the carousel's accessible name.       |
 | `description` | `string`                                  | How to browse                        | Line under the heading. Pass `''` to drop it.      |
 | `cta`         | `{ label: string; href: string } \| null` | `View all projects`                  | Button between the arrows. Pass `null` to drop it. |
+| `autoplay`    | `boolean`                                 | `true`                               | Step to the next card on its own.                  |
+| `interval`    | `number`                                  | `5000`                               | Time each card holds the centre, in ms.            |
 
 Each item is `{ title, image, tag?, meta?, href? }`. The `tag` is the chip on
 the top left of the card and `meta` the line under the title. With an `href`
@@ -132,6 +146,10 @@ attributes (`className`, `style`, …).
 - **Light on the browser.** Cards move on `transform` and `opacity` only,
   with no blur. Photos come at 1x and 2x with fixed dimensions; the five
   nearest the centre load first and the rest lazily.
+- **Autoplay waits for you.** It holds while the mouse rests on the cards,
+  while the cards have keyboard focus and while the block is off-screen, and
+  picks up where it left off. Stepping by hand gives the new card a full
+  interval. A backgrounded tab never makes it skip ahead on return.
 - **It is in place before it runs.** The first layout is written into the
   markup, so the arc renders already curved and nothing flashes into place
   on load.
@@ -145,7 +163,9 @@ focus. Each card is a slide labelled `n of total: title`; cards off the
 centre are hidden from screen readers and out of the tab order, so only the
 card you are looking at can be reached. The current card is announced
 politely after every step. The arrows are real buttons with labels and every
-control has a visible lime focus ring. Under `prefers-reduced-motion: reduce`
-the cards fade between slots instead of travelling, and the centre card does
-not grow.
+control has a visible lime focus ring. With autoplay on there is always a
+labelled pause button, and the announcement goes quiet while the carousel plays
+itself, so a screen reader is not interrupted every few seconds. Under
+`prefers-reduced-motion: reduce` autoplay starts paused, the cards fade
+between slots instead of travelling, and the centre card does not grow.
 ::

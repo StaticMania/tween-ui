@@ -37,6 +37,14 @@ export interface ArcCarouselProps extends ComponentPropsWithoutRef<'section'> {
   /** A line under the title. Pass an empty string to drop it. */
   description?: string;
   cta?: { label: string; href: string } | null;
+  /**
+   * Step to the next card on its own. On by default; pass `false` to turn it off. It
+   * pauses while the pointer is over the cards, while they have keyboard focus and
+   * while the block is off-screen, and adds a pause / play button with a progress ring.
+   */
+  autoplay?: boolean;
+  /** Time each card holds the centre while autoplaying, in ms. */
+  interval?: number;
 }
 
 /**
@@ -58,6 +66,8 @@ const MOVE = 'transform 800ms cubic-bezier(0.98, 0.30, 0.30, 1), opacity 400ms e
 const SWIPE = 50;
 /** How long a wrapping card's off-screen copy lives: the move, plus a frame or two. */
 const GHOST_LIFE = 850;
+/** Autoplay never counts more than this per frame, so a backgrounded tab does not skip ahead. */
+const MAX_FRAME = 100;
 
 const slot = (offset: number) => {
   const t = Math.abs(offset);
@@ -152,7 +162,7 @@ const STEP = cn(
 );
 /** The soft edges the arc runs out under. They sit above the cards, below the copy. */
 const FADE =
-  'pointer-events-none absolute inset-y-0 z-[2] w-[clamp(2.5rem,14cqw,12rem)] from-tween-ink-deep via-tween-ink-deep/70 to-transparent';
+  'pointer-events-none absolute inset-y-0 z-2 w-[clamp(2.5rem,14cqw,12rem)] from-tween-ink-deep via-tween-ink-deep/70 to-transparent';
 
 const Caret = ({ flip }: { flip?: boolean }) => (
   <svg
@@ -166,6 +176,19 @@ const Caret = ({ flip }: { flip?: boolean }) => (
     strokeLinejoin="round"
   >
     <path d="M7.5 1.5 1.5 8l6 6.5" />
+  </svg>
+);
+
+const PauseIcon = () => (
+  <svg viewBox="0 0 16 16" aria-hidden="true" className="size-3.5" fill="currentColor">
+    <rect x="3.5" y="2.5" width="3" height="11" rx="1" />
+    <rect x="9.5" y="2.5" width="3" height="11" rx="1" />
+  </svg>
+);
+
+const PlayIcon = () => (
+  <svg viewBox="0 0 16 16" aria-hidden="true" className="size-3.5" fill="currentColor">
+    <path d="M4.5 2.9v10.2a1 1 0 0 0 1.53.85l8.1-5.1a1 1 0 0 0 0-1.7l-8.1-5.1A1 1 0 0 0 4.5 2.9Z" />
   </svg>
 );
 
@@ -190,6 +213,8 @@ export default function ArcCarousel({
   title = 'Projects we shipped this season.',
   description = 'A rotating look at recent launches across brand, product and research. Swipe, drag or use the arrows to browse.',
   cta = { label: 'View all projects', href: '#' },
+  autoplay = true,
+  interval = 5000,
   className,
   ...props
 }: ArcCarouselProps) {
@@ -202,6 +227,17 @@ export default function ArcCarousel({
   const swipe = useRef({ tracking: false, swiped: false, x: 0, y: 0 });
   const titleId = useId();
   const descriptionId = useId();
+  const sectionRef = useRef<HTMLElement>(null);
+  const ringRef = useRef<SVGCircleElement>(null);
+  const progress = useRef(0);
+  // `playing` is the viewer's choice; `held` is a pause they did not ask for (hover, focus, off-screen)
+  const [playing, setPlaying] = useState(autoplay);
+  const holds = useRef({ hover: false, focus: false, offscreen: false });
+  const [held, setHeld] = useState(false);
+  const hold = (key: keyof typeof holds.current, on: boolean) => {
+    holds.current[key] = on;
+    setHeld(Object.values(holds.current).some(Boolean));
+  };
 
   const place = (item: HTMLElement, offset: number) => {
     const s = slot(offset);
@@ -277,6 +313,47 @@ export default function ArcCarousel({
 
   const step = useCallback((direction: number) => setPosition((p) => p + direction), []);
 
+  // Autoplay starts off for viewers who asked the system for less motion; they can still press play
+  useEffect(() => {
+    setPlaying(autoplay && !prefersReducedMotion());
+  }, [autoplay]);
+
+  // Any step, by hand or on its own, gives the new card a full interval
+  useEffect(() => {
+    progress.current = 0;
+    ringRef.current?.style.setProperty('stroke-dashoffset', '1');
+  }, [position, playing]);
+
+  // The clock: counts only while playing and not held, so a pause resumes where it left off
+  useEffect(() => {
+    if (!playing || held || count < 2) return;
+    let frame = 0;
+    let last = performance.now();
+    const tick = (now: number) => {
+      progress.current += Math.min(now - last, MAX_FRAME) / interval;
+      last = now;
+      if (progress.current >= 1) {
+        progress.current = 0;
+        step(1);
+      }
+      ringRef.current?.style.setProperty('stroke-dashoffset', String(1 - progress.current));
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [playing, held, interval, count, step]);
+
+  // Off-screen, autoplay waits
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!autoplay || !section || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver(([entry]) =>
+      hold('offscreen', !entry.isIntersecting)
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [autoplay]);
+
   // Swipe / drag: the release can happen outside the list
   useEffect(() => {
     const onUp = (event: PointerEvent) => {
@@ -333,6 +410,7 @@ export default function ArcCarousel({
 
   return (
     <section
+      ref={sectionRef}
       aria-labelledby={titleId}
       aria-describedby={description ? descriptionId : undefined}
       className={cn(
@@ -348,7 +426,7 @@ export default function ArcCarousel({
         className="pointer-events-none absolute top-[62%] left-1/2 -z-10 size-[min(120cqw,70rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--color-tween-teal)_45%,transparent),color-mix(in_oklch,var(--color-tween-teal)_10%,transparent)_55%,transparent)]"
       />
 
-      <header className="relative z-[3] flex w-full max-w-2xl flex-col items-center gap-5 px-6 text-center @max-[48rem]:gap-3">
+      <header className="relative z-3 flex w-full max-w-2xl flex-col items-center gap-5 px-6 text-center @max-[48rem]:gap-3">
         {badge && (
           <span className="border-tween-lime/30 bg-tween-lime/10 text-tween-lime inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
             <span aria-hidden="true" className="bg-tween-lime size-1.5 rounded-full" />
@@ -372,7 +450,12 @@ export default function ArcCarousel({
       </header>
 
       {/* Its own stacking context, so the cards' z-indexes stay under the edge fades */}
-      <div className="relative isolate z-[1] h-150 w-78 @max-[64rem]:h-134 @max-[48rem]:h-72.5">
+      {/* A mouse or pen resting on the cards holds autoplay; a finger lifts at once, so it never does */}
+      <div
+        className="relative isolate z-1 h-150 w-78 @max-[64rem]:h-134 @max-[48rem]:h-72.5"
+        onPointerEnter={(event) => event.pointerType !== 'touch' && hold('hover', true)}
+        onPointerLeave={() => hold('hover', false)}
+      >
         <div className="absolute inset-0 origin-[50%_0] @max-[64rem]:scale-80 @max-[48rem]:scale-62">
           <div
             ref={listRef}
@@ -387,6 +470,21 @@ export default function ArcCarousel({
             onDragStart={(event) => event.preventDefault()}
             onClickCapture={onClickCapture}
             onKeyDown={onKeyDown}
+            // Keyboard focus on the cards holds autoplay, so nothing moves while you read
+            onFocus={(event) => {
+              let visible = true;
+              try {
+                visible = event.target.matches(':focus-visible');
+              } catch {
+                // Older engines without :focus-visible: treat every focus as visible
+              }
+              if (visible) hold('focus', true);
+            }}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                hold('focus', false);
+              }
+            }}
           >
             {items.map((item, i) => {
               const offset = offsetOf(i, position, count);
@@ -504,7 +602,7 @@ export default function ArcCarousel({
         </div>
       </div>
 
-      <div className="relative z-[3] flex items-center gap-2">
+      <div className="relative z-3 flex items-center gap-2">
         <button
           className={STEP}
           type="button"
@@ -529,9 +627,43 @@ export default function ArcCarousel({
         <button className={STEP} type="button" aria-label="Next project" onClick={() => step(1)}>
           <Caret flip />
         </button>
+        {autoplay && (
+          <button
+            className={cn(STEP, 'relative ml-2')}
+            type="button"
+            aria-label={playing ? 'Pause autoplay' : 'Start autoplay'}
+            onClick={() => setPlaying((on) => !on)}
+          >
+            {playing ? <PauseIcon /> : <PlayIcon />}
+            {/* Time left on the current card */}
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 44 44"
+              className={cn(
+                'pointer-events-none absolute -inset-px -rotate-90 transition-opacity duration-300',
+                playing ? 'opacity-100' : 'opacity-0'
+              )}
+            >
+              <circle
+                ref={ringRef}
+                cx="22"
+                cy="22"
+                r="21"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                pathLength={1}
+                strokeDasharray="1"
+                strokeDashoffset="1"
+                className="text-tween-lime"
+              />
+            </svg>
+          </button>
+        )}
       </div>
 
-      <p aria-live="polite" className="sr-only">
+      {/* Quiet while it plays itself, so a screen reader is not interrupted every few seconds */}
+      <p aria-live={playing && !held ? 'off' : 'polite'} className="sr-only">
         {active ? `${current + 1} of ${count}: ${active.title}` : ''}
       </p>
 
