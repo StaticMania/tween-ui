@@ -122,6 +122,7 @@ const PLAY: Record<string, Play> = {
   layers: wave,
   blinds: wave,
   'move-right': nudge,
+  'pen-tool': nudge,
   'panel-right-open': nudge,
   'unfold-horizontal': nudge,
   'circle-arrow-right': nudge,

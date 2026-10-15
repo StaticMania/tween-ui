@@ -34,6 +34,7 @@ export const demos: Record<string, ComponentType> = {
   'morphing-text:default': dynamic(() => import('./demos/morphing-text')),
   'wordmark-reveal:scroll': dynamic(() => import('./demos/wordmark-reveal')),
   'wordmark-reveal:instant': dynamic(() => import('./demos/wordmark-reveal-instant')),
+  'svg-draw:default': dynamic(() => import('./demos/svg-draw')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process-sticky-steps')),
