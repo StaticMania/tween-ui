@@ -871,4 +871,44 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'svg-draw',
+    type: 'component',
+    addedAt: '2026-10-14',
+    title: 'SVG Draw',
+    description:
+      'Wrap any inline SVG and it draws itself in: every path, line, circle, rect and polygon traces its outline, one after another, then its fill fades in. Outline icons draw in their own stroke, filled logos are traced and then filled, and the SVG is handed back exactly as written once it settles. Plays when it scrolls into view or on mount; plain CSS transitions, no animation library.',
+    media: {},
+    dependencies: [],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/svg-draw.tsx',
+        target: 'components/tweenui/svg-draw.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/svg-draw.tsx',
+      },
+    ],
+    usage: {
+      react: `import SvgDraw from '@/components/tweenui/svg-draw';
+
+export default function Example() {
+  return (
+    <SvgDraw className="text-teal-700">
+      <svg viewBox="0 0 24 24" className="size-24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z" />
+      </svg>
+    </SvgDraw>
+  );
+}`,
+    },
+    docs: 'Wrap inline SVG markup, not an <img src="*.svg">: only shapes in the page DOM can be traced. Give it a new key to play it again.',
+  },
 ];

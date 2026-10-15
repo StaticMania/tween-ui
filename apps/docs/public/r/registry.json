@@ -560,6 +560,30 @@
       ]
     },
     {
+      "name": "svg-draw",
+      "type": "registry:ui",
+      "title": "SVG Draw",
+      "description": "Wrap any inline SVG and it draws itself in: every path, line, circle, rect and polygon traces its outline, one after another, then its fill fades in. Outline icons draw in their own stroke, filled logos are traced and then filled, and the SVG is handed back exactly as written once it settles. Plays when it scrolls into view or on mount; plain CSS transitions, no animation library.",
+      "files": [
+        {
+          "path": "components/tweenui/svg-draw.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "svg-draw-demo",
+      "type": "registry:example",
+      "title": "SVG Draw Demo",
+      "description": "Usage examples for SVG Draw.",
+      "files": [
+        {
+          "path": "examples/svg-draw-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",

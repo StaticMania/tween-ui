@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "svg-draw-demo",
+  "type": "registry:example",
+  "title": "SVG Draw Demo",
+  "description": "Usage examples for SVG Draw.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/svg-draw.json"
+  ],
+  "files": [
+    {
+      "path": "examples/svg-draw-demo.tsx",
+      "type": "registry:example",
+      "content": "import SvgDraw from '@/components/tweenui/svg-draw';\n\nexport default function HeroMark() {\n  return (\n    <SvgDraw className=\"text-teal-700\">\n      <svg\n        viewBox=\"0 0 24 24\"\n        className=\"size-24\"\n        fill=\"none\"\n        stroke=\"currentColor\"\n        strokeWidth=\"1.5\"\n      >\n        <path d=\"M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z\" />\n      </svg>\n    </SvgDraw>\n  );\n}"
+    }
+  ]
+}
