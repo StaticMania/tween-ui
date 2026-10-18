@@ -9,10 +9,9 @@ downward arc**, each one further from the centre sitting a little lower and
 **turned a little more**, three to a side. **Step** and the whole arc swings
 round: every card glides to its neighbour's slot on a slow, weighted curve,
 while the one arriving in the middle **eases up in size** and takes a **lime
-outline**. A card that wraps past the edge **keeps travelling off-screen**
-while it comes back in **from the far side**, so the loop never snaps.
-**Swipe**, **drag**, use the **arrow keys**, or **click a side card** to bring
-it to the centre. Plain CSS transitions, no animation library.
+outline**. Cards fade out past the third slot and wrap round unseen, so the
+loop never snaps. **Swipe**, **drag**, use the **arrow keys**, or **click a
+side card** to bring it to the centre. GSAP with ScrollTrigger.
 
 ::component-preview{name="arc-carousel" size="xl"}
 ::
@@ -129,10 +128,11 @@ attributes (`className`, `style`, …).
   fixed offsets from the centre, so the curve keeps its shape whatever the
   content. Below 1024px of container width the whole arc scales to 80%, and
   below 768px to 62%, so it fits a phone without relaying out.
-- **Wraps without a jump.** When a card has to move from one end of the loop
-  to the other, a copy of it carries on off the near edge and fades, while
-  the card itself is placed past the far edge and slides in. The copy is
-  removed once its move has finished.
+- **One number drives the arc.** GSAP tweens the carousel's position, and
+  every card is placed from it each frame, sliding smoothly between slots.
+  Past the third slot a card fades out, so it crosses from one end of the
+  loop to the other while invisible. With eight or more items that crossing
+  is never seen.
 - **Side cards step, the centre card opens.** A click on a side card moves
   the arc one step toward it instead of following its link, and a swipe or
   drag of more than 50px sideways steps it the other way and swallows the
@@ -148,8 +148,9 @@ attributes (`className`, `style`, …).
   nearest the centre load first and the rest lazily.
 - **Autoplay waits for you.** It holds while the mouse rests on the cards,
   while the cards have keyboard focus and while the block is off-screen, and
-  picks up where it left off. Stepping by hand gives the new card a full
-  interval. A backgrounded tab never makes it skip ahead on return.
+  picks up where it left off. The progress ring is the clock: one GSAP
+  tween that pauses and resumes. Stepping by hand gives the new card a full
+  interval.
 - **It is in place before it runs.** The first layout is written into the
   markup, so the arc renders already curved and nothing flashes into place
   on load.

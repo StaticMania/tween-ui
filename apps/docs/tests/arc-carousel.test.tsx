@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
+import gsap from 'gsap';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import ArcCarousel, { type ArcCarouselItem } from '@/registry/tweenui/arc-carousel';
 
@@ -84,13 +85,15 @@ describe('Arc Carousel', () => {
     expect(announced()).toBe('2 of 8: Ben');
   });
 
-  it('places the cards on the arc before any interaction', () => {
+  it('places the cards on the arc in the markup, before GSAP takes over', () => {
+    // With motion on, GSAP's first frame is async, so this reads the server-rendered layout
+    setReducedMotion(false);
     const { container } = render(<ArcCarousel items={ITEMS} />);
     const slides = container.querySelectorAll<HTMLElement>('[aria-roledescription="slide"]');
 
-    expect(slides[0].style.transform).toBe('translate(0px, 0px) rotate(0deg)');
-    expect(slides[1].style.transform).toBe('translate(359px, 26px) rotate(8.77deg)');
-    expect(slides[7].style.transform).toBe('translate(-359px, 26px) rotate(-8.77deg)');
+    expect(slides[0].style.transform).toBe('translate(0px, 0px) rotate(0deg) scale(1.05)');
+    expect(slides[1].style.transform).toBe('translate(359px, 26px) rotate(8.77deg) scale(1)');
+    expect(slides[7].style.transform).toBe('translate(-359px, 26px) rotate(-8.77deg) scale(1)');
     // Four out is past the last slot, so it waits off-screen
     expect(slides[4].style.opacity).toBe('0');
   });
@@ -111,15 +114,21 @@ describe('Arc Carousel', () => {
   });
 
   describe('autoplay', () => {
+    // GSAP keeps its own clock: unhook it from the ticker and step it by hand
+    let now = 0;
     beforeEach(() => {
       setReducedMotion(false);
-      vi.useFakeTimers();
+      gsap.ticker.remove(gsap.updateRoot);
+      now = gsap.ticker.time;
     });
-    afterEach(() => vi.useRealTimers());
+    afterEach(() => {
+      gsap.ticker.add(gsap.updateRoot);
+    });
 
     const wait = (ms: number) =>
       act(() => {
-        vi.advanceTimersByTime(ms);
+        now += ms / 1000;
+        gsap.updateRoot(now);
       });
 
     it('is on by default', () => {
@@ -145,6 +154,17 @@ describe('Arc Carousel', () => {
       expect(announced()).toBe('2 of 8: Ben');
       wait(2000);
       expect(announced()).toBe('3 of 8: Cleo');
+    });
+
+    it('fills the progress ring over the interval', () => {
+      const { container } = render(<ArcCarousel items={ITEMS} autoplay interval={2000} />);
+      const ring = container.querySelector('button[aria-label="Pause autoplay"] circle')!;
+      const offset = () => Number(ring.getAttribute('stroke-dashoffset'));
+
+      wait(10);
+      expect(offset()).toBeGreaterThan(0.95);
+      wait(1000);
+      expect(offset()).toBeCloseTo(0.5, 1);
     });
 
     it('keeps the announcement quiet while it plays itself', () => {

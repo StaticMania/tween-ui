@@ -4,19 +4,22 @@ import {
   useCallback,
   useEffect,
   useId,
-  useLayoutEffect,
   useRef,
   useState,
   type ComponentPropsWithoutRef,
   type KeyboardEvent,
   type MouseEvent,
 } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn } from '@/lib/utils';
+
+gsap.registerPlugin(useGSAP, CustomEase, ScrollTrigger);
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-const useIsomorphicLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
 export interface ArcCarouselItem {
   title: string;
@@ -29,6 +32,7 @@ export interface ArcCarouselItem {
 }
 
 export interface ArcCarouselProps extends ComponentPropsWithoutRef<'section'> {
+  /** Eight or more keep the wrap seamless. */
   items?: ArcCarouselItem[];
   badge?: string;
   title?: string;
@@ -48,38 +52,28 @@ const SLOTS = [
   { x: 1033, y: 243, r: 25.05 },
 ];
 const ACTIVE_SCALE = 1.05;
-const ART = 'transform 470ms cubic-bezier(0.42, 1, 0.46, 1)';
-const MOVE = 'transform 800ms cubic-bezier(0.98, 0.30, 0.30, 1), opacity 400ms ease';
+const MOVE_DURATION = 0.8;
+const MOVE_EASE = CustomEase.create('arc-move', 'M0,0 C0.98,0.3 0.3,1 1,1');
 const SWIPE = 50;
-const GHOST_LIFE = 850;
-// Caps one frame of autoplay, so a backgrounded tab never skips ahead
-const MAX_FRAME = 100;
 
+/** Where a card sits at a (fractional) distance from the centre. Past the last slot it fades out. */
 const slot = (offset: number) => {
   const t = Math.abs(offset);
   const sign = Math.sign(offset);
-  const last = SLOTS.length - 1;
-  let p = SLOTS[Math.min(t, last)];
-  if (t > last) {
-    const prev = SLOTS[last - 1];
-    const n = t - last;
-    p = { x: p.x + (p.x - prev.x) * n, y: p.y + (p.y - prev.y) * n, r: p.r + (p.r - prev.r) * n };
-  }
+  const i = Math.min(Math.floor(t), SLOTS.length - 2);
+  const a = SLOTS[i];
+  const b = SLOTS[i + 1];
+  const f = t - i;
   return {
-    transform: `translate(${p.x * sign}px, ${p.y}px) rotate(${p.r * sign}deg)`,
-    opacity: t <= last ? '1' : '0',
-    zIndex: String(100 - t),
+    x: (a.x + (b.x - a.x) * f) * sign,
+    y: a.y + (b.y - a.y) * f,
+    rotation: (a.r + (b.r - a.r) * f) * sign,
+    scale: 1 + (ACTIVE_SCALE - 1) * gsap.utils.clamp(0, 1, 1 - t),
+    opacity: gsap.utils.clamp(0, 1, SLOTS.length - t),
+    zIndex: 100 - Math.round(t * 10),
   };
 };
 
-// Signed distance from the centre, the shortest way round
-const offsetOf = (index: number, position: number, count: number) => {
-  let r = (((index - position) % count) + count) % count;
-  if (r > Math.floor(count / 2)) r -= count;
-  return r;
-};
-
-const wrap = (position: number, count: number) => ((position % count) + count) % count;
 const pad2 = (n: number) => String(n).padStart(2, '0');
 
 const photo = (id: string, width = 640) =>
@@ -207,16 +201,21 @@ export default function ArcCarousel({
   const [playing, setPlaying] = useState(autoplay);
   const [held, setHeld] = useState(false);
   const rootRef = useRef<HTMLElement>(null);
-  const ghostsRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<SVGCircleElement>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const artRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const layout = useRef({ last: 0, offsets: [] as (number | undefined)[], ghosts: [] as number[] });
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const track = useRef({ pos: 0 });
+  const clockRef = useRef<gsap.core.Tween | null>(null);
   const swipe = useRef({ tracking: false, swiped: false, x: 0, y: 0 });
   const holds = useRef({ hover: false, focus: false, offscreen: false });
-  const progress = useRef(0);
   const titleId = useId();
   const descriptionId = useId();
+
+  const current = count ? gsap.utils.wrap(0, count, position) : 0;
+  const active = items[current];
+  const offsetOf = (index: number, pos: number) =>
+    gsap.utils.wrap(-count / 2, count / 2, index - pos);
+
+  const step = useCallback((direction: number) => setPosition((p) => p + direction), []);
 
   // `playing` is the viewer's choice; a hold is a pause they did not ask for
   const hold = useCallback((key: keyof typeof holds.current, on: boolean) => {
@@ -224,119 +223,67 @@ export default function ArcCarousel({
     setHeld(Object.values(holds.current).some(Boolean));
   }, []);
 
-  const place = (item: HTMLElement, offset: number) => {
-    const s = slot(offset);
-    item.style.transform = s.transform;
-    item.style.opacity = s.opacity;
-    item.style.zIndex = s.zIndex;
-    item.style.pointerEvents = s.opacity === '1' ? '' : 'none';
-  };
+  // Every card is placed from one number, so a step is a single tween and the wrap needs no copies
+  useGSAP(
+    () => {
+      const cards = cardRefs.current.filter((card): card is HTMLDivElement => card !== null);
+      const render = () =>
+        cards.forEach((card, i) => {
+          const s = slot(offsetOf(i, track.current.pos));
+          gsap.set(card, { ...s, pointerEvents: s.opacity > 0.5 ? 'auto' : 'none' });
+        });
 
-  useIsomorphicLayoutEffect(() => {
-    const ghosts = ghostsRef.current;
-    if (!ghosts || !count) return;
-    const reduced = prefersReducedMotion();
-    const move = reduced ? 'opacity 0.3s ease' : MOVE;
-    const art = reduced ? 'none' : ART;
-    const st = layout.current;
-    const animate = st.offsets.length > 0;
-    const delta = animate ? position - st.last : 0;
-    st.last = position;
-
-    itemRefs.current.forEach((item, i) => {
-      if (!item) return;
-      const next = offsetOf(i, position, count);
-      const prev = st.offsets[i];
-
-      const scaleEl = artRefs.current[i];
-      if (scaleEl) {
-        const scale = next === 0 && !reduced ? `scale(${ACTIVE_SCALE})` : 'scale(1)';
-        scaleEl.style.transition = animate ? art : 'none';
-        scaleEl.style.transform = scale;
-        if (!animate) {
-          void scaleEl.offsetWidth;
-          scaleEl.style.transition = art;
-        }
-      }
-
-      if (!animate || prev === undefined) {
-        item.style.transition = 'none';
-        place(item, next);
-      } else if (prev - delta !== next) {
-        // Wrapped round: a copy carries on off this edge while the card enters from the other
-        const last = SLOTS.length - 1;
-        const entry = delta > 0 ? Math.max(next + 1, last + 1) : Math.min(next - 1, -(last + 1));
-        const ghost = item.cloneNode(true) as HTMLElement;
-        ghost.setAttribute('aria-hidden', 'true');
-        ghost.inert = true;
-        ghost.style.pointerEvents = 'none';
-        ghost.style.transition = 'none';
-        ghosts.appendChild(ghost);
-        const out = slot(prev - delta);
-        void ghost.offsetWidth;
-        ghost.style.transition = move;
-        ghost.style.transform = out.transform;
-        ghost.style.opacity = '0';
-        st.ghosts.push(window.setTimeout(() => ghost.remove(), GHOST_LIFE));
-
-        item.style.transition = 'none';
-        place(item, entry);
-        item.style.opacity = '0';
-        void item.offsetWidth;
-        item.style.transition = move;
-        place(item, next);
-      } else {
-        item.style.transition = move;
-        place(item, next);
-      }
-      st.offsets[i] = next;
-    });
-  }, [position, count]);
-
-  useEffect(() => {
-    const { ghosts } = layout.current;
-    return () => ghosts.forEach((id) => window.clearTimeout(id));
-  }, []);
-
-  const step = useCallback((direction: number) => setPosition((p) => p + direction), []);
+      gsap.to(track.current, {
+        pos: position,
+        duration: prefersReducedMotion() ? 0 : MOVE_DURATION,
+        ease: MOVE_EASE,
+        overwrite: true,
+        onUpdate: render,
+      });
+    },
+    { scope: rootRef, dependencies: [position, count] }
+  );
 
   // The media query is client-only, so reduced motion applies after hydration
   useEffect(() => {
     setPlaying(autoplay && !prefersReducedMotion());
   }, [autoplay]);
 
-  useEffect(() => {
-    progress.current = 0;
-    ringRef.current?.style.setProperty('stroke-dashoffset', '1');
-  }, [position, playing]);
+  // The clock is the progress ring: it fills over `interval`, then steps. Any step restarts it
+  useGSAP(
+    () => {
+      const ring = ringRef.current;
+      if (!ring || !playing || count < 2) return;
+      clockRef.current = gsap.fromTo(
+        ring,
+        // The attribute, not the CSS property, so the dash stays in `pathLength` units
+        { attr: { 'stroke-dashoffset': 1 } },
+        {
+          attr: { 'stroke-dashoffset': 0 },
+          duration: interval / 1000,
+          ease: 'none',
+          onComplete: () => step(1),
+        }
+      );
+    },
+    { scope: rootRef, dependencies: [playing, position, interval, count], revertOnUpdate: true }
+  );
 
   useEffect(() => {
-    if (!playing || held || count < 2) return;
-    let frame = 0;
-    let last = performance.now();
-    const tick = (now: number) => {
-      progress.current += Math.min(now - last, MAX_FRAME) / interval;
-      last = now;
-      if (progress.current >= 1) {
-        progress.current = 0;
-        step(1);
-      }
-      ringRef.current?.style.setProperty('stroke-dashoffset', String(1 - progress.current));
-      frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [playing, held, interval, count, step]);
+    if (held) clockRef.current?.pause();
+    else clockRef.current?.resume();
+  }, [held, position, playing]);
 
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!autoplay || !root || typeof IntersectionObserver === 'undefined') return;
-    const observer = new IntersectionObserver(([entry]) =>
-      hold('offscreen', !entry.isIntersecting)
-    );
-    observer.observe(root);
-    return () => observer.disconnect();
-  }, [autoplay, hold]);
+  useGSAP(
+    () => {
+      if (!autoplay) return;
+      ScrollTrigger.create({
+        trigger: rootRef.current,
+        onToggle: (self) => hold('offscreen', !self.isActive),
+      });
+    },
+    { scope: rootRef, dependencies: [autoplay, hold] }
+  );
 
   // A swipe can end outside the list
   useEffect(() => {
@@ -345,8 +292,7 @@ export default function ArcCarousel({
       if (!s.tracking) return;
       s.tracking = false;
       const dx = event.clientX - s.x;
-      const dy = event.clientY - s.y;
-      if (Math.abs(dx) > SWIPE && Math.abs(dx) > Math.abs(dy)) {
+      if (Math.abs(dx) > SWIPE && Math.abs(dx) > Math.abs(event.clientY - s.y)) {
         s.swiped = true;
         step(dx < 0 ? 1 : -1);
       }
@@ -364,17 +310,15 @@ export default function ArcCarousel({
 
   // After a swipe, or on a side card, a click steps the arc instead of following the card's link
   const onClickCapture = (event: MouseEvent<HTMLDivElement>) => {
-    const s = swipe.current;
-    if (s.swiped) {
-      s.swiped = false;
+    if (swipe.current.swiped) {
+      swipe.current.swiped = false;
       event.preventDefault();
       event.stopPropagation();
       return;
     }
     if (event.detail === 0) return;
-    const index = itemRefs.current.findIndex((item) => item?.contains(event.target as Node));
-    if (index < 0) return;
-    const offset = offsetOf(index, position, count);
+    const index = cardRefs.current.findIndex((card) => card?.contains(event.target as Node));
+    const offset = index < 0 ? 0 : Math.round(offsetOf(index, position));
     if (offset !== 0) {
       event.preventDefault();
       event.stopPropagation();
@@ -387,9 +331,6 @@ export default function ArcCarousel({
     event.preventDefault();
     step(event.key === 'ArrowRight' ? 1 : -1);
   };
-
-  const current = count ? wrap(position, count) : 0;
-  const active = items[current];
 
   return (
     <section
@@ -466,16 +407,15 @@ export default function ArcCarousel({
             }}
           >
             {items.map((item, i) => {
-              const offset = offsetOf(i, position, count);
-              const isActive = offset === 0;
+              const isActive = i === current;
               const Card = item.href ? 'a' : 'div';
               // Also set in markup, so the arc is in place before hydration
-              const first = slot(offsetOf(i, 0, count));
+              const first = slot(offsetOf(i, 0));
               return (
                 <div
                   key={`${item.title}-${i}`}
                   ref={(el) => {
-                    itemRefs.current[i] = el;
+                    cardRefs.current[i] = el;
                   }}
                   role="group"
                   aria-roledescription="slide"
@@ -484,101 +424,88 @@ export default function ArcCarousel({
                   data-active={isActive ? '' : undefined}
                   className="group/card absolute top-0 left-0 h-107.5 w-78 will-change-transform"
                   style={{
-                    transform: first.transform,
+                    transform: `translate(${first.x}px, ${first.y}px) rotate(${first.rotation}deg) scale(${first.scale})`,
                     opacity: first.opacity,
                     zIndex: first.zIndex,
                   }}
                 >
-                  <div
-                    ref={(el) => {
-                      artRefs.current[i] = el;
-                    }}
-                    className="size-full origin-center"
+                  <Card
+                    {...(item.href ? { href: item.href } : {})}
+                    tabIndex={item.href && isActive ? 0 : -1}
+                    draggable={false}
+                    className={cn(
+                      'bg-tween-ink relative block size-full overflow-hidden rounded-[8px]',
+                      'shadow-[0_30px_60px_-24px_rgb(0_0_0/0.75)]',
+                      'focus-visible:outline-tween-lime focus-visible:outline-2 focus-visible:outline-offset-4'
+                    )}
                   >
-                    <Card
-                      {...(item.href ? { href: item.href } : {})}
-                      tabIndex={item.href && isActive ? 0 : -1}
+                    <img
+                      src={item.image}
+                      srcSet={srcSetOf(item.image)}
+                      alt=""
+                      width={312}
+                      height={430}
                       draggable={false}
-                      className={cn(
-                        'bg-tween-ink relative block size-full overflow-hidden rounded-[8px]',
-                        'shadow-[0_30px_60px_-24px_rgb(0_0_0/0.75)]',
-                        'focus-visible:outline-tween-lime focus-visible:outline-2 focus-visible:outline-offset-4'
+                      decoding="async"
+                      loading={Math.abs(offsetOf(i, 0)) <= 2 ? 'eager' : 'lazy'}
+                      className="absolute inset-0 size-full object-cover"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="bg-tween-ink-deep/40 ease-tween absolute inset-0 transition-opacity duration-500 group-data-active/card:opacity-0 motion-reduce:transition-none"
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="from-tween-ink-deep via-tween-ink-deep/60 absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t to-transparent"
+                    />
+
+                    <span className="absolute inset-x-4 top-4 flex items-center justify-between gap-3">
+                      {item.tag ? (
+                        <span className="bg-tween-ink-deep/70 truncate rounded-full px-3 py-1.5 text-[11px] leading-none font-medium tracking-[0.12em] text-white uppercase ring-1 ring-white/10">
+                          {item.tag}
+                        </span>
+                      ) : (
+                        <span />
                       )}
-                    >
-                      <img
-                        src={item.image}
-                        srcSet={srcSetOf(item.image)}
-                        alt=""
-                        width={312}
-                        height={430}
-                        draggable={false}
-                        decoding="async"
-                        loading={Math.abs(offsetOf(i, 0, count)) <= 2 ? 'eager' : 'lazy'}
-                        className="absolute inset-0 size-full object-cover"
-                      />
-
-                      <span
-                        aria-hidden="true"
-                        className="bg-tween-ink-deep/40 ease-tween absolute inset-0 transition-opacity duration-500 group-data-active/card:opacity-0 motion-reduce:transition-none"
-                      />
-                      <span
-                        aria-hidden="true"
-                        className="from-tween-ink-deep via-tween-ink-deep/60 absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t to-transparent"
-                      />
-
-                      <span className="absolute inset-x-4 top-4 flex items-center justify-between gap-3">
-                        {item.tag ? (
-                          <span className="bg-tween-ink-deep/70 truncate rounded-full px-3 py-1.5 text-[11px] leading-none font-medium tracking-[0.12em] text-white uppercase ring-1 ring-white/10">
-                            {item.tag}
-                          </span>
-                        ) : (
-                          <span />
-                        )}
-                        <span className="shrink-0 text-xs font-medium text-white/70 tabular-nums">
-                          {pad2(i + 1)}
-                          <span className="text-white/35"> / {pad2(count)}</span>
-                        </span>
+                      <span className="shrink-0 text-xs font-medium text-white/70 tabular-nums">
+                        {pad2(i + 1)}
+                        <span className="text-white/35"> / {pad2(count)}</span>
                       </span>
+                    </span>
 
-                      <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5">
-                        <span className="grid min-w-0 gap-1.5">
-                          <span className="truncate text-[22px] leading-tight font-semibold tracking-[-0.025em] text-white">
-                            {item.title}
+                    <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5">
+                      <span className="grid min-w-0 gap-1.5">
+                        <span className="truncate text-[22px] leading-tight font-semibold tracking-[-0.025em] text-white">
+                          {item.title}
+                        </span>
+                        {item.meta && (
+                          <span className="text-tween-teal-soft/80 truncate text-sm">
+                            {item.meta}
                           </span>
-                          {item.meta && (
-                            <span className="text-tween-teal-soft/80 truncate text-sm">
-                              {item.meta}
-                            </span>
+                        )}
+                      </span>
+                      {item.href && (
+                        <span
+                          aria-hidden="true"
+                          className={cn(
+                            'grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-white ring-1 ring-white/20',
+                            'ease-tween transition-[background-color,color,box-shadow] duration-500 motion-reduce:transition-none',
+                            'group-data-active/card:bg-tween-lime group-data-active/card:text-tween-ink-deep group-data-active/card:ring-transparent'
                           )}
+                        >
+                          <ArrowUpRight className="ease-tween size-4 transition-transform duration-300 group-hover/card:rotate-45 motion-reduce:transition-none" />
                         </span>
-                        {item.href && (
-                          <span
-                            aria-hidden="true"
-                            className={cn(
-                              'grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-white ring-1 ring-white/20',
-                              'ease-tween transition-[background-color,color,box-shadow] duration-500 motion-reduce:transition-none',
-                              'group-data-active/card:bg-tween-lime group-data-active/card:text-tween-ink-deep group-data-active/card:ring-transparent'
-                            )}
-                          >
-                            <ArrowUpRight className="ease-tween size-4 transition-transform duration-300 group-hover/card:rotate-45 motion-reduce:transition-none" />
-                          </span>
-                        )}
-                      </span>
+                      )}
+                    </span>
 
-                      <span
-                        aria-hidden="true"
-                        className="ease-tween group-data-active/card:ring-tween-lime/80 pointer-events-none absolute inset-0 rounded-[8px] ring-1 ring-white/10 transition-shadow duration-500 ring-inset group-data-active/card:ring-2 motion-reduce:transition-none"
-                      />
-                    </Card>
-                  </div>
+                    <span
+                      aria-hidden="true"
+                      className="ease-tween group-data-active/card:ring-tween-lime/80 pointer-events-none absolute inset-0 rounded-[8px] ring-1 ring-white/10 transition-shadow duration-500 ring-inset group-data-active/card:ring-2 motion-reduce:transition-none"
+                    />
+                  </Card>
                 </div>
               );
             })}
-            <div
-              ref={ghostsRef}
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0"
-            />
           </div>
         </div>
       </div>

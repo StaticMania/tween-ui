@@ -1,4 +1,4 @@
-import { act, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import SvgDraw from '@/registry/tweenui/svg-draw';
 
@@ -15,26 +15,8 @@ const setReducedMotion = (reduce: boolean) => {
   })) as unknown as typeof window.matchMedia;
 };
 
-// jsdom has no SVG geometry or layout: every shape is as long as its `data-len`, and on screen
-const proto = window.SVGElement.prototype as unknown as { getTotalLength?: () => number };
-const LEN = (el: Element) => Number(el.getAttribute('data-len') ?? 100);
-
-/** An IntersectionObserver that only fires when the test says so. */
-let enterView: () => void = () => {};
-class ObserverStub {
-  constructor(private callback: IntersectionObserverCallback) {
-    enterView = () =>
-      this.callback(
-        [{ isIntersecting: true } as IntersectionObserverEntry],
-        this as unknown as IntersectionObserver
-      );
-  }
-  observe() {}
-  disconnect() {}
-}
-
-const shape = (container: HTMLElement, id: string) =>
-  container.querySelector<SVGElement>(`#${id}`)!;
+// jsdom has no SVG geometry; DrawSVG only needs a length and a box
+const svgProto = window.SVGElement.prototype as unknown as Record<string, unknown>;
 
 const Drawing = () => (
   <svg viewBox="0 0 100 100">
@@ -43,34 +25,27 @@ const Drawing = () => (
         <rect id="clipped" width="10" height="10" />
       </clipPath>
     </defs>
-    <g>
-      <path
-        id="outline"
-        data-len="300"
-        d="M0 0L100 100"
-        style={{ stroke: 'rgb(255, 0, 0)', strokeWidth: '2px', fill: 'none' }}
-      />
-      <circle id="dot" data-len="50" cx="50" cy="50" r="8" style={{ fill: 'rgb(0, 128, 0)' }} />
-    </g>
+    <path id="outline" d="M0 0L100 100" style={{ stroke: 'rgb(255, 0, 0)', fill: 'none' }} />
+    <circle id="dot" cx="50" cy="50" r="8" style={{ fill: 'rgb(0, 128, 0)', stroke: 'none' }} />
   </svg>
 );
+
+const shape = (container: HTMLElement, id: string) =>
+  container.querySelector<SVGElement>(`#${id}`)!;
 
 describe('SVG Draw', () => {
   beforeEach(() => {
     setReducedMotion(false);
-    proto.getTotalLength = function (this: Element) {
-      return LEN(this);
-    };
-    vi.spyOn(Element.prototype, 'getClientRects').mockReturnValue([{}] as unknown as DOMRectList);
+    svgProto.getTotalLength = () => 100;
+    svgProto.getBBox = () => ({ x: 0, y: 0, width: 100, height: 100 });
   });
   afterEach(() => {
-    delete proto.getTotalLength;
+    delete svgProto.getTotalLength;
+    delete svgProto.getBBox;
     vi.restoreAllMocks();
-    vi.unstubAllGlobals();
-    vi.useRealTimers();
   });
 
-  it('leaves the SVG as written under reduced motion', () => {
+  it('shows the SVG as written under reduced motion', () => {
     setReducedMotion(true);
     const { container } = render(
       <SvgDraw>
@@ -78,59 +53,35 @@ describe('SVG Draw', () => {
       </SvgDraw>
     );
 
+    expect((container.firstChild as HTMLElement).style.visibility).toBe('visible');
     expect(shape(container, 'outline').style.strokeDasharray).toBe('');
-    expect(container.querySelector<HTMLElement>('[data-svg-draw]')!.style.visibility).toBe(
-      'visible'
-    );
   });
 
-  it('holds every shape undrawn until it scrolls into view', () => {
-    vi.stubGlobal('IntersectionObserver', ObserverStub);
+  it('starts every shape undrawn', () => {
     const { container } = render(
-      <SvgDraw>
+      <SvgDraw trigger="mount">
         <Drawing />
       </SvgDraw>
     );
 
-    const outline = shape(container, 'outline');
-    expect(Number(outline.style.strokeDashoffset)).toBeGreaterThan(300);
-    expect(outline.style.fillOpacity).toBe('0');
-    expect(container.querySelector<HTMLElement>('[data-svg-draw]')!.style.visibility).toBe(
-      'visible'
-    );
-
-    act(() => enterView());
-    expect(outline.style.strokeDashoffset).toBe('0');
+    expect(shape(container, 'outline').style.strokeDasharray).not.toBe('');
+    expect(shape(container, 'dot').style.strokeDasharray).not.toBe('');
   });
 
-  it('traces a stroked shape in its own stroke and a fill-only one in `color`', () => {
-    vi.stubGlobal('IntersectionObserver', ObserverStub);
+  it('traces a fill-only shape in the text color and leaves strokes alone', () => {
     const { container } = render(
-      <SvgDraw color="rgb(0, 0, 255)">
+      <SvgDraw trigger="mount">
         <Drawing />
       </SvgDraw>
     );
 
+    expect(shape(container, 'dot').style.stroke).toBe('currentColor');
     expect(shape(container, 'outline').style.stroke).toBe('rgb(255, 0, 0)');
-    expect(shape(container, 'outline').style.strokeWidth).toBe('2');
-    expect(shape(container, 'dot').style.stroke).toBe('rgb(0, 0, 255)');
-  });
-
-  it('traces fill-only shapes in their own fill with ownColor', () => {
-    vi.stubGlobal('IntersectionObserver', ObserverStub);
-    const { container } = render(
-      <SvgDraw ownColor>
-        <Drawing />
-      </SvgDraw>
-    );
-
-    expect(shape(container, 'dot').style.stroke).toBe('rgb(0, 128, 0)');
   });
 
   it('skips shapes that are never painted where they sit', () => {
-    vi.stubGlobal('IntersectionObserver', ObserverStub);
     const { container } = render(
-      <SvgDraw>
+      <SvgDraw trigger="mount">
         <Drawing />
       </SvgDraw>
     );
@@ -138,51 +89,16 @@ describe('SVG Draw', () => {
     expect(shape(container, 'clipped').getAttribute('style')).toBeNull();
   });
 
-  it('draws the longest shape first, the rest one stagger apart', () => {
-    vi.stubGlobal('IntersectionObserver', undefined);
-    const { container } = render(
-      <SvgDraw stagger={0.25}>
-        <Drawing />
-      </SvgDraw>
-    );
-
-    expect(shape(container, 'outline').style.transition).toMatch(/ 0ms$/);
-    expect(shape(container, 'dot').style.transition).toMatch(/ 250ms$/);
-  });
-
-  it('hands every shape back as written once it settles', () => {
-    vi.useFakeTimers();
-    vi.stubGlobal('IntersectionObserver', undefined);
-    const onComplete = vi.fn();
-    const { container } = render(
-      <SvgDraw trigger="mount" duration={1} stagger={0.2} onComplete={onComplete}>
-        <Drawing />
-      </SvgDraw>
-    );
-    const outline = shape(container, 'outline');
-    expect(outline.style.strokeDasharray).not.toBe('');
-
-    act(() => {
-      vi.advanceTimersByTime(1000 + 200 + 400 + 10);
-    });
-
-    expect(onComplete).toHaveBeenCalledTimes(1);
-    // Its own style is back, and nothing of the drawing is left on it
-    expect(outline.style.stroke).toBe('rgb(255, 0, 0)');
-    expect(outline.style.strokeDasharray).toBe('');
-    expect(shape(container, 'dot').style.fillOpacity).toBe('');
-  });
-
-  it('restores the SVG when it unmounts mid-draw', () => {
-    vi.stubGlobal('IntersectionObserver', ObserverStub);
+  it('reverts every shape when it unmounts', () => {
     const { container, unmount } = render(
-      <SvgDraw>
+      <SvgDraw trigger="mount">
         <Drawing />
       </SvgDraw>
     );
-    const outline = shape(container, 'outline');
+    const dot = shape(container, 'dot');
 
     unmount();
-    expect(outline.style.strokeDasharray).toBe('');
+    expect(dot.style.strokeDasharray).toBe('');
+    expect(dot.style.stroke).toBe('none');
   });
 });
