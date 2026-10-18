@@ -14,31 +14,88 @@ const prefersReducedMotion = () =>
 
 const ROW = 'group relative z-[1] flex w-full items-center gap-1.5 px-2.5 py-1.5 text-sm';
 
-type RowState = {
-  hovered: string | null;
-  setHovered: (href: string | null) => void;
-};
+/** Called when a row gains hover or focus, so the pill can glide to it. */
+type OnRowEnter = (href: string) => void;
+
+/**
+ * One link row. It owns its own hover flag, so entering a row re-renders that
+ * row and the one just left, not all sixty. The pill is moved imperatively
+ * through `onEnter` and never goes through React state.
+ */
+function NavRow({
+  item,
+  isActive,
+  onEnter,
+  onNavigate,
+}: Readonly<{
+  item: TweenNavItem & { href: string };
+  isActive: boolean;
+  onEnter: OnRowEnter;
+  onNavigate?: () => void;
+}>) {
+  const [hovered, setHovered] = useState(false);
+
+  const enter = () => {
+    setHovered(true);
+    onEnter(item.href);
+  };
+
+  return (
+    <Link
+      href={item.href}
+      data-nav-row={item.href}
+      onClick={onNavigate}
+      onMouseEnter={enter}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={enter}
+      onBlur={() => setHovered(false)}
+      aria-current={isActive ? 'page' : undefined}
+      className={cn(
+        ROW,
+        'rounded-md',
+        isActive
+          ? 'text-primary font-medium'
+          : 'text-muted-foreground hover:text-highlighted transition-colors'
+      )}
+    >
+      {item.icon && (
+        <AnimatedIcon
+          name={item.icon}
+          hovered={hovered}
+          className={
+            isActive ? 'text-primary' : 'text-dimmed group-hover:text-foreground transition-colors'
+          }
+        />
+      )}
+      <span className="truncate">{item.label}</span>
+      {item.isNew && (
+        <span className="border-tween-accent/30 bg-tween-accent/10 text-tween-accent ms-auto shrink-0 rounded-full border px-1.5 py-px text-[9px] leading-[14px] font-semibold tracking-wide uppercase">
+          New
+        </span>
+      )}
+    </Link>
+  );
+}
 
 function NavTree({
   items,
   level,
+  pathname,
+  onEnter,
   onNavigate,
-  rows,
 }: Readonly<{
   items: TweenNavItem[];
   level: number;
+  pathname: string;
+  onEnter: OnRowEnter;
   onNavigate?: () => void;
-  rows: RowState;
 }>) {
-  const pathname = usePathname();
   const nested = level > 0;
 
   return (
     <ul className={cn('isolate', nested ? 'border-border ms-5 border-s' : '-mx-2.5 -mt-1.5')}>
       {items.map((item) => {
-        const isActive = item.href !== undefined && item.href === pathname;
         const hasChildren = Boolean(item.children && item.children.length > 0);
-        const isHovered = item.href !== undefined && item.href === rows.hovered;
 
         return (
           <li
@@ -46,39 +103,12 @@ function NavTree({
             className={cn(nested && '-ms-px ps-1.5', hasChildren && 'mb-1.5 flex flex-col')}
           >
             {item.href ? (
-              <Link
-                href={item.href}
-                data-nav-row={item.href}
-                onClick={onNavigate}
-                onMouseEnter={() => rows.setHovered(item.href!)}
-                onFocus={() => rows.setHovered(item.href!)}
-                aria-current={isActive ? 'page' : undefined}
-                className={cn(
-                  ROW,
-                  'rounded-md',
-                  isActive
-                    ? 'text-primary font-medium'
-                    : 'text-muted-foreground hover:text-highlighted transition-colors'
-                )}
-              >
-                {item.icon && (
-                  <AnimatedIcon
-                    name={item.icon}
-                    hovered={isHovered}
-                    className={
-                      isActive
-                        ? 'text-primary'
-                        : 'text-dimmed group-hover:text-foreground transition-colors'
-                    }
-                  />
-                )}
-                <span className="truncate">{item.label}</span>
-                {item.isNew && (
-                  <span className="border-tween-accent/30 bg-tween-accent/10 text-tween-accent ms-auto shrink-0 rounded-full border px-1.5 py-px text-[9px] leading-[14px] font-semibold tracking-wide uppercase">
-                    New
-                  </span>
-                )}
-              </Link>
+              <NavRow
+                item={item as TweenNavItem & { href: string }}
+                isActive={item.href === pathname}
+                onEnter={onEnter}
+                onNavigate={onNavigate}
+              />
             ) : (
               <span className={cn(ROW, 'text-highlighted font-semibold')}>
                 {item.icon && (
@@ -92,8 +122,9 @@ function NavTree({
               <NavTree
                 items={item.children!}
                 level={level + 1}
+                pathname={pathname}
+                onEnter={onEnter}
                 onNavigate={onNavigate}
-                rows={rows}
               />
             )}
           </li>
@@ -113,13 +144,16 @@ export type SidebarNavProps = Readonly<{
  * Docora's SidebarNav plus a single highlight pill that follows the pointer and
  * settles back on the active row. `DocsLayout` has no sidebar slot, so this
  * ships alongside `DocsShell` rather than as a prop.
+ *
+ * The hovered row lives in a ref, not state: the pill is moved with GSAP, so
+ * nothing on screen needs React to re-render when the pointer changes rows.
  */
 export function SidebarNav({ items, onNavigate, className }: SidebarNavProps) {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   const pillRef = useRef<HTMLSpanElement>(null);
   const placed = useRef(false);
-  const [hovered, setHovered] = useState<string | null>(null);
+  const hoveredRef = useRef<string | null>(null);
 
   /** Park the pill on `href`, or fade it out when that row isn't rendered. */
   const move = useCallback((href: string | null, animate: boolean) => {
@@ -152,18 +186,31 @@ export function SidebarNav({ items, onNavigate, className }: SidebarNavProps) {
     }
   }, []);
 
-  // Hover wins; on mouse-out `hovered` clears and the pill returns to the
-  // active row. Clicking navigates, `pathname` changes, and it stays put.
-  useEffect(() => {
-    move(hovered ?? pathname, placed.current);
-    placed.current = true;
-  }, [hovered, pathname, items, move]);
+  const onEnter = useCallback<OnRowEnter>(
+    (href) => {
+      hoveredRef.current = href;
+      move(href, true);
+    },
+    [move]
+  );
+
+  // Hover wins; on mouse-out the pill returns to the active row. Clicking
+  // navigates, `pathname` changes, and it stays put.
+  const release = () => {
+    hoveredRef.current = null;
+    move(pathname, true);
+  };
 
   useEffect(() => {
-    const onResize = () => move(hovered ?? pathname, false);
+    move(hoveredRef.current ?? pathname, placed.current);
+    placed.current = true;
+  }, [pathname, items, move]);
+
+  useEffect(() => {
+    const onResize = () => move(hoveredRef.current ?? pathname, false);
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
-  }, [hovered, pathname, move]);
+  }, [pathname, move]);
 
   if (items.length === 0) return null;
 
@@ -171,8 +218,10 @@ export function SidebarNav({ items, onNavigate, className }: SidebarNavProps) {
     <nav
       ref={navRef}
       aria-label="Documentation"
-      onMouseLeave={() => setHovered(null)}
-      onBlur={() => setHovered(null)}
+      onMouseLeave={release}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) release();
+      }}
       className={cn('relative', className)}
     >
       <span
@@ -180,7 +229,13 @@ export function SidebarNav({ items, onNavigate, className }: SidebarNavProps) {
         aria-hidden
         className="nav-pill pointer-events-none absolute top-0 left-0 z-0 rounded-md opacity-0"
       />
-      <NavTree items={items} level={0} onNavigate={onNavigate} rows={{ hovered, setHovered }} />
+      <NavTree
+        items={items}
+        level={0}
+        pathname={pathname}
+        onEnter={onEnter}
+        onNavigate={onNavigate}
+      />
     </nav>
   );
 }
