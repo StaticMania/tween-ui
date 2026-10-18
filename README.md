@@ -34,8 +34,8 @@ set up. A component that needs `@theme` tokens ships them with itself.
 drive the sequenced work. Anything a CSS transition can handle stays a CSS
 transition — several components pull in no animation library at all.
 
-**Reduced motion in every component.** All 36 respect
-`prefers-reduced-motion` — 29 check it in JavaScript and skip the timeline
+**Reduced motion in every component.** All 58 respect
+`prefers-reduced-motion` — 48 check it in JavaScript and skip the timeline
 entirely, the rest handle it in CSS — and each one renders its finished state
 rather than animating. It was in from the first component, not patched in after
 someone filed an issue.
@@ -75,13 +75,15 @@ an accessibility note describing exactly what happens under reduced motion.
 
 ## What's inside
 
-**16 components** — buttons (icon trail, shiny, text roll, slide arrow, glow),
-sliding tabs, FAQ accordion, flip card, auth modal, number counter, avatar
-reveal, voice sample player, image fan slider, and three logo treatments
-(orbit, cycle, wave).
+**24 components** — buttons (icon trail, shiny, text roll, slide arrow, glow,
+magnetic, dot bloom, arrow tile, focus frame, slant morph), sliding tabs, FAQ
+accordion, flip card, auth modal, number counter, avatar reveal, voice sample
+player, image fan slider, morphing text, wordmark reveal, SVG draw, and three
+logo treatments (orbit, cycle, wave).
 
-**20 blocks** — heroes, pricing sections, testimonial sliders, process steps,
-CTAs, team collages, project grids and integration diagrams. Blocks are
+**34 blocks** — navbars, footers, loaders, pricing sections, testimonial
+sliders, process steps, CTAs, carousels and galleries, card grids, team
+collages, logo walls and an integration diagram. Blocks are
 page-level sections; some are built from the components above.
 
 Browse them all at **[tween-ui.vercel.app/components](https://tween-ui.vercel.app/components)**.
