@@ -2,6 +2,8 @@
 
 import GlowButton from '@/registry/tweenui/glow-button';
 
-export default function GlowButtonDemo() {
+const GlowButtonDemo = () => {
   return <GlowButton>Get started</GlowButton>;
-}
+};
+
+export default GlowButtonDemo;

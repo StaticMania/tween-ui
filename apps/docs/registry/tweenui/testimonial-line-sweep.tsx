@@ -15,7 +15,13 @@ const prefersReducedMotion = () =>
 const CLIP_CLOSED = 'circle(0% at 50% 50%)';
 const CLIP_OPEN = 'circle(80% at 50% 50%)';
 
-function ArrowIcon({ direction, className }: { direction: 'left' | 'right'; className?: string }) {
+const ArrowIcon = ({
+  direction,
+  className,
+}: {
+  direction: 'left' | 'right';
+  className?: string;
+}) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none">
       <path
@@ -27,9 +33,9 @@ function ArrowIcon({ direction, className }: { direction: 'left' | 'right'; clas
       />
     </svg>
   );
-}
+};
 
-function StarIcon({ className }: { className?: string }) {
+const StarIcon = ({ className }: { className?: string }) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path
@@ -38,7 +44,7 @@ function StarIcon({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
 
 export interface TestimonialLineSweepItem {
   /** Quote text before the highlighted clause. */
@@ -111,13 +117,13 @@ const DEFAULT_ITEMS: TestimonialLineSweepItem[] = [
   },
 ];
 
-export default function TestimonialLineSweep({
+const TestimonialLineSweep = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   items = DEFAULT_ITEMS,
   className,
   ...props
-}: TestimonialLineSweepProps) {
+}: TestimonialLineSweepProps) => {
   const rootRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -446,4 +452,6 @@ export default function TestimonialLineSweep({
       </div>
     </section>
   );
-}
+};
+
+export default TestimonialLineSweep;

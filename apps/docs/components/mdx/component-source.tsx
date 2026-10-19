@@ -12,7 +12,7 @@ import { plainSnippet } from './snippet';
  * Manual install — numbered steps: dependencies → registry dependencies →
  * copy the single-file source (React / tokens).
  */
-export function ComponentSource({ name }: { name: string }) {
+export const ComponentSource = ({ name }: { name: string }) => {
   const entry = getEntry(name);
   const generated = manual[name];
   const css = cssTokens[name];
@@ -146,6 +146,6 @@ export function ComponentSource({ name }: { name: string }) {
       ))}
     </ol>
   );
-}
+};
 
 export default ComponentSource;

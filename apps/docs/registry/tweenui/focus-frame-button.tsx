@@ -8,7 +8,7 @@ export interface FocusFrameButtonProps extends ComponentPropsWithRef<'button'> {
 const roll =
   'block transition-transform duration-600 ease-(--expo) group-hover:-translate-y-full group-focus-visible:-translate-y-full motion-reduce:transition-none';
 
-function RollLabel({ children }: { children: string }) {
+const RollLabel = ({ children }: { children: string }) => {
   return (
     <span className="relative block h-5 overflow-hidden leading-5">
       <span className={roll}>{children}</span>
@@ -17,9 +17,9 @@ function RollLabel({ children }: { children: string }) {
       </span>
     </span>
   );
-}
+};
 
-function ReturnArrow({ className }: { className?: string }) {
+const ReturnArrow = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox="0 0 20 20"
@@ -34,7 +34,7 @@ function ReturnArrow({ className }: { className?: string }) {
       <path d="M3 3.5v4.57a4 4 0 0 0 4 4h10m-4.43-4.43L17 12.07l-4.43 4.43" />
     </svg>
   );
-}
+};
 
 const slide =
   '-translate-x-full transition-transform duration-600 ease-(--expo) group-hover:translate-x-0 group-focus-visible:translate-x-0 motion-reduce:transition-none';
@@ -63,12 +63,12 @@ const corners = [
   'right-0 bottom-0 border-r-[1.5px] border-b-[1.5px] group-hover:-translate-1 group-focus-visible:-translate-1',
 ];
 
-export default function FocusFrameButton({
+const FocusFrameButton = ({
   children,
   className,
   type = 'button',
   ...props
-}: FocusFrameButtonProps) {
+}: FocusFrameButtonProps) => {
   return (
     <button
       type={type}
@@ -93,4 +93,6 @@ export default function FocusFrameButton({
       </span>
     </button>
   );
-}
+};
+
+export default FocusFrameButton;

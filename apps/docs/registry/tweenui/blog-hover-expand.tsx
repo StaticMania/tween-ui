@@ -56,13 +56,13 @@ const DEFAULT_POSTS: BlogHoverExpandPost[] = [
   },
 ];
 
-export default function BlogHoverExpand({
+const BlogHoverExpand = ({
   title = DEFAULT_TITLE,
   description = 'Playbooks, trends, and real tactics for ads, SEO, funnels, and automation—built for growth-focused teams.',
   posts = DEFAULT_POSTS,
   className,
   ...props
-}: BlogHoverExpandProps) {
+}: BlogHoverExpandProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -132,4 +132,6 @@ export default function BlogHoverExpand({
       </div>
     </section>
   );
-}
+};
+
+export default BlogHoverExpand;

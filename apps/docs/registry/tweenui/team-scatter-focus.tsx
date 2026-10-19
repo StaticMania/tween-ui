@@ -39,7 +39,7 @@ const DEFAULT_POSITIONS = [
 
 const DEFAULT_DIRECTIONS = ['left', 'down', 'up', 'down', 'right'];
 
-function XMark({ className }: { className?: string }) {
+const XMark = ({ className }: { className?: string }) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path
@@ -48,7 +48,7 @@ function XMark({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
 
 export interface TeamScatterFocusMember {
   /** Member name. */
@@ -123,7 +123,7 @@ const DEFAULT_MEMBERS: TeamScatterFocusMember[] = [
   },
 ];
 
-function MemberCard({
+const MemberCard = ({
   member,
   variant,
   cardRef,
@@ -131,7 +131,7 @@ function MemberCard({
   member: TeamScatterFocusMember;
   variant: 'collage' | 'stacked';
   cardRef?: (node: HTMLDivElement | null) => void;
-}) {
+}) => {
   const href = member.href ?? '#';
   const isCollage = variant === 'collage';
 
@@ -201,15 +201,15 @@ function MemberCard({
       </div>
     </div>
   );
-}
+};
 
-export default function TeamScatterFocus({
+const TeamScatterFocus = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   members = DEFAULT_MEMBERS,
   className,
   ...props
-}: TeamScatterFocusProps) {
+}: TeamScatterFocusProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const slotRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -340,4 +340,6 @@ export default function TeamScatterFocus({
       </div>
     </section>
   );
-}
+};
+
+export default TeamScatterFocus;

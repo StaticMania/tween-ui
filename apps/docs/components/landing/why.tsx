@@ -25,7 +25,7 @@ const STEPS = [
   },
 ] as const;
 
-export function Why() {
+export const Why = () => {
   return (
     <section aria-labelledby="why-title" className="pb-24 md:pb-32">
       <div className="main-container">
@@ -75,4 +75,4 @@ export function Why() {
       </div>
     </section>
   );
-}
+};

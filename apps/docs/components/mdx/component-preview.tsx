@@ -1,19 +1,20 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 import { Check, Code2, Copy, ExternalLink, Eye, RotateCw } from 'lucide-react';
+import { ReactMark } from '@/components/icons/react-mark';
 import { siteConfig } from '@/config/site';
 import { getEntry } from '@/lib/registry';
 import { cn, copyText } from '@/lib/utils';
 import { getDemo } from '@/registry/__index__.generated';
 import { usage } from '@/registry/__sources__.generated';
-import { ReactMark } from './brand-icons';
 import { OpenIn } from './open-in';
 import { plainSnippet } from './snippet';
+import { TabButton } from './tab-button';
 
 type Tab = 'preview' | 'code';
 
-export function ComponentPreview({
+export const ComponentPreview = ({
   name,
   variant: variantProp,
   size = 'default',
@@ -21,7 +22,7 @@ export function ComponentPreview({
   name: string;
   variant?: string;
   size?: 'default' | 'lg' | 'xl';
-}) {
+}) => {
   const entry = getEntry(name);
   const locked = entry?.variants.some((v) => v.id === variantProp) ? variantProp : undefined;
   const [variant, setVariant] = useState(locked ?? entry?.variants[0]?.id ?? '');
@@ -182,34 +183,6 @@ export function ComponentPreview({
       )}
     </div>
   );
-}
-
-function TabButton({
-  active,
-  onClick,
-  icon,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  icon: ReactNode;
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        '-mb-px flex items-center gap-1.5 border-b-2 px-2.5 py-2 text-sm transition-colors',
-        active
-          ? 'border-primary text-primary'
-          : 'text-muted-foreground hover:text-highlighted border-transparent'
-      )}
-    >
-      {icon}
-      {children}
-    </button>
-  );
-}
+};
 
 export default ComponentPreview;

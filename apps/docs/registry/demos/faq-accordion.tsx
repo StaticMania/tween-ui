@@ -25,6 +25,8 @@ const ITEMS = [
   },
 ];
 
-export default function FaqAccordionDemo() {
+const FaqAccordionDemo = () => {
   return <FaqAccordion items={ITEMS} />;
-}
+};
+
+export default FaqAccordionDemo;

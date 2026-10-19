@@ -3,7 +3,7 @@
 import type { ComponentPropsWithRef } from 'react';
 import { cn } from '@/lib/utils';
 
-function Chevron({ className }: { className?: string }) {
+const Chevron = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox="0 0 18 18"
@@ -16,16 +16,11 @@ function Chevron({ className }: { className?: string }) {
       <path d="M6.75 13.5 11.25 9 6.75 4.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
-}
+};
 
 export type GlowButtonProps = ComponentPropsWithRef<'button'>;
 
-export default function GlowButton({
-  children,
-  className,
-  type = 'button',
-  ...props
-}: GlowButtonProps) {
+const GlowButton = ({ children, className, type = 'button', ...props }: GlowButtonProps) => {
   return (
     <button
       type={type}
@@ -62,4 +57,6 @@ export default function GlowButton({
       </span>
     </button>
   );
-}
+};
+
+export default GlowButton;

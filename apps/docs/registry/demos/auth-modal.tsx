@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import AuthModal from '@/registry/tweenui/auth-modal';
 
-export default function AuthModalDemo() {
+const AuthModalDemo = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -18,4 +18,6 @@ export default function AuthModalDemo() {
       <AuthModal open={open} onClose={() => setOpen(false)} />
     </>
   );
-}
+};
+
+export default AuthModalDemo;

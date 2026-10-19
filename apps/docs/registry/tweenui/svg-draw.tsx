@@ -34,7 +34,7 @@ export interface SvgDrawProps extends ComponentPropsWithoutRef<'div'> {
   onComplete?: () => void;
 }
 
-export default function SvgDraw({
+const SvgDraw = ({
   duration = 1.4,
   delay = 0,
   stagger = 0.12,
@@ -46,7 +46,7 @@ export default function SvgDraw({
   className,
   children,
   ...props
-}: SvgDrawProps) {
+}: SvgDrawProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const onCompleteRef = useRef(onComplete);
 
@@ -103,4 +103,6 @@ export default function SvgDraw({
       {children}
     </div>
   );
-}
+};
+
+export default SvgDraw;

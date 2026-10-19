@@ -31,10 +31,10 @@ describe('Arc Carousel', () => {
   beforeEach(() => setReducedMotion(true));
   afterEach(() => vi.restoreAllMocks());
 
-  it('names the carousel after its title', () => {
-    render(<ArcCarousel items={ITEMS} title="Selected work" />);
+  it('names the carousel after its label', () => {
+    render(<ArcCarousel items={ITEMS} label="Selected work" />);
 
-    expect(screen.getByRole('heading', { name: 'Selected work' })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Selected work' })).toBeInTheDocument();
     const carousel = screen.getByRole('group', { name: 'Selected work' });
     expect(carousel).toHaveAttribute('aria-roledescription', 'carousel');
   });
@@ -61,7 +61,7 @@ describe('Arc Carousel', () => {
   });
 
   it('steps with the arrow keys', () => {
-    render(<ArcCarousel items={ITEMS} title="Work" />);
+    render(<ArcCarousel items={ITEMS} label="Work" />);
     const carousel = screen.getByRole('group', { name: 'Work' });
 
     fireEvent.keyDown(carousel, { key: 'ArrowRight' });
@@ -98,19 +98,11 @@ describe('Arc Carousel', () => {
     expect(slides[4].style.opacity).toBe('0');
   });
 
-  it('describes the section with its description, or drops it', () => {
-    const { rerender } = render(<ArcCarousel items={ITEMS} description="Recent launches." />);
-    expect(screen.getByRole('region')).toHaveAccessibleDescription('Recent launches.');
+  it('has no heading or call to action of its own', () => {
+    render(<ArcCarousel items={ITEMS} />);
 
-    rerender(<ArcCarousel items={ITEMS} description="" />);
-    expect(screen.queryByText('Recent launches.')).not.toBeInTheDocument();
-  });
-
-  it('drops the badge and the button when asked', () => {
-    render(<ArcCarousel items={ITEMS} badge="" cta={null} />);
-
-    expect(screen.queryByText('Featured work')).not.toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: 'View all projects' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /view all/i })).not.toBeInTheDocument();
   });
 
   describe('autoplay', () => {
@@ -189,7 +181,7 @@ describe('Arc Carousel', () => {
     });
 
     it('holds while the mouse rests on the cards', () => {
-      render(<ArcCarousel items={ITEMS} title="Work" autoplay interval={2000} />);
+      render(<ArcCarousel items={ITEMS} label="Work" autoplay interval={2000} />);
       const stage = screen.getByRole('group', { name: 'Work' }).parentElement!.parentElement!;
 
       fireEvent.pointerEnter(stage, { pointerType: 'mouse' });

@@ -1122,14 +1122,7 @@ export default function Example() {
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
-    cssVars: {
-      '--color-tween-teal': '#045f64',
-      '--color-tween-teal-soft': '#9fd4d6',
-      '--color-tween-lime': '#c6f56f',
-      '--color-tween-ink': '#071d1b',
-      '--color-tween-ink-deep': '#03110f',
-      '--ease-tween': 'cubic-bezier(0.32, 0.72, 0, 1)',
-    },
+    cssVars: {},
     files: [
       {
         path: 'registry/tweenui/arc-carousel.tsx',
@@ -1151,6 +1144,6 @@ export default function Example() {
   return <ArcCarousel />;
 }`,
     },
-    docs: 'Colors come from the Tween UI theme tokens (`tween-ink-deep`, `tween-lime`, …), which the CLI adds to your `@theme`. Pass your own `items`; eight or more keep the arc full and the wrap unseen.',
+    docs: 'Pass your own `items`; eight or more keep the arc full and the wrap unseen. Colors are inline Tailwind classes, so there is nothing to add to your theme.',
   },
 ];

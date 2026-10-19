@@ -15,7 +15,7 @@ export const PMS = [
 export type PmId = (typeof PMS)[number]['id'];
 
 /** Dark panel with package-manager tabs and a copy button for a single command. */
-export function CommandTabs({ commands }: { commands: Record<PmId, string> }) {
+export const CommandTabs = ({ commands }: { commands: Record<PmId, string> }) => {
   const [pm, setPm] = useState<PmId>('pnpm');
   const [copied, setCopied] = useState(false);
 
@@ -61,7 +61,7 @@ export function CommandTabs({ commands }: { commands: Record<PmId, string> }) {
       </pre>
     </div>
   );
-}
+};
 
 export const registryItemUrl = (name: string) =>
   `${siteConfig.url}/r/${name.replace(`${siteConfig.registryNamespace}/`, '')}.json`;

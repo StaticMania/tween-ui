@@ -46,7 +46,7 @@ const DEFAULT_SLIDES: TabWipeSlide[] = [
   { image: SHOT('photo-1552664730-d307ca884978'), alt: 'Team planning session' },
 ];
 
-export default function TabWipe({ slides = DEFAULT_SLIDES, className, ...props }: TabWipeProps) {
+const TabWipe = ({ slides = DEFAULT_SLIDES, className, ...props }: TabWipeProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const mediaRefs = useRef<(HTMLImageElement | null)[]>([]);
@@ -227,4 +227,6 @@ export default function TabWipe({ slides = DEFAULT_SLIDES, className, ...props }
       </div>
     </section>
   );
-}
+};
+
+export default TabWipe;

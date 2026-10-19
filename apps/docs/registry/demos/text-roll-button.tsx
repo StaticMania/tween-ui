@@ -2,6 +2,8 @@
 
 import TextRollButton from '@/registry/tweenui/text-roll-button';
 
-export default function TextRollButtonDemo() {
+const TextRollButtonDemo = () => {
   return <TextRollButton>Try now</TextRollButton>;
-}
+};
+
+export default TextRollButtonDemo;

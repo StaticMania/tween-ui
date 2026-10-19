@@ -2,10 +2,12 @@
 
 import GyroGallery from '@/registry/tweenui/gyro-gallery';
 
-export default function GyroGalleryDemo() {
+const GyroGalleryDemo = () => {
   return (
     <div className="h-full w-full overflow-hidden">
       <GyroGallery />
     </div>
   );
-}
+};
+
+export default GyroGalleryDemo;

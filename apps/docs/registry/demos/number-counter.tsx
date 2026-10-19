@@ -2,7 +2,7 @@
 
 import NumberCounter from '@/registry/tweenui/number-counter';
 
-export default function NumberCounterInstantDemo() {
+const NumberCounterInstantDemo = () => {
   return (
     <div className="flex items-end justify-center gap-8 text-center text-[#12161F] dark:text-white">
       <div>
@@ -25,4 +25,6 @@ export default function NumberCounterInstantDemo() {
       </div>
     </div>
   );
-}
+};
+
+export default NumberCounterInstantDemo;

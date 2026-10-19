@@ -15,7 +15,7 @@ export type HeaderActionsProps = Readonly<{
  * its own theme toggle after this slot, which puts the two in the order we
  * want without any override.
  */
-export function HeaderActions({ starCount }: HeaderActionsProps) {
+export const HeaderActions = ({ starCount }: HeaderActionsProps) => {
   const config = useDocsConfig();
   const githubUrl = config.github?.url;
   if (!githubUrl) return null;
@@ -36,4 +36,4 @@ export function HeaderActions({ starCount }: HeaderActionsProps) {
       )}
     </Link>
   );
-}
+};

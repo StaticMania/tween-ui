@@ -5,7 +5,7 @@ import NumberFlow from '@number-flow/react';
 import { cn } from '@/lib/utils';
 import SlideArrowButton from './slide-arrow-button';
 
-function BoltIcon({ className }: { className?: string }) {
+const BoltIcon = ({ className }: { className?: string }) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none">
       <path
@@ -16,15 +16,15 @@ function BoltIcon({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
 
-function CheckIcon({ className }: { className?: string }) {
+const CheckIcon = ({ className }: { className?: string }) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none">
       <path d="m4 12 5.5 5.5L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
-}
+};
 
 export interface PricingUsageSliderRange {
   /** Cheapest price on the track. */
@@ -97,7 +97,13 @@ const DEFAULT_PLANS: PricingUsageSliderPlan[] = [
   },
 ];
 
-function PlanCard({ plan, popularLabel }: { plan: PricingUsageSliderPlan; popularLabel: string }) {
+const PlanCard = ({
+  plan,
+  popularLabel,
+}: {
+  plan: PricingUsageSliderPlan;
+  popularLabel: string;
+}) => {
   const sliderId = useId();
   const [value, setValue] = useState(plan.range?.defaultValue ?? 0);
 
@@ -230,16 +236,16 @@ function PlanCard({ plan, popularLabel }: { plan: PricingUsageSliderPlan; popula
       </div>
     </div>
   );
-}
+};
 
-export default function PricingUsageSlider({
+const PricingUsageSlider = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   plans = DEFAULT_PLANS,
   popularLabel = 'Most popular',
   className,
   ...props
-}: PricingUsageSliderProps) {
+}: PricingUsageSliderProps) => {
   return (
     <section
       data-pricing-usage-slider
@@ -264,4 +270,6 @@ export default function PricingUsageSlider({
       </div>
     </section>
   );
-}
+};
+
+export default PricingUsageSlider;

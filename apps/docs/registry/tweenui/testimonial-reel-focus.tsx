@@ -195,7 +195,7 @@ const DEFAULT_ITEMS: TestimonialReelItem[] = [
   },
 ];
 
-export default function TestimonialReelFocus({
+const TestimonialReelFocus = ({
   items = DEFAULT_ITEMS,
   hint = DEFAULT_HINT,
   className,
@@ -203,7 +203,7 @@ export default function TestimonialReelFocus({
   // borrowing one from a heading. Pass your own to say what these voices are about.
   'aria-label': ariaLabel = 'Testimonials',
   ...props
-}: TestimonialReelFocusProps) {
+}: TestimonialReelFocusProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
@@ -641,4 +641,6 @@ export default function TestimonialReelFocus({
       </div>
     </section>
   );
-}
+};
+
+export default TestimonialReelFocus;

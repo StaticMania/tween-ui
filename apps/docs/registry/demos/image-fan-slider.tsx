@@ -25,6 +25,8 @@ const IMAGES = [
   },
 ];
 
-export default function ImageFanSliderDemo() {
+const ImageFanSliderDemo = () => {
   return <ImageFanSlider images={IMAGES} />;
-}
+};
+
+export default ImageFanSliderDemo;

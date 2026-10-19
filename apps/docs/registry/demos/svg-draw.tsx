@@ -16,7 +16,7 @@ const LINE = {
   strokeLinecap: 'round',
 } as const;
 
-export default function SvgDrawDemo() {
+const SvgDrawDemo = () => {
   return (
     <SvgDraw
       duration={1.2}
@@ -101,4 +101,6 @@ export default function SvgDrawDemo() {
       </svg>
     </SvgDraw>
   );
-}
+};
+
+export default SvgDrawDemo;

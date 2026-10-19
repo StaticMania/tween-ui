@@ -104,7 +104,7 @@ const isExternal = (href: string) => /^https?:/.test(href);
 const externalProps = (href: string) =>
   isExternal(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
-function RollLabel({ label }: { label: string }) {
+const RollLabel = ({ label }: { label: string }) => {
   return (
     <span aria-hidden="true" className="block overflow-hidden leading-[1.25]">
       {Array.from(label).map((char, index) => (
@@ -123,9 +123,9 @@ function RollLabel({ label }: { label: string }) {
       ))}
     </span>
   );
-}
+};
 
-function ArrowIcon() {
+const ArrowIcon = () => {
   return (
     <svg
       aria-hidden="true"
@@ -145,9 +145,9 @@ function ArrowIcon() {
       />
     </svg>
   );
-}
+};
 
-function SamplePage({ linkCount }: { linkCount: number }) {
+const SamplePage = ({ linkCount }: { linkCount: number }) => {
   const headingId = useId();
 
   return (
@@ -188,9 +188,9 @@ function SamplePage({ linkCount }: { linkCount: number }) {
       </div>
     </section>
   );
-}
+};
 
-export default function NavbarPushMenu({
+const NavbarPushMenu = ({
   brand = 'Tween UI',
   logo = TWEEN_MARK,
   homeHref = '/',
@@ -199,7 +199,7 @@ export default function NavbarPushMenu({
   children,
   className,
   ...props
-}: NavbarPushMenuProps) {
+}: NavbarPushMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuId = useId();
 
@@ -531,4 +531,6 @@ export default function NavbarPushMenu({
       </div>
     </section>
   );
-}
+};
+
+export default NavbarPushMenu;

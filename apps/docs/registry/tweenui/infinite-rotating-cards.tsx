@@ -12,7 +12,7 @@ const prefersReducedMotion = () =>
 
 const DEG2RAD = Math.PI / 180;
 
-function CardMark() {
+const CardMark = () => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -25,7 +25,7 @@ function CardMark() {
       />
     </svg>
   );
-}
+};
 
 export interface InfiniteRotatingCard {
   title: string;
@@ -89,13 +89,13 @@ const DEFAULT_CARDS: InfiniteRotatingCard[] = [
   },
 ];
 
-export default function InfiniteRotatingCards({
+const InfiniteRotatingCards = ({
   title = 'Motion that actually ships',
   description = 'Cards ride a slow wheel so the next idea is always coming into view.',
   cards = DEFAULT_CARDS,
   className,
   ...props
-}: InfiniteRotatingCardsProps) {
+}: InfiniteRotatingCardsProps) => {
   const clipRef = useRef<HTMLDivElement>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
 
@@ -199,4 +199,6 @@ export default function InfiniteRotatingCards({
       </div>
     </section>
   );
-}
+};
+
+export default InfiniteRotatingCards;

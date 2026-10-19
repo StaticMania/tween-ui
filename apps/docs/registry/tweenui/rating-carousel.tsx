@@ -96,7 +96,7 @@ const DEFAULT_TESTIMONIALS: TestimonialCardItem[] = [
   },
 ];
 
-function StarIcon({ className }: { className?: string }) {
+const StarIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +111,7 @@ function StarIcon({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
 
 function updateSlideStyles(swiper: SwiperClass) {
   const reduced = prefersReducedMotion();
@@ -130,13 +130,13 @@ function updateSlideStyles(swiper: SwiperClass) {
   });
 }
 
-export default function RatingCarousel({
+const RatingCarousel = ({
   testimonials = DEFAULT_TESTIMONIALS,
   slidesPerView = 2,
   swiper: swiperProps,
   className,
   ...props
-}: RatingCarouselProps) {
+}: RatingCarouselProps) => {
   const swiperRef = useRef<SwiperClass | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const reduced = prefersReducedMotion();
@@ -316,4 +316,6 @@ export default function RatingCarousel({
       </div>
     </section>
   );
-}
+};
+
+export default RatingCarousel;

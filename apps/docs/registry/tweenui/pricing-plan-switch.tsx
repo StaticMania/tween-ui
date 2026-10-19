@@ -92,7 +92,7 @@ const DEFAULT_FEATURES: string[] = [
   'Dedicated success manager',
 ];
 
-function ArrowIcon({ className }: { className?: string }) {
+const ArrowIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -109,9 +109,9 @@ function ArrowIcon({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
 
-function CheckIcon({ className }: { className?: string }) {
+const CheckIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -123,17 +123,17 @@ function CheckIcon({ className }: { className?: string }) {
       <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
     </svg>
   );
-}
+};
 
-function DotIcon({ className }: { className?: string }) {
+const DotIcon = ({ className }: { className?: string }) => {
   return (
     <svg viewBox="0 0 12 12" className={className} aria-hidden="true">
       <circle cx="6" cy="6" r="5" fill="#c6f56f" stroke="#045f64" strokeWidth={1} />
     </svg>
   );
-}
+};
 
-export default function PricingPlanSwitch({
+const PricingPlanSwitch = ({
   plans = DEFAULT_PLANS,
   features = DEFAULT_FEATURES,
   eyebrow = 'Pricing',
@@ -144,7 +144,7 @@ export default function PricingPlanSwitch({
   ctaHref = '#',
   className,
   ...props
-}: PricingPlanSwitchProps) {
+}: PricingPlanSwitchProps) => {
   const firstId = plans[0]?.id ?? '';
   const [selectedId, setSelectedId] = useState(firstId);
   const [isYearly, setIsYearly] = useState(false);
@@ -437,4 +437,6 @@ export default function PricingPlanSwitch({
       </div>
     </section>
   );
-}
+};
+
+export default PricingPlanSwitch;

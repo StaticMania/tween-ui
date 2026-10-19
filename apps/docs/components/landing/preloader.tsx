@@ -46,7 +46,7 @@ const rememberIntro = () => {
  * Runs once per session, never under reduced motion, and the page underneath is
  * fully rendered the whole time.
  */
-export function Preloader() {
+export const Preloader = () => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -233,4 +233,4 @@ export function Preloader() {
       </div>
     </div>
   );
-}
+};

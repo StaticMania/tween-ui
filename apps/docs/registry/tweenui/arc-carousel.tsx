@@ -3,7 +3,6 @@
 import {
   useCallback,
   useEffect,
-  useId,
   useRef,
   useState,
   type ComponentPropsWithoutRef,
@@ -34,10 +33,8 @@ export interface ArcCarouselItem {
 export interface ArcCarouselProps extends ComponentPropsWithoutRef<'section'> {
   /** Eight or more keep the wrap seamless. */
   items?: ArcCarouselItem[];
-  badge?: string;
-  title?: string;
-  description?: string;
-  cta?: { label: string; href: string } | null;
+  /** Accessible name for the carousel. */
+  label?: string;
   /** Step on its own; holds on hover, keyboard focus and while off-screen. */
   autoplay?: boolean;
   /** Time each card holds the centre while autoplaying, in ms. */
@@ -135,12 +132,12 @@ const DEFAULT_ITEMS: ArcCarouselItem[] = [
 ];
 
 const STEP = cn(
-  'grid size-11 place-items-center rounded-full border border-tween-teal-soft/25 text-white',
-  'transition-[background-color,border-color,color] duration-300 ease-tween hover:border-tween-lime hover:bg-tween-lime hover:text-tween-ink-deep',
-  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tween-lime motion-reduce:transition-none'
+  'grid size-11 place-items-center rounded-full border border-[#9fd4d6]/25 text-white',
+  'transition-[background-color,border-color,color] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-[#c6f56f] hover:bg-[#c6f56f] hover:text-[#03110f]',
+  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c6f56f] motion-reduce:transition-none'
 );
 const FADE =
-  'pointer-events-none absolute inset-y-0 z-2 w-[clamp(2.5rem,14cqw,12rem)] from-tween-ink-deep via-tween-ink-deep/70 to-transparent';
+  'pointer-events-none absolute inset-y-0 z-2 w-[clamp(2.5rem,14cqw,12rem)] from-[#03110f] via-[#03110f]/70 to-transparent';
 
 const Caret = ({ flip }: { flip?: boolean }) => (
   <svg
@@ -185,17 +182,14 @@ const ArrowUpRight = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export default function ArcCarousel({
+const ArcCarousel = ({
   items = DEFAULT_ITEMS,
-  badge = 'Featured work',
-  title = 'Projects we shipped this season.',
-  description = 'A rotating look at recent launches across brand, product and research. Swipe, drag or use the arrows to browse.',
-  cta = { label: 'View all projects', href: '#' },
+  label = 'Featured projects',
   autoplay = true,
   interval = 5000,
   className,
   ...props
-}: ArcCarouselProps) {
+}: ArcCarouselProps) => {
   const count = items.length;
   const [position, setPosition] = useState(0);
   const [playing, setPlaying] = useState(autoplay);
@@ -207,8 +201,6 @@ export default function ArcCarousel({
   const clockRef = useRef<gsap.core.Tween | null>(null);
   const swipe = useRef({ tracking: false, swiped: false, x: 0, y: 0 });
   const holds = useRef({ hover: false, focus: false, offscreen: false });
-  const titleId = useId();
-  const descriptionId = useId();
 
   const current = count ? gsap.utils.wrap(0, count, position) : 0;
   const active = items[current];
@@ -335,42 +327,18 @@ export default function ArcCarousel({
   return (
     <section
       ref={rootRef}
-      aria-labelledby={titleId}
-      aria-describedby={description ? descriptionId : undefined}
+      aria-label={label}
       className={cn(
-        'bg-tween-ink-deep @container relative isolate flex w-full flex-col items-center gap-4 overflow-hidden pt-28 pb-24 text-white',
-        '@max-[64rem]:pt-24 @max-[64rem]:pb-18 @max-[48rem]:gap-8 @max-[48rem]:py-16',
+        '@container relative isolate flex w-full flex-col items-center gap-4 overflow-hidden bg-[#03110f] py-16 text-white',
+        '@max-[48rem]:gap-8 @max-[48rem]:py-12',
         className
       )}
       {...props}
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-[62%] left-1/2 -z-10 size-[min(120cqw,70rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--color-tween-teal)_45%,transparent),color-mix(in_oklch,var(--color-tween-teal)_10%,transparent)_55%,transparent)]"
+        className="pointer-events-none absolute top-[62%] left-1/2 -z-10 size-[min(120cqw,70rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,#045f64_45%,transparent),color-mix(in_oklch,#045f64_10%,transparent)_55%,transparent)]"
       />
-
-      <header className="relative z-3 flex w-full max-w-2xl flex-col items-center gap-5 px-6 text-center @max-[48rem]:gap-3">
-        {badge && (
-          <span className="border-tween-lime/30 bg-tween-lime/10 text-tween-lime inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.14em] uppercase">
-            <span aria-hidden="true" className="bg-tween-lime size-1.5 rounded-full" />
-            {badge}
-          </span>
-        )}
-        <h2
-          id={titleId}
-          className="text-[clamp(2.25rem,5.5cqw,4rem)] leading-[1.02] font-semibold tracking-[-0.045em] text-balance"
-        >
-          {title}
-        </h2>
-        {description && (
-          <p
-            id={descriptionId}
-            className="text-tween-teal-soft/75 max-w-lg text-[15px] leading-relaxed text-pretty @max-[48rem]:text-sm"
-          >
-            {description}
-          </p>
-        )}
-      </header>
 
       {/* Isolated, so the cards' z-indexes stay under the edge fades */}
       <div
@@ -383,8 +351,8 @@ export default function ArcCarousel({
             role="group"
             tabIndex={0}
             aria-roledescription="carousel"
-            aria-label={title}
-            className="focus-visible:ring-tween-lime focus-visible:ring-offset-tween-ink-deep absolute top-16 left-0 h-107.5 w-78 touch-pan-y rounded-[8px] outline-none select-none focus-visible:ring-2 focus-visible:ring-offset-8 @max-[48rem]:top-2"
+            aria-label={label}
+            className="absolute top-16 left-0 h-107.5 w-78 touch-pan-y rounded-[8px] outline-none select-none focus-visible:ring-2 focus-visible:ring-[#c6f56f] focus-visible:ring-offset-8 focus-visible:ring-offset-[#03110f] @max-[48rem]:top-2"
             onPointerDown={(event) => {
               swipe.current = { tracking: true, swiped: false, x: event.clientX, y: event.clientY };
             }}
@@ -434,9 +402,9 @@ export default function ArcCarousel({
                     tabIndex={item.href && isActive ? 0 : -1}
                     draggable={false}
                     className={cn(
-                      'bg-tween-ink relative block size-full overflow-hidden rounded-[8px]',
+                      'relative block size-full overflow-hidden rounded-[8px] bg-[#071d1b]',
                       'shadow-[0_30px_60px_-24px_rgb(0_0_0/0.75)]',
-                      'focus-visible:outline-tween-lime focus-visible:outline-2 focus-visible:outline-offset-4'
+                      'focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c6f56f]'
                     )}
                   >
                     <img
@@ -452,16 +420,16 @@ export default function ArcCarousel({
                     />
                     <span
                       aria-hidden="true"
-                      className="bg-tween-ink-deep/40 ease-tween absolute inset-0 transition-opacity duration-500 group-data-active/card:opacity-0 motion-reduce:transition-none"
+                      className="absolute inset-0 bg-[#03110f]/40 transition-opacity duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-data-active/card:opacity-0 motion-reduce:transition-none"
                     />
                     <span
                       aria-hidden="true"
-                      className="from-tween-ink-deep via-tween-ink-deep/60 absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t to-transparent"
+                      className="absolute inset-x-0 bottom-0 h-3/5 bg-linear-to-t from-[#03110f] via-[#03110f]/60 to-transparent"
                     />
 
                     <span className="absolute inset-x-4 top-4 flex items-center justify-between gap-3">
                       {item.tag ? (
-                        <span className="bg-tween-ink-deep/70 truncate rounded-full px-3 py-1.5 text-[11px] leading-none font-medium tracking-[0.12em] text-white uppercase ring-1 ring-white/10">
+                        <span className="truncate rounded-full bg-[#03110f]/70 px-3 py-1.5 text-[11px] leading-none font-medium tracking-[0.12em] text-white uppercase ring-1 ring-white/10">
                           {item.tag}
                         </span>
                       ) : (
@@ -479,9 +447,7 @@ export default function ArcCarousel({
                           {item.title}
                         </span>
                         {item.meta && (
-                          <span className="text-tween-teal-soft/80 truncate text-sm">
-                            {item.meta}
-                          </span>
+                          <span className="truncate text-sm text-[#9fd4d6]/80">{item.meta}</span>
                         )}
                       </span>
                       {item.href && (
@@ -489,18 +455,18 @@ export default function ArcCarousel({
                           aria-hidden="true"
                           className={cn(
                             'grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-white ring-1 ring-white/20',
-                            'ease-tween transition-[background-color,color,box-shadow] duration-500 motion-reduce:transition-none',
-                            'group-data-active/card:bg-tween-lime group-data-active/card:text-tween-ink-deep group-data-active/card:ring-transparent'
+                            'transition-[background-color,color,box-shadow] duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none',
+                            'group-data-active/card:bg-[#c6f56f] group-data-active/card:text-[#03110f] group-data-active/card:ring-transparent'
                           )}
                         >
-                          <ArrowUpRight className="ease-tween size-4 transition-transform duration-300 group-hover/card:rotate-45 motion-reduce:transition-none" />
+                          <ArrowUpRight className="size-4 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover/card:rotate-45 motion-reduce:transition-none" />
                         </span>
                       )}
                     </span>
 
                     <span
                       aria-hidden="true"
-                      className="ease-tween group-data-active/card:ring-tween-lime/80 pointer-events-none absolute inset-0 rounded-[8px] ring-1 ring-white/10 transition-shadow duration-500 ring-inset group-data-active/card:ring-2 motion-reduce:transition-none"
+                      className="pointer-events-none absolute inset-0 rounded-[8px] ring-1 ring-white/10 transition-shadow duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ring-inset group-data-active/card:ring-2 group-data-active/card:ring-[#c6f56f]/80 motion-reduce:transition-none"
                     />
                   </Card>
                 </div>
@@ -519,19 +485,6 @@ export default function ArcCarousel({
         >
           <Caret />
         </button>
-        {cta && (
-          <a
-            href={cta.href}
-            className={cn(
-              'bg-tween-lime text-tween-ink-deep inline-flex h-11 items-center gap-2 rounded-full px-6 text-sm font-semibold',
-              'ease-tween transition-[filter,transform] duration-300 hover:brightness-110 active:scale-[0.97]',
-              'focus-visible:outline-tween-lime focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none'
-            )}
-          >
-            {cta.label}
-            <ArrowUpRight className="size-3.5" />
-          </a>
-        )}
         <button className={STEP} type="button" aria-label="Next project" onClick={() => step(1)}>
           <Caret flip />
         </button>
@@ -562,7 +515,7 @@ export default function ArcCarousel({
                 pathLength={1}
                 strokeDasharray="1"
                 strokeDashoffset="1"
-                className="text-tween-lime"
+                className="text-[#c6f56f]"
               />
             </svg>
           </button>
@@ -578,4 +531,6 @@ export default function ArcCarousel({
       <div aria-hidden="true" className={cn(FADE, 'right-0 bg-linear-to-l')} />
     </section>
   );
-}
+};
+
+export default ArcCarousel;

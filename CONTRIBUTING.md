@@ -72,7 +72,7 @@ tab with no scale or slide" — not just that it is supported.
 The description on a registry entry is what appears on the gallery card. It
 should say what *this* component does and what makes it different. Leave out
 properties every component shares — reduced motion, keyboard access — because
-repeated across 36 cards they carry no information. Dependencies that vary are
+repeated across every card they carry no information. Dependencies that vary are
 worth naming: "Pure CSS — no GSAP dependency", "ScrollTrigger", "Number Flow".
 
 ## Generated files are committed

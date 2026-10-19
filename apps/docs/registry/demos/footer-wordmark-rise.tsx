@@ -2,10 +2,12 @@
 
 import FooterWordmarkRise from '@/registry/tweenui/footer-wordmark-rise';
 
-export default function FooterWordmarkRiseDemo() {
+const FooterWordmarkRiseDemo = () => {
   return (
     <div className="w-full overflow-hidden rounded-xl">
       <FooterWordmarkRise />
     </div>
   );
-}
+};
+
+export default FooterWordmarkRiseDemo;

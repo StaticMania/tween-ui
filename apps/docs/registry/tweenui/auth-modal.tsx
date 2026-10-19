@@ -94,7 +94,7 @@ export interface AuthModalProps {
   onEmail?: (email: string) => void;
 }
 
-export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthModalProps) {
+const AuthModal = ({ open, onClose, onProvider, onEmail }: AuthModalProps) => {
   const backdropRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -317,4 +317,6 @@ export default function AuthModal({ open, onClose, onProvider, onEmail }: AuthMo
     </div>,
     document.body
   );
-}
+};
+
+export default AuthModal;

@@ -16,13 +16,13 @@ export interface TextRollButtonProps extends ComponentPropsWithRef<'button'> {
   children: string;
 }
 
-export default function TextRollButton({
+const TextRollButton = ({
   children,
   className,
   type = 'button',
   ref,
   ...props
-}: TextRollButtonProps) {
+}: TextRollButtonProps) => {
   const btnRef = useRef<HTMLButtonElement>(null);
 
   // Merge the internal ref (needed for GSAP) with any forwarded ref.
@@ -105,4 +105,6 @@ export default function TextRollButton({
       </span>
     </button>
   );
-}
+};
+
+export default TextRollButton;
