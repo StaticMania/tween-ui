@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Check, ChevronsDownUp, ChevronsUpDown, Copy } from 'lucide-react';
+import { ChevronsDownUp, ChevronsUpDown } from 'lucide-react';
 import { cn, copyText } from '@/lib/utils';
+import { CopyCodeButton } from './copy-code-button';
 
-export function CodeBlock({
+export const CodeBlock = ({
   code,
   codeHtml,
   filename,
@@ -14,7 +15,7 @@ export function CodeBlock({
   codeHtml: string;
   filename?: string;
   collapsible?: boolean;
-}) {
+}) => {
   const [copied, setCopied] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const canCollapse = collapsible && code.trimEnd().split('\n').length > 16;
@@ -25,30 +26,22 @@ export function CodeBlock({
     setTimeout(() => setCopied(false), 1600);
   };
 
-  const CopyBtn = ({ className }: { className?: string }) => (
-    <button
-      type="button"
-      onClick={copy}
-      title="Copy code"
-      className={cn(
-        'inline-flex size-7 items-center justify-center rounded-md text-white/60 transition-colors hover:bg-white/10 hover:text-white',
-        className
-      )}
-    >
-      {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-    </button>
-  );
-
   return (
     <div className="overflow-hidden rounded-lg bg-[#0d1117]">
       {filename && (
         <div className="flex items-center justify-between border-b border-white/5 px-4 py-2">
           <span className="font-mono text-xs text-white/60">{filename}</span>
-          <CopyBtn />
+          <CopyCodeButton isCopied={copied} onCopy={copy} />
         </div>
       )}
       <div className="relative">
-        {!filename && <CopyBtn className="absolute top-2 right-2 z-10 bg-white/5 backdrop-blur" />}
+        {!filename && (
+          <CopyCodeButton
+            isCopied={copied}
+            onCopy={copy}
+            className="absolute top-2 right-2 z-10 bg-white/5 backdrop-blur"
+          />
+        )}
         <div
           className={cn(
             'tween-code overflow-auto p-4 text-[13px] leading-relaxed [&_pre]:!bg-transparent',
@@ -79,6 +72,6 @@ export function CodeBlock({
       )}
     </div>
   );
-}
+};
 
 export default CodeBlock;

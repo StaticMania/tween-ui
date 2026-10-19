@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PreviewProps): Promise<Metada
  * but the doc preview column is roughly 1064px wide, so this is where you see
  * one at its real width.
  */
-export default async function PreviewPage({ params }: PreviewProps) {
+const PreviewPage = async ({ params }: PreviewProps) => {
   const { name } = await params;
   const entry = getEntry(name);
   if (!entry) notFound();
@@ -48,4 +48,6 @@ export default async function PreviewPage({ params }: PreviewProps) {
       <BlockStage name={entry.name} variant={entry.variants[0]?.id ?? 'default'} />
     </main>
   );
-}
+};
+
+export default PreviewPage;

@@ -9,7 +9,7 @@ import { RevealGroup } from './reveal-group';
 
 const COPIED_MS = 1600;
 
-export function Cta() {
+export const Cta = () => {
   const [isCopied, setIsCopied] = useState(false);
 
   const installCommand = shadcnAddCommands(['tab-wipe']).npm;
@@ -92,4 +92,4 @@ export function Cta() {
       </div>
     </section>
   );
-}
+};

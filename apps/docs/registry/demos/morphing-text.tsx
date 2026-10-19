@@ -2,7 +2,7 @@
 
 import MorphingText from '@/registry/tweenui/morphing-text';
 
-export default function MorphingTextDemo() {
+const MorphingTextDemo = () => {
   return (
     <MorphingText
       prefix={'Motion that feels\nlike'}
@@ -11,4 +11,6 @@ export default function MorphingTextDemo() {
       wordClassName="text-[#045f64] dark:text-[#c6f56f]"
     />
   );
-}
+};
+
+export default MorphingTextDemo;

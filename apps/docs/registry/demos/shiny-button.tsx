@@ -2,6 +2,8 @@
 
 import ShinyButton from '@/registry/tweenui/shiny-button';
 
-export default function ShinyButtonDemo() {
+const ShinyButtonDemo = () => {
   return <ShinyButton>Get started</ShinyButton>;
-}
+};
+
+export default ShinyButtonDemo;

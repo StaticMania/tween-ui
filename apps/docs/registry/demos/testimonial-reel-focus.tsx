@@ -2,7 +2,7 @@
 
 import TestimonialReelFocus from '@/registry/tweenui/testimonial-reel-focus';
 
-export default function TestimonialReelFocusDemo() {
+const TestimonialReelFocusDemo = () => {
   return (
     // The reel spends scroll rather than time, so the preview hands it a scrollport of
     // its own — one screen tall, the same as the page it is built for — instead of
@@ -12,4 +12,6 @@ export default function TestimonialReelFocusDemo() {
       <TestimonialReelFocus />
     </div>
   );
-}
+};
+
+export default TestimonialReelFocusDemo;

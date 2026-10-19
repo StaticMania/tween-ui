@@ -2,10 +2,12 @@
 
 import ProcessStickySteps from '@/registry/tweenui/process-sticky-steps';
 
-export default function ProcessStickyStepsDemo() {
+const ProcessStickyStepsDemo = () => {
   return (
     <div className="w-full bg-white pt-8 dark:bg-[#0d1117]">
       <ProcessStickySteps />
     </div>
   );
-}
+};
+
+export default ProcessStickyStepsDemo;

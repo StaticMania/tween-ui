@@ -2,6 +2,8 @@
 
 import IconTrailButton from '@/registry/tweenui/icon-trail-button';
 
-export default function IconTrailButtonDemo() {
+const IconTrailButtonDemo = () => {
   return <IconTrailButton>Get started</IconTrailButton>;
-}
+};
+
+export default IconTrailButtonDemo;

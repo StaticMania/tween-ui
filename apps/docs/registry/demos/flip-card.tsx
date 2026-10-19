@@ -2,7 +2,7 @@
 
 import FlipCard from '@/registry/tweenui/flip-card';
 
-export default function FlipCardDemo() {
+const FlipCardDemo = () => {
   return (
     <FlipCard
       title="Web Design"
@@ -15,4 +15,6 @@ export default function FlipCardDemo() {
       ctaText="Explore service"
     />
   );
-}
+};
+
+export default FlipCardDemo;

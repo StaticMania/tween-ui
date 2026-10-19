@@ -7,7 +7,7 @@ import { getDemo } from '@/registry/__index__.generated';
  * map is a client module, so the bare `/preview/[name]` page reaches it through
  * this boundary rather than importing it into a server graph.
  */
-export function BlockStage({ name, variant }: { name: string; variant: string }) {
+export const BlockStage = ({ name, variant }: { name: string; variant: string }) => {
   const Demo = getDemo(name, variant);
 
   if (!Demo) {
@@ -19,4 +19,4 @@ export function BlockStage({ name, variant }: { name: string; variant: string })
   }
 
   return <Demo />;
-}
+};

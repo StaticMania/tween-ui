@@ -12,7 +12,7 @@ import type { RegistryEntry } from '@/registry/schema';
 /** Card grid is 1 / 2 / 3 columns — tells next/image which width to serve. */
 const POSTER_SIZES = '(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw';
 
-export function ComponentCard({ entry }: { entry: RegistryEntry }) {
+export const ComponentCard = ({ entry }: { entry: RegistryEntry }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [active, setActive] = useState(false);
 
@@ -128,6 +128,6 @@ export function ComponentCard({ entry }: { entry: RegistryEntry }) {
       <p className="text-muted-foreground text-sm leading-relaxed">{entry.description}</p>
     </Link>
   );
-}
+};
 
 export default ComponentCard;

@@ -38,12 +38,12 @@ export type RevealGroupProps = Readonly<{
  * intro cue is raced against a timeout, so nothing is left hidden. Splits are
  * reverted once the reveal lands, leaving the markup free to reflow.
  */
-export function RevealGroup({
+export const RevealGroup = ({
   children,
   trigger = 'scroll',
   delay = 0,
   className,
-}: RevealGroupProps) {
+}: RevealGroupProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -124,4 +124,4 @@ export function RevealGroup({
       {children}
     </div>
   );
-}
+};

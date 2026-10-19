@@ -29,6 +29,8 @@ const LOGOS = [
   { src: icon('logos', 'slack-icon'), alt: 'Slack' },
 ];
 
-export default function LogoOrbitDemo() {
+const LogoOrbitDemo = () => {
   return <LogoOrbit logos={LOGOS} size={280} speed={0.5} />;
-}
+};
+
+export default LogoOrbitDemo;

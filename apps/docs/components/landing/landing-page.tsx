@@ -12,7 +12,7 @@ export type LandingPageProps = Readonly<{
   starCount: number | null;
 }>;
 
-export function LandingPage({ starCount }: LandingPageProps) {
+export const LandingPage = ({ starCount }: LandingPageProps) => {
   const componentCount = registry.filter((entry) => entry.type === 'component').length;
   const blockCount = registry.filter((entry) => entry.type === 'block').length;
 
@@ -29,4 +29,4 @@ export function LandingPage({ starCount }: LandingPageProps) {
       </LandingShell>
     </>
   );
-}
+};

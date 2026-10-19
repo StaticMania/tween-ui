@@ -2,10 +2,12 @@
 
 import CubeRollItem from '@/registry/tweenui/cube-roll-item';
 
-export default function CubeRollItemDemo() {
+const CubeRollItemDemo = () => {
   return (
     <div className="w-full rounded-xl bg-white dark:bg-[#0d1117]">
       <CubeRollItem />
     </div>
   );
-}
+};
+
+export default CubeRollItemDemo;

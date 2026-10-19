@@ -7,7 +7,7 @@ import { RevealGroup } from './reveal-group';
 const FEATURED = ['tab-wipe', 'pricing-plan-switch', 'rating-carousel', 'cta-starfall'];
 const CHIP_LIMIT = 8;
 
-export function BlockSpotlight() {
+export const BlockSpotlight = () => {
   const blocks = registry.filter((entry) => entry.type === 'block');
   const featured = FEATURED.flatMap((name) => blocks.filter((entry) => entry.name === name));
   const chips = blocks.filter((entry) => !FEATURED.includes(entry.name)).slice(0, CHIP_LIMIT);
@@ -72,4 +72,4 @@ export function BlockSpotlight() {
       </div>
     </section>
   );
-}
+};

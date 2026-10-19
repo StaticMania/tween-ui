@@ -33,6 +33,8 @@ const LOGOS = [
   { src: icon('logos', 'nextjs-icon'), alt: 'Next.js' },
 ];
 
-export default function LogoCycleDemo() {
+const LogoCycleDemo = () => {
   return <LogoCycle logos={LOGOS} visibleCount={6} />;
-}
+};
+
+export default LogoCycleDemo;

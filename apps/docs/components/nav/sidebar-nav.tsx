@@ -1,138 +1,15 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import { useCallback, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import type { NavItem } from 'docora';
 import gsap from 'gsap';
-import type { TweenNavItem } from '@/lib/navigation';
 import { cn } from '@/lib/utils';
-import { AnimatedIcon } from './animated-icon';
+import type { OnRowEnter } from './nav-row';
+import { NavTree } from './nav-tree';
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-const ROW = 'group relative z-[1] flex w-full items-center gap-1.5 px-2.5 py-1.5 text-sm';
-
-/** Called when a row gains hover or focus, so the pill can glide to it. */
-type OnRowEnter = (href: string) => void;
-
-/**
- * One link row. It owns its own hover flag, so entering a row re-renders that
- * row and the one just left, not all sixty. The pill is moved imperatively
- * through `onEnter` and never goes through React state.
- */
-function NavRow({
-  item,
-  isActive,
-  onEnter,
-  onNavigate,
-}: Readonly<{
-  item: TweenNavItem & { href: string };
-  isActive: boolean;
-  onEnter: OnRowEnter;
-  onNavigate?: () => void;
-}>) {
-  const [hovered, setHovered] = useState(false);
-
-  const enter = () => {
-    setHovered(true);
-    onEnter(item.href);
-  };
-
-  return (
-    <Link
-      href={item.href}
-      data-nav-row={item.href}
-      onClick={onNavigate}
-      onMouseEnter={enter}
-      onMouseLeave={() => setHovered(false)}
-      onFocus={enter}
-      onBlur={() => setHovered(false)}
-      aria-current={isActive ? 'page' : undefined}
-      className={cn(
-        ROW,
-        'rounded-md',
-        isActive
-          ? 'text-primary font-medium'
-          : 'text-muted-foreground hover:text-highlighted transition-colors'
-      )}
-    >
-      {item.icon && (
-        <AnimatedIcon
-          name={item.icon}
-          hovered={hovered}
-          className={
-            isActive ? 'text-primary' : 'text-dimmed group-hover:text-foreground transition-colors'
-          }
-        />
-      )}
-      <span className="truncate">{item.label}</span>
-      {item.isNew && (
-        <span className="border-tween-accent/30 bg-tween-accent/10 text-tween-accent ms-auto shrink-0 rounded-full border px-1.5 py-px text-[9px] leading-[14px] font-semibold tracking-wide uppercase">
-          New
-        </span>
-      )}
-    </Link>
-  );
-}
-
-function NavTree({
-  items,
-  level,
-  pathname,
-  onEnter,
-  onNavigate,
-}: Readonly<{
-  items: TweenNavItem[];
-  level: number;
-  pathname: string;
-  onEnter: OnRowEnter;
-  onNavigate?: () => void;
-}>) {
-  const nested = level > 0;
-
-  return (
-    <ul className={cn('isolate', nested ? 'border-border ms-5 border-s' : '-mx-2.5 -mt-1.5')}>
-      {items.map((item) => {
-        const hasChildren = Boolean(item.children && item.children.length > 0);
-
-        return (
-          <li
-            key={item.label + (item.href ?? '')}
-            className={cn(nested && '-ms-px ps-1.5', hasChildren && 'mb-1.5 flex flex-col')}
-          >
-            {item.href ? (
-              <NavRow
-                item={item as TweenNavItem & { href: string }}
-                isActive={item.href === pathname}
-                onEnter={onEnter}
-                onNavigate={onNavigate}
-              />
-            ) : (
-              <span className={cn(ROW, 'text-highlighted font-semibold')}>
-                {item.icon && (
-                  <AnimatedIcon name={item.icon} hovered={false} className="text-highlighted" />
-                )}
-                <span className="truncate">{item.label}</span>
-              </span>
-            )}
-
-            {hasChildren && (
-              <NavTree
-                items={item.children!}
-                level={level + 1}
-                pathname={pathname}
-                onEnter={onEnter}
-                onNavigate={onNavigate}
-              />
-            )}
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
 
 export type SidebarNavProps = Readonly<{
   items: NavItem[];
@@ -148,7 +25,7 @@ export type SidebarNavProps = Readonly<{
  * The hovered row lives in a ref, not state: the pill is moved with GSAP, so
  * nothing on screen needs React to re-render when the pointer changes rows.
  */
-export function SidebarNav({ items, onNavigate, className }: SidebarNavProps) {
+export const SidebarNav = ({ items, onNavigate, className }: SidebarNavProps) => {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   const pillRef = useRef<HTMLSpanElement>(null);
@@ -238,4 +115,4 @@ export function SidebarNav({ items, onNavigate, className }: SidebarNavProps) {
       />
     </nav>
   );
-}
+};

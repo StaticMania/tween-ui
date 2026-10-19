@@ -2,7 +2,7 @@
 
 import WordmarkReveal from '@/registry/tweenui/wordmark-reveal';
 
-export default function WordmarkRevealDemo() {
+const WordmarkRevealDemo = () => {
   return (
     <div
       data-wordmark-scroller
@@ -30,4 +30,6 @@ export default function WordmarkRevealDemo() {
       <div className="h-[560px]" />
     </div>
   );
-}
+};
+
+export default WordmarkRevealDemo;

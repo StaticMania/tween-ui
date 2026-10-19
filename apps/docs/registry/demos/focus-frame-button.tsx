@@ -1,5 +1,7 @@
 import FocusFrameButton from '@/registry/tweenui/focus-frame-button';
 
-export default function FocusFrameButtonDemo() {
+const FocusFrameButtonDemo = () => {
   return <FocusFrameButton>Talk to the team</FocusFrameButton>;
-}
+};
+
+export default FocusFrameButtonDemo;

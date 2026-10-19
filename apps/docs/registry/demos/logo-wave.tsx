@@ -33,6 +33,8 @@ const LOGOS = [
   { src: icon('logos', 'nextjs-icon'), alt: 'Next.js' },
 ];
 
-export default function LogoWaveDemo() {
+const LogoWaveDemo = () => {
   return <LogoWave logos={LOGOS} duration={30} />;
-}
+};
+
+export default LogoWaveDemo;

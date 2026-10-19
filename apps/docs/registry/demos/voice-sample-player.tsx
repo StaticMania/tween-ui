@@ -32,7 +32,7 @@ const SAMPLES = [
   },
 ];
 
-export default function VoiceSamplePlayerDemo() {
+const VoiceSamplePlayerDemo = () => {
   // Only one sample plays at a time.
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -51,4 +51,6 @@ export default function VoiceSamplePlayerDemo() {
       ))}
     </div>
   );
-}
+};
+
+export default VoiceSamplePlayerDemo;

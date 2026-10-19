@@ -21,7 +21,7 @@ export type ShowcaseProps = Readonly<{
   componentCount: number;
 }>;
 
-export function Showcase({ componentCount }: ShowcaseProps) {
+export const Showcase = ({ componentCount }: ShowcaseProps) => {
   const entries = SHOWCASE_NAMES.flatMap((name) => {
     const entry = getEntry(name);
     return entry ? [{ entry, span: CARD_SPANS[name], Preview: showcasePreviews[name] }] : [];
@@ -91,4 +91,4 @@ export function Showcase({ componentCount }: ShowcaseProps) {
       </div>
     </section>
   );
-}
+};

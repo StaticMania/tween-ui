@@ -28,7 +28,7 @@ const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1
  * filter and therefore its own stacking context — a `z-50` child of it still
  * paints below the page content. (Radix's Dialog.Portal does the same.)
  */
-export function MobileNav({ items }: { items: NavItem[] }) {
+export const MobileNav = ({ items }: { items: NavItem[] }) => {
   const config = useDocsConfig();
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -150,4 +150,4 @@ export function MobileNav({ items }: { items: NavItem[] }) {
         )}
     </>
   );
-}
+};
