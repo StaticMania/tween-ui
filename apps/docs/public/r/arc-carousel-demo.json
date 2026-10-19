@@ -16,7 +16,7 @@
     {
       "path": "examples/arc-carousel-demo-2.tsx",
       "type": "registry:example",
-      "content": "import ArcCarousel from '@/components/tweenui/arc-carousel';\n\nexport default function Page() {\n  return (\n    <ArcCarousel\n      badge=\"Just in\"\n      title=\"New this season.\"\n      description=\"Fresh drops from the workshop, restocked every Friday.\"\n      cta={{ label: 'Shop the collection', href: '/shop' }}\n      items={[\n        {\n          title: 'Field Jacket',\n          tag: 'Outerwear',\n          meta: '$240',\n          image: '/shop/jacket.jpg',\n          href: '/shop/jacket',\n        },\n        {\n          title: 'Day Pack',\n          tag: 'Bags',\n          meta: '$120',\n          image: '/shop/pack.jpg',\n          href: '/shop/pack',\n        },\n        // …\n      ]}\n    />\n  );\n}"
+      "content": "import ArcCarousel from '@/components/tweenui/arc-carousel';\n\nexport default function Page() {\n  return (\n    <ArcCarousel\n      label=\"New this season\"\n      items={[\n        {\n          title: 'Field Jacket',\n          tag: 'Outerwear',\n          meta: '$240',\n          image: '/shop/jacket.jpg',\n          href: '/shop/jacket',\n        },\n        {\n          title: 'Day Pack',\n          tag: 'Bags',\n          meta: '$120',\n          image: '/shop/pack.jpg',\n          href: '/shop/pack',\n        },\n        // …\n      ]}\n    />\n  );\n}"
     },
     {
       "path": "examples/arc-carousel-demo-3.tsx",

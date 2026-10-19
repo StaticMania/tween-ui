@@ -6,11 +6,10 @@ icon: pen-tool
 
 Wrap **any inline SVG**, an icon, a logo or a whole illustration, and it
 **draws itself in**. Every path, line, circle, rect and polygon **traces its
-outline** one after another, longest first, then its **fill fades in** behind
-the line. Outline icons draw in their own stroke and keep it; filled shapes are
-traced in a thin line that fades away as they fill. Once a shape settles it is
-**handed back exactly as written**. It plays when the SVG scrolls into view, or
-on mount. Plain CSS transitions, no animation library.
+outline** one after another, then its **fill fades in** behind the line.
+Outline icons draw in their own stroke and keep it; filled shapes are traced in
+a thin line that fades away as they fill. It plays when the SVG scrolls into
+view, or on mount. GSAP DrawSVG and ScrollTrigger.
 
 ::component-preview{name="svg-draw" size="lg"}
 ::
@@ -66,43 +65,38 @@ pasted from a design tool, or a whole illustration. Tune the pace with
 
 ## Props
 
-| Prop         | Type                                   | Default          | Description                                                                 |
-| ------------ | -------------------------------------- | ---------------- | --------------------------------------------------------------------------- |
-| `duration`   | `number`                               | `1.6`            | Seconds each shape takes to draw.                                           |
-| `delay`      | `number`                               | `0`              | Seconds before the first shape starts.                                      |
-| `stagger`    | `number`                               | `0.18`           | Seconds between one shape starting and the next.                            |
-| `order`      | `'longest' \| 'reverse' \| 'document'` | `'longest'`      | Which shapes go first.                                                      |
-| `ease`       | `SvgDrawEase \| string`                | `'power1.out'`   | A preset or any CSS easing.                                                 |
-| `width`      | `number`                               | `1.5`            | Trace width in screen px for fill-only shapes.                              |
-| `color`      | `string`                               | `'currentColor'` | Trace color for fill-only shapes.                                           |
-| `ownColor`   | `boolean`                              | `false`          | Trace fill-only shapes in their own fill color instead.                     |
-| `trigger`    | `'view' \| 'mount'`                    | `'view'`         | Play on scrolling into view, or straight away.                              |
-| `startAt`    | `number`                               | `0.85`           | With `view`: how far down the viewport the SVG's top must rise, `0` to `1`. |
-| `onComplete` | `() => void`                           | —                | Called once every shape is drawn and settled.                               |
+| Prop         | Type                | Default          | Description                                      |
+| ------------ | ------------------- | ---------------- | ------------------------------------------------ |
+| `duration`   | `number`            | `1.4`            | Seconds each shape takes to draw.                |
+| `delay`      | `number`            | `0`              | Seconds before the first shape starts.           |
+| `stagger`    | `number`            | `0.12`           | Seconds between one shape starting and the next. |
+| `ease`       | `string`            | `'power2.inOut'` | Any GSAP ease.                                   |
+| `width`      | `number`            | `1.5`            | Trace width in screen px for fill-only shapes.   |
+| `trigger`    | `'view' \| 'mount'` | `'view'`         | Play on scrolling into view, or straight away.   |
+| `start`      | `string`            | `'top 85%'`      | ScrollTrigger start, with `trigger="view"`.      |
+| `onComplete` | `() => void`        | —                | Called once every shape is drawn and filled.     |
 
-The presets are `'power1.out'`, `'power2.out'`, `'power3.out'`, `'expo.out'`,
-`'in-out'` and `'linear'`. It renders a `<div>` around your SVG and extends
-native `<div>` attributes (`className`, `style`, …).
+The trace line takes the wrapper's text color, so set it with a `text-*`
+class. It renders a `<div>` around your SVG and extends native `<div>`
+attributes (`className`, `style`, …).
 
 ## Behavior
 
 - **Any shape, any SVG.** It finds every `path`, `line`, `polyline`,
   `polygon`, `circle`, `ellipse` and `rect`, however deeply nested in groups
   or across several SVGs. Shapes inside `defs`, `clipPath`, `mask`,
-  `pattern`, `marker`, `symbol` and gradients are skipped, because they are
-  never painted where they sit, and so are hidden shapes.
+  `pattern`, `marker` and `symbol` are skipped, because they are never painted
+  where they sit.
 - **Strokes stay strokes, fills stay fills.** A stroked shape draws in its own
   stroke color and width and keeps them. A fill-only shape draws in a thin
-  `color` line that fades out as its fill fades in. Colors are never swapped:
-  every fill ends in its own color, gradients included.
-- **The same line on any scale.** `width` is in screen pixels, so the trace
-  looks the same on a 24-unit icon and on a 1000-unit logo.
-- **Shapes that set `pathLength`** are measured in their own units, so the
-  line still runs exactly from start to end.
-- **Handed back untouched.** Once a shape has settled, its own `style`
-  attribute is put back exactly as it was, so nothing lingers to fight your
-  CSS. Unmounting mid-draw, a prop change or React Strict Mode's double effect
-  restores the SVG too, so it is always measured as written.
+  line in the text color that fades out as its fill fades in. Every fill ends
+  in its own color and opacity, gradients included.
+- **The same line on any scale.** The trace uses a non-scaling stroke, so
+  `width` looks the same on a 24-unit icon and on a 1000-unit logo.
+- **Measured by DrawSVG.** Path lengths, `pathLength` attributes and line
+  caps are all handled by GSAP's DrawSVG plugin.
+- **Cleans up after itself.** The timeline runs inside `useGSAP`, so
+  unmounting or changing a prop reverts every shape to how it was written.
 - **No flash.** Where scripts run, the SVG is hidden until its first frame is
   set up, before paint. Without JavaScript it simply shows.
 - **Only inline SVG.** An `<img src="logo.svg">` or a CSS background cannot be

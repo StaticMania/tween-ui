@@ -563,7 +563,7 @@
       "name": "svg-draw",
       "type": "registry:ui",
       "title": "SVG Draw",
-      "description": "Wrap any inline SVG and it draws itself in: every path, line, circle, rect and polygon traces its outline, one after another, then its fill fades in. Outline icons draw in their own stroke, filled logos are traced and then filled, and the SVG is handed back exactly as written once it settles. Plays when it scrolls into view or on mount; plain CSS transitions, no animation library.",
+      "description": "Wrap any inline SVG and it draws itself in: every path, line, circle, rect and polygon traces its outline, one after another, then its fill fades in. Outline icons draw in their own stroke, filled logos are traced in a thin line that fades as they fill. Plays when it scrolls into view or on mount. GSAP DrawSVG and ScrollTrigger.",
       "files": [
         {
           "path": "components/tweenui/svg-draw.tsx",
@@ -1527,7 +1527,7 @@
       "name": "arc-carousel",
       "type": "registry:block",
       "title": "Arc Carousel",
-      "description": "A showcase carousel whose cards hang on a downward arc, each one further out turned a little more. Stepping swings the whole arc round, the centre card easing up in size under a lime outline, and a card that wraps past the edge keeps travelling off-screen while it comes back in from the far side. Swipe, drag, the arrow keys or a click on a side card all step it.",
+      "description": "A showcase carousel whose cards hang on a downward arc, each one further out turned a little more. Stepping swings the whole arc round, the centre card easing up in size under a lime outline; cards fade out past the third slot and wrap round unseen. Swipe, drag, the arrow keys or a click on a side card all step it, and it autoplays with a pause button. GSAP with ScrollTrigger.",
       "files": [
         {
           "path": "components/tweenui/arc-carousel.tsx",

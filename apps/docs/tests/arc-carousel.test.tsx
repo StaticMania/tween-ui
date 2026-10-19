@@ -1,4 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
+import gsap from 'gsap';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import ArcCarousel, { type ArcCarouselItem } from '@/registry/tweenui/arc-carousel';
 
@@ -30,10 +31,10 @@ describe('Arc Carousel', () => {
   beforeEach(() => setReducedMotion(true));
   afterEach(() => vi.restoreAllMocks());
 
-  it('names the carousel after its title', () => {
-    render(<ArcCarousel items={ITEMS} title="Selected work" />);
+  it('names the carousel after its label', () => {
+    render(<ArcCarousel items={ITEMS} label="Selected work" />);
 
-    expect(screen.getByRole('heading', { name: 'Selected work' })).toBeInTheDocument();
+    expect(screen.getByRole('region', { name: 'Selected work' })).toBeInTheDocument();
     const carousel = screen.getByRole('group', { name: 'Selected work' });
     expect(carousel).toHaveAttribute('aria-roledescription', 'carousel');
   });
@@ -60,7 +61,7 @@ describe('Arc Carousel', () => {
   });
 
   it('steps with the arrow keys', () => {
-    render(<ArcCarousel items={ITEMS} title="Work" />);
+    render(<ArcCarousel items={ITEMS} label="Work" />);
     const carousel = screen.getByRole('group', { name: 'Work' });
 
     fireEvent.keyDown(carousel, { key: 'ArrowRight' });
@@ -84,42 +85,42 @@ describe('Arc Carousel', () => {
     expect(announced()).toBe('2 of 8: Ben');
   });
 
-  it('places the cards on the arc before any interaction', () => {
+  it('places the cards on the arc in the markup, before GSAP takes over', () => {
+    // With motion on, GSAP's first frame is async, so this reads the server-rendered layout
+    setReducedMotion(false);
     const { container } = render(<ArcCarousel items={ITEMS} />);
     const slides = container.querySelectorAll<HTMLElement>('[aria-roledescription="slide"]');
 
-    expect(slides[0].style.transform).toBe('translate(0px, 0px) rotate(0deg)');
-    expect(slides[1].style.transform).toBe('translate(359px, 26px) rotate(8.77deg)');
-    expect(slides[7].style.transform).toBe('translate(-359px, 26px) rotate(-8.77deg)');
+    expect(slides[0].style.transform).toBe('translate(0px, 0px) rotate(0deg) scale(1.05)');
+    expect(slides[1].style.transform).toBe('translate(359px, 26px) rotate(8.77deg) scale(1)');
+    expect(slides[7].style.transform).toBe('translate(-359px, 26px) rotate(-8.77deg) scale(1)');
     // Four out is past the last slot, so it waits off-screen
     expect(slides[4].style.opacity).toBe('0');
   });
 
-  it('describes the section with its description, or drops it', () => {
-    const { rerender } = render(<ArcCarousel items={ITEMS} description="Recent launches." />);
-    expect(screen.getByRole('region')).toHaveAccessibleDescription('Recent launches.');
+  it('has no heading or call to action of its own', () => {
+    render(<ArcCarousel items={ITEMS} />);
 
-    rerender(<ArcCarousel items={ITEMS} description="" />);
-    expect(screen.queryByText('Recent launches.')).not.toBeInTheDocument();
-  });
-
-  it('drops the badge and the button when asked', () => {
-    render(<ArcCarousel items={ITEMS} badge="" cta={null} />);
-
-    expect(screen.queryByText('Featured work')).not.toBeInTheDocument();
-    expect(screen.queryByRole('link', { name: 'View all projects' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('heading')).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: /view all/i })).not.toBeInTheDocument();
   });
 
   describe('autoplay', () => {
+    // GSAP keeps its own clock: unhook it from the ticker and step it by hand
+    let now = 0;
     beforeEach(() => {
       setReducedMotion(false);
-      vi.useFakeTimers();
+      gsap.ticker.remove(gsap.updateRoot);
+      now = gsap.ticker.time;
     });
-    afterEach(() => vi.useRealTimers());
+    afterEach(() => {
+      gsap.ticker.add(gsap.updateRoot);
+    });
 
     const wait = (ms: number) =>
       act(() => {
-        vi.advanceTimersByTime(ms);
+        now += ms / 1000;
+        gsap.updateRoot(now);
       });
 
     it('is on by default', () => {
@@ -147,6 +148,17 @@ describe('Arc Carousel', () => {
       expect(announced()).toBe('3 of 8: Cleo');
     });
 
+    it('fills the progress ring over the interval', () => {
+      const { container } = render(<ArcCarousel items={ITEMS} autoplay interval={2000} />);
+      const ring = container.querySelector('button[aria-label="Pause autoplay"] circle')!;
+      const offset = () => Number(ring.getAttribute('stroke-dashoffset'));
+
+      wait(10);
+      expect(offset()).toBeGreaterThan(0.95);
+      wait(1000);
+      expect(offset()).toBeCloseTo(0.5, 1);
+    });
+
     it('keeps the announcement quiet while it plays itself', () => {
       render(<ArcCarousel items={ITEMS} autoplay />);
       const live = () => document.querySelector('[aria-live]')!.getAttribute('aria-live');
@@ -169,7 +181,7 @@ describe('Arc Carousel', () => {
     });
 
     it('holds while the mouse rests on the cards', () => {
-      render(<ArcCarousel items={ITEMS} title="Work" autoplay interval={2000} />);
+      render(<ArcCarousel items={ITEMS} label="Work" autoplay interval={2000} />);
       const stage = screen.getByRole('group', { name: 'Work' }).parentElement!.parentElement!;
 
       fireEvent.pointerEnter(stage, { pointerType: 'mouse' });

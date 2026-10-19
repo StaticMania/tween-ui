@@ -877,9 +877,9 @@ export default function Example() {
     addedAt: '2026-10-14',
     title: 'SVG Draw',
     description:
-      'Wrap any inline SVG and it draws itself in: every path, line, circle, rect and polygon traces its outline, one after another, then its fill fades in. Outline icons draw in their own stroke, filled logos are traced and then filled, and the SVG is handed back exactly as written once it settles. Plays when it scrolls into view or on mount; plain CSS transitions, no animation library.',
+      'Wrap any inline SVG and it draws itself in: every path, line, circle, rect and polygon traces its outline, one after another, then its fill fades in. Outline icons draw in their own stroke, filled logos are traced in a thin line that fades as they fill. Plays when it scrolls into view or on mount. GSAP DrawSVG and ScrollTrigger.',
     media: {},
-    dependencies: [],
+    dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
     cssVars: {},
     files: [
