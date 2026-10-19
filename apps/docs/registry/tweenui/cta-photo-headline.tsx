@@ -71,7 +71,7 @@ const DEFAULT_ACCENT_IMAGE: CtaPhotoHeadlineImage = {
   alt: 'Abstract 3D motion form',
 };
 
-export default function CtaPhotoHeadline({
+const CtaPhotoHeadline = ({
   avatars = DEFAULT_AVATARS,
   inlineImage = DEFAULT_INLINE_IMAGE,
   accentImage = DEFAULT_ACCENT_IMAGE,
@@ -83,7 +83,7 @@ export default function CtaPhotoHeadline({
   onCtaClick,
   className,
   ...props
-}: CtaPhotoHeadlineProps) {
+}: CtaPhotoHeadlineProps) => {
   const rootRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -218,4 +218,6 @@ export default function CtaPhotoHeadline({
       </div>
     </section>
   );
-}
+};
+
+export default CtaPhotoHeadline;

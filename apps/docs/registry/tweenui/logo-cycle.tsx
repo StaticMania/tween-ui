@@ -54,7 +54,7 @@ function chunkLogos<T>(items: T[], size: number): T[][] {
   return groups;
 }
 
-function LogoImage({ src, srcDark, alt }: LogoCycleLogo) {
+const LogoImage = ({ src, srcDark, alt }: LogoCycleLogo) => {
   if (!srcDark) {
     return <img src={src} alt={alt} className="size-full object-contain" />;
   }
@@ -69,9 +69,9 @@ function LogoImage({ src, srcDark, alt }: LogoCycleLogo) {
       />
     </>
   );
-}
+};
 
-function LogoMark({
+const LogoMark = ({
   logo,
   index,
   itemClassName,
@@ -83,7 +83,7 @@ function LogoMark({
   itemClassName?: string;
   renderLogo?: (logo: LogoCycleLogo, index: number) => ReactNode;
   itemRef?: (el: HTMLElement | null) => void;
-}) {
+}) => {
   return (
     <figure
       ref={itemRef}
@@ -97,9 +97,9 @@ function LogoMark({
       )}
     </figure>
   );
-}
+};
 
-export default function LogoCycle({
+const LogoCycle = ({
   logos,
   visibleCount = 6,
   interval = 2.5,
@@ -115,7 +115,7 @@ export default function LogoCycle({
   className,
   style,
   ...props
-}: LogoCycleProps) {
+}: LogoCycleProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const groupRefs = useRef<(HTMLDivElement | null)[]>([]);
   const itemRefs = useRef<(HTMLElement | null)[][]>([]);
@@ -307,4 +307,6 @@ export default function LogoCycle({
       ))}
     </div>
   );
-}
+};
+
+export default LogoCycle;

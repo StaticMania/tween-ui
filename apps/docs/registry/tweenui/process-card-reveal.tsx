@@ -304,11 +304,11 @@ function playCardSlide({
   return tl;
 }
 
-export default function ProcessCardReveal({
+const ProcessCardReveal = ({
   steps = DEFAULT_STEPS,
   className,
   ...props
-}: ProcessCardRevealProps) {
+}: ProcessCardRevealProps) => {
   const cardCount = steps.length;
   const lineCount = Math.max(cardCount - 1, 0);
 
@@ -654,4 +654,6 @@ export default function ProcessCardReveal({
       </div>
     </section>
   );
-}
+};
+
+export default ProcessCardReveal;

@@ -191,7 +191,7 @@ const ArrowUpRight = ({ className }: { className?: string }) => (
   </svg>
 );
 
-export default function ArcCarousel({
+const ArcCarousel = ({
   items = DEFAULT_ITEMS,
   badge = 'Featured work',
   title = 'Projects we shipped this season.',
@@ -201,7 +201,7 @@ export default function ArcCarousel({
   interval = 5000,
   className,
   ...props
-}: ArcCarouselProps) {
+}: ArcCarouselProps) => {
   const count = items.length;
   const [position, setPosition] = useState(0);
   const [playing, setPlaying] = useState(autoplay);
@@ -651,4 +651,6 @@ export default function ArcCarousel({
       <div aria-hidden="true" className={cn(FADE, 'right-0 bg-linear-to-l')} />
     </section>
   );
-}
+};
+
+export default ArcCarousel;

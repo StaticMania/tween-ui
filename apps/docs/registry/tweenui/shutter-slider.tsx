@@ -223,7 +223,7 @@ function exit(p: SlideParts, dir: number) {
   );
 }
 
-function Chevron({ back }: { back?: boolean }) {
+const Chevron = ({ back }: { back?: boolean }) => {
   return (
     <svg
       viewBox="0 0 16 16"
@@ -240,15 +240,15 @@ function Chevron({ back }: { back?: boolean }) {
       />
     </svg>
   );
-}
+};
 
-export default function ShutterSlider({
+const ShutterSlider = ({
   slides = DEFAULT_SLIDES,
   autoplay = 6,
   className,
   'aria-label': ariaLabel = 'Highlights',
   ...props
-}: ShutterSliderProps) {
+}: ShutterSliderProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const total = slides.length;
 
@@ -674,4 +674,6 @@ export default function ShutterSlider({
       </div>
     </section>
   );
-}
+};
+
+export default ShutterSlider;

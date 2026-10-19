@@ -85,7 +85,7 @@ const DEFAULT_CAPTION = { loading: 'Warming up timelines', done: 'Ready to tween
  * the same proportions the flight is solved for. The ring takes on the mark's `color`
  * and the dot's fill on the way in, so it lands matching either theme.
  */
-export function IrisRingMark({ className, ...props }: ComponentPropsWithoutRef<'svg'>) {
+export const IrisRingMark = ({ className, ...props }: ComponentPropsWithoutRef<'svg'>) => {
   return (
     <svg
       viewBox="0 0 32 32"
@@ -98,9 +98,9 @@ export function IrisRingMark({ className, ...props }: ComponentPropsWithoutRef<'
       <circle cx="16" cy="3.5" r="3.5" fill="#045f64" data-loader-target-dot="" />
     </svg>
   );
-}
+};
 
-function SamplePage() {
+const SamplePage = () => {
   return (
     <div className="flex h-full w-full flex-col bg-white text-[#03110f]">
       <header className="flex items-center justify-between px-5 py-5 sm:px-8">
@@ -128,9 +128,9 @@ function SamplePage() {
       </div>
     </div>
   );
-}
+};
 
-export default function LoaderIrisRing({
+const LoaderIrisRing = ({
   modules = DEFAULT_MODULES,
   frames = DEFAULT_FRAMES,
   status = DEFAULT_STATUS,
@@ -140,7 +140,7 @@ export default function LoaderIrisRing({
   children,
   className,
   ...props
-}: LoaderIrisRingProps) {
+}: LoaderIrisRingProps) => {
   const [done, setDone] = useState(false);
   const [percent, setPercent] = useState(0);
   const [counts, setCounts] = useState(() => modules.map(() => 0));
@@ -551,4 +551,6 @@ export default function LoaderIrisRing({
       )}
     </section>
   );
-}
+};
+
+export default LoaderIrisRing;

@@ -40,7 +40,7 @@ export interface WordmarkRevealProps extends Omit<ComponentPropsWithoutRef<'div'
   cueClassName?: string;
 }
 
-export default function WordmarkReveal({
+const WordmarkReveal = ({
   title,
   script,
   cue = 'Scroll down to reveal',
@@ -52,7 +52,7 @@ export default function WordmarkReveal({
   cueClassName,
   className,
   ...props
-}: WordmarkRevealProps) {
+}: WordmarkRevealProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -273,4 +273,6 @@ export default function WordmarkReveal({
       ) : null}
     </div>
   );
-}
+};
+
+export default WordmarkReveal;

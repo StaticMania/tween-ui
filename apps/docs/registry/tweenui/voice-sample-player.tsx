@@ -38,7 +38,7 @@ export interface VoiceSamplePlayerProps extends Omit<ComponentPropsWithoutRef<'d
   onPlayingChange?: (playing: boolean) => void;
 }
 
-export default function VoiceSamplePlayer({
+const VoiceSamplePlayer = ({
   name,
   description,
   avatar,
@@ -49,7 +49,7 @@ export default function VoiceSamplePlayer({
   onPlayingChange,
   className,
   ...props
-}: VoiceSamplePlayerProps) {
+}: VoiceSamplePlayerProps) => {
   const isControlled = playing !== undefined;
   const [internal, setInternal] = useState(defaultPlaying);
   const active = isControlled ? playing : internal;
@@ -235,4 +235,6 @@ export default function VoiceSamplePlayer({
       </button>
     </div>
   );
-}
+};
+
+export default VoiceSamplePlayer;

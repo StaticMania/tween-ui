@@ -21,7 +21,7 @@ const COLUMN_ENTRY = [
 /** How far each column drifts across the whole scroll — the parallax. */
 const COLUMN_DRIFT = [48, -28, -48];
 
-function StarIcon({ filled = true, className }: { filled?: boolean; className?: string }) {
+const StarIcon = ({ filled = true, className }: { filled?: boolean; className?: string }) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path
@@ -33,7 +33,7 @@ function StarIcon({ filled = true, className }: { filled?: boolean; className?: 
       />
     </svg>
   );
-}
+};
 
 export interface ColumnDriftItem {
   /** Reviewer name. */
@@ -160,7 +160,7 @@ const DEFAULT_RATING: ColumnDriftRating = {
 const CARD =
   'flex w-full flex-col items-start justify-between rounded-xl bg-white p-5 will-change-transform dark:bg-[#161b22] motion-reduce:transform-none motion-reduce:transition-none';
 
-function TestimonialCard({ item }: { item: ColumnDriftItem }) {
+const TestimonialCard = ({ item }: { item: ColumnDriftItem }) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLImageElement>(null);
   const quoteRef = useRef<HTMLSpanElement>(null);
@@ -247,9 +247,9 @@ function TestimonialCard({ item }: { item: ColumnDriftItem }) {
       </div>
     </div>
   );
-}
+};
 
-function RatingCard({ rating }: { rating: ColumnDriftRating }) {
+const RatingCard = ({ rating }: { rating: ColumnDriftRating }) => {
   const avatars = rating.avatars ?? [];
 
   return (
@@ -311,16 +311,16 @@ function RatingCard({ rating }: { rating: ColumnDriftRating }) {
       </div>
     </div>
   );
-}
+};
 
-export default function ColumnDrift({
+const ColumnDrift = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   columns = DEFAULT_COLUMNS,
   rating = DEFAULT_RATING,
   className,
   ...props
-}: ColumnDriftProps) {
+}: ColumnDriftProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const columnRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -422,4 +422,6 @@ export default function ColumnDrift({
       </div>
     </section>
   );
-}
+};
+
+export default ColumnDrift;

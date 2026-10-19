@@ -100,13 +100,13 @@ const DEFAULT_PROJECTS: CardSpotlightItem[] = [
   },
 ];
 
-export default function CardSpotlightGrid({
+const CardSpotlightGrid = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   projects = DEFAULT_PROJECTS,
   className,
   ...props
-}: CardSpotlightGridProps) {
+}: CardSpotlightGridProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -262,4 +262,6 @@ export default function CardSpotlightGrid({
       </div>
     </section>
   );
-}
+};
+
+export default CardSpotlightGrid;

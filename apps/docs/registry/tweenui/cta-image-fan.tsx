@@ -52,7 +52,7 @@ const DEFAULT_TITLE = (
   </>
 );
 
-export default function CtaImageFan({
+const CtaImageFan = ({
   images = DEFAULT_IMAGES,
   title = DEFAULT_TITLE,
   description = 'Take the first step towards a more efficient and productive workflow.',
@@ -60,7 +60,7 @@ export default function CtaImageFan({
   onCtaClick,
   className,
   ...props
-}: CtaImageFanProps) {
+}: CtaImageFanProps) => {
   return (
     <section data-cta-image-fan className={cn('w-full py-16 md:py-20', className)} {...props}>
       <div className="mx-auto flex w-full max-w-[720px] flex-col items-center gap-8 px-4">
@@ -79,4 +79,6 @@ export default function CtaImageFan({
       </div>
     </section>
   );
-}
+};
+
+export default CtaImageFan;

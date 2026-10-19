@@ -43,7 +43,7 @@ export interface MorphingTextProps extends HTMLAttributes<HTMLElement> {
   wordClassName?: string;
 }
 
-export default function MorphingText({
+const MorphingText = ({
   words,
   prefix,
   as,
@@ -55,7 +55,7 @@ export default function MorphingText({
   wordClassName,
   className,
   ...props
-}: MorphingTextProps) {
+}: MorphingTextProps) => {
   const slotRef = useRef<HTMLSpanElement>(null);
   const layerRef = useRef<HTMLSpanElement>(null);
   const aRef = useRef<HTMLSpanElement>(null);
@@ -278,4 +278,6 @@ export default function MorphingText({
       )}
     </Tag>
   );
-}
+};
+
+export default MorphingText;

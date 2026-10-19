@@ -58,7 +58,7 @@ export interface LoaderLineFoldProps extends ComponentPropsWithoutRef<'section'>
   children?: ReactNode;
 }
 
-function Clock({ timeZone }: { timeZone?: string }) {
+const Clock = ({ timeZone }: { timeZone?: string }) => {
   const [time, setTime] = useState('--:--');
 
   useEffect(() => {
@@ -78,9 +78,9 @@ function Clock({ timeZone }: { timeZone?: string }) {
   }, [timeZone]);
 
   return <time className="tabular-nums">{time}</time>;
-}
+};
 
-function SampleHero() {
+const SampleHero = () => {
   return (
     <div className="grid h-full w-full place-items-center bg-white px-5 text-center sm:px-8">
       <div className="grid justify-items-center gap-4">
@@ -94,9 +94,9 @@ function SampleHero() {
       </div>
     </div>
   );
-}
+};
 
-export default function LoaderLineFold({
+const LoaderLineFold = ({
   wordmark = 'Tween UI',
   location = 'Local time',
   timeZone,
@@ -108,7 +108,7 @@ export default function LoaderLineFold({
   children,
   className,
   ...props
-}: LoaderLineFoldProps) {
+}: LoaderLineFoldProps) => {
   const [done, setDone] = useState(false);
   const rootRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -340,4 +340,6 @@ export default function LoaderLineFold({
       )}
     </section>
   );
-}
+};
+
+export default LoaderLineFold;

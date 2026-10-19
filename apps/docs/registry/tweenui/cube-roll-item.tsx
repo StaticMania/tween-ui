@@ -64,7 +64,7 @@ const DEFAULT_ITEMS: CubeRollItemEntry[] = [
   { title: 'Changelog', label: 'What shipped lately', href: '#changelog' },
 ];
 
-function Face({ side, item, number }: { side: Side; item: CubeRollItemEntry; number: string }) {
+const Face = ({ side, item, number }: { side: Side; item: CubeRollItemEntry; number: string }) => {
   const filled = side === 'top' || side === 'bottom';
 
   return (
@@ -113,14 +113,14 @@ function Face({ side, item, number }: { side: Side; item: CubeRollItemEntry; num
       </div>
     </div>
   );
-}
+};
 
-export default function CubeRollItem({
+const CubeRollItem = ({
   items = DEFAULT_ITEMS,
   className,
   'aria-label': ariaLabel = 'Sections',
   ...props
-}: CubeRollItemProps) {
+}: CubeRollItemProps) => {
   const rootRef = useRef<HTMLElement>(null);
   /** Accumulated drum angle per row, in quarter turns of ±90°. */
   const anglesRef = useRef<number[]>([]);
@@ -274,4 +274,6 @@ export default function CubeRollItem({
       />
     </nav>
   );
-}
+};
+
+export default CubeRollItem;

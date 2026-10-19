@@ -6,7 +6,7 @@ export interface ArrowTileButtonProps extends ComponentPropsWithRef<'button'> {
   variant?: 'tilt' | 'swap';
 }
 
-function Arrow({ className }: { className?: string }) {
+const Arrow = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox="0 0 16 16"
@@ -20,7 +20,7 @@ function Arrow({ className }: { className?: string }) {
       <path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" />
     </svg>
   );
-}
+};
 
 interface Wave {
   leadMs: number;
@@ -41,7 +41,7 @@ const toppleChar =
 const liftChar =
   'inline-block whitespace-pre transition-none group-[:is(:hover,:focus-visible)]:[translate:0_-40%] group-[:is(:hover,:focus-visible)]:[rotate:9deg] group-[:is(:hover,:focus-visible)]:[transform:rotate(-9deg)_translateY(40%)] group-[:is(:hover,:focus-visible)]:[transition:translate_160ms_var(--lift)_var(--hop-delay),rotate_160ms_var(--lift)_var(--hop-delay),transform_560ms_var(--spring)_calc(var(--hop-delay)+160ms)] motion-reduce:transition-none';
 
-function WaveLabel({
+const WaveLabel = ({
   children,
   charClassName,
   wave,
@@ -49,7 +49,7 @@ function WaveLabel({
   children: string;
   charClassName: string;
   wave: Wave;
-}) {
+}) => {
   const chars = Array.from(children);
   return (
     <>
@@ -63,7 +63,7 @@ function WaveLabel({
       </span>
     </>
   );
-}
+};
 
 const TOPPLE_WAVE: Wave = { leadMs: 140, spreadMs: 225 };
 const LIFT_WAVE: Wave = { leadMs: 40, spreadMs: 340 };
@@ -71,7 +71,7 @@ const LIFT_WAVE: Wave = { leadMs: 40, spreadMs: 340 };
 const knockRelease =
   'grid [transition:translate_150ms_var(--soft),rotate_150ms_var(--soft),scale_150ms_var(--soft),transform_150ms_var(--soft)] motion-reduce:transition-none';
 
-function TiltContent({ children }: { children: string }) {
+const TiltContent = ({ children }: { children: string }) => {
   return (
     <>
       <span
@@ -101,9 +101,9 @@ function TiltContent({ children }: { children: string }) {
       </span>
     </>
   );
-}
+};
 
-function SwapContent({ children }: { children: string }) {
+const SwapContent = ({ children }: { children: string }) => {
   return (
     <>
       <span className="flex items-center rounded-md bg-[#c6f56f] px-5 text-[#045f64] transition-[translate] duration-500 ease-(--circ) group-[:is(:hover,:focus-visible)]:translate-x-[2.875rem] motion-reduce:transition-none">
@@ -119,20 +119,20 @@ function SwapContent({ children }: { children: string }) {
       </span>
     </>
   );
-}
+};
 
 const variants = {
   tilt: 'text-[#c6f56f] [--bounce:cubic-bezier(0.34,2.27,0.64,1)] [--dip:cubic-bezier(0.55,0.085,0.68,0.53)] [--soft:cubic-bezier(0.59,1,0.88,1.01)]',
   swap: 'pr-[2.875rem] [--circ:cubic-bezier(0.785,0.135,0.15,0.86)] [--lift:cubic-bezier(0.33,1,0.68,1)]',
 };
 
-export default function ArrowTileButton({
+const ArrowTileButton = ({
   children,
   className,
   variant = 'tilt',
   type = 'button',
   ...props
-}: ArrowTileButtonProps) {
+}: ArrowTileButtonProps) => {
   return (
     <button
       type={type}
@@ -150,4 +150,6 @@ export default function ArrowTileButton({
       )}
     </button>
   );
-}
+};
+
+export default ArrowTileButton;

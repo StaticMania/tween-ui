@@ -44,13 +44,13 @@ export interface KineticTypeRingProps extends ComponentPropsWithoutRef<'section'
   tilt?: number;
 }
 
-export default function KineticTypeRing({
+const KineticTypeRing = ({
   text = DEFAULT_TEXT,
   speed = 14,
   tilt = -16,
   className,
   ...props
-}: KineticTypeRingProps) {
+}: KineticTypeRingProps) => {
   const stageRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
@@ -387,4 +387,6 @@ export default function KineticTypeRing({
       </div>
     </section>
   );
-}
+};
+
+export default KineticTypeRing;

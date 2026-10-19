@@ -16,13 +16,13 @@ const variants = {
 const roll =
   'block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full group-focus-visible:-translate-y-full motion-reduce:transition-none motion-reduce:group-hover:translate-y-0 motion-reduce:group-focus-visible:translate-y-0';
 
-export default function DotBloomButton({
+const DotBloomButton = ({
   children,
   className,
   variant = 'primary',
   type = 'button',
   ...props
-}: DotBloomButtonProps) {
+}: DotBloomButtonProps) => {
   return (
     <button
       type={type}
@@ -47,4 +47,6 @@ export default function DotBloomButton({
       </span>
     </button>
   );
-}
+};
+
+export default DotBloomButton;

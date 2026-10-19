@@ -26,7 +26,7 @@ export interface MagneticButtonProps extends ComponentPropsWithRef<'button'> {
   duration?: number;
 }
 
-export default function MagneticButton({
+const MagneticButton = ({
   children,
   className,
   type = 'button',
@@ -38,7 +38,7 @@ export default function MagneticButton({
   disabled,
   ref,
   ...props
-}: MagneticButtonProps) {
+}: MagneticButtonProps) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const labelRef = useRef<HTMLSpanElement>(null);
 
@@ -133,4 +133,6 @@ export default function MagneticButton({
       </span>
     </button>
   );
-}
+};
+
+export default MagneticButton;

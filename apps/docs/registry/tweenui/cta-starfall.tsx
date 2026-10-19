@@ -41,14 +41,14 @@ const DEFAULT_TITLE = 'Turn content into videos the smarter way';
 
 const DEFAULT_DESCRIPTION = 'No video editing skills? No problem — we handle the hard part.';
 
-export default function CtaStarfall({
+const CtaStarfall = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   action = { label: 'Start creating' },
   starCount = 160,
   className,
   ...props
-}: CtaStarfallProps) {
+}: CtaStarfallProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const fieldRef = useRef<HTMLDivElement>(null);
 
@@ -190,4 +190,6 @@ export default function CtaStarfall({
       </div>
     </section>
   );
-}
+};
+
+export default CtaStarfall;

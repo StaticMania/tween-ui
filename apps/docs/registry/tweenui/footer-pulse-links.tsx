@@ -140,7 +140,7 @@ const isExternal = (href: string) => /^https?:/.test(href);
 const externalProps = (href: string) =>
   isExternal(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
-function RollLabel({ label }: { label: string }) {
+const RollLabel = ({ label }: { label: string }) => {
   return (
     <>
       <span className="sr-only">{label}</span>
@@ -164,9 +164,9 @@ function RollLabel({ label }: { label: string }) {
       </span>
     </>
   );
-}
+};
 
-function PulseUnderline() {
+const PulseUnderline = () => {
   return (
     <svg
       aria-hidden="true"
@@ -190,9 +190,9 @@ function PulseUnderline() {
       />
     </svg>
   );
-}
+};
 
-function PulseLink({ link, className }: { link: FooterPulseLink; className?: string }) {
+const PulseLink = ({ link, className }: { link: FooterPulseLink; className?: string }) => {
   return (
     <a
       href={link.href}
@@ -203,9 +203,9 @@ function PulseLink({ link, className }: { link: FooterPulseLink; className?: str
       <PulseUnderline />
     </a>
   );
-}
+};
 
-function LinkGroup({ column }: { column: FooterPulseColumn }) {
+const LinkGroup = ({ column }: { column: FooterPulseColumn }) => {
   const headingId = useId();
 
   return (
@@ -222,7 +222,7 @@ function LinkGroup({ column }: { column: FooterPulseColumn }) {
       </ul>
     </div>
   );
-}
+};
 
 const LIFT_SETTLE_MS = 160;
 
@@ -310,7 +310,7 @@ const followPointer = (mark: HTMLElement, letters: HTMLElement[]) => {
   };
 };
 
-export default function FooterPulseLinks({
+const FooterPulseLinks = ({
   brand = 'Tween UI',
   logo = TWEEN_MARK,
   description = 'GSAP & CSS animated components for React. Copy the source, own the animation.',
@@ -320,7 +320,7 @@ export default function FooterPulseLinks({
   copyright,
   className,
   ...props
-}: FooterPulseLinksProps) {
+}: FooterPulseLinksProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<HTMLParagraphElement>(null);
@@ -518,4 +518,6 @@ export default function FooterPulseLinks({
       </div>
     </footer>
   );
-}
+};
+
+export default FooterPulseLinks;

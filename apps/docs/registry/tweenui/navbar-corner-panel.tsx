@@ -91,7 +91,7 @@ const externalProps = (href: string) =>
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
 
-function ArrowIcon({ className }: { className?: string }) {
+const ArrowIcon = ({ className }: { className?: string }) => {
   return (
     <svg aria-hidden="true" viewBox="0 0 14 15" fill="none" className={className}>
       <path
@@ -101,9 +101,9 @@ function ArrowIcon({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
 
-function SamplePage({ linkCount }: { linkCount: number }) {
+const SamplePage = ({ linkCount }: { linkCount: number }) => {
   const headingId = useId();
 
   return (
@@ -141,9 +141,9 @@ function SamplePage({ linkCount }: { linkCount: number }) {
       </div>
     </section>
   );
-}
+};
 
-export default function NavbarCornerPanel({
+const NavbarCornerPanel = ({
   brand = 'Tween UI',
   logo = TWEEN_MARK,
   homeHref = '/',
@@ -153,7 +153,7 @@ export default function NavbarCornerPanel({
   children,
   className,
   ...props
-}: NavbarCornerPanelProps) {
+}: NavbarCornerPanelProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [size, setSize] = useState<PanelSize>({ width: 0, height: 0 });
   const menuId = useId();
@@ -470,4 +470,6 @@ export default function NavbarCornerPanel({
       </span>
     </section>
   );
-}
+};
+
+export default NavbarCornerPanel;

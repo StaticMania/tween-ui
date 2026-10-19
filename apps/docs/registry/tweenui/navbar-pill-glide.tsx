@@ -142,7 +142,7 @@ const isExternal = (href: string) => /^https?:/.test(href);
 const externalProps = (href: string) =>
   isExternal(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
-function RollText({ text, className }: { text: string; className?: string }) {
+const RollText = ({ text, className }: { text: string; className?: string }) => {
   return (
     <>
       <span
@@ -167,9 +167,9 @@ function RollText({ text, className }: { text: string; className?: string }) {
       <span className="sr-only">{text}</span>
     </>
   );
-}
+};
 
-function ArrowSwap() {
+const ArrowSwap = () => {
   const arrowClass = cn(
     'col-start-1 row-start-1 size-4 transition-transform duration-[550ms] motion-reduce:transition-none',
     EASE_OUT_EXPO
@@ -197,9 +197,9 @@ function ArrowSwap() {
       ))}
     </span>
   );
-}
+};
 
-function ActionLink({
+const ActionLink = ({
   action,
   variant,
   className,
@@ -207,7 +207,7 @@ function ActionLink({
   action: NavbarPillGlideAction;
   variant: 'primary' | 'outline';
   className?: string;
-}) {
+}) => {
   return (
     <a
       href={action.href}
@@ -234,9 +234,9 @@ function ActionLink({
       {variant === 'primary' ? <ArrowSwap /> : null}
     </a>
   );
-}
+};
 
-function SamplePage({ linkCount }: { linkCount: number }) {
+const SamplePage = ({ linkCount }: { linkCount: number }) => {
   const headingId = useId();
 
   return (
@@ -277,9 +277,9 @@ function SamplePage({ linkCount }: { linkCount: number }) {
       </div>
     </section>
   );
-}
+};
 
-export default function NavbarPillGlide({
+const NavbarPillGlide = ({
   brand = 'Tween UI',
   logo = TWEEN_MARK,
   homeHref = '/',
@@ -292,7 +292,7 @@ export default function NavbarPillGlide({
   children,
   className,
   ...props
-}: NavbarPillGlideProps) {
+}: NavbarPillGlideProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [previewHref, setPreviewHref] = useState(links[0]?.href ?? '');
   const menuId = useId();
@@ -673,4 +673,6 @@ export default function NavbarPillGlide({
       </div>
     </section>
   );
-}
+};
+
+export default NavbarPillGlide;

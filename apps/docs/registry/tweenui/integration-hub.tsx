@@ -82,7 +82,7 @@ const NODE_SLOTS = [
   { x: '90.7%', y: '96.9%', side: 'right' },
 ] as const;
 
-function HubMark() {
+const HubMark = () => {
   return (
     <svg viewBox="0 0 24 24" className="size-8 fill-white lg:size-10" aria-hidden="true">
       <path d="M8 5H10V7H8V5Z" />
@@ -92,9 +92,15 @@ function HubMark() {
       <path d="M8 17H10V19H8V17Z" />
     </svg>
   );
-}
+};
 
-function LogoNode({ logo, slot }: { logo: IntegrationHubLogo; slot: (typeof NODE_SLOTS)[number] }) {
+const LogoNode = ({
+  logo,
+  slot,
+}: {
+  logo: IntegrationHubLogo;
+  slot: (typeof NODE_SLOTS)[number];
+}) => {
   return (
     <div
       className={cn(
@@ -130,16 +136,16 @@ function LogoNode({ logo, slot }: { logo: IntegrationHubLogo; slot: (typeof NODE
       </div>
     </div>
   );
-}
+};
 
-export default function IntegrationHub({
+const IntegrationHub = ({
   title = 'One hub for every integration',
   description = 'Connect Notion, Zoom, Stripe, and the rest of your stack without leaving your product.',
   left = DEFAULT_LEFT,
   right = DEFAULT_RIGHT,
   className,
   ...props
-}: IntegrationHubProps) {
+}: IntegrationHubProps) => {
   const rootRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -269,4 +275,6 @@ export default function IntegrationHub({
       </div>
     </section>
   );
-}
+};
+
+export default IntegrationHub;

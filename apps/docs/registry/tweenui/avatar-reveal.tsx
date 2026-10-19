@@ -35,12 +35,12 @@ interface AvatarRevealProps extends Omit<ComponentPropsWithoutRef<'div'>, 'child
   children?: ReactNode;
 }
 
-export default function AvatarReveal({
+const AvatarReveal = ({
   avatars = DEFAULT_AVATARS,
   children = '2,000+ teams shipping faster this week.',
   className,
   ...props
-}: AvatarRevealProps) {
+}: AvatarRevealProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -114,4 +114,6 @@ export default function AvatarReveal({
       ) : null}
     </div>
   );
-}
+};
+
+export default AvatarReveal;

@@ -16,7 +16,7 @@ gsap.registerPlugin(useGSAP);
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function LogoImage({ src, srcDark, alt }: LogoWaveLogo) {
+const LogoImage = ({ src, srcDark, alt }: LogoWaveLogo) => {
   if (!srcDark) {
     return <img src={src} alt={alt} className="size-full object-contain" />;
   }
@@ -31,7 +31,7 @@ function LogoImage({ src, srcDark, alt }: LogoWaveLogo) {
       />
     </>
   );
-}
+};
 
 const ITEM_SIZE = 42;
 
@@ -118,7 +118,7 @@ function findCenterIcon(container: HTMLElement, track: HTMLElement): HTMLElement
   return centerIcon;
 }
 
-export default function LogoWave({
+const LogoWave = ({
   logos,
   duration = 60,
   gap = 70,
@@ -130,7 +130,7 @@ export default function LogoWave({
   className,
   style,
   ...props
-}: LogoWaveProps) {
+}: LogoWaveProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [repeatCount, setRepeatCount] = useState(2);
@@ -250,4 +250,6 @@ export default function LogoWave({
       </div>
     </div>
   );
-}
+};
+
+export default LogoWave;
