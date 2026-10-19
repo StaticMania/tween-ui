@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : createPageMetadata({ config: docsConfig, page });
 }
 
-export default async function Page({ params }: PageProps) {
+const Page = async ({ params }: PageProps) => {
   const { slug } = await params;
   const starCount = await fetchStarCount(docsConfig.github?.url);
   if (isLanding(slug)) return <LandingPage starCount={starCount} />;
@@ -89,4 +89,6 @@ export default async function Page({ params }: PageProps) {
       <DocsPager prev={prev} next={next} />
     </DocsShell>
   );
-}
+};
+
+export default Page;

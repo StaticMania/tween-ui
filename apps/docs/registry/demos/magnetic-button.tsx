@@ -2,6 +2,8 @@
 
 import MagneticButton from '@/registry/tweenui/magnetic-button';
 
-export default function MagneticButtonDemo() {
+const MagneticButtonDemo = () => {
   return <MagneticButton>Get started</MagneticButton>;
-}
+};
+
+export default MagneticButtonDemo;

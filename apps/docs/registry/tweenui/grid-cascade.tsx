@@ -19,7 +19,7 @@ const prefersReducedMotion = () =>
 const ENTER = { y: -22, duration: 0.6, stagger: 0.08 };
 const LEAVE = { y: 14, duration: 0.28, stagger: 0.05 };
 
-function StarIcon({ className }: { className?: string }) {
+const StarIcon = ({ className }: { className?: string }) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path
@@ -28,9 +28,9 @@ function StarIcon({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
 
-function XMark({ className }: { className?: string }) {
+const XMark = ({ className }: { className?: string }) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
       <path
@@ -39,15 +39,15 @@ function XMark({ className }: { className?: string }) {
       />
     </svg>
   );
-}
+};
 
-function ChevronIcon({
+const ChevronIcon = ({
   direction,
   className,
 }: {
   direction: 'left' | 'right';
   className?: string;
-}) {
+}) => {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none">
       <path
@@ -59,7 +59,7 @@ function ChevronIcon({
       />
     </svg>
   );
-}
+};
 
 export interface GridCascadeItem {
   /** Reviewer name. */
@@ -144,7 +144,7 @@ const DEFAULT_ITEMS: GridCascadeItem[] = [
   },
 ];
 
-export default function GridCascade({
+const GridCascade = ({
   title = DEFAULT_TITLE,
   description,
   items = DEFAULT_ITEMS,
@@ -152,7 +152,7 @@ export default function GridCascade({
   loop = true,
   className,
   ...props
-}: GridCascadeProps) {
+}: GridCascadeProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const [page, setPage] = useState(0);
   const busy = useRef(false);
@@ -313,4 +313,6 @@ export default function GridCascade({
       </div>
     </section>
   );
-}
+};
+
+export default GridCascade;

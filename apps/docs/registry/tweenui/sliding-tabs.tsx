@@ -41,14 +41,14 @@ interface SlidingTabsProps extends Omit<ComponentPropsWithoutRef<'nav'>, 'onChan
   onValueChange?: (value: string) => void;
 }
 
-export default function SlidingTabs({
+const SlidingTabs = ({
   items,
   defaultValue,
   value: valueProp,
   onValueChange,
   className,
   ...props
-}: SlidingTabsProps) {
+}: SlidingTabsProps) => {
   const navRef = useRef<HTMLElement>(null);
   const indicatorRef = useRef<HTMLDivElement>(null);
   const visibleRef = useRef(false);
@@ -227,4 +227,6 @@ export default function SlidingTabs({
       })}
     </nav>
   );
-}
+};
+
+export default SlidingTabs;

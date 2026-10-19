@@ -22,7 +22,7 @@ export interface NumberCounterProps extends ComponentPropsWithoutRef<'span'> {
   format?: Format;
 }
 
-export default function NumberCounter({
+const NumberCounter = ({
   value,
   delay = 0,
   duration = DEFAULT_DURATION,
@@ -30,7 +30,7 @@ export default function NumberCounter({
   format,
   className,
   ...props
-}: NumberCounterProps) {
+}: NumberCounterProps) => {
   const rootRef = useRef<HTMLSpanElement>(null);
   const [displayValue, setDisplayValue] = useState(0);
 
@@ -92,4 +92,6 @@ export default function NumberCounter({
       />
     </span>
   );
-}
+};
+
+export default NumberCounter;

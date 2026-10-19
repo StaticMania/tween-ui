@@ -11,7 +11,7 @@ export const metadata: Metadata = rootMetadata();
 
 export const viewport: Viewport = rootViewport;
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <DocsRoot
       config={docsConfig}
@@ -21,4 +21,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       {children}
     </DocsRoot>
   );
-}
+};
+
+export default RootLayout;

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import WordmarkReveal from '@/registry/tweenui/wordmark-reveal';
 
-export default function WordmarkRevealInstantDemo() {
+const WordmarkRevealInstantDemo = () => {
   const stageRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -40,4 +40,6 @@ export default function WordmarkRevealInstantDemo() {
       ) : null}
     </div>
   );
-}
+};
+
+export default WordmarkRevealInstantDemo;

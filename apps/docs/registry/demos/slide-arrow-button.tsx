@@ -2,6 +2,8 @@
 
 import SlideArrowButton from '@/registry/tweenui/slide-arrow-button';
 
-export default function SlideArrowButtonDemo() {
+const SlideArrowButtonDemo = () => {
   return <SlideArrowButton>Get started</SlideArrowButton>;
-}
+};
+
+export default SlideArrowButtonDemo;

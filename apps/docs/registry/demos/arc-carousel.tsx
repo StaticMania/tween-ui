@@ -2,10 +2,12 @@
 
 import ArcCarousel from '@/registry/tweenui/arc-carousel';
 
-export default function ArcCarouselDemo() {
+const ArcCarouselDemo = () => {
   return (
     <div className="h-full w-full overflow-hidden">
       <ArcCarousel />
     </div>
   );
-}
+};
+
+export default ArcCarouselDemo;

@@ -42,7 +42,7 @@ const LIVE_ITEMS: readonly LiveItem[] = [
   },
 ];
 
-export function LiveRow() {
+export const LiveRow = () => {
   return (
     <section aria-labelledby="live-title" className="py-24 md:py-32">
       <div className="main-container">
@@ -106,4 +106,4 @@ export function LiveRow() {
       </div>
     </section>
   );
-}
+};

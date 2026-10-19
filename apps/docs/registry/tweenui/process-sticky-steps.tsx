@@ -77,7 +77,7 @@ const DEFAULT_STEPS: ProcessStickyStep[] = [
   },
 ];
 
-function StepCard({
+const StepCard = ({
   step,
   active,
   cardRef,
@@ -85,7 +85,7 @@ function StepCard({
   step: ProcessStickyStep;
   active: boolean;
   cardRef: (el: HTMLDivElement | null) => void;
-}) {
+}) => {
   return (
     <div
       ref={cardRef}
@@ -133,14 +133,14 @@ function StepCard({
       </div>
     </div>
   );
-}
+};
 
-export default function ProcessStickySteps({
+const ProcessStickySteps = ({
   title = DEFAULT_TITLE,
   steps = DEFAULT_STEPS,
   className,
   ...props
-}: ProcessStickyStepsProps) {
+}: ProcessStickyStepsProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const rootRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -265,4 +265,6 @@ export default function ProcessStickySteps({
       </div>
     </section>
   );
-}
+};
+
+export default ProcessStickySteps;

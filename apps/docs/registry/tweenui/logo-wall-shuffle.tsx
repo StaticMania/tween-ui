@@ -62,7 +62,7 @@ const DEFAULT_TITLE = 'Your entire tech stack, perfectly connected';
 const DEFAULT_DESCRIPTION =
   'Seamlessly integrate with your favorite tools and bring all your workflows into one unified platform.';
 
-function LogoMark({ logo, className }: { logo: LogoWallLogo; className?: string }) {
+const LogoMark = ({ logo, className }: { logo: LogoWallLogo; className?: string }) => {
   return (
     <>
       <img
@@ -81,16 +81,16 @@ function LogoMark({ logo, className }: { logo: LogoWallLogo; className?: string 
       )}
     </>
   );
-}
+};
 
-export default function LogoWallShuffle({
+const LogoWallShuffle = ({
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   logos,
   columns = DEFAULT_COLUMNS,
   className,
   ...props
-}: LogoWallShuffleProps) {
+}: LogoWallShuffleProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const tileCount = columns.reduce((total, size) => total + size, 0);
 
@@ -235,13 +235,15 @@ export default function LogoWallShuffle({
       </div>
     </section>
   );
-}
+};
+
+export default LogoWallShuffle;
 
 /**
  * A single mark layer. `entering` rises into place from below, `leaving` lifts
  * away and blurs out, `idle` just sits there.
  */
-function SwapLayer({
+const SwapLayer = ({
   role,
   onDone,
   className,
@@ -251,7 +253,7 @@ function SwapLayer({
   onDone?: () => void;
   className?: string;
   children: ReactNode;
-}) {
+}) => {
   const ref = useRef<HTMLSpanElement>(null);
 
   useGSAP(
@@ -284,4 +286,4 @@ function SwapLayer({
       {children}
     </span>
   );
-}
+};

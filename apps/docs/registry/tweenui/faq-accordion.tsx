@@ -32,7 +32,7 @@ export interface FaqAccordionProps extends Omit<ComponentPropsWithoutRef<'div'>,
   collapsible?: boolean;
 }
 
-export default function FaqAccordion({
+const FaqAccordion = ({
   items,
   defaultOpen = 0,
   open,
@@ -40,7 +40,7 @@ export default function FaqAccordion({
   collapsible = true,
   className,
   ...props
-}: FaqAccordionProps) {
+}: FaqAccordionProps) => {
   const isControlled = open !== undefined;
   const [internal, setInternal] = useState<number | null>(defaultOpen);
   const openIndex = isControlled ? open : internal;
@@ -227,4 +227,6 @@ export default function FaqAccordion({
       })}
     </div>
   );
-}
+};
+
+export default FaqAccordion;

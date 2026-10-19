@@ -10,7 +10,7 @@ gsap.registerPlugin(useGSAP);
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function Arrow({ className }: { className?: string }) {
+const Arrow = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -22,7 +22,7 @@ function Arrow({ className }: { className?: string }) {
       <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
-}
+};
 
 export interface FlipCardProps extends Omit<ComponentPropsWithoutRef<'div'>, 'title'> {
   /** Card heading, shown on both faces. */
@@ -49,7 +49,7 @@ export interface FlipCardProps extends Omit<ComponentPropsWithoutRef<'div'>, 'ti
   onFlippedChange?: (flipped: boolean) => void;
 }
 
-export default function FlipCard({
+const FlipCard = ({
   title,
   eyebrow,
   subtitle,
@@ -63,7 +63,7 @@ export default function FlipCard({
   onFlippedChange,
   className,
   ...props
-}: FlipCardProps) {
+}: FlipCardProps) => {
   const innerRef = useRef<HTMLDivElement>(null);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
@@ -264,4 +264,6 @@ export default function FlipCard({
       </div>
     </div>
   );
-}
+};
+
+export default FlipCard;

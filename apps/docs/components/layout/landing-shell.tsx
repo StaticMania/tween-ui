@@ -7,7 +7,7 @@ export type LandingShellProps = Readonly<{
   starCount: number | null;
 }>;
 
-export function LandingShell({ children, starCount }: LandingShellProps) {
+export const LandingShell = ({ children, starCount }: LandingShellProps) => {
   return (
     <div data-landing className="flex min-h-svh flex-col">
       <LandingHeader starCount={starCount} />
@@ -15,4 +15,4 @@ export function LandingShell({ children, starCount }: LandingShellProps) {
       <SiteFooter />
     </div>
   );
-}
+};

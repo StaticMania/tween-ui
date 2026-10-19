@@ -2,10 +2,12 @@
 
 import TestimonialRing from '@/registry/tweenui/testimonial-ring';
 
-export default function TestimonialRingDemo() {
+const TestimonialRingDemo = () => {
   return (
     <div className="w-full overflow-hidden rounded-xl">
       <TestimonialRing />
     </div>
   );
-}
+};
+
+export default TestimonialRingDemo;

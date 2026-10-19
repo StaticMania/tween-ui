@@ -1,63 +1,14 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useDocsConfig } from 'docora';
-import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { FooterBrand } from './footer-brand';
+import { FooterLink } from './footer-link';
 
 const DOCORA_URL = 'https://docora-docs.vercel.app/';
 
-type FooterLinkItem = { label: string; href: string; external?: boolean };
-
-function FooterLink({ link }: Readonly<{ link: FooterLinkItem }>) {
-  const external = link.external ?? link.href.startsWith('http');
-
-  return (
-    <Link
-      href={link.href}
-      {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
-      className="text-muted-foreground hover:text-highlighted inline-flex items-center gap-1 text-sm transition-colors"
-    >
-      {link.label}
-      {external && <ArrowUpRight className="text-dimmed size-3.5" aria-hidden />}
-    </Link>
-  );
-}
-
-function Brand() {
-  const config = useDocsConfig();
-  const logo = config.header?.logo;
-  const title = config.header?.title ?? config.site.name;
-
-  return (
-    <Link href="/" className="inline-flex items-center gap-2 transition-opacity hover:opacity-70">
-      {logo?.light && (
-        <Image
-          src={logo.light}
-          alt={logo.alt || title}
-          width={24}
-          height={24}
-          unoptimized={/\.svg(?:$|\?)/i.test(logo.light)}
-          className={cn('h-6 w-auto', logo.dark && 'dark:hidden', logo.className)}
-        />
-      )}
-      {logo?.dark && (
-        <Image
-          src={logo.dark}
-          alt={logo.alt || title}
-          width={24}
-          height={24}
-          unoptimized={/\.svg(?:$|\?)/i.test(logo.dark)}
-          className={cn('hidden h-6 w-auto dark:block', logo.className)}
-        />
-      )}
-      <span className="text-highlighted font-semibold tracking-tight">{title}</span>
-    </Link>
-  );
-}
-
-export function SiteFooter({ className }: Readonly<{ className?: string }>) {
+export const SiteFooter = ({ className }: Readonly<{ className?: string }>) => {
   const config = useDocsConfig();
   const credits = config.footer?.credits;
   const links = config.footer?.links ?? [];
@@ -76,7 +27,7 @@ export function SiteFooter({ className }: Readonly<{ className?: string }>) {
       <div className="max-w-8xl mx-auto w-full px-4 py-12 sm:px-6">
         <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
           <div className="max-w-xs">
-            <Brand />
+            <FooterBrand />
             {config.site.description && (
               <p className="text-muted-foreground mt-3 text-sm leading-6">
                 {config.site.description}
@@ -121,4 +72,4 @@ export function SiteFooter({ className }: Readonly<{ className?: string }>) {
       </div>
     </footer>
   );
-}
+};

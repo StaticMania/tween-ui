@@ -144,7 +144,7 @@ const isExternal = (href: string) => /^https?:/.test(href);
 const externalProps = (href: string) =>
   isExternal(href) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
-function RollLabel({ label }: { label: string }) {
+const RollLabel = ({ label }: { label: string }) => {
   return (
     <>
       <span className="sr-only">{label}</span>
@@ -166,9 +166,9 @@ function RollLabel({ label }: { label: string }) {
       </span>
     </>
   );
-}
+};
 
-function LinkGroup({ column }: { column: FooterColumn }) {
+const LinkGroup = ({ column }: { column: FooterColumn }) => {
   const headingId = useId();
 
   return (
@@ -195,9 +195,9 @@ function LinkGroup({ column }: { column: FooterColumn }) {
       </ul>
     </div>
   );
-}
+};
 
-export default function FooterWordmarkRise({
+const FooterWordmarkRise = ({
   brand = 'Tween UI',
   logo = TWEEN_MARK,
   description = 'GSAP & CSS animated components for React. Copy the source, own the animation.',
@@ -207,7 +207,7 @@ export default function FooterWordmarkRise({
   copyright,
   className,
   ...props
-}: FooterWordmarkRiseProps) {
+}: FooterWordmarkRiseProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<HTMLParagraphElement>(null);
@@ -445,4 +445,6 @@ export default function FooterWordmarkRise({
       </div>
     </footer>
   );
-}
+};
+
+export default FooterWordmarkRise;

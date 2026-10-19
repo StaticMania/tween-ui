@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils';
 /* -------------------------------------------------------------------------- */
 /*  Icon — a custom "stacked chevron" glyph (diagonal climb of squares).       */
 /* -------------------------------------------------------------------------- */
-function StackedChevronIcon(props: SVGProps<SVGSVGElement>) {
+const StackedChevronIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" {...props}>
       <path d="M8 5H10V7H8V5Z" />
@@ -24,7 +24,7 @@ function StackedChevronIcon(props: SVGProps<SVGSVGElement>) {
       <path d="M8 17H10V19H8V17Z" />
     </svg>
   );
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*  Interaction — a tiny state machine driving `data-icon-state`.              */
@@ -140,7 +140,7 @@ function useButtonIconSlide() {
 /* -------------------------------------------------------------------------- */
 const TRAIL_OPACITIES = [1, 0.8, 0.6, 0.4, 0.2] as const;
 
-function ButtonIconSlideTrail({ iconClassName }: { iconClassName: string }) {
+const ButtonIconSlideTrail = ({ iconClassName }: { iconClassName: string }) => {
   return (
     <>
       <span
@@ -168,7 +168,7 @@ function ButtonIconSlideTrail({ iconClassName }: { iconClassName: string }) {
       </span>
     </>
   );
-}
+};
 
 /* -------------------------------------------------------------------------- */
 /*  Icon Trail Button — colors, easing and sizes are inline, so the      */
@@ -184,12 +184,12 @@ export type IconTrailButtonProps =
   | (IconTrailButtonOwnProps & ComponentPropsWithoutRef<'button'> & { href?: never })
   | (IconTrailButtonOwnProps & ComponentPropsWithoutRef<'a'> & { href: string });
 
-export default function IconTrailButton({
+const IconTrailButton = ({
   children,
   labelClassName,
   className,
   ...props
-}: IconTrailButtonProps) {
+}: IconTrailButtonProps) => {
   const { iconState, buttonRef } = useButtonIconSlide();
   const isLink = typeof props.href === 'string';
   const Tag = isLink ? 'a' : 'button';
@@ -221,4 +221,6 @@ export default function IconTrailButton({
       </span>
     </Tag>
   );
-}
+};
+
+export default IconTrailButton;

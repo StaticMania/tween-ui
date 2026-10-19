@@ -45,11 +45,7 @@ const DEFAULT_CARDS: CardHoverExpandItem[] = [
   },
 ];
 
-export default function CardHoverExpand({
-  cards = DEFAULT_CARDS,
-  className,
-  ...props
-}: CardHoverExpandProps) {
+const CardHoverExpand = ({ cards = DEFAULT_CARDS, className, ...props }: CardHoverExpandProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
@@ -130,4 +126,6 @@ export default function CardHoverExpand({
       })}
     </div>
   );
-}
+};
+
+export default CardHoverExpand;

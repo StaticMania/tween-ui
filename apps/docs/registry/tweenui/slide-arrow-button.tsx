@@ -3,7 +3,7 @@
 import type { ComponentPropsWithRef } from 'react';
 import { cn } from '@/lib/utils';
 
-function Chevron({ className }: { className?: string }) {
+const Chevron = ({ className }: { className?: string }) => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -18,19 +18,19 @@ function Chevron({ className }: { className?: string }) {
       <path d="m9 6 6 6-6 6" />
     </svg>
   );
-}
+};
 
 export interface SlideArrowButtonProps extends ComponentPropsWithRef<'button'> {
   /** Button label. Must be a string — it is duplicated for the roll. */
   children: string;
 }
 
-export default function SlideArrowButton({
+const SlideArrowButton = ({
   children,
   className,
   type = 'button',
   ...props
-}: SlideArrowButtonProps) {
+}: SlideArrowButtonProps) => {
   const label =
     'block text-sm leading-5 font-medium whitespace-nowrap transition-transform duration-500 ease-in-out group-hover:-translate-y-full motion-reduce:transition-none motion-reduce:group-hover:translate-y-0';
 
@@ -58,4 +58,6 @@ export default function SlideArrowButton({
       </span>
     </button>
   );
-}
+};
+
+export default SlideArrowButton;

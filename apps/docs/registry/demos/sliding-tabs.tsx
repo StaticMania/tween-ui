@@ -11,6 +11,8 @@ const items = [
   { value: 'blog', label: 'Blog' },
 ];
 
-export default function SlidingTabsDemo() {
+const SlidingTabsDemo = () => {
   return <SlidingTabs items={items} defaultValue="home" />;
-}
+};
+
+export default SlidingTabsDemo;

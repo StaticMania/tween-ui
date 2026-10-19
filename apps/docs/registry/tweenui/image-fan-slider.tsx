@@ -74,14 +74,14 @@ function slideStyle(slideIndex: number, activeIndex: number, total: number): CSS
   };
 }
 
-export default function ImageFanSlider({
+const ImageFanSlider = ({
   images,
   interval = 2.5,
   direction = 'left',
   pauseOnHover = true,
   className,
   ...props
-}: ImageFanSliderProps) {
+}: ImageFanSliderProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const total = images.length;
@@ -122,4 +122,6 @@ export default function ImageFanSlider({
       ))}
     </div>
   );
-}
+};
+
+export default ImageFanSlider;

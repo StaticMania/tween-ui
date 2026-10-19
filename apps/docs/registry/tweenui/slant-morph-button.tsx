@@ -32,14 +32,14 @@ export interface SlantMorphButtonProps extends ComponentPropsWithRef<'button'> {
   children: string;
 }
 
-export default function SlantMorphButton({
+const SlantMorphButton = ({
   children,
   className,
   type = 'button',
   disabled,
   ref,
   ...props
-}: SlantMorphButtonProps) {
+}: SlantMorphButtonProps) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const seamRef = useRef<SVGPathElement>(null);
   const tileRef = useRef<SVGPathElement>(null);
@@ -137,4 +137,6 @@ export default function SlantMorphButton({
       </span>
     </button>
   );
-}
+};
+
+export default SlantMorphButton;

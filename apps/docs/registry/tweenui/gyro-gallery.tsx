@@ -118,13 +118,13 @@ const SLOTS = ORBITS.flatMap((orbit, ring) =>
 
 const clamp01 = (value: number) => Math.min(1, Math.max(0, value));
 
-export default function GyroGallery({
+const GyroGallery = ({
   items = DEFAULT_ITEMS,
   title = 'The archive, in orbit.',
   description = 'Point near a piece to bring it forward, click to open it, drag to spin the rings.',
   className,
   ...props
-}: GyroGalleryProps) {
+}: GyroGalleryProps) => {
   const count = items.length;
   const tiles = SLOTS.map((slot, i) => ({ ...slot, item: items[i % Math.max(1, count)] }));
 
@@ -650,4 +650,6 @@ export default function GyroGallery({
       </ul>
     </section>
   );
-}
+};
+
+export default GyroGallery;

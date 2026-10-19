@@ -2,10 +2,12 @@
 
 import LoaderLineFold from '@/registry/tweenui/loader-line-fold';
 
-export default function LoaderLineFoldDemo() {
+const LoaderLineFoldDemo = () => {
   return (
     <div className="h-full w-full overflow-hidden">
       <LoaderLineFold />
     </div>
   );
-}
+};
+
+export default LoaderLineFoldDemo;

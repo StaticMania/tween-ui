@@ -3,7 +3,7 @@
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
-function Sparkles() {
+const Sparkles = () => {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -22,20 +22,20 @@ function Sparkles() {
       <path d="M5 18H3" />
     </svg>
   );
-}
+};
 
 export interface ShinyButtonProps extends ComponentPropsWithRef<'button'> {
   /** Leading icon. Defaults to a sparkles glyph; pass `null` to hide it. */
   icon?: ReactNode;
 }
 
-export default function ShinyButton({
+const ShinyButton = ({
   children,
   className,
   icon,
   type = 'button',
   ...props
-}: ShinyButtonProps) {
+}: ShinyButtonProps) => {
   return (
     <button
       type={type}
@@ -59,4 +59,6 @@ export default function ShinyButton({
       <span className="relative">{children}</span>
     </button>
   );
-}
+};
+
+export default ShinyButton;

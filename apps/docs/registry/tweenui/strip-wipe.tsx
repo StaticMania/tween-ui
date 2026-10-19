@@ -68,7 +68,7 @@ const DEFAULT_TESTIMONIALS: TestimonialSlide[] = [
   },
 ];
 
-function ArrowDotLeftIcon({ className }: { className?: string }) {
+const ArrowDotLeftIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -84,9 +84,9 @@ function ArrowDotLeftIcon({ className }: { className?: string }) {
       <path d="M16 17H14V19H16V17Z" />
     </svg>
   );
-}
+};
 
-function ArrowDotRightIcon({ className }: { className?: string }) {
+const ArrowDotRightIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ function ArrowDotRightIcon({ className }: { className?: string }) {
       <path d="M8 17H10V19H8V17Z" />
     </svg>
   );
-}
+};
 
 function tileClipPath(index: number) {
   const overlap = 0.25;
@@ -150,12 +150,12 @@ function playSlideVisual(slide: HTMLElement, instant: boolean, from: Testimonial
   }
 }
 
-export default function StripWipe({
+const StripWipe = ({
   testimonials = DEFAULT_TESTIMONIALS,
   directional = true,
   className,
   ...props
-}: StripWipeProps) {
+}: StripWipeProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const slideRefs = useRef<Array<HTMLElement | null>>([]);
   const loopDelayRef = useRef<gsap.core.Tween | null>(null);
@@ -340,4 +340,6 @@ export default function StripWipe({
       </div>
     </section>
   );
-}
+};
+
+export default StripWipe;

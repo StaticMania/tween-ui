@@ -2,6 +2,8 @@
 
 import AvatarReveal from '@/registry/tweenui/avatar-reveal';
 
-export default function AvatarRevealDemo() {
+const AvatarRevealDemo = () => {
   return <AvatarReveal>2,000+ teams shipping faster this week.</AvatarReveal>;
-}
+};
+
+export default AvatarRevealDemo;

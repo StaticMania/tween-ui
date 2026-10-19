@@ -2,10 +2,12 @@
 
 import LoaderIrisRing from '@/registry/tweenui/loader-iris-ring';
 
-export default function LoaderIrisRingDemo() {
+const LoaderIrisRingDemo = () => {
   return (
     <div className="h-full w-full overflow-hidden">
       <LoaderIrisRing />
     </div>
   );
-}
+};
+
+export default LoaderIrisRingDemo;

@@ -37,7 +37,7 @@ export type HeroProps = Readonly<{
   blockCount: number;
 }>;
 
-export function Hero({ componentCount, blockCount }: HeroProps) {
+export const Hero = ({ componentCount, blockCount }: HeroProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
@@ -361,4 +361,4 @@ export function Hero({ componentCount, blockCount }: HeroProps) {
       </div>
     </section>
   );
-}
+};

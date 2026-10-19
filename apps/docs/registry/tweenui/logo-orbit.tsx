@@ -10,7 +10,7 @@ gsap.registerPlugin(useGSAP);
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function LogoImage({ src, srcDark, alt }: LogoOrbitLogo) {
+const LogoImage = ({ src, srcDark, alt }: LogoOrbitLogo) => {
   if (!srcDark) {
     return <img src={src} alt={alt} className="size-full object-contain" />;
   }
@@ -25,7 +25,7 @@ function LogoImage({ src, srcDark, alt }: LogoOrbitLogo) {
       />
     </>
   );
-}
+};
 
 export interface LogoOrbitLogo {
   src: string;
@@ -45,14 +45,14 @@ export interface LogoOrbitProps extends ComponentPropsWithoutRef<'div'> {
   pauseOnHover?: boolean;
 }
 
-export default function LogoOrbit({
+const LogoOrbit = ({
   logos,
   size = 320,
   speed = 1,
   pauseOnHover = true,
   className,
   ...props
-}: LogoOrbitProps) {
+}: LogoOrbitProps) => {
   const ringRef = useRef<HTMLDivElement>(null);
   const hubRef = useRef<HTMLDivElement>(null);
   const pivotRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -145,4 +145,6 @@ export default function LogoOrbit({
       </div>
     </div>
   );
-}
+};
+
+export default LogoOrbit;

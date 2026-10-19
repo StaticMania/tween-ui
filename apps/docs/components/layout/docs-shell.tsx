@@ -56,7 +56,7 @@ function useSidebarScroll() {
  * layout hardcodes its own and exposes no sidebar slot). Keep the shell's
  * widths in sync with docora/src/layouts/docs-layout.tsx on upgrades.
  */
-export function DocsShell({ children, toc = [], page, starCount, className }: DocsShellProps) {
+export const DocsShell = ({ children, toc = [], page, starCount, className }: DocsShellProps) => {
   const config = useDocsConfig();
   const sidebarRef = useSidebarScroll();
 
@@ -100,4 +100,4 @@ export function DocsShell({ children, toc = [], page, starCount, className }: Do
       <SiteFooter />
     </div>
   );
-}
+};

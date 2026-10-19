@@ -108,7 +108,7 @@ const arrowButton = cn(
   'motion-reduce:transition-none'
 );
 
-function Arrow({ flip = false }: { flip?: boolean }) {
+const Arrow = ({ flip = false }: { flip?: boolean }) => {
   return (
     <svg
       aria-hidden="true"
@@ -124,15 +124,15 @@ function Arrow({ flip = false }: { flip?: boolean }) {
       <path d="m12 19-7-7 7-7" />
     </svg>
   );
-}
+};
 
-export default function TestimonialRing({
+const TestimonialRing = ({
   title = 'In their own words.',
   testimonials = DEFAULT_TESTIMONIALS,
   className,
   onKeyDown,
   ...props
-}: TestimonialRingProps) {
+}: TestimonialRingProps) => {
   const count = testimonials.length;
   const repeat = Math.max(2, Math.ceil(MIN_CARDS / Math.max(1, count)));
   const slots = Array.from({ length: count * repeat }, (_, i) => testimonials[i % count]);
@@ -752,4 +752,6 @@ export default function TestimonialRing({
       )}
     </section>
   );
-}
+};
+
+export default TestimonialRing;

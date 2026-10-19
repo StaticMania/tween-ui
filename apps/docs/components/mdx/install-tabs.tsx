@@ -9,7 +9,7 @@ const SETUP_PATH = '/installation/setup-guide';
 const MCP_PATH = '/installation/mcp';
 
 /** shadcn install command across package managers. `item` is the registry item name. */
-export function InstallTabs({ item }: { item: string }) {
+export const InstallTabs = ({ item }: { item: string }) => {
   // The setup page uses this component too, and pointing it back at itself
   // would read as a loop.
   const onSetupPage = usePathname() === SETUP_PATH;
@@ -35,6 +35,6 @@ export function InstallTabs({ item }: { item: string }) {
       </p>
     </div>
   );
-}
+};
 
 export default InstallTabs;

@@ -154,7 +154,7 @@ const PLAY: Record<string, Play> = {
   users: bounce,
 };
 
-export function AnimatedIcon({
+export const AnimatedIcon = ({
   name,
   hovered,
   className,
@@ -163,7 +163,7 @@ export function AnimatedIcon({
   /** Drives the motion — the row owns hover state so the whole row triggers it. */
   hovered: boolean;
   className?: string;
-}) {
+}) => {
   const ref = useRef<HTMLSpanElement>(null);
 
   useGSAP(
@@ -181,4 +181,4 @@ export function AnimatedIcon({
       <Icon name={name} className={cn('size-4 shrink-0', className)} />
     </span>
   );
-}
+};

@@ -2,7 +2,7 @@
 
 import NumberCounter from '@/registry/tweenui/number-counter';
 
-export default function NumberCounterViewportDemo() {
+const NumberCounterViewportDemo = () => {
   return (
     <div
       data-counter-scroller
@@ -33,4 +33,6 @@ export default function NumberCounterViewportDemo() {
       <div className="h-28" />
     </div>
   );
-}
+};
+
+export default NumberCounterViewportDemo;

@@ -3,9 +3,13 @@
 import { useEffect, useRef, useState, type ComponentType, type SVGProps } from 'react';
 import { usePathname } from 'next/navigation';
 import { Bot, Check, ChevronDown, Copy, FileText, Wand2 } from 'lucide-react';
+import { ClaudeMark } from '@/components/icons/claude-mark';
+import { CursorMark } from '@/components/icons/cursor-mark';
+import { GithubMark } from '@/components/icons/github-mark';
+import { OpenAIMark } from '@/components/icons/openai-mark';
+import { T3Mark } from '@/components/icons/t3-mark';
 import { siteConfig } from '@/config/site';
 import { cn, copyText } from '@/lib/utils';
-import { ClaudeMark, CursorMark, GithubMark, OpenAIMark, T3Mark } from './brand-icons';
 
 type IconType = ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -40,7 +44,7 @@ function buildMcpPrompt(name: string) {
   );
 }
 
-export function OpenIn({ name, title, githubHref }: OpenInProps) {
+export const OpenIn = ({ name, title, githubHref }: OpenInProps) => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState<'md' | 'prompt' | 'mcp' | null>(null);
@@ -182,6 +186,6 @@ export function OpenIn({ name, title, githubHref }: OpenInProps) {
       )}
     </div>
   );
-}
+};
 
 export default OpenIn;

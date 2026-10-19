@@ -44,10 +44,12 @@ const LOGOS = [
   },
 ];
 
-export default function LogoWallShuffleDemo() {
+const LogoWallShuffleDemo = () => {
   return (
     <div className="w-full rounded-xl bg-[#f7f8f8] dark:bg-[#0d1117]">
       <LogoWallShuffle logos={LOGOS} />
     </div>
   );
-}
+};
+
+export default LogoWallShuffleDemo;

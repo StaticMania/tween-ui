@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
  * and we pass one so the mobile trigger can sit in that slot. This mirrors the
  * upstream mark + title, including the light/dark logo pair.
  */
-export function HeaderLogo() {
+export const HeaderLogo = () => {
   const config = useDocsConfig();
   const logo = config.header?.logo;
   const title = config.header?.title ?? config.site.name;
@@ -42,4 +42,4 @@ export function HeaderLogo() {
       <span className="font-semibold tracking-tight whitespace-nowrap">{title}</span>
     </Link>
   );
-}
+};
