@@ -1180,4 +1180,38 @@ export default function Example() {
     },
     docs: 'Pass `menus` (a `label` plus `columns` and an optional `feature`, or just an `href` for a plain link) and put your page inside as `children`. The goo filter is generated per instance, so several bars can share a page.',
   },
+  {
+    name: 'project-hover-reveal',
+    type: 'block',
+    addedAt: '2026-10-25',
+    title: 'Project Hover Reveal',
+    description:
+      'A split selected-projects list: titles on the left, one stage on the right. Pointing at a project opens its image like an iris from the edge nearest that row, over the dimming last one, and rolls in its role, timeline, year and team line by line.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/project-hover-reveal.tsx',
+        target: 'components/tweenui/project-hover-reveal.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/project-hover-reveal.tsx',
+      },
+    ],
+    usage: {
+      react: `import ProjectHoverReveal from '@/components/tweenui/project-hover-reveal';
+
+export default function Example() {
+  return <ProjectHoverReveal />;
+}`,
+    },
+    docs: 'Pass your own `items` (`title`, `role`, `timeline`, `year`, `team`, `image`, `href`). Every image is mounted in the stage up front, so keep them web-sized.',
+  },
 ];

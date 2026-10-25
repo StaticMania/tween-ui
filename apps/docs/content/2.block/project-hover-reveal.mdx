@@ -1,0 +1,108 @@
+---
+title: Project Hover Reveal
+description: A split selected-projects list where each project's image opens like an iris from the row you point at, and its details roll in.
+icon: square-mouse-pointer
+---
+
+A portfolio **selected projects** list in two columns. The project titles sit
+on the left; on the right is **one stage** with the image and the project's
+role, timeline, year and team. Point at a title and it steps forward while the
+next image **opens like an iris** from the edge of the frame nearest that row,
+settling out of a slight zoom as the old image dims beneath it. Each detail
+**rolls in** on its own masked line, a beat after the one before. Nothing in
+the layout changes size, so it stays still under the pointer. GSAP.
+
+::component-preview{name="project-hover-reveal" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="project-hover-reveal"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="project-hover-reveal"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import ProjectHoverReveal from '@/components/tweenui/project-hover-reveal';
+
+export default function Page() {
+  return <ProjectHoverReveal />;
+}
+```
+
+:::
+::
+
+Pass your own projects to make it yours:
+
+```tsx [app/page.tsx]
+import ProjectHoverReveal from '@/components/tweenui/project-hover-reveal';
+
+export default function Page() {
+  return (
+    <ProjectHoverReveal
+      title="Selected Projects"
+      items={[
+        {
+          title: 'Northwind',
+          role: 'Brand · Product · Motion',
+          timeline: '14 Months',
+          year: '2025–2026',
+          team: 'In-House Studio',
+          image: '/work/northwind.jpg',
+          href: '/work/northwind',
+        },
+      ]}
+    />
+  );
+}
+```
+
+Every project image is mounted in the stage up front, and the outgoing one stays
+underneath, fully drawn, until the new one has opened over it, so moving between
+rows never shows an empty frame. The iris starts from the row's centre projected
+onto the frame: beside the list that is the left edge at the row's height, and
+when the stage stacks above the list it is the bottom edge. Keep the images
+web-sized, since they all load with the block. The sample images are from
+[Lummi](https://www.lummi.ai).
+
+On touch screens there is no hover, so the stage is hidden and each row shows
+its image, role and year inline. A tap opens the project in one go.
+
+## Props
+
+| Prop    | Type                       | Default             | Description       |
+| ------- | -------------------------- | ------------------- | ----------------- |
+| `title` | `ReactNode`                | `Selected Projects` | Section heading.  |
+| `items` | `ProjectHoverRevealItem[]` | 5-project set       | Rows in the list. |
+
+Each item is `{ title, role, timeline, year, team, image, href }`. Extends
+native `<section>` attributes (`className`, `style`, …).
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` there is no iris, zoom, dimming or roll:
+the stage shows the hovered or focused project's image and details instantly.
+::
+
+Every row is a real `<a href>`, so the list works with the keyboard and screen
+readers, and each link names the project's role and year. Focusing a row with
+the keyboard switches the stage to it. Images take their `alt` text from the
+project's title. The stage repeats what the list already says, so it is hidden
+from assistive tech; on touch screens the inline image carries the `alt` text.
