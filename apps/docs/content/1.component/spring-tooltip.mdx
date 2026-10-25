@@ -1,0 +1,99 @@
+---
+title: Spring Tooltip
+description: One tooltip for a whole toolbar that slides, resizes and mask-wipes its label as you move between buttons.
+icon: message-square
+---
+
+A toolbar of icon buttons that **shares one tooltip**. The first hover or
+keyboard focus **unfurls** it from a small nub at the button, rising out of a
+soft blur. From then on it **travels**: moving to a neighbour slides it across
+and resizes it to the new label on critically damped springs, while a slanted
+**mask wipe** sweeps the way you moved with a lime glint riding its edge,
+erasing the old label and drawing the new one in behind it. Change direction halfway and it keeps its
+current velocity, so a fast sweep across the toolbar never jerks. Leave the
+toolbar and it waits a moment before closing, so crossing the gap between two
+buttons doesn't reopen it. GSAP ticker, no provider.
+
+::component-preview{name="spring-tooltip"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="spring-tooltip"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="spring-tooltip"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [components/format-toolbar.tsx]
+import { Bold, Italic, Link2 } from 'lucide-react';
+import SpringTooltip from '@/components/tweenui/spring-tooltip';
+
+const items = [
+  { label: 'Bold', shortcut: 'Ctrl B', icon: <Bold /> },
+  { label: 'Italic', shortcut: 'Ctrl I', icon: <Italic /> },
+  { label: 'Insert link', shortcut: 'Ctrl K', icon: <Link2 /> },
+];
+
+export default function FormatToolbar() {
+  return <SpringTooltip items={items} aria-label="Text formatting" />;
+}
+```
+
+:::
+::
+
+The component renders the buttons itself. A tooltip that follows several
+triggers needs to know every one of them, and the usual way to do that is a
+context provider each trigger registers with. Tween UI components ship as one
+file with no providers, so the triggers come in as an `items` array instead:
+the component owns each button, knows its position and label, and points them
+all at the same tooltip.
+
+## Props
+
+| Prop         | Type                  | Default     | Description                                          |
+| ------------ | --------------------- | ----------- | ---------------------------------------------------- |
+| `items`      | `SpringTooltipItem[]` | —           | The buttons to render. See below.                    |
+| `delay`      | `number`              | `150`       | Milliseconds before the first tooltip opens.         |
+| `closeDelay` | `number`              | `300`       | Milliseconds after leaving the toolbar before close. |
+| `aria-label` | `string`              | `'Toolbar'` | Accessible name for the button group.                |
+| `className`  | `string`              | —           | Extra classes for the group `<div>`.                 |
+
+Each `SpringTooltipItem` has a `label` (the tooltip text and the button's
+accessible name), an `icon`, and optional `shortcut`, `onClick` and `disabled`.
+All other native `<div>` attributes are forwarded to the group.
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` there is no spring and no slide: the
+tooltip appears at the target button with the new label straight away, with no
+unfurl, blur or mask wipe, and moving to another button swaps it there
+instantly. The open delay and the close grace still apply, since they are
+timing, not motion.
+::
+
+Every trigger is a real `<button>` named by its `aria-label`, and each points
+`aria-describedby` at the one `role="tooltip"` element. The visible label is
+hidden from assistive tech inside the tooltip, so screen readers don't hear the
+name twice; the shortcut, when there is one, is read as the description.
+
+The tooltip opens on `:focus-visible` as well as hover, and Tab moves it from
+button to button the same way the pointer does. Escape closes it until you move
+to another button. It sits above its button and flips below when there is no
+room, and stays inside the viewport at phone width.

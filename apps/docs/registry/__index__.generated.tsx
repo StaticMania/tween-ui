@@ -35,6 +35,7 @@ export const demos: Record<string, ComponentType> = {
   'wordmark-reveal:scroll': dynamic(() => import('./demos/wordmark-reveal')),
   'wordmark-reveal:instant': dynamic(() => import('./demos/wordmark-reveal-instant')),
   'svg-draw:default': dynamic(() => import('./demos/svg-draw')),
+  'spring-tooltip:default': dynamic(() => import('./demos/spring-tooltip')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process-sticky-steps')),

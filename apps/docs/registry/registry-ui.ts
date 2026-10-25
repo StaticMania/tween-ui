@@ -911,4 +911,45 @@ export default function Example() {
     },
     docs: 'Wrap inline SVG markup, not an <img src="*.svg">: only shapes in the page DOM can be traced. Give it a new key to play it again.',
   },
+  {
+    name: 'spring-tooltip',
+    type: 'component',
+    addedAt: '2026-10-25',
+    title: 'Spring Tooltip',
+    description:
+      'One tooltip shared by a toolbar of icon buttons. It unfurls from a nub at the button, then travels: moving to a neighbour slides it across and resizes it on critically damped springs while a soft mask wipes the old label out and the new one in, and a fast sweep keeps its velocity instead of restarting. GSAP ticker, no provider.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/spring-tooltip.tsx',
+        target: 'components/tweenui/spring-tooltip.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/spring-tooltip.tsx',
+      },
+    ],
+    usage: {
+      react: `import { Bold, Italic, Link2 } from 'lucide-react';
+import SpringTooltip from '@/components/tweenui/spring-tooltip';
+
+const items = [
+  { label: 'Bold', shortcut: 'Ctrl B', icon: <Bold /> },
+  { label: 'Italic', shortcut: 'Ctrl I', icon: <Italic /> },
+  { label: 'Insert link', shortcut: 'Ctrl K', icon: <Link2 /> },
+];
+
+export default function Example() {
+  return <SpringTooltip items={items} aria-label="Text formatting" />;
+}`,
+    },
+    docs: 'The component renders the buttons itself from an items array, so one tooltip can serve every trigger without a context provider.',
+  },
 ];

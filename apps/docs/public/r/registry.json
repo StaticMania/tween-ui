@@ -584,6 +584,30 @@
       ]
     },
     {
+      "name": "spring-tooltip",
+      "type": "registry:ui",
+      "title": "Spring Tooltip",
+      "description": "One tooltip shared by a toolbar of icon buttons. It unfurls from a nub at the button, then travels: moving to a neighbour slides it across and resizes it on critically damped springs while a soft mask wipes the old label out and the new one in, and a fast sweep keeps its velocity instead of restarting. GSAP ticker, no provider.",
+      "files": [
+        {
+          "path": "components/tweenui/spring-tooltip.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "spring-tooltip-demo",
+      "type": "registry:example",
+      "title": "Spring Tooltip Demo",
+      "description": "Usage examples for Spring Tooltip.",
+      "files": [
+        {
+          "path": "examples/spring-tooltip-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",
