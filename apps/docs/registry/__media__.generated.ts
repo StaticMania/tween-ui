@@ -31,6 +31,7 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'morphing-text': {"image":"/media/components/morphing-text-poster.webp","video":"/media/components/morphing-text-preview.mp4"},
   'wordmark-reveal': {"image":"/media/components/wordmark-reveal-poster.webp","video":"/media/components/wordmark-reveal-preview.mp4"},
   'svg-draw': {"image":"/media/components/svg-draw-poster.webp","video":"/media/components/svg-draw-preview.mp4"},
+  'spring-tooltip': {"image":"/media/components/spring-tooltip-poster.webp","video":"/media/components/spring-tooltip-preview.mp4"},
   'pricing-plan-switch': {"image":"/media/blocks/pricing-plan-switch-poster.webp","video":"/media/blocks/pricing-plan-switch-preview.mp4"},
   'process-card-reveal': {"image":"/media/blocks/process-card-reveal-poster.webp","video":"/media/blocks/process-card-reveal-preview.mp4"},
   'process-sticky-steps': {"image":"/media/blocks/process-sticky-steps-poster.webp","video":"/media/blocks/process-sticky-steps-preview.mp4"},
@@ -65,4 +66,6 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'navbar-corner-panel': {"image":"/media/blocks/navbar-corner-panel-poster.webp","video":"/media/blocks/navbar-corner-panel-preview.mp4"},
   'footer-pulse-links': {"image":"/media/blocks/footer-pulse-links-poster.webp","video":"/media/blocks/footer-pulse-links-preview.mp4"},
   'arc-carousel': {"image":"/media/blocks/arc-carousel-poster.webp","video":"/media/blocks/arc-carousel-preview.mp4"},
+  'navbar-gooey-bloom': {"image":"/media/blocks/navbar-gooey-bloom-poster.webp","video":"/media/blocks/navbar-gooey-bloom-preview.mp4"},
+  'project-hover-reveal': {"image":"/media/blocks/project-hover-reveal-poster.webp","video":"/media/blocks/project-hover-reveal-preview.mp4"},
 };
