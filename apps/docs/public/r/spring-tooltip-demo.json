@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spring-tooltip-demo",
+  "type": "registry:example",
+  "title": "Spring Tooltip Demo",
+  "description": "Usage examples for Spring Tooltip.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/spring-tooltip.json"
+  ],
+  "files": [
+    {
+      "path": "examples/spring-tooltip-demo.tsx",
+      "type": "registry:example",
+      "content": "import { Bold, Italic, Link2 } from 'lucide-react';\nimport SpringTooltip from '@/components/tweenui/spring-tooltip';\n\nconst items = [\n  { label: 'Bold', shortcut: 'Ctrl B', icon: <Bold /> },\n  { label: 'Italic', shortcut: 'Ctrl I', icon: <Italic /> },\n  { label: 'Insert link', shortcut: 'Ctrl K', icon: <Link2 /> },\n];\n\nexport default function FormatToolbar() {\n  return <SpringTooltip items={items} aria-label=\"Text formatting\" />;\n}"
+    }
+  ]
+}
