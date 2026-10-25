@@ -1,0 +1,169 @@
+---
+title: Navbar Gooey Bloom
+description: A navbar whose hover highlight is a pool of lime that stretches between links, with menus that swell out of a drop.
+icon: blend
+---
+
+A glass navbar with **liquid for a highlight**. Point at a link and a lime pool
+**stretches across the bar**: its front edge runs ahead, its back edge drags a
+droplet behind it, and the label **inverts to ink** as the pool arrives. Every
+menu is a **gooey panel** that swells out of a small drop under the trigger,
+keeps a soft bulge pointed at it, and **leans and stretches** when you move to
+the next menu. Inside, a lime blob **flows from icon to icon** as you move down
+the list. The bar wears the Tween UI mark and uses the Dot Bloom Button for its action. GSAP, a
+small spring loop and three SVG filters.
+
+::component-preview{name="navbar-gooey-bloom"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="navbar-gooey-bloom"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="navbar-gooey-bloom"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import NavbarGooeyBloom from '@/components/tweenui/navbar-gooey-bloom';
+
+export default function Page() {
+  return <NavbarGooeyBloom />;
+}
+```
+
+:::
+::
+
+It arrives dressed as a Tween UI demo, with three mega menus, one plain link
+and a single hero as the page. Put your own page inside it as `children`:
+
+```tsx [app/layout.tsx]
+'use client';
+
+import { useRouter } from 'next/navigation';
+import NavbarGooeyBloom from '@/components/tweenui/navbar-gooey-bloom';
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+
+  return (
+    <NavbarGooeyBloom
+      brand="Kairo"
+      currentHref="/pricing"
+      actionLabel="Start free"
+      onActionClick={() => router.push('/signup')}
+      menus={[
+        {
+          label: 'Product',
+          columns: [
+            [
+              {
+                label: 'Overview',
+                href: '/product',
+                description: 'What it does, in one screen.',
+                icon: 'bloom',
+              },
+              {
+                label: 'Pricing',
+                href: '/pricing',
+                description: 'Three plans, no surprises.',
+                icon: 'layers',
+              },
+            ],
+          ],
+          feature: {
+            title: 'What is new',
+            description: 'The changelog, kept short.',
+            href: '/changelog',
+            cta: 'Read it',
+          },
+        },
+        { label: 'Docs', href: '/docs' },
+      ]}
+    >
+      {children}
+    </NavbarGooeyBloom>
+  );
+}
+```
+
+A menu is `{ label, columns?, feature?, href? }`. Give it `columns` (an array
+of columns, each an array of links) to make it a panel; give it only `href` to
+make it a plain link. A link is `{ label, href, description?, icon? }`, with
+`icon` one of `'bloom'`, `'drop'`, `'orbit'`, `'spark'`, `'layers'`, `'wave'`,
+`'bolt'` or `'shield'`. A feature is `{ title, description, href, cta?, image? }`;
+without an image it draws its own gooey bloom mark.
+
+## Props
+
+| Prop            | Type                                   | Default           | Description                                    |
+| --------------- | -------------------------------------- | ----------------- | ---------------------------------------------- |
+| `brand`         | `string`                               | `'Tween UI'`      | Name beside the logo, and the section's label. |
+| `logo`          | `ReactNode`                            | The Tween UI mark | Shown before the brand name.                   |
+| `homeHref`      | `string`                               | `'/'`             | Where the logo links.                          |
+| `menus`         | `NavbarGooeyBloomMenu[]`               | Three + Journal   | Bar links, in order, with their panels.        |
+| `currentHref`   | `string`                               | `'/'`             | The page you are on; nested paths count too.   |
+| `actionLabel`   | `string`                               | `'Get started'`   | Label of the Dot Bloom button in the bar.      |
+| `onActionClick` | `MouseEventHandler<HTMLButtonElement>` | —                 | Runs when the action button is pressed.        |
+| `children`      | `ReactNode`                            | A sample hero     | The page under the bar.                        |
+
+## Behavior
+
+- **The pool runs on springs, not tweens.** Each edge of the highlight is a
+  critically damped spring. The edge facing the direction of travel is pulled
+  harder than the one behind it, so the pool stretches and thins while it moves
+  and gathers back under the label when it stops. Retargeting keeps the
+  current velocity, so sweeping across the bar never jerks.
+- **One droplet, never loose.** A single drop sits on the pool's centre line
+  inside a `feGaussianBlur` + `feColorMatrix` layer. It lags the pool on a
+  softer spring but is clamped to its body, so it shows as a tail on the
+  trailing end and is absorbed when the pool settles.
+- **Menus swell out of a drop.** The panel starts as a small blob under the
+  trigger and springs out to its full width and height. A goo filter merges the
+  panel with a bulge on its top edge that follows the pool, so the panel always
+  leans toward its trigger. Its edges also lead and trail when you switch
+  menus, so the panel stretches across before it settles.
+- **Contents are cut to the liquid.** The rows are clipped to the panel's
+  current shape every frame, so they are revealed as it grows. Items rise
+  10px in, 20ms apart.
+- **Rows share one lime blob.** A single blob behind the icons follows your
+  pointer from row to row with the same leading and trailing springs, thinning
+  as it stretches and dragging a small drop. A soft surface tracks the row, the
+  icon inverts to ink and a lime arrow slides in beside the label.
+- **The sample fits the block.** The hero uses `container-type: size` and
+  `cqh` type steps, so it fills the stage at any height without an inner
+  scrollbar. On pages taller than the block, the bar hides after 220px of
+  downward travel and returns on the way up, and never hides while a panel is
+  open. Scroll position is read from the block's own scroller.
+- **Below 1024px** the links fold into a full-screen sheet with accordion
+  menus, the same Dot Bloom action and the same icons as the panels.
+
+## Accessibility
+
+::note
+Triggers are real buttons with `aria-expanded`, `aria-controls` and
+`aria-haspopup`, and the panel is `inert` while closed, so the 20-odd links
+inside it never enter the tab order unseen. Focus opens a menu and moves the
+row blob, the header's `focusout` closes it when focus leaves, Escape closes it
+and returns focus to the trigger. The mobile sheet is `inert` when closed,
+traps its own scroll, closes on Escape and hands focus back to the toggle.
+Labels keep contrast because the pool inverts text to ink (`#03110f` on
+`#c6f56f`). Under `prefers-reduced-motion: reduce` the springs settle at once,
+the intro and sheet animations are skipped, and every menu still opens and
+closes.
+::

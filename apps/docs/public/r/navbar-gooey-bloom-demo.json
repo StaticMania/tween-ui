@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navbar-gooey-bloom-demo",
+  "type": "registry:example",
+  "title": "Navbar Gooey Bloom Demo",
+  "description": "Usage examples for Navbar Gooey Bloom.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/navbar-gooey-bloom.json"
+  ],
+  "files": [
+    {
+      "path": "examples/navbar-gooey-bloom-demo.tsx",
+      "type": "registry:example",
+      "content": "import NavbarGooeyBloom from '@/components/tweenui/navbar-gooey-bloom';\n\nexport default function Page() {\n  return <NavbarGooeyBloom />;\n}"
+    },
+    {
+      "path": "examples/navbar-gooey-bloom-demo-2.tsx",
+      "type": "registry:example",
+      "content": "'use client';\n\nimport { useRouter } from 'next/navigation';\nimport NavbarGooeyBloom from '@/components/tweenui/navbar-gooey-bloom';\n\nexport default function Layout({ children }: { children: React.ReactNode }) {\n  const router = useRouter();\n\n  return (\n    <NavbarGooeyBloom\n      brand=\"Kairo\"\n      currentHref=\"/pricing\"\n      actionLabel=\"Start free\"\n      onActionClick={() => router.push('/signup')}\n      menus={[\n        {\n          label: 'Product',\n          columns: [\n            [\n              {\n                label: 'Overview',\n                href: '/product',\n                description: 'What it does, in one screen.',\n                icon: 'bloom',\n              },\n              {\n                label: 'Pricing',\n                href: '/pricing',\n                description: 'Three plans, no surprises.',\n                icon: 'layers',\n              },\n            ],\n          ],\n          feature: {\n            title: 'What is new',\n            description: 'The changelog, kept short.',\n            href: '/changelog',\n            cta: 'Read it',\n          },\n        },\n        { label: 'Docs', href: '/docs' },\n      ]}\n    >\n      {children}\n    </NavbarGooeyBloom>\n  );\n}"
+    }
+  ]
+}
