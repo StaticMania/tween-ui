@@ -71,6 +71,7 @@ export const demos: Record<string, ComponentType> = {
   'footer-pulse-links:default': dynamic(() => import('./demos/footer-pulse-links')),
   'arc-carousel:default': dynamic(() => import('./demos/arc-carousel')),
   'navbar-gooey-bloom:default': dynamic(() => import('./demos/navbar-gooey-bloom')),
+  'project-hover-reveal:default': dynamic(() => import('./demos/project-hover-reveal')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

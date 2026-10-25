@@ -1606,6 +1606,34 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "project-hover-reveal",
+      "type": "registry:block",
+      "title": "Project Hover Reveal",
+      "description": "A split selected-projects list: titles on the left, one stage on the right. Pointing at a project opens its image like an iris from the edge nearest that row, over the dimming last one, and rolls in its role, timeline, year and team line by line.",
+      "files": [
+        {
+          "path": "components/tweenui/project-hover-reveal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "project-hover-reveal-demo",
+      "type": "registry:example",
+      "title": "Project Hover Reveal Demo",
+      "description": "Usage examples for Project Hover Reveal.",
+      "files": [
+        {
+          "path": "examples/project-hover-reveal-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/project-hover-reveal-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

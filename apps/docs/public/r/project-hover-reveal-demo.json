@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "project-hover-reveal-demo",
+  "type": "registry:example",
+  "title": "Project Hover Reveal Demo",
+  "description": "Usage examples for Project Hover Reveal.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/project-hover-reveal.json"
+  ],
+  "files": [
+    {
+      "path": "examples/project-hover-reveal-demo.tsx",
+      "type": "registry:example",
+      "content": "import ProjectHoverReveal from '@/components/tweenui/project-hover-reveal';\n\nexport default function Page() {\n  return <ProjectHoverReveal />;\n}"
+    },
+    {
+      "path": "examples/project-hover-reveal-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import ProjectHoverReveal from '@/components/tweenui/project-hover-reveal';\n\nexport default function Page() {\n  return (\n    <ProjectHoverReveal\n      title=\"Selected Projects\"\n      items={[\n        {\n          title: 'Northwind',\n          role: 'Brand · Product · Motion',\n          timeline: '14 Months',\n          year: '2025–2026',\n          team: 'In-House Studio',\n          image: '/work/northwind.jpg',\n          href: '/work/northwind',\n        },\n      ]}\n    />\n  );\n}"
+    }
+  ]
+}
