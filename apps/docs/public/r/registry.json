@@ -1554,6 +1554,34 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "navbar-gooey-bloom",
+      "type": "registry:block",
+      "title": "Navbar Gooey Bloom",
+      "description": "A glass navbar whose hover highlight is liquid: a lime pool stretches from link to link with a droplet dragging behind, while the label inverts to ink. Menus swell out of a drop into one gooey panel that leans toward its trigger and morphs between layouts, and inside it a lime blob flows from icon to icon.",
+      "files": [
+        {
+          "path": "components/tweenui/navbar-gooey-bloom.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-gooey-bloom-demo",
+      "type": "registry:example",
+      "title": "Navbar Gooey Bloom Demo",
+      "description": "Usage examples for Navbar Gooey Bloom.",
+      "files": [
+        {
+          "path": "examples/navbar-gooey-bloom-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/navbar-gooey-bloom-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

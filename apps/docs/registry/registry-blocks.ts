@@ -1146,4 +1146,38 @@ export default function Example() {
     },
     docs: 'Pass your own `items`; eight or more keep the arc full and the wrap unseen. Colors are inline Tailwind classes, so there is nothing to add to your theme.',
   },
+  {
+    name: 'navbar-gooey-bloom',
+    type: 'block',
+    addedAt: '2026-10-20',
+    title: 'Navbar Gooey Bloom',
+    description:
+      'A glass navbar whose hover highlight is liquid: a lime pool stretches from link to link with a droplet dragging behind, while the label inverts to ink. Menus swell out of a drop into one gooey panel that leans toward its trigger and morphs between layouts, and inside it a lime blob flows from icon to icon.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: ['dot-bloom-button'],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/navbar-gooey-bloom.tsx',
+        target: 'components/tweenui/navbar-gooey-bloom.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/navbar-gooey-bloom.tsx',
+      },
+    ],
+    usage: {
+      react: `import NavbarGooeyBloom from '@/components/tweenui/navbar-gooey-bloom';
+
+export default function Example() {
+  return <NavbarGooeyBloom />;
+}`,
+    },
+    docs: 'Pass `menus` (a `label` plus `columns` and an optional `feature`, or just an `href` for a plain link) and put your page inside as `children`. The goo filter is generated per instance, so several bars can share a page.',
+  },
 ];
