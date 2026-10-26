@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "settings-popup-demo",
+  "type": "registry:example",
+  "title": "Settings Popup Demo",
+  "description": "Usage examples for Settings Popup.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/settings-popup.json"
+  ],
+  "files": [
+    {
+      "path": "examples/settings-popup-demo.tsx",
+      "type": "registry:example",
+      "content": "import { Moon, Sparkles, Volume2, Zap } from 'lucide-react';\nimport SettingsPopup from '@/components/tweenui/settings-popup';\n\nconst toggles = [\n  { label: 'Sound', icon: <Volume2 />, defaultChecked: true },\n  {\n    label: 'Dark mode',\n    icon: <Moon />,\n    onCheckedChange: (on: boolean) => document.documentElement.classList.toggle('dark', on),\n  },\n];\n\nconst choice = {\n  label: 'Quality',\n  defaultValue: 'high',\n  options: [\n    { value: 'high', label: 'High', icon: <Sparkles />, hint: 'Recommended' },\n    { value: 'low', label: 'Low', icon: <Zap /> },\n  ],\n};\n\nexport default function SiteSettings() {\n  return <SettingsPopup toggles={toggles} choice={choice} align=\"end\" />;\n}"
+    }
+  ]
+}

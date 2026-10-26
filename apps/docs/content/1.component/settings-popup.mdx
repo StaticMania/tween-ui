@@ -1,0 +1,117 @@
+---
+title: Settings Popup
+description: A settings menu that springs out of its own trigger on hover, squashing like a drop as it settles.
+icon: settings
+---
+
+A **settings menu** that grows out of the button that opens it. Hover the
+trigger and the panel **springs** from the button's corner on a `back.out`
+overshoot, so it lands a little past full size and settles back. The glass
+under it starts as a soft blurred ellipse and **squashes and stretches** like a
+drop finding its shape, while the rows **unblur** out of a pill-shaped clip
+from the middle. Leave and it **anticipates**: a `back.in` pulls it out a touch
+before it folds back into the button, and the trigger fades in once it's gone.
+Cross the gap between button and panel and it waits a moment, so it never
+flickers shut. GSAP timeline, no provider.
+
+::component-preview{name="settings-popup"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="settings-popup"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="settings-popup"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [components/site-settings.tsx]
+import { Moon, Sparkles, Volume2, Zap } from 'lucide-react';
+import SettingsPopup from '@/components/tweenui/settings-popup';
+
+const toggles = [
+  { label: 'Sound', icon: <Volume2 />, defaultChecked: true },
+  {
+    label: 'Dark mode',
+    icon: <Moon />,
+    onCheckedChange: (on: boolean) => document.documentElement.classList.toggle('dark', on),
+  },
+];
+
+const choice = {
+  label: 'Quality',
+  defaultValue: 'high',
+  options: [
+    { value: 'high', label: 'High', icon: <Sparkles />, hint: 'Recommended' },
+    { value: 'low', label: 'Low', icon: <Zap /> },
+  ],
+};
+
+export default function SiteSettings() {
+  return <SettingsPopup toggles={toggles} choice={choice} align="end" />;
+}
+```
+
+:::
+::
+
+The panel is pinned to a corner of the trigger and opens **over** it, not
+below it, which is what lets it read as the button turning into the menu. Use
+`align="end"` when the trigger sits at the right edge of a navbar so the panel
+grows leftwards and stays on screen.
+
+## Props
+
+| Prop         | Type                    | Default      | Description                                              |
+| ------------ | ----------------------- | ------------ | -------------------------------------------------------- |
+| `toggles`    | `SettingsPopupToggle[]` | —            | On/off rows with a switch. See below.                    |
+| `choice`     | `SettingsPopupChoice`   | —            | Optional group of options where one is picked.           |
+| `label`      | `string`                | `'Settings'` | Trigger text.                                            |
+| `title`      | `string`                | `'Settings'` | Heading inside the panel and the menu's accessible name. |
+| `icon`       | `ReactNode`             | gear         | Trigger icon. The default gear turns on hover.           |
+| `align`      | `'start' \| 'end'`      | `'start'`    | Which corner of the trigger the panel grows from.        |
+| `closeDelay` | `number`                | `150`        | Milliseconds after the pointer leaves before it closes.  |
+| `className`  | `string`                | —            | Extra classes for the wrapper `<div>`.                   |
+
+Each `SettingsPopupToggle` has a `label`, an `icon`, and optional `checked`,
+`defaultChecked` and `onCheckedChange`. A `SettingsPopupChoice` has a `label`,
+`options` (each with `value`, `label`, and optional `icon` and `hint`), and
+optional `value`, `defaultValue` and `onValueChange`. The trigger inherits the
+text color, and all other native `<div>` attributes are forwarded to the
+wrapper; your own `onPointerEnter`, `onPointerLeave` and `onBlur` still run.
+
+Pass `checked` or `value` when the setting lives elsewhere in your app, such as
+a theme that can also change from the system, so the menu always shows the
+real state. Leave them out and the menu keeps its own state, starting from
+`defaultChecked` and `defaultValue`.
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` the panel appears and disappears in
+place with no spring, squash, clip or blur, and the switches and gear stop
+animating. The close delay still applies, since it is timing, not motion.
+::
+
+The trigger is a real `<button>` with `aria-haspopup="menu"` and
+`aria-expanded`, pointing at a `role="menu"` panel. Toggles are
+`menuitemcheckbox` and options are `menuitemradio`, each with `aria-checked`.
+
+Enter or Space on the trigger opens the menu and moves focus to the first row.
+Arrow keys, Home and End move between rows, and Escape closes it and returns
+focus to the trigger. Tabbing away or pressing outside closes it too. On touch
+screens there is no hover, so a tap opens it and a tap outside closes it.

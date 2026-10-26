@@ -952,4 +952,53 @@ export default function Example() {
     },
     docs: 'The component renders the buttons itself from an items array, so one tooltip can serve every trigger without a context provider.',
   },
+  {
+    name: 'settings-popup',
+    type: 'component',
+    addedAt: '2026-10-26',
+    title: 'Settings Popup',
+    description:
+      'A settings menu that springs out of its own trigger on hover. The panel grows from the button on a back.out overshoot while the glass under it squashes and stretches like a drop settling, the rows unblur out of a pill-shaped clip, and closing anticipates before folding back into the button.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {
+      '--color-tween-teal': '#045f64',
+      '--color-tween-teal-deep': '#0f3f42',
+      '--color-tween-teal-soft': '#9fd4d6',
+      '--color-tween-lime': '#c6f56f',
+      '--color-tween-ink': '#071d1b',
+      '--color-tween-ink-deep': '#03110f',
+      '--ease-tween': 'cubic-bezier(0.32, 0.72, 0, 1)',
+      '--ease-tween-spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+    },
+    files: [
+      {
+        path: 'registry/tweenui/settings-popup.tsx',
+        target: 'components/tweenui/settings-popup.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/settings-popup.tsx',
+      },
+    ],
+    usage: {
+      react: `import { Moon, Volume2 } from 'lucide-react';
+import SettingsPopup from '@/components/tweenui/settings-popup';
+
+const toggles = [
+  { label: 'Sound', icon: <Volume2 />, defaultChecked: true },
+  { label: 'Dark mode', icon: <Moon />, onCheckedChange: (on: boolean) => console.log(on) },
+];
+
+export default function Example() {
+  return <SettingsPopup toggles={toggles} align="end" />;
+}`,
+    },
+    docs: 'The panel is pinned to the trigger corner set by align, so it opens over the button instead of below it.',
+  },
 ];

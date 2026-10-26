@@ -608,6 +608,30 @@
       ]
     },
     {
+      "name": "settings-popup",
+      "type": "registry:ui",
+      "title": "Settings Popup",
+      "description": "A settings menu that springs out of its own trigger on hover. The panel grows from the button on a back.out overshoot while the glass under it squashes and stretches like a drop settling, the rows unblur out of a pill-shaped clip, and closing anticipates before folding back into the button.",
+      "files": [
+        {
+          "path": "components/tweenui/settings-popup.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "settings-popup-demo",
+      "type": "registry:example",
+      "title": "Settings Popup Demo",
+      "description": "Usage examples for Settings Popup.",
+      "files": [
+        {
+          "path": "examples/settings-popup-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",
