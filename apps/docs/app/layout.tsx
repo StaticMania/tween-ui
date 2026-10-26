@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { DocsRoot, isAssistantEnabled } from 'docora';
 import docsConfig from '../docs.config';
 import { rootMetadata, rootViewport } from '../lib/metadata';
@@ -19,6 +20,7 @@ const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>)
       assistantEnabled={isAssistantEnabled(docsConfig.assistant)}
     >
       {children}
+      <Analytics />
     </DocsRoot>
   );
 };
