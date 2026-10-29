@@ -4,7 +4,7 @@ import LogoWave from '@/registry/tweenui/logo-wave';
 
 // Brand marks from Iconify (`logos` for colour, `simple-icons` for Figma + GSAP wordmark).
 const icon = (set: string, name: string, color?: string) => {
-  const url = `https://api.iconify.design/${set}:${name}.svg`;
+  const url = `https://api.iconify.design/${set}/${name}.svg`;
   return color ? `${url}?color=${encodeURIComponent(color)}` : url;
 };
 
