@@ -10,6 +10,7 @@ gsap.registerPlugin(useGSAP, CustomEase);
 
 const CELL = 8;
 const SPREAD = 0.42;
+const DRAIN = 0.28;
 const SCATTER = 0.08;
 const STEP = 0.09;
 const EDGE = 0.07;
@@ -85,6 +86,7 @@ const PixelFillButton = ({
       const slides = gsap.utils.toArray<HTMLElement>('[data-slide]', btn);
       const label = btn.querySelector<HTMLElement>('[data-label]');
       const roll = { duration: 0.48, ease: 'pixel-roll', overwrite: true };
+      const pending: (gsap.core.Tween | null)[] = cells.map(() => null);
 
       // The wave is timed by each cell's distance from a point: where the
       // pointer came in when filling, where it went out when draining. Filling
@@ -96,43 +98,56 @@ const PixelFillButton = ({
         const height = btn.offsetHeight;
         const far = Math.max(Math.hypot(Math.max(x, width - x), Math.max(y, height - y)), 1);
         const reachOf = (px: number, py: number) => Math.hypot(px - x, py - y) / far;
-        const timing = (reach: number) => (filling ? reach : 1 - reach) * SPREAD;
+        const order = (reach: number) => (filling ? reach : 1 - reach);
+        const reaches = cells.map((_, index) =>
+          reachOf(((index % grid.cols) + 0.5) * CELL, (Math.floor(index / grid.cols) + 0.5) * CELL)
+        );
+        const lits = cells.map((cell) => Number(gsap.getProperty(cell, 'opacity')) > 0);
+
+        // The drain is timed across the lit cells only, starting from the first
+        // of them, so it begins the moment the pointer leaves. A quick pass
+        // lights a few cells right by the exit; timed across the whole button
+        // they'd sit out most of the sweep before clearing.
+        const start = filling ? 0 : Math.min(1, ...reaches.filter((_, i) => lits[i]).map(order));
+        const timing = (reach: number) =>
+          Math.max(0, order(reach) - start) * (filling ? SPREAD : DRAIN);
+        const hold = filling ? EDGE : EDGE / 2;
 
         cells.forEach((cell, index) => {
-          const reach = reachOf(
-            ((index % grid.cols) + 0.5) * CELL,
-            (Math.floor(index / grid.cols) + 0.5) * CELL
-          );
-          const delay = timing(reach) + Math.random() * SCATTER;
-          const lit = Number(gsap.getProperty(cell, 'opacity')) > 0;
+          const delay = timing(reaches[index]) + Math.random() * SCATTER;
+          const lit = lits[index];
+          // Overwriting doesn't stop a keyframe tween, so each cell's last
+          // tween is killed by hand. Without it, a fast exit leaves fills still
+          // waiting on their delay, and they switch on after the pointer is gone.
+          pending[index]?.kill();
+          pending[index] = null;
           if (filling && lit) {
-            gsap.to(cell, {
+            pending[index] = gsap.to(cell, {
               opacity: 1,
               backgroundColor: TEAL,
               duration: STEP,
               ease: 'steps(2)',
               delay,
-              overwrite: true,
             });
           } else if (filling) {
-            gsap.to(cell, {
+            pending[index] = gsap.to(cell, {
               keyframes: [
                 { backgroundColor: LIME, duration: 0 },
                 { opacity: 1, duration: STEP, ease: 'steps(2)' },
                 { backgroundColor: TEAL, duration: 0, delay: EDGE },
               ],
               delay,
-              overwrite: true,
             });
           } else if (lit) {
-            gsap.to(cell, {
+            pending[index] = gsap.to(cell, {
               keyframes: [
                 { backgroundColor: LIME, duration: 0 },
-                { opacity: 0, duration: STEP, ease: 'steps(2)', delay: EDGE },
+                { opacity: 0, duration: STEP, ease: 'steps(2)', delay: hold },
               ],
               delay,
-              overwrite: true,
             });
+          } else {
+            gsap.set(cell, { opacity: 0, backgroundColor: TEAL });
           }
         });
 
@@ -183,6 +198,7 @@ const PixelFillButton = ({
         if (!btn.matches(':hover')) leave(0, btn.offsetHeight / 2);
       };
 
+      gsap.set(cells, { opacity: 0 });
       if (btn.dataset.active === 'true' && !prefersReducedMotion()) {
         gsap.set(cells, { opacity: 1, backgroundColor: TEAL });
         gsap.set(btn, { color: LIME });

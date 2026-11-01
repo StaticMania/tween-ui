@@ -22,6 +22,16 @@ const sizeButtons = () => {
   vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockReturnValue(48);
 };
 
+const pointer = (type: string, clientX: number, clientY: number) => {
+  const event = new Event(type);
+  Object.defineProperties(event, {
+    pointerType: { value: 'mouse' },
+    clientX: { value: clientX },
+    clientY: { value: clientY },
+  });
+  return event;
+};
+
 const rolls = () => Array.from(document.querySelectorAll<HTMLElement>('[data-roll]'));
 
 describe('Pixel Fill Button', () => {
@@ -102,5 +112,39 @@ describe('Pixel Fill Button', () => {
 
     fireEvent.pointerLeave(button, { pointerType: 'mouse' });
     expect(gsap.getTweensOf(button)).toHaveLength(1);
+  });
+
+  it('starts draining the moment the pointer leaves, even after a quick pass', () => {
+    setReducedMotion(false);
+    sizeButtons();
+    render(<PixelFillButton>Learn more</PixelFillButton>);
+    const button = screen.getByRole('button');
+    const pixels = Array.from(document.querySelectorAll<HTMLElement>('[data-pixel]'));
+    const nearExit = pixels.filter((_, index) => index % 20 < 2);
+    gsap.set(nearExit, { opacity: 1 });
+
+    fireEvent(button, pointer('pointerleave', 0, 24));
+
+    for (const pixel of nearExit) {
+      const [drain] = gsap.getTweensOf(pixel);
+      expect(drain.delay()).toBeLessThan(0.15);
+    }
+  });
+
+  it('cancels the pending fill when the pointer leaves before the pixels light', () => {
+    setReducedMotion(false);
+    sizeButtons();
+    render(<PixelFillButton>Learn more</PixelFillButton>);
+    const button = screen.getByRole('button');
+    const pixels = Array.from(document.querySelectorAll<HTMLElement>('[data-pixel]'));
+
+    fireEvent(button, pointer('pointerenter', 150, 24));
+    fireEvent(button, pointer('pointerleave', 0, 24));
+
+    for (const pixel of pixels) {
+      const pending = gsap.getTweensOf(pixel).filter((tween) => 'keyframes' in tween.vars);
+      expect(pending).toHaveLength(0);
+      expect(pixel.style.opacity).toBe('0');
+    }
   });
 });
