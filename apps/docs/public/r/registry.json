@@ -608,6 +608,30 @@
       ]
     },
     {
+      "name": "pixel-fill-button",
+      "type": "registry:ui",
+      "title": "Pixel Fill Button",
+      "description": "An outlined mono button split by a dashed rule. Hover and teal pixels bloom out from the exact point the cursor came in, each flashing lime before it settles, so a lime edge rides the wave; leave and they drain out through the point you left by. The label rolls up and the arrow slides through as it fills.",
+      "files": [
+        {
+          "path": "components/tweenui/pixel-fill-button.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pixel-fill-button-demo",
+      "type": "registry:example",
+      "title": "Pixel Fill Button Demo",
+      "description": "Usage examples for Pixel Fill Button.",
+      "files": [
+        {
+          "path": "examples/pixel-fill-button-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",

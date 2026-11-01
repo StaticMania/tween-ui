@@ -1,0 +1,82 @@
+---
+title: Pixel Fill Button
+description: A mono button that fills with teal pixels blooming out of the cursor, led by a lime edge.
+icon: grid-3x3
+---
+
+An outlined, uppercase mono button with a dashed rule between the label and
+the arrow. Hover it and an 8px grid of teal pixels **blooms out of the exact
+point your cursor came in**, nearest cells first, in hard opacity steps with a
+little scatter. Each pixel lights **lime for a beat** before it settles to teal,
+so a lime edge rides the front of the wave. The label turns lime once the wave
+has passed its middle, **rolls up** to a fresh copy, and the arrow **slides
+through** as another comes in behind it. Leave and the pixels **drain out
+through the point you left by**: the far side empties first, flashing lime as
+it goes, and the last pixels disappear at your cursor. Leave halfway and every
+pixel picks up from wherever it is. Pressing it scales the whole button down to
+97%, the same press as the other Tween UI buttons.
+
+::component-preview{name="pixel-fill-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="pixel-fill-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="pixel-fill-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [components/learn-more.tsx]
+import PixelFillButton from '@/components/tweenui/pixel-fill-button';
+
+export default function LearnMore() {
+  return <PixelFillButton onClick={() => {}}>Learn more</PixelFillButton>;
+}
+```
+
+:::
+::
+
+The grid is measured from the button and rebuilt when its size changes, so a
+longer label or a full-width button gets as many cells as it needs.
+
+## Props
+
+| Prop        | Type     | Default    | Description                               |
+| ----------- | -------- | ---------- | ----------------------------------------- |
+| `children`  | `string` | —          | The label. It is duplicated for the roll. |
+| `type`      | `string` | `'button'` | The native button type.                   |
+| `className` | `string` | —          | Extra classes for the `<button>`.         |
+
+All other native `<button>` attributes, including `ref`, `onClick` and
+`disabled`, are forwarded.
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` there are no pixels, no lime edge, no
+roll, no slide and no press: on hover or focus the button switches straight to
+its filled state, teal background and lime text, and switches back when you
+leave.
+::
+
+It is a real `<button>`, named by its label. The rolling copy of the label, the
+pixel grid, the dashed rule and both arrows are hidden from assistive tech. The
+fill follows `:focus-visible` as well as hover, so keyboard users get the same
+state; with no cursor to start from, the wave blooms from the left edge. A focus
+ring sits outside the border. Touch taps don't trigger the hover state.
