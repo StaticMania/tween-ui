@@ -952,4 +952,37 @@ export default function Example() {
     },
     docs: 'The component renders the buttons itself from an items array, so one tooltip can serve every trigger without a context provider.',
   },
+  {
+    name: 'pixel-fill-button',
+    type: 'component',
+    addedAt: '2026-11-01',
+    title: 'Pixel Fill Button',
+    description:
+      'An outlined mono button split by a dashed rule. Hover and teal pixels bloom out from the exact point the cursor came in, each flashing lime before it settles, so a lime edge rides the wave; leave and they drain out through the point you left by. The label rolls up and the arrow slides through as it fills.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/pixel-fill-button.tsx',
+        target: 'components/tweenui/pixel-fill-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/pixel-fill-button.tsx',
+      },
+    ],
+    usage: {
+      react: `import PixelFillButton from '@/components/tweenui/pixel-fill-button';
+
+export default function Example() {
+  return <PixelFillButton onClick={() => {}}>Learn more</PixelFillButton>;
+}`,
+    },
+  },
 ];

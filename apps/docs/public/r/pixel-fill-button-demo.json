@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pixel-fill-button-demo",
+  "type": "registry:example",
+  "title": "Pixel Fill Button Demo",
+  "description": "Usage examples for Pixel Fill Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/pixel-fill-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/pixel-fill-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import PixelFillButton from '@/components/tweenui/pixel-fill-button';\n\nexport default function LearnMore() {\n  return <PixelFillButton onClick={() => {}}>Learn more</PixelFillButton>;\n}"
+    }
+  ]
+}
