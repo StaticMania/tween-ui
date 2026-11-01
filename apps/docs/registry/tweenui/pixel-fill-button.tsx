@@ -85,6 +85,7 @@ const PixelFillButton = ({
       const slides = gsap.utils.toArray<HTMLElement>('[data-slide]', btn);
       const label = btn.querySelector<HTMLElement>('[data-label]');
       const roll = { duration: 0.48, ease: 'pixel-roll', overwrite: true };
+      const pending: (gsap.core.Tween | null)[] = cells.map(() => null);
 
       // The wave is timed by each cell's distance from a point: where the
       // pointer came in when filling, where it went out when draining. Filling
@@ -105,34 +106,38 @@ const PixelFillButton = ({
           );
           const delay = timing(reach) + Math.random() * SCATTER;
           const lit = Number(gsap.getProperty(cell, 'opacity')) > 0;
+          // Overwriting doesn't stop a keyframe tween, so each cell's last
+          // tween is killed by hand. Without it, a fast exit leaves fills still
+          // waiting on their delay, and they switch on after the pointer is gone.
+          pending[index]?.kill();
+          pending[index] = null;
           if (filling && lit) {
-            gsap.to(cell, {
+            pending[index] = gsap.to(cell, {
               opacity: 1,
               backgroundColor: TEAL,
               duration: STEP,
               ease: 'steps(2)',
               delay,
-              overwrite: true,
             });
           } else if (filling) {
-            gsap.to(cell, {
+            pending[index] = gsap.to(cell, {
               keyframes: [
                 { backgroundColor: LIME, duration: 0 },
                 { opacity: 1, duration: STEP, ease: 'steps(2)' },
                 { backgroundColor: TEAL, duration: 0, delay: EDGE },
               ],
               delay,
-              overwrite: true,
             });
           } else if (lit) {
-            gsap.to(cell, {
+            pending[index] = gsap.to(cell, {
               keyframes: [
                 { backgroundColor: LIME, duration: 0 },
                 { opacity: 0, duration: STEP, ease: 'steps(2)', delay: EDGE },
               ],
               delay,
-              overwrite: true,
             });
+          } else {
+            gsap.set(cell, { opacity: 0, backgroundColor: TEAL });
           }
         });
 
@@ -183,6 +188,7 @@ const PixelFillButton = ({
         if (!btn.matches(':hover')) leave(0, btn.offsetHeight / 2);
       };
 
+      gsap.set(cells, { opacity: 0 });
       if (btn.dataset.active === 'true' && !prefersReducedMotion()) {
         gsap.set(cells, { opacity: 1, backgroundColor: TEAL });
         gsap.set(btn, { color: LIME });
