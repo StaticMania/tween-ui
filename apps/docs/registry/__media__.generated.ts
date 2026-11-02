@@ -32,6 +32,8 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'wordmark-reveal': {"image":"/media/components/wordmark-reveal-poster.webp","video":"/media/components/wordmark-reveal-preview.mp4"},
   'svg-draw': {"image":"/media/components/svg-draw-poster.webp","video":"/media/components/svg-draw-preview.mp4"},
   'spring-tooltip': {"image":"/media/components/spring-tooltip-poster.webp","video":"/media/components/spring-tooltip-preview.mp4"},
+  'pixel-fill-button': {"image":"/media/components/pixel-fill-button-poster.webp","video":"/media/components/pixel-fill-button-preview.mp4"},
+  'morphing-search': {"image":"/media/components/morphing-search-poster.webp","video":"/media/components/morphing-search-preview.mp4"},
   'pricing-plan-switch': {"image":"/media/blocks/pricing-plan-switch-poster.webp","video":"/media/blocks/pricing-plan-switch-preview.mp4"},
   'process-card-reveal': {"image":"/media/blocks/process-card-reveal-poster.webp","video":"/media/blocks/process-card-reveal-preview.mp4"},
   'process-sticky-steps': {"image":"/media/blocks/process-sticky-steps-poster.webp","video":"/media/blocks/process-sticky-steps-preview.mp4"},

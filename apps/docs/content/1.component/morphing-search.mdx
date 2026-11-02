@@ -1,0 +1,104 @@
+---
+title: Morphing Search
+description: A pill search bar where the word you type lifts out of the field and lands as a teal chip.
+icon: search
+---
+
+A frosted pill search bar that collects filters as chips. Focus it and a soft
+teal glow rings the bar while a white panel **blooms out of its centre like a drop of
+goo**: it swells up from inside the bar, stretches a gooey neck as it rises,
+snaps free and settles into a card, then the rows fade up into it. With the field
+empty the panel lists your **recent searches**; type and it switches to
+**suggestions**, with the matching letters in bold teal and a soft highlight
+gliding between rows. Press Enter, or click a row, and the word **lifts out of
+the field and flies into the bar**: it rises a little, shrinks to chip size,
+flashes lime on the way and lands as a teal chip with lime text. Remove a chip
+with its cross and the trip runs **in reverse**: the chip folds shut while its
+word flies back up, flashes lime and lands at the top of the recent list.
+Backspace at the start of the field marks the last chip, and a second press
+removes it. Close the panel and it sinks back into the bar the same gooey way.
+
+::component-preview{name="morphing-search" size="lg" overflow="visible"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="morphing-search"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="morphing-search"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [components/component-search.tsx]
+import MorphingSearch from '@/components/tweenui/morphing-search';
+
+export default function ComponentSearch() {
+  return (
+    <MorphingSearch
+      placeholder="Search Tween UI"
+      label="Search Tween UI components"
+      defaultChips={['Buttons']}
+      defaultRecents={['Spring Tooltip', 'Navbar Gooey Bloom']}
+      maxChips={4}
+      suggestions={['Pixel Fill Button', 'Glow Button', 'Sliding Tabs', 'Morphing Text']}
+    />
+  );
+}
+```
+
+:::
+::
+
+The panel opens above the bar, so leave it some room. Chips can be controlled
+with `chips` and `onChipsChange`, or left to the component with `defaultChips`.
+Pass `name` and every chip is submitted with a surrounding form.
+
+## Props
+
+| Prop              | Type                          | Default    | Description                                    |
+| ----------------- | ----------------------------- | ---------- | ---------------------------------------------- |
+| `suggestions`     | `string[]`                    | `[]`       | Terms offered while typing.                    |
+| `chips`           | `string[]`                    | —          | Controlled chips.                              |
+| `defaultChips`    | `string[]`                    | `[]`       | Initial chips when uncontrolled.               |
+| `onChipsChange`   | `(chips: string[]) => void`   | —          | Called when a chip is added or removed.        |
+| `defaultRecents`  | `string[]`                    | `[]`       | Initial recent searches, newest first.         |
+| `onRecentsChange` | `(recents: string[]) => void` | —          | Called when the recent searches change.        |
+| `maxRecents`      | `number`                      | `5`        | How many recent searches to keep.              |
+| `maxSuggestions`  | `number`                      | `5`        | How many matches to list under the typed text. |
+| `maxChips`        | `number`                      | —          | Most chips allowed at once.                    |
+| `placeholder`     | `string`                      | `'Search'` | Placeholder of the field.                      |
+| `label`           | `string`                      | `'Search'` | Accessible name for the field.                 |
+| `name`            | `string`                      | —          | Submit each chip with a form under this name.  |
+| `className`       | `string`                      | —          | Extra classes for the root.                    |
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` there is no bloom, flight or fold: the
+panel appears and disappears, chips and recents appear in place, and the
+highlight jumps between rows.
+::
+
+The field is a `combobox` that controls a `listbox`. Arrow Up and Down move
+through the rows and wrap, the active one is announced through
+`aria-activedescendant`, and Enter adds it as a chip. Delete removes the
+highlighted recent search. Escape clears the typed text first, then closes the
+panel. Backspace or Arrow Left at the start of the field marks the last chip,
+Arrow Left and Right move the mark, and Backspace or Delete removes it. Each chip
+has a labelled remove button. Every change is read out in a polite live region,
+and the keyboard hint is attached to the field with `aria-describedby`. The
+flying word is decorative and hidden from assistive tech.

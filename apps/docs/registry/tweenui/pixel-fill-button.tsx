@@ -198,7 +198,7 @@ const PixelFillButton = ({
         if (!btn.matches(':hover')) leave(0, btn.offsetHeight / 2);
       };
 
-      gsap.set(cells, { opacity: 0 });
+      if (cells.length) gsap.set(cells, { opacity: 0 });
       if (btn.dataset.active === 'true' && !prefersReducedMotion()) {
         gsap.set(cells, { opacity: 1, backgroundColor: TEAL });
         gsap.set(btn, { color: LIME });
