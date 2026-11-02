@@ -985,4 +985,46 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'morphing-search',
+    type: 'component',
+    addedAt: '2026-11-01',
+    title: 'Morphing Search',
+    description:
+      'A frosted pill search bar that turns terms into filter chips. Focus it and a panel of recent searches and suggestions blooms out of the bar like a drop of goo; press Enter and the word you typed lifts out of the field, flashes lime and lands in the bar as a teal chip. Remove a chip and the word flies back into the recent list.',
+    media: {},
+    dependencies: ['gsap'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/morphing-search.tsx',
+        target: 'components/tweenui/morphing-search.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/morphing-search.tsx',
+      },
+    ],
+    usage: {
+      react: `import MorphingSearch from '@/components/tweenui/morphing-search';
+
+export default function Example() {
+  return (
+    <MorphingSearch
+      placeholder="Search Tween UI"
+      label="Search Tween UI components"
+      defaultChips={['Buttons']}
+      defaultRecents={['Spring Tooltip', 'Navbar Gooey Bloom']}
+      maxChips={4}
+      suggestions={['Pixel Fill Button', 'Glow Button', 'Sliding Tabs', 'Morphing Text']}
+    />
+  );
+}`,
+    },
+  },
 ];

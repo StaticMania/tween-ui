@@ -632,6 +632,30 @@
       ]
     },
     {
+      "name": "morphing-search",
+      "type": "registry:ui",
+      "title": "Morphing Search",
+      "description": "A frosted pill search bar that turns terms into filter chips. Focus it and a panel of recent searches and suggestions blooms out of the bar like a drop of goo; press Enter and the word you typed lifts out of the field, flashes lime and lands in the bar as a teal chip. Remove a chip and the word flies back into the recent list.",
+      "files": [
+        {
+          "path": "components/tweenui/morphing-search.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "morphing-search-demo",
+      "type": "registry:example",
+      "title": "Morphing Search Demo",
+      "description": "Usage examples for Morphing Search.",
+      "files": [
+        {
+          "path": "examples/morphing-search-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",

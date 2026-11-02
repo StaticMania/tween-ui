@@ -18,11 +18,14 @@ export const ComponentPreview = ({
   name,
   variant: variantProp,
   size = 'default',
+  overflow,
 }: {
   name: string;
   variant?: string;
   size?: 'default' | 'lg' | 'xl';
+  overflow?: 'visible';
 }) => {
+  const spills = overflow === 'visible';
   const entry = getEntry(name);
   const locked = entry?.variants.some((v) => v.id === variantProp) ? variantProp : undefined;
   const [variant, setVariant] = useState(locked ?? entry?.variants[0]?.id ?? '');
@@ -52,7 +55,7 @@ export const ComponentPreview = ({
   };
 
   return (
-    <div className="border-border my-6 overflow-hidden rounded-xl border">
+    <div className={cn('border-border my-6 rounded-xl border', !spills && 'overflow-hidden')}>
       {/* toolbar: variants + open-in */}
       <div className="border-border flex flex-wrap items-center gap-2 border-b px-3 py-2">
         {!locked && entry.variants.length > 1 && (
@@ -125,7 +128,8 @@ export const ComponentPreview = ({
           </button>
           <div
             className={cn(
-              'overflow-hidden bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] [background-size:16px_16px]',
+              'bg-[radial-gradient(var(--color-border)_1px,transparent_1px)] [background-size:16px_16px]',
+              spills ? 'rounded-b-xl' : 'overflow-hidden',
               isBlock
                 ? 'h-auto'
                 : size === 'xl'

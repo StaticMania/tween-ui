@@ -37,6 +37,7 @@ export const demos: Record<string, ComponentType> = {
   'svg-draw:default': dynamic(() => import('./demos/svg-draw')),
   'spring-tooltip:default': dynamic(() => import('./demos/spring-tooltip')),
   'pixel-fill-button:default': dynamic(() => import('./demos/pixel-fill-button')),
+  'morphing-search:default': dynamic(() => import('./demos/morphing-search')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process-sticky-steps')),

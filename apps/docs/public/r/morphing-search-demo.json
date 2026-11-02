@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "morphing-search-demo",
+  "type": "registry:example",
+  "title": "Morphing Search Demo",
+  "description": "Usage examples for Morphing Search.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/morphing-search.json"
+  ],
+  "files": [
+    {
+      "path": "examples/morphing-search-demo.tsx",
+      "type": "registry:example",
+      "content": "import MorphingSearch from '@/components/tweenui/morphing-search';\n\nexport default function ComponentSearch() {\n  return (\n    <MorphingSearch\n      placeholder=\"Search Tween UI\"\n      label=\"Search Tween UI components\"\n      defaultChips={['Buttons']}\n      defaultRecents={['Spring Tooltip', 'Navbar Gooey Bloom']}\n      maxChips={4}\n      suggestions={['Pixel Fill Button', 'Glow Button', 'Sliding Tabs', 'Morphing Text']}\n    />\n  );\n}"
+    }
+  ]
+}
