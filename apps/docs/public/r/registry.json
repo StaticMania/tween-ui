@@ -608,30 +608,6 @@
       ]
     },
     {
-      "name": "settings-popup",
-      "type": "registry:ui",
-      "title": "Settings Popup",
-      "description": "A settings menu that springs out of its own trigger on hover. The panel grows from the button on a back.out overshoot while the glass under it squashes and stretches like a drop settling, the rows unblur out of a pill-shaped clip, and closing anticipates before folding back into the button.",
-      "files": [
-        {
-          "path": "components/tweenui/settings-popup.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "settings-popup-demo",
-      "type": "registry:example",
-      "title": "Settings Popup Demo",
-      "description": "Usage examples for Settings Popup.",
-      "files": [
-        {
-          "path": "examples/settings-popup-demo.tsx",
-          "type": "registry:example"
-        }
-      ]
-    },
-    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",
@@ -1655,6 +1631,30 @@
         },
         {
           "path": "examples/project-hover-reveal-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
+      "name": "cta-contact-morph",
+      "type": "registry:block",
+      "title": "CTA Contact Morph",
+      "description": "A contact call-to-action whose button springs open into a fill-in-the-sentence message, then folds back into a sent confirmation. The block keeps the open size, so nothing on the page moves.",
+      "files": [
+        {
+          "path": "components/tweenui/cta-contact-morph.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-contact-morph-demo",
+      "type": "registry:example",
+      "title": "CTA Contact Morph Demo",
+      "description": "Usage examples for CTA Contact Morph.",
+      "files": [
+        {
+          "path": "examples/cta-contact-morph-demo.tsx",
           "type": "registry:example"
         }
       ]

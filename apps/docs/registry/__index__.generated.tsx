@@ -36,7 +36,6 @@ export const demos: Record<string, ComponentType> = {
   'wordmark-reveal:instant': dynamic(() => import('./demos/wordmark-reveal-instant')),
   'svg-draw:default': dynamic(() => import('./demos/svg-draw')),
   'spring-tooltip:default': dynamic(() => import('./demos/spring-tooltip')),
-  'settings-popup:default': dynamic(() => import('./demos/settings-popup')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process-sticky-steps')),
@@ -73,6 +72,7 @@ export const demos: Record<string, ComponentType> = {
   'arc-carousel:default': dynamic(() => import('./demos/arc-carousel')),
   'navbar-gooey-bloom:default': dynamic(() => import('./demos/navbar-gooey-bloom')),
   'project-hover-reveal:default': dynamic(() => import('./demos/project-hover-reveal')),
+  'cta-contact-morph:default': dynamic(() => import('./demos/cta-contact-morph')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {
