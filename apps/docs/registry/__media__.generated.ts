@@ -68,4 +68,5 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'arc-carousel': {"image":"/media/blocks/arc-carousel-poster.webp","video":"/media/blocks/arc-carousel-preview.mp4"},
   'navbar-gooey-bloom': {"image":"/media/blocks/navbar-gooey-bloom-poster.webp","video":"/media/blocks/navbar-gooey-bloom-preview.mp4"},
   'project-hover-reveal': {"image":"/media/blocks/project-hover-reveal-poster.webp","video":"/media/blocks/project-hover-reveal-preview.mp4"},
+  'cta-contact-morph': {"image":"/media/blocks/cta-contact-morph-poster.webp","video":"/media/blocks/cta-contact-morph-preview.mp4"},
 };
