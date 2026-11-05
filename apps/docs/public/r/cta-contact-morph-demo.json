@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cta-contact-morph-demo",
+  "type": "registry:example",
+  "title": "CTA Contact Morph Demo",
+  "description": "Usage examples for CTA Contact Morph.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/cta-contact-morph.json"
+  ],
+  "files": [
+    {
+      "path": "examples/cta-contact-morph-demo.tsx",
+      "type": "registry:example",
+      "content": "import CtaContactMorph from '@/components/tweenui/cta-contact-morph';\n\nexport default function Contact() {\n  return (\n    <CtaContactMorph\n      topics={['a website', 'a brand', 'an app', 'something else']}\n      onSend={async (message) => {\n        const res = await fetch('/api/contact', {\n          method: 'POST',\n          headers: { 'Content-Type': 'application/json' },\n          body: JSON.stringify(message),\n        });\n        if (!res.ok) throw new Error('Send failed');\n      }}\n    />\n  );\n}"
+    }
+  ]
+}

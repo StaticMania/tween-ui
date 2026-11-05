@@ -1214,4 +1214,49 @@ export default function Example() {
     },
     docs: 'Pass your own `items` (`title`, `role`, `timeline`, `year`, `team`, `image`, `href`). Every image is mounted in the stage up front, so keep them web-sized.',
   },
+  {
+    name: 'cta-contact-morph',
+    type: 'block',
+    addedAt: '2026-11-05',
+    title: 'CTA Contact Morph',
+    description:
+      'A contact call-to-action whose button springs open into a fill-in-the-sentence message, then folds back into a sent confirmation. The block keeps the open size, so nothing on the page moves.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/cta-contact-morph.tsx',
+        target: 'components/tweenui/cta-contact-morph.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/cta-contact-morph.tsx',
+      },
+    ],
+    usage: {
+      react: `import CtaContactMorph from '@/components/tweenui/cta-contact-morph';
+
+export default function Example() {
+  return (
+    <CtaContactMorph
+      onSend={async (message) => {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(message),
+        });
+        if (!res.ok) throw new Error('Send failed');
+      }}
+    />
+  );
+}`,
+    },
+    docs: 'Pass `onSend` to deliver the message (it receives `name`, `email`, `topic` and `details`); throw from it to show the retry message. Without it the block only simulates a send.',
+  },
 ];

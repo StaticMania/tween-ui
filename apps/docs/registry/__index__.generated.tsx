@@ -74,6 +74,7 @@ export const demos: Record<string, ComponentType> = {
   'arc-carousel:default': dynamic(() => import('./demos/arc-carousel')),
   'navbar-gooey-bloom:default': dynamic(() => import('./demos/navbar-gooey-bloom')),
   'project-hover-reveal:default': dynamic(() => import('./demos/project-hover-reveal')),
+  'cta-contact-morph:default': dynamic(() => import('./demos/cta-contact-morph')),
 };
 
 export function getDemo(component: string, variant: string): ComponentType | undefined {

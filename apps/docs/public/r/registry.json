@@ -1682,6 +1682,30 @@
           "type": "registry:example"
         }
       ]
+    },
+    {
+      "name": "cta-contact-morph",
+      "type": "registry:block",
+      "title": "CTA Contact Morph",
+      "description": "A contact call-to-action whose button springs open into a fill-in-the-sentence message, then folds back into a sent confirmation. The block keeps the open size, so nothing on the page moves.",
+      "files": [
+        {
+          "path": "components/tweenui/cta-contact-morph.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-contact-morph-demo",
+      "type": "registry:example",
+      "title": "CTA Contact Morph Demo",
+      "description": "Usage examples for CTA Contact Morph.",
+      "files": [
+        {
+          "path": "examples/cta-contact-morph-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
     }
   ]
 }

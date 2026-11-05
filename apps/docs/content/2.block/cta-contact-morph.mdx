@@ -1,0 +1,105 @@
+---
+title: CTA Contact Morph
+description: A contact call-to-action whose button springs open into a fill-in-the-sentence message.
+icon: message-circle
+---
+
+A single contact button that lets visitors **write to you without leaving the page**.
+Click **Write us a message** and the button **springs open** into a deep teal
+panel on a `back.out` overshoot, its corners held round the whole way. The
+block always keeps the open panel's size, so nothing on the page moves. Inside, the message is a sentence to finish:
+\_Hi, I'm **_. I need help with _**. Reach me at _\_\_._ Fields sit inline with
+the words, and the topic is a row of choices in the middle of the line. Send
+it and the panel **folds back** on a `back.in` into the button, which now
+reads **Message sent**. GSAP timeline.
+
+::component-preview{name="cta-contact-morph" size="xl"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="cta-contact-morph"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="cta-contact-morph"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [components/contact.tsx]
+import CtaContactMorph from '@/components/tweenui/cta-contact-morph';
+
+export default function Contact() {
+  return (
+    <CtaContactMorph
+      topics={['a website', 'a brand', 'an app', 'something else']}
+      onSend={async (message) => {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(message),
+        });
+        if (!res.ok) throw new Error('Send failed');
+      }}
+    />
+  );
+}
+```
+
+:::
+::
+
+`onSend` receives `{ name, email, topic, details }`. Point it at your own API
+route, or at a form service such as Formspree or Resend. If it throws, the
+panel stays open with a message asking to try again, and nothing typed is
+lost.
+
+::warning
+Without `onSend` the block only **pretends** to send, so the preview works.
+Always pass it on a real site.
+::
+
+## Props
+
+| Prop          | Type                                 | Default                              | Description                                    |
+| ------------- | ------------------------------------ | ------------------------------------ | ---------------------------------------------- |
+| `buttonLabel` | `string`                             | `'Write us a message'`               | Button text, repeated as the panel's title.    |
+| `topics`      | `string[]`                           | website, brand, app, something else  | Choices that finish "I need help with …".      |
+| `replyTime`   | `string`                             | `'We reply within one working day.'` | Shown next to Send and announced once sent.    |
+| `onSend`      | `(message) => void \| Promise<void>` | simulated send                       | Delivers the message. Throw to show the retry. |
+| `className`   | `string`                             | —                                    | Extra classes for the `<section>`.             |
+
+Topics read best written to follow "I need help with", like `'a website'` or
+`'an online shop'`. All other native `<section>` attributes are forwarded.
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` the panel appears and disappears in
+place with no spring, squash or clip. The topic pill jumps straight to the chosen topic, and the field
+underlines appear without drawing in.
+::
+
+The button is a real `<button>` with `aria-haspopup="dialog"` and
+`aria-expanded`, pointing at the panel's `role="dialog"`, which is named by its
+title. Opening moves focus to the name field. Each inline field has its own
+label, the topics are native radio buttons (arrow keys move between them), and
+the browser fills name and email through `autocomplete`.
+
+If a field is missing, Send keeps the panel open, marks the field
+`aria-invalid`, says what to add in an alert, and moves focus to it. Escape or
+the close button folds the panel away and returns focus to the button, and
+whatever was typed is still there next time. Once sent, a status message
+announces it.
