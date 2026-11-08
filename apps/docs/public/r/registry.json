@@ -684,6 +684,30 @@
       ]
     },
     {
+      "name": "elastic-slider",
+      "type": "registry:ui",
+      "title": "Elastic Slider",
+      "description": "A budget slider drawn as a ruler of ticks. The ticks swell in a smooth wave that follows your cursor, fill with the accent up to the value, and stretch apart like an accordion when you pull past either end, then spring back. The big number rolls with Number Flow, and a minus/plus pill steps it by a fixed amount.",
+      "files": [
+        {
+          "path": "components/tweenui/elastic-slider.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elastic-slider-demo",
+      "type": "registry:example",
+      "title": "Elastic Slider Demo",
+      "description": "Usage examples for Elastic Slider.",
+      "files": [
+        {
+          "path": "examples/elastic-slider-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",

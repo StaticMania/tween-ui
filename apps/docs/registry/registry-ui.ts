@@ -1104,4 +1104,52 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'elastic-slider',
+    type: 'component',
+    addedAt: '2026-11-08',
+    title: 'Elastic Slider',
+    description:
+      'A budget slider drawn as a ruler of ticks. The ticks swell in a smooth wave that follows your cursor, fill with the accent up to the value, and stretch apart like an accordion when you pull past either end, then spring back. The big number rolls with Number Flow, and a minus/plus pill steps it by a fixed amount.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/elastic-slider.tsx',
+        target: 'components/tweenui/elastic-slider.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Budget',
+        reactSource: 'registry/tweenui/elastic-slider.tsx',
+      },
+    ],
+    usage: {
+      react: `'use client';
+
+import { useState } from 'react';
+import ElasticSlider from '@/components/tweenui/elastic-slider';
+
+export default function Example() {
+  const [budget, setBudget] = useState(7500);
+  return (
+    <ElasticSlider
+      label="Monthly budget"
+      min={0}
+      max={20000}
+      step={100}
+      buttonStep={100}
+      value={budget}
+      onValueChange={setBudget}
+      prefix="$"
+    />
+  );
+}`,
+    },
+  },
 ];
