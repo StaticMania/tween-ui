@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "package-command-demo",
+  "type": "registry:example",
+  "title": "Package Command Demo",
+  "description": "Usage examples for Package Command.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/package-command.json"
+  ],
+  "files": [
+    {
+      "path": "examples/package-command-demo.tsx",
+      "type": "registry:example",
+      "content": "import PackageCommand from '@/components/tweenui/package-command';\n\nexport default function Page() {\n  return (\n    <>\n      <PackageCommand packages={['gsap', '@gsap/react']} />\n      <PackageCommand packages=\"vitest\" dev />\n      <PackageCommand kind=\"execute\" packages=\"shadcn@latest init\" />\n    </>\n  );\n}"
+    }
+  ]
+}
