@@ -656,6 +656,34 @@
       ]
     },
     {
+      "name": "theme-toggle-reveal",
+      "type": "registry:ui",
+      "title": "Theme Toggle Reveal",
+      "description": "A pill toggle labelled Light mode or Dark mode. Click it and the new theme is drawn in pixels out from the toggle, in one of eight reveals: circle, diamond, equalizer bars, a diagonal sweep, a zipper closing from top and bottom, sparks, sonar rings or a spiral. View Transitions API with the cross-fade switched off; the sun pulls in its rays and the label turns like a drum.",
+      "files": [
+        {
+          "path": "components/tweenui/theme-toggle-reveal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle-reveal-demo",
+      "type": "registry:example",
+      "title": "Theme Toggle Reveal Demo",
+      "description": "Usage examples for Theme Toggle Reveal.",
+      "files": [
+        {
+          "path": "examples/theme-toggle-reveal-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/theme-toggle-reveal-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",
