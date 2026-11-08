@@ -1,0 +1,117 @@
+---
+title: Elastic Slider
+description: A budget slider drawn as a ruler of ticks that swell under your cursor and stretch like an accordion when you pull past the ends.
+icon: sliders-horizontal
+---
+
+A slider drawn as a **ruler of ticks** with a big rolling number above it.
+Move your cursor over the ruler and the ticks **swell in a smooth wave**
+that follows it. Ticks up to the value fill with the accent. Drag and the
+wave grows taller and the indicator stretches. Pull **past either end** and
+the whole ruler **stretches apart like an accordion**: the further you pull,
+the more it resists. Let go and it **springs back**. The **minus and plus
+buttons** step the value by `buttonStep`. Press one at the limit and the
+ruler gives a small elastic kick instead. Every digit rolls with Number Flow.
+Driven by GSAP.
+
+::component-preview{name="elastic-slider"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="elastic-slider"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="elastic-slider"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+'use client';
+
+import { useState } from 'react';
+import ElasticSlider from '@/components/tweenui/elastic-slider';
+
+export default function Page() {
+  const [budget, setBudget] = useState(7500);
+  return (
+    <ElasticSlider
+      label="Monthly budget"
+      min={0}
+      max={20000}
+      step={100}
+      buttonStep={100}
+      value={budget}
+      onValueChange={setBudget}
+      prefix="$"
+    />
+  );
+}
+```
+
+:::
+::
+
+## How it moves
+
+- **Wave.** Each tick grows by a bell curve around a focus point 30px wide.
+  The focus follows your cursor while you hover or drag and glides back to
+  the value when you leave, on a 500ms `power3.out` ease.
+- **Indicator.** Follows the value on a 400ms `power3.out` ease, so button
+  presses and arrow keys glide instead of jumping.
+- **Stretch.** Overdrag runs through a rubber-band curve that tops out at
+  28px. The ruler is pinned at the far end, so ticks near your pointer move
+  the most. On release it springs back on `elastic.out(1, 0.32)` over 900ms.
+- **Buttons.** The icon pops on `back.out`. At the limit the ruler kicks
+  14px toward the button and springs back.
+
+## Props
+
+| Prop            | Type              | Default     | Description                                         |
+| --------------- | ----------------- | ----------- | --------------------------------------------------- |
+| `label`         | `string`          | —           | Visible label and accessible name.                  |
+| `min`           | `number`          | `0`         | Lowest value.                                       |
+| `max`           | `number`          | `100`       | Highest value.                                      |
+| `step`          | `number`          | `1`         | Dragged and typed values snap to this step.         |
+| `buttonStep`    | `number`          | —           | Shows the minus/plus pill, stepping by this amount. |
+| `value`         | `number`          | —           | Controlled value. Pair it with `onValueChange`.     |
+| `defaultValue`  | `number`          | `50`        | Starting value when uncontrolled.                   |
+| `onValueChange` | `(value) => void` | —           | Called with every new snapped value.                |
+| `format`        | `Format`          | grouping on | Intl-style options passed to Number Flow.           |
+| `prefix`        | `string`          | —           | Text before the number, e.g. `$`.                   |
+| `suffix`        | `string`          | —           | Text after the number, e.g. `%`.                    |
+| `ticks`         | `number`          | `41`        | Number of ticks. Every fifth one is taller.         |
+| `disabled`      | `boolean`         | `false`     | Dims the slider and ignores input.                  |
+| `className`     | `string`          | —           | Extra classes for the root.                         |
+
+The accent comes from `--elastic-accent`. Override it with a class, e.g.
+`[--elastic-accent:#e11d48]`. Text and the unfilled ticks take
+`currentColor`.
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` the ticks stay flat, the ruler never
+stretches, the indicator jumps straight to the value and the digits change
+without rolling.
+::
+
+Under the ruler sits a real `<input type="range">` with a `<label>`, so arrow
+keys, Page Up and Down, Home and End, and screen readers all work natively.
+`aria-valuetext` reads the formatted value, such as "$7,500". The minus and
+plus are real buttons labelled "Decrease Monthly budget by $100" and
+"Increase Monthly budget by $100". Pressing the ruler focuses the input, and
+keyboard focus draws a ring around it.

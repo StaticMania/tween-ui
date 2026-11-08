@@ -35,6 +35,7 @@ export const discoveredMedia: Record<string, RegistryMedia> = {
   'pixel-fill-button': {"image":"/media/components/pixel-fill-button-poster.webp","video":"/media/components/pixel-fill-button-preview.mp4"},
   'morphing-search': {"image":"/media/components/morphing-search-poster.webp","video":"/media/components/morphing-search-preview.mp4"},
   'theme-toggle-reveal': {"image":"/media/components/theme-toggle-reveal-poster.webp","video":"/media/components/theme-toggle-reveal-preview.mp4"},
+  'elastic-slider': {"image":"/media/components/elastic-slider-poster.webp","video":"/media/components/elastic-slider-preview.mp4"},
   'pricing-plan-switch': {"image":"/media/blocks/pricing-plan-switch-poster.webp","video":"/media/blocks/pricing-plan-switch-preview.mp4"},
   'process-card-reveal': {"image":"/media/blocks/process-card-reveal-poster.webp","video":"/media/blocks/process-card-reveal-preview.mp4"},
   'process-sticky-steps': {"image":"/media/blocks/process-sticky-steps-poster.webp","video":"/media/blocks/process-sticky-steps-preview.mp4"},
