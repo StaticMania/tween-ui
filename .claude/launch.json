@@ -6,6 +6,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["--filter=docs", "dev"],
       "port": 3000
+    },
+    {
+      "name": "docs-3101",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter=docs", "dev", "--port", "3101"],
+      "port": 3101
     }
   ]
 }
