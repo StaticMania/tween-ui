@@ -5,9 +5,8 @@ icon: package
 ---
 
 An install command in a small **terminal card**, with a tab for each
-package manager. The pill **glides with its leading edge first** and the
-trailing edge catching up, so it stretches toward the new tab and settles
-into it. When the command changes, only the **characters that differ flip**,
+package manager. The pill **follows your pointer** across the tabs and slides back to the
+selected one when you leave. When the command changes, only the **characters that differ flip**,
 like a split-flap board: `pnpm add` to `yarn add` turns over four letters and
 leaves ` add` alone. Copy it and a check **draws itself in** while a
 selection sweeps across the line. The choice is **remembered**, and every
@@ -46,7 +45,7 @@ export default function Page() {
     <>
       <PackageCommand packages={['gsap', '@gsap/react']} />
       <PackageCommand packages="vitest" dev />
-      <PackageCommand kind="execute" packages="shadcn@latest init" />
+      <PackageCommand kind="execute" packages="shadcn@latest add @tween-ui/package-command" />
     </>
   );
 }
@@ -57,14 +56,15 @@ export default function Page() {
 
 ## How it moves
 
-- **Pill.** The two edges of the pill tween on their own. The edge facing
-  the new tab gets there in 340ms and the far edge follows in 520ms, both on
-  `power3.out`, so the pill stretches and then closes up. No bounce.
+- **Pill.** Slides under whichever tab you hover or focus and resizes to fit
+  it, 350ms on `power2.out`, and lights that label up. Leave the tabs and
+  it slides back to the selected one.
 - **Command.** The text is laid out one monospace cell per character. Cells
   that hold the same letter before and after stay still. The rest roll the
   old letter up and out and the new one up from below, 30ms apart from left
-  to right. The run of cells resizes on `power3.inOut` over 500ms, so the
-  package names slide over instead of jumping.
+  to right. The line is laid out at its new length at once and the package
+  names slide in from where they were on `power3.inOut` over 550ms, using
+  only transforms, so nothing reflows mid-flip.
 - **Copy.** The clipboard shrinks away, the check strokes itself in over
   400ms, and an accent band sweeps under the command and fades. After 1.6s
   the clipboard returns.

@@ -80,6 +80,38 @@ const runner = (manager: PackageManager, kind: PackageCommandKind, dev: boolean)
   return dev ? `${verb} -D` : verb;
 };
 
+const splitHead = (head: string) => {
+  const space = head.indexOf(' ');
+  return space === -1 ? [head, ''] : [head.slice(0, space), head.slice(space)];
+};
+
+const FlipCells = ({ from, to }: { from: string; to: string }) => (
+  <span className="relative inline-flex items-center [clip-path:inset(0_-100vw)]">
+    {Array.from(to, (character, index) => (
+      <span
+        key={index}
+        data-in
+        data-changed={character !== from[index] || undefined}
+        className="block w-[1ch]"
+      >
+        {character}
+      </span>
+    ))}
+    {Array.from(from, (character, index) =>
+      character === to[index] || character === ' ' ? null : (
+        <span
+          key={`out-${index}`}
+          data-out
+          style={{ left: `${index}ch` }}
+          className="absolute inset-y-0 block w-[1ch]"
+        >
+          {character}
+        </span>
+      )
+    )}
+  </span>
+);
+
 const ClipboardIcon = () => (
   <svg viewBox="0 0 24 24" className="size-4" fill="none" aria-hidden="true">
     <rect x="8" y="3" width="8" height="4" rx="1" stroke="currentColor" strokeWidth="1.75" />
@@ -114,13 +146,14 @@ const PackageCommand = ({
   const rootRef = useRef<HTMLDivElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const pillRef = useRef<HTMLSpanElement>(null);
-  const runnerRef = useRef<HTMLSpanElement>(null);
+  const tailRef = useRef<HTMLSpanElement>(null);
+  const listRef = useRef<HTMLSpanElement>(null);
   const sweepRef = useRef<HTMLSpanElement>(null);
   const clipboardRef = useRef<HTMLSpanElement>(null);
   const checkRef = useRef<SVGSVGElement>(null);
   const checkPathRef = useRef<SVGPathElement>(null);
-  const edges = useRef({ left: 0, right: 0 });
   const copyTimer = useRef<number | undefined>(undefined);
+  const flipTimeline = useRef<gsap.core.Timeline | null>(null);
 
   const stored = useSyncExternalStore(subscribe, readManager, () => 'npm');
   const manager = managers.find((each) => each === stored) ?? managers[0] ?? 'npm';
@@ -134,46 +167,42 @@ const PackageCommand = ({
 
   if (flip.to !== head) setFlip({ from: flip.to, to: head });
 
-  const cells = Math.max(flip.from.length, flip.to.length);
+  const [fromTool, fromTail] = splitHead(flip.from);
+  const [toTool, toTail] = splitHead(flip.to);
 
   const { contextSafe } = useGSAP({ scope: rootRef });
 
-  const drawPill = () => {
-    const { left, right } = edges.current;
-    gsap.set(pillRef.current, { x: left, width: right - left });
+  const highlight = (index: number) => {
+    tabRefs.current.forEach((tab, each) => {
+      if (tab) tab.dataset.highlighted = String(each === index);
+    });
   };
 
-  const placePill = (animate: boolean) => {
-    const tab = tabRefs.current[activeIndex];
+  const movePill = (index: number, animate: boolean) => {
+    const tab = tabRefs.current[index];
     if (!tab) return;
-    const left = tab.offsetLeft;
-    const right = left + tab.offsetWidth;
-    if (!animate) {
-      gsap.killTweensOf(edges.current);
-      edges.current = { left, right };
-      drawPill();
+    highlight(index);
+    const bounds = { x: tab.offsetLeft, width: tab.offsetWidth };
+    if (!animate || prefersReducedMotion()) {
+      gsap.killTweensOf(pillRef.current);
+      gsap.set(pillRef.current, bounds);
       return;
     }
-    const towardRight = left > edges.current.left;
-    gsap.to(edges.current, {
-      left,
-      duration: towardRight ? 0.52 : 0.34,
-      ease: 'power3.out',
-      overwrite: 'auto',
-      onUpdate: drawPill,
-    });
-    gsap.to(edges.current, {
-      right,
-      duration: towardRight ? 0.34 : 0.52,
-      ease: 'power3.out',
-      overwrite: 'auto',
-      onUpdate: drawPill,
-    });
+    gsap.to(pillRef.current, { ...bounds, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
   };
+
+  const followPointer = contextSafe((target: EventTarget) => {
+    if (!(target instanceof Element)) return;
+    const tab = target.closest('[role="tab"]');
+    const index = tabRefs.current.findIndex((each) => each === tab);
+    if (index !== -1) movePill(index, true);
+  });
+
+  const returnToActive = contextSafe(() => movePill(activeIndex, true));
 
   useGSAP(
     () => {
-      placePill(chosenByUser && !prefersReducedMotion());
+      movePill(activeIndex, chosenByUser);
     },
     { scope: rootRef, dependencies: [activeIndex, managers.length] }
   );
@@ -181,50 +210,63 @@ const PackageCommand = ({
   useEffect(() => {
     const tablist = tabRefs.current[0]?.parentElement;
     if (!tablist || typeof ResizeObserver === 'undefined') return;
-    const observer = new ResizeObserver(() => placePill(false));
+    const observer = new ResizeObserver(() => movePill(activeIndex, false));
     observer.observe(tablist);
     return () => observer.disconnect();
   }, [activeIndex, managers]);
 
   useGSAP(
     () => {
-      if (flip.from === flip.to) return;
+      if (flip.from === flip.to) {
+        gsap.set(
+          [tailRef.current, listRef.current, ...gsap.utils.toArray('[data-in]', rootRef.current)],
+          {
+            clearProps: 'transform,opacity',
+          }
+        );
+        return;
+      }
+      flipTimeline.current?.kill();
+      const root = rootRef.current;
+      const listElement = listRef.current;
+      const incoming = gsap.utils.toArray<HTMLElement>('[data-in]', root);
+      gsap.set(incoming, { yPercent: 0, opacity: 1 });
       const settle = () => setFlip((current) => ({ from: current.to, to: current.to }));
       if (!chosenByUser || prefersReducedMotion()) {
+        gsap.set([tailRef.current, listElement], { x: 0 });
         settle();
         return;
       }
-      const root = rootRef.current;
-      const cell = root?.querySelector<HTMLElement>('[data-cell]');
-      const charWidth = cell?.offsetWidth ?? 0;
-      const changed = gsap.utils.toArray<HTMLElement>('[data-cell][data-changed]', root);
+      const charWidth = incoming[0]?.getBoundingClientRect().width ?? 0;
       const timeline = gsap.timeline({ onComplete: settle });
+      flipTimeline.current = timeline;
+      const slide = (element: HTMLElement | null, shift: number) => {
+        const currentX = Number(gsap.getProperty(element, 'x')) || 0;
+        timeline.fromTo(
+          element,
+          { x: shift * charWidth + currentX },
+          { x: 0, duration: 0.55, ease: 'power3.inOut' },
+          0
+        );
+      };
+      slide(tailRef.current, fromTool.length - toTool.length);
+      slide(listElement, flip.from.length - flip.to.length);
       timeline.fromTo(
-        runnerRef.current,
-        { width: flip.from.length * charWidth },
-        {
-          width: flip.to.length * charWidth,
-          duration: 0.5,
-          ease: 'power3.inOut',
-          clearProps: 'width',
-        },
+        gsap.utils.toArray<HTMLElement>('[data-out]', root),
+        { yPercent: 0, opacity: 1 },
+        { yPercent: -70, opacity: 0, duration: 0.2, ease: 'power2.in' },
         0
       );
-      changed.forEach((element, order) => {
-        const at = order * 0.03;
-        timeline.fromTo(
-          element.querySelector('[data-out]'),
-          { yPercent: 0, opacity: 1 },
-          { yPercent: -100, opacity: 0, duration: 0.32, ease: 'power2.in' },
-          at
-        );
-        timeline.fromTo(
-          element.querySelector('[data-in]'),
-          { yPercent: 100, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.42, ease: 'power3.out' },
-          at + 0.12
-        );
-      });
+      incoming
+        .filter((element) => element.hasAttribute('data-changed'))
+        .forEach((element, order) => {
+          timeline.fromTo(
+            element,
+            { yPercent: 100, opacity: 0 },
+            { yPercent: 0, opacity: 1, duration: 0.42, ease: 'power3.out' },
+            order * 0.03 + 0.1
+          );
+        });
     },
     { scope: rootRef, dependencies: [flip.from, flip.to] }
   );
@@ -320,11 +362,21 @@ const PackageCommand = ({
       {...props}
     >
       <div className="flex items-center justify-between gap-3 border-b border-current/10 px-1.5 py-1.5">
-        <div role="tablist" aria-label="Package manager" className="relative flex">
+        <div
+          role="tablist"
+          aria-label="Package manager"
+          className="relative flex"
+          onPointerOver={(event) => followPointer(event.target)}
+          onPointerLeave={returnToActive}
+          onFocus={(event) => followPointer(event.target)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) returnToActive();
+          }}
+        >
           <span
             ref={pillRef}
             aria-hidden="true"
-            className="absolute inset-y-0 left-0 rounded-md bg-current/[0.08] will-change-transform"
+            className="absolute inset-y-0 left-0 rounded-md bg-current/[0.08]"
           />
           {managers.map((each, index) => {
             const selected = index === activeIndex;
@@ -342,10 +394,8 @@ const PackageCommand = ({
                 tabIndex={selected ? 0 : -1}
                 onClick={() => select(index)}
                 onKeyDown={handleKeyDown}
-                className={cn(
-                  'relative cursor-pointer rounded-md px-3 py-1.5 font-mono text-xs transition-opacity duration-200 focus-visible:outline-2 focus-visible:outline-current motion-reduce:transition-none',
-                  selected ? 'opacity-100' : 'opacity-55 hover:opacity-85'
-                )}
+                data-highlighted={selected}
+                className="relative cursor-pointer rounded-md px-3 py-1.5 font-mono text-xs opacity-55 transition-opacity duration-300 focus-visible:outline-2 focus-visible:outline-current data-[highlighted=true]:opacity-100 motion-reduce:transition-none"
               >
                 {each}
               </button>
@@ -390,7 +440,7 @@ const PackageCommand = ({
         aria-labelledby={`${id}-${manager}`}
         className="overflow-x-auto px-4 py-3.5"
       >
-        <p className="relative inline-flex font-mono text-sm whitespace-pre">
+        <p className="relative inline-flex items-center font-mono text-sm leading-6 whitespace-pre">
           <span
             ref={sweepRef}
             aria-hidden="true"
@@ -399,32 +449,15 @@ const PackageCommand = ({
           <span aria-hidden="true" className="relative text-(--package-accent) select-none">
             ${' '}
           </span>
-          <span aria-hidden="true" className="relative inline-flex">
-            <span ref={runnerRef} className="inline-flex overflow-hidden">
-              {Array.from({ length: cells }, (_, index) => {
-                const incoming = flip.to[index] ?? '';
-                const outgoing = flip.from[index] ?? '';
-                const changed = incoming !== outgoing;
-                return (
-                  <span
-                    key={index}
-                    data-cell
-                    data-changed={changed || undefined}
-                    className="relative inline-block w-[1ch] overflow-hidden"
-                  >
-                    <span data-in className="block">
-                      {incoming || ' '}
-                    </span>
-                    {changed && (
-                      <span data-out className="absolute inset-0 block">
-                        {outgoing}
-                      </span>
-                    )}
-                  </span>
-                );
-              })}
+          <span aria-hidden="true" className="relative inline-flex items-center">
+            <FlipCells from={fromTool} to={toTool} />
+            <span ref={tailRef} className="inline-flex items-center">
+              <FlipCells from={fromTail} to={toTail} />
             </span>
-            <span className="opacity-70"> {list}</span>
+            <span ref={listRef} className="block opacity-70">
+              {' '}
+              {list}
+            </span>
           </span>
           <span className="sr-only">{command}</span>
         </p>

@@ -104,6 +104,18 @@ describe('Package Command', () => {
     expect(screen.getAllByRole('tabpanel')[1]).toHaveTextContent('npm install gsap');
   });
 
+  it('flips only the tool when the verb stays the same', () => {
+    setReducedMotion(false);
+    const { container } = render(<PackageCommand packages="gsap" />);
+    pick('yarn');
+    pick('bun');
+    const changed = Array.from(
+      container.querySelectorAll('[data-in][data-changed]'),
+      (cell) => cell.textContent
+    ).join('');
+    expect(changed).toBe('bun');
+  });
+
   it('animates the flip without breaking the text', () => {
     setReducedMotion(false);
     render(<PackageCommand packages="gsap" />);

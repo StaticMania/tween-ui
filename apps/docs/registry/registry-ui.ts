@@ -1158,7 +1158,7 @@ export default function Example() {
     addedAt: '2026-11-08',
     title: 'Package Command',
     description:
-      'An install command in npm, pnpm, yarn and bun inside a small terminal card. The pill glides with its leading edge first and the trailing edge catching up, and only the characters that differ between managers flip like a split-flap board. Copying draws a check and sweeps a selection across the line. The choice is remembered and every block on the page follows it.',
+      'An install command in npm, pnpm, yarn and bun inside a small terminal card. A pill slides between the tabs, and only the characters that differ between managers flip like a split-flap board. Copying draws a check and sweeps a selection across the line. The choice is remembered and every block on the page follows it.',
     media: {},
     dependencies: ['gsap', '@gsap/react'],
     registryDependencies: [],
@@ -1173,12 +1173,7 @@ export default function Example() {
     variants: [
       {
         id: 'default',
-        label: 'Install',
-        reactSource: 'registry/tweenui/package-command.tsx',
-      },
-      {
-        id: 'execute',
-        label: 'Execute',
+        label: 'Default',
         reactSource: 'registry/tweenui/package-command.tsx',
       },
     ],

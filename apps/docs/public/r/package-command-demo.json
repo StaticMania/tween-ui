@@ -11,7 +11,7 @@
     {
       "path": "examples/package-command-demo.tsx",
       "type": "registry:example",
-      "content": "import PackageCommand from '@/components/tweenui/package-command';\n\nexport default function Page() {\n  return (\n    <>\n      <PackageCommand packages={['gsap', '@gsap/react']} />\n      <PackageCommand packages=\"vitest\" dev />\n      <PackageCommand kind=\"execute\" packages=\"shadcn@latest init\" />\n    </>\n  );\n}"
+      "content": "import PackageCommand from '@/components/tweenui/package-command';\n\nexport default function Page() {\n  return (\n    <>\n      <PackageCommand packages={['gsap', '@gsap/react']} />\n      <PackageCommand packages=\"vitest\" dev />\n      <PackageCommand kind=\"execute\" packages=\"shadcn@latest add @tween-ui/package-command\" />\n    </>\n  );\n}"
     }
   ]
 }

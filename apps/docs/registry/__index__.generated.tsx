@@ -48,7 +48,6 @@ export const demos: Record<string, ComponentType> = {
   'theme-toggle-reveal:spiral': dynamic(() => import('./demos/theme-toggle-reveal-spiral')),
   'elastic-slider:default': dynamic(() => import('./demos/elastic-slider')),
   'package-command:default': dynamic(() => import('./demos/package-command')),
-  'package-command:execute': dynamic(() => import('./demos/package-command-execute')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process-sticky-steps')),
