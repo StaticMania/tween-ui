@@ -1,0 +1,90 @@
+---
+title: Ink Stroke Button
+description: A teal button with lime ink that flows under the cursor, simulated as a fluid in WebGL.
+icon: brush
+---
+
+A teal call-to-action with **lime ink that flows under your cursor**. The ink
+is a small fluid simulation in WebGL. **The moment the cursor crosses an
+edge**, from any side, a pool of ink floods about a quarter of the button
+there, holds for a beat and goes. Through a side it fills a full-height
+band; through the top or bottom it spreads from where the cursor crossed.
+Move and the ink is **pushed along the way you go**; stop and it **curls aside** as teal washes back in
+behind it, then fades in about a second. Hold still and nothing new is added.
+The label is part of the picture, so it reads lime on teal and **flips to teal
+under the ink**. Pressing it scales the button down to 97%, the same press as
+the other Tween UI buttons.
+
+::component-preview{name="ink-stroke-button"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="ink-stroke-button"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="ink-stroke-button"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [components/start-project.tsx]
+import InkStrokeButton from '@/components/tweenui/ink-stroke-button';
+
+export default function StartProject() {
+  return <InkStrokeButton onClick={() => {}}>Start a project</InkStrokeButton>;
+}
+```
+
+:::
+::
+
+The canvas matches the button and is rebuilt when its size changes, so a
+longer label or a full-width button works. The label is drawn with the
+button's own font once fonts have loaded. The pointer is followed across the
+page, but the simulation only runs while it is near the button and stops once
+the ink has faded, so an idle button costs nothing. It needs WebGL 2.
+
+::note
+Each button holds one WebGL context, and browsers allow about 16 per page. A
+context is only created once the button scrolls into view, which is plenty for
+navbar and hero buttons; don't use it for long lists of buttons.
+::
+
+## Props
+
+| Prop        | Type     | Default    | Description                                   |
+| ----------- | -------- | ---------- | --------------------------------------------- |
+| `children`  | `string` | —          | The label, drawn into the canvas on one line. |
+| `type`      | `string` | `'button'` | The native button type.                       |
+| `className` | `string` | —          | Extra classes for the `<button>`.             |
+
+All other native `<button>` attributes, including `ref`, `onClick` and
+`disabled`, are forwarded.
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` no WebGL is used: on hover or focus the
+button switches straight to lime with teal text, and switches back when you
+leave. The same fallback is used if WebGL 2 isn't available.
+::
+
+It is a real `<button>`, named by its DOM label, which stays in place and is
+only made transparent while the canvas draws it. The canvas is hidden from
+assistive tech. A keyboard user has no cursor, so `:focus-visible` sweeps one
+across the button for them. A focus ring sits
+outside the button. Touch doesn't move the ink. In Windows high-contrast mode
+the canvas is hidden and the plain label shows.
