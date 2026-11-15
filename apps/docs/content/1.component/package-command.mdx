@@ -1,0 +1,100 @@
+---
+title: Package Command
+description: An install command for npm, pnpm, yarn and bun where only the letters that change flip like a split-flap board.
+icon: package
+---
+
+An install command in a small **terminal card**, with a tab for each
+package manager. The pill **follows your pointer** across the tabs and slides back to the
+selected one when you leave. When the command changes, only the **characters that differ flip**,
+like a split-flap board: `pnpm add` to `yarn add` turns over four letters and
+leaves ` add` alone. Copy it and a check **draws itself in** while a
+selection sweeps across the line. The choice is **remembered**, and every
+Package Command on the page follows it. Driven by GSAP.
+
+::component-preview{name="package-command"}
+::
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="package-command"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="package-command"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="React" icon="i-lucide-atom"}
+
+```tsx [app/page.tsx]
+import PackageCommand from '@/components/tweenui/package-command';
+
+export default function Page() {
+  return (
+    <>
+      <PackageCommand packages={['gsap', '@gsap/react']} />
+      <PackageCommand packages="vitest" dev />
+      <PackageCommand kind="execute" packages="shadcn@latest add @tween-ui/package-command" />
+    </>
+  );
+}
+```
+
+:::
+::
+
+## How it moves
+
+- **Pill.** Slides under whichever tab you hover or focus and resizes to fit
+  it, 350ms on `power2.out`, and lights that label up. Leave the tabs and
+  it slides back to the selected one.
+- **Command.** The text is laid out one monospace cell per character. Cells
+  that hold the same letter before and after stay still. The rest roll the
+  old letter up and out and the new one up from below, 30ms apart from left
+  to right. The line is laid out at its new length at once and the package
+  names slide in from where they were on `power3.inOut` over 550ms, using
+  only transforms, so nothing reflows mid-flip.
+- **Copy.** The clipboard shrinks away, the check strokes itself in over
+  400ms, and an accent band sweeps under the command and fades. After 1.6s
+  the clipboard returns.
+
+## Props
+
+| Prop        | Type                     | Default                          | Description                                                                                      |
+| ----------- | ------------------------ | -------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `packages`  | `string \| string[]`     | —                                | What to install, or with `kind="execute"` the command to run.                                    |
+| `kind`      | `'install' \| 'execute'` | `'install'`                      | `install` gives `npm install` / `add`. `execute` gives `npx`, `pnpm dlx`, `yarn dlx` and `bunx`. |
+| `dev`       | `boolean`                | `false`                          | Adds `-D` to an install.                                                                         |
+| `managers`  | `PackageManager[]`       | `['npm', 'pnpm', 'yarn', 'bun']` | Which tabs to show, in order.                                                                    |
+| `onCopy`    | `(command) => void`      | —                                | Called with the copied command.                                                                  |
+| `className` | `string`                 | —                                | Extra classes for the root.                                                                      |
+
+The choice is saved to `localStorage` under `tweenui:package-manager` and
+shared by every instance, including other open tabs. The server renders
+`npm`, and the saved choice takes over after hydration without animating.
+The accent comes from `--package-accent`. Override it with a class, e.g.
+`[--package-accent:#e11d48]`. Everything else takes `currentColor`.
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` the pill jumps to the tab, the
+command swaps without flipping and the check appears without drawing.
+::
+
+The tabs are a real `tablist` with one focusable tab. Arrow keys move and
+wrap, and Home and End jump to the ends. The panel holds the full command as
+text for screen readers, so they never hear it letter by letter. The copy
+button is labelled "Copy command" and a status region announces "Copied to
+clipboard".

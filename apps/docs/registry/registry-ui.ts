@@ -1152,4 +1152,37 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'package-command',
+    type: 'component',
+    addedAt: '2026-11-08',
+    title: 'Package Command',
+    description:
+      'An install command in npm, pnpm, yarn and bun inside a small terminal card. A pill slides between the tabs, and only the characters that differ between managers flip like a split-flap board. Copying draws a check and sweeps a selection across the line. The choice is remembered and every block on the page follows it.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/package-command.tsx',
+        target: 'components/tweenui/package-command.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Default',
+        reactSource: 'registry/tweenui/package-command.tsx',
+      },
+    ],
+    usage: {
+      react: `import PackageCommand from '@/components/tweenui/package-command';
+
+export default function Example() {
+  return <PackageCommand packages={['gsap', '@gsap/react']} />;
+}`,
+    },
+  },
 ];
