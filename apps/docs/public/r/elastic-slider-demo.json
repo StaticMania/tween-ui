@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elastic-slider-demo",
+  "type": "registry:example",
+  "title": "Elastic Slider Demo",
+  "description": "Usage examples for Elastic Slider.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/elastic-slider.json"
+  ],
+  "files": [
+    {
+      "path": "examples/elastic-slider-demo.tsx",
+      "type": "registry:example",
+      "content": "'use client';\n\nimport { useState } from 'react';\nimport ElasticSlider from '@/components/tweenui/elastic-slider';\n\nexport default function Page() {\n  const [budget, setBudget] = useState(7500);\n  return (\n    <ElasticSlider\n      label=\"Monthly budget\"\n      min={0}\n      max={20000}\n      step={100}\n      buttonStep={100}\n      value={budget}\n      onValueChange={setBudget}\n      prefix=\"$\"\n    />\n  );\n}"
+    }
+  ]
+}

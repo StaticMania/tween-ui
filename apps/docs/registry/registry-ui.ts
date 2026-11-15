@@ -1028,6 +1028,164 @@ export default function Example() {
     },
   },
   {
+    name: 'theme-toggle-reveal',
+    type: 'component',
+    addedAt: '2026-11-08',
+    title: 'Theme Toggle Reveal',
+    description:
+      'A pill toggle labelled Light mode or Dark mode. Click it and the new theme is drawn in pixels out from the toggle, in one of eight reveals: circle, diamond, equalizer bars, a diagonal sweep, a zipper closing from top and bottom, sparks, sonar rings or a spiral. View Transitions API with the cross-fade switched off; the sun pulls in its rays and the label turns like a drum.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react', 'lucide-react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/theme-toggle-reveal.tsx',
+        target: 'components/tweenui/theme-toggle-reveal.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Circle',
+        reactSource: 'registry/tweenui/theme-toggle-reveal.tsx',
+      },
+      {
+        id: 'diamond',
+        label: 'Diamond',
+        reactSource: 'registry/tweenui/theme-toggle-reveal.tsx',
+      },
+      {
+        id: 'equalizer',
+        label: 'Equalizer',
+        reactSource: 'registry/tweenui/theme-toggle-reveal.tsx',
+      },
+      {
+        id: 'sweep',
+        label: 'Sweep',
+        reactSource: 'registry/tweenui/theme-toggle-reveal.tsx',
+      },
+      {
+        id: 'zipper',
+        label: 'Zipper',
+        reactSource: 'registry/tweenui/theme-toggle-reveal.tsx',
+      },
+      {
+        id: 'sparks',
+        label: 'Sparks',
+        reactSource: 'registry/tweenui/theme-toggle-reveal.tsx',
+      },
+      {
+        id: 'sonar',
+        label: 'Sonar',
+        reactSource: 'registry/tweenui/theme-toggle-reveal.tsx',
+      },
+      {
+        id: 'spiral',
+        label: 'Spiral',
+        reactSource: 'registry/tweenui/theme-toggle-reveal.tsx',
+      },
+    ],
+    usage: {
+      react: `'use client';
+
+import { useTheme } from 'next-themes';
+import ThemeToggleReveal from '@/components/tweenui/theme-toggle-reveal';
+
+export default function Example() {
+  const { resolvedTheme, setTheme } = useTheme();
+  return (
+    <ThemeToggleReveal
+      theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+      onThemeChange={setTheme}
+    />
+  );
+}`,
+    },
+  },
+  {
+    name: 'elastic-slider',
+    type: 'component',
+    addedAt: '2026-11-08',
+    title: 'Elastic Slider',
+    description:
+      'A budget slider drawn as a ruler of ticks. The ticks swell in a smooth wave that follows your cursor, fill with the accent up to the value, and stretch apart like an accordion when you pull past either end, then spring back. The big number rolls with Number Flow, and a minus/plus pill steps it by a fixed amount.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react', '@number-flow/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/elastic-slider.tsx',
+        target: 'components/tweenui/elastic-slider.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Budget',
+        reactSource: 'registry/tweenui/elastic-slider.tsx',
+      },
+    ],
+    usage: {
+      react: `'use client';
+
+import { useState } from 'react';
+import ElasticSlider from '@/components/tweenui/elastic-slider';
+
+export default function Example() {
+  const [budget, setBudget] = useState(7500);
+  return (
+    <ElasticSlider
+      label="Monthly budget"
+      min={0}
+      max={20000}
+      step={100}
+      buttonStep={100}
+      value={budget}
+      onValueChange={setBudget}
+      prefix="$"
+    />
+  );
+}`,
+    },
+  },
+  {
+    name: 'package-command',
+    type: 'component',
+    addedAt: '2026-11-08',
+    title: 'Package Command',
+    description:
+      'An install command in npm, pnpm, yarn and bun inside a small terminal card. A pill slides between the tabs, and only the characters that differ between managers flip like a split-flap board. Copying draws a check and sweeps a selection across the line. The choice is remembered and every block on the page follows it.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/package-command.tsx',
+        target: 'components/tweenui/package-command.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Default',
+        reactSource: 'registry/tweenui/package-command.tsx',
+      },
+    ],
+    usage: {
+      react: `import PackageCommand from '@/components/tweenui/package-command';
+
+export default function Example() {
+  return <PackageCommand packages={['gsap', '@gsap/react']} />;
+}`,
+    },
+  },
+  {
     name: 'ink-stroke-button',
     type: 'component',
     addedAt: '2026-11-08',

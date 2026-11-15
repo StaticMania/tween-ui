@@ -1,0 +1,180 @@
+---
+title: Theme Toggle Reveal
+description: A light/dark toggle whose new theme grows out of the icon as a pixelated circle until it covers the viewport.
+icon: sun-moon
+---
+
+A pill toggle with an icon and a label, **Light mode** or **Dark mode**.
+Click it and the new theme doesn't just swap in: it **grows out of the sun or
+moon as a pixelated circle**: a round shape drawn in square pixels, with a
+staircase edge, and a thin fringe of pixels growing from dots into tiles just
+ahead of it. It keeps growing until it covers the **farthest corner of the
+viewport**. While that happens, the sun **pulls its rays in**, turns away
+and becomes the moon, and the label **turns like a drum**, letter by letter,
+from "Light mode" up to "Dark mode". Going back to light runs the other way:
+the drum turns down and the rays push out last, once the sun is back.
+
+::component-preview{name="theme-toggle-reveal" size="xl"}
+::
+
+## Reveals
+
+Pick one with the `reveal` prop. Every reveal is the same grid of pixels,
+only the moment each pixel lights changes. Switch between them above the
+preview.
+
+| `reveal`    | What you see                                                                                                      |
+| ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| `circle`    | A round shape drawn in pixels grows from the icon, with a staircase edge.                                         |
+| `diamond`   | The same, counted in rows plus columns, so it grows as a stepped diamond with 45° sides.                          |
+| `equalizer` | Bars three pixels wide rise from the bottom like a level meter, the bars nearest the toggle first.                |
+| `sweep`     | A stepped diagonal crosses the screen from the toggle's side towards the farthest corner.                         |
+| `zipper`    | Rows close in from the top and bottom towards the toggle, alternate columns a step ahead, so the edges interlock. |
+| `sparks`    | About one pixel in seven shoots out early like a spark, and the circle fills in behind them.                      |
+| `sonar`     | The circle, with two thin rings of pixels racing ahead of it like pings.                                          |
+| `spiral`    | A spiral arm winds out of the icon, so the new theme sweeps round as it grows.                                    |
+
+The preview keeps its theme local, so the docs site stays as it is. The demo
+passes its own `applyTheme`, which sets `data-theme` on the preview frame
+rather than on `<html>`. The circle still sweeps the whole viewport, but
+outside the frame nothing changes, so you only see it pass over the preview.
+
+## Installation
+
+::tabs
+:::tabs-item{label="CLI" icon="i-lucide-terminal"}
+
+::install-tabs{item="theme-toggle-reveal"}
+::
+
+:::
+:::tabs-item{label="Manual" icon="i-lucide-clipboard"}
+
+::component-source{name="theme-toggle-reveal"}
+::
+
+:::
+::
+
+## Usage
+
+::tabs
+:::tabs-item{label="next-themes" icon="i-lucide-atom"}
+
+```tsx [components/site-theme-toggle.tsx]
+'use client';
+
+import { useTheme } from 'next-themes';
+import ThemeToggleReveal from '@/components/tweenui/theme-toggle-reveal';
+
+export default function SiteThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+  return (
+    <ThemeToggleReveal
+      theme={resolvedTheme === 'dark' ? 'dark' : 'light'}
+      onThemeChange={setTheme}
+    />
+  );
+}
+```
+
+:::
+:::tabs-item{label="Uncontrolled" icon="i-lucide-toggle-right"}
+
+```tsx [components/site-theme-toggle.tsx]
+import ThemeToggleReveal from '@/components/tweenui/theme-toggle-reveal';
+
+export default function SiteThemeToggle() {
+  return <ThemeToggleReveal onThemeChange={(theme) => localStorage.setItem('theme', theme)} />;
+}
+```
+
+:::
+::
+
+By default the toggle puts the `dark` class on `<html>` and sets
+`color-scheme`, which is what Tailwind's `dark:` variant and next-themes with
+`attribute="class"` expect. It does that **itself, synchronously**, inside the
+view transition. That matters with next-themes: `setTheme` writes the class in
+an effect, a moment too late for the snapshot, and the circle would reveal the
+old theme. If your theme lives somewhere else (`data-theme`, a wrapper
+element), pass `applyTheme`.
+
+Uncontrolled with no `defaultTheme`, it reads the starting theme from the
+`dark` class on `<html>` after mount.
+
+## How the reveal works
+
+- **The radius is measured, not guessed.** The circle starts at the centre
+  of the icon and grows to `Math.hypot` of the distance to the farthest corner
+  of the viewport. A fixed `150%` works from the middle of the screen, but
+  from a toggle in a header the bottom-left corner is a full diagonal away, so
+  the circle stops short and that corner snaps to the new theme on the last
+  frame.
+- **A circle in pixels, drawn every frame.** There is no pixelated
+  `circle()`, so the clip is a hand-drawn `path()`: a 12px cell is lit when its
+  centre is inside the radius, and inside the circle each row is one
+  rectangle. A fringe a cell and a half deep grows from dots to tiles ahead of
+  the edge, which softens the pop of each new ring of pixels. The first
+  version precomputed one keyframe every 1/60s. Shapes that differ can't be
+  blended, so the browser flipped between them halfway through each interval,
+  and when that drifted off the display's own frames a shape was held twice
+  and the circle jerked. Now a frame is drawn on every `requestAnimationFrame`
+  from the real elapsed time, into one rule for the new snapshot, and an
+  empty animation on that pseudo-element holds the transition open for the
+  full duration.
+- **No cross-fade.** A view transition fades the old snapshot out and the new
+  one in by default, so the old page is already half gone while the circle
+  grows, and the pixels look washed out. The component turns off both default
+  animations and the blend mode for the length of its own transition only,
+  then draws `clip-path` on `::view-transition-new(root)` frame by frame. GSAP can't target view transition
+  pseudo-elements; it drives the icon instead.
+- **Timing.** 900ms, with the radius on an ease-in-out cubic: a few pixels
+  around the icon first so you see where it starts, a fast sweep across the
+  middle of the page, then the last pixels settle in the far corner. Change it
+  with `duration`, and the pixel size with `pixelSize`.
+- **Disabled while it runs.** For the length of a reveal the toggle is
+  `aria-disabled`: it dims, the cursor turns to not-allowed (over the whole
+  page, since the transition layer sits on top of everything) and clicks are
+  ignored,
+  then comes back as soon as the circle has covered the screen. Starting a
+  second view transition mid-reveal would skip the first, so its circle
+  vanished and the theme jumped, which read as a glitch. It uses
+  `aria-disabled` rather than `disabled` so keyboard focus stays on the button.
+- **No View Transitions API?** The theme switches instantly. There is no
+  fake fade in its place. The icon still morphs and the label still turns.
+
+## Props
+
+| Prop            | Type                                                                                             | Default                   | Description                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------ | ------------------------- | --------------------------------------------------------------------- |
+| `theme`         | `'light' \| 'dark'`                                                                              | —                         | Controlled theme. Pair it with `onThemeChange`.                       |
+| `defaultTheme`  | `'light' \| 'dark'`                                                                              | the `<html>` class        | Starting theme when uncontrolled.                                     |
+| `onThemeChange` | `(theme) => void`                                                                                | —                         | Called with the new theme inside the transition, before the snapshot. |
+| `applyTheme`    | `(theme) => void`                                                                                | toggles `.dark` on html   | Writes the theme to the DOM. Must be synchronous.                     |
+| `labels`        | `{ light, dark }`                                                                                | `Light mode`, `Dark mode` | The label shown for each theme.                                       |
+| `duration`      | `number`                                                                                         | `900`                     | Length of the pixel reveal in milliseconds.                           |
+| `pixelSize`     | `number`                                                                                         | `12`                      | Size of each pixel of the circle.                                     |
+| `reveal`        | `'circle' \| 'diamond' \| 'equalizer' \| 'sweep' \| 'zipper' \| 'sparks' \| 'sonar' \| 'spiral'` | `'circle'`                | The shape of the pixel reveal.                                        |
+| `className`     | `string`                                                                                         | —                         | Extra classes for the `<button>`.                                     |
+
+All other native `<button>` attributes, including `ref` and `disabled`, are
+forwarded. The button takes its colours from `currentColor`, so it fits any
+header without extra styling.
+
+## Accessibility
+
+::note
+Under `prefers-reduced-motion: reduce` there is no pixel reveal of any kind, no icon morph and
+no label roll: the theme switches instantly, the moon or sun simply replaces
+the other and the label changes in place.
+::
+
+It is a real `<button>`. Its `aria-label` starts with the visible label and
+then says what it will do, "Light mode, switch to dark theme", and updates
+after every switch. The icons and the letter-by-letter label are hidden from
+assistive tech, so screen readers hear the label once. Enter and Space work like a click, and
+the circle always grows from the icon's centre, so keyboard users get the
+same reveal as a mouse. While a reveal runs the button is `aria-disabled`
+and announced as dimmed, and focus stays on it. A focus ring in the current text colour sits outside
+the button.

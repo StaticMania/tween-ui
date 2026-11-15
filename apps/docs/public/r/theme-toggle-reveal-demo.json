@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-toggle-reveal-demo",
+  "type": "registry:example",
+  "title": "Theme Toggle Reveal Demo",
+  "description": "Usage examples for Theme Toggle Reveal.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/theme-toggle-reveal.json"
+  ],
+  "files": [
+    {
+      "path": "examples/theme-toggle-reveal-demo.tsx",
+      "type": "registry:example",
+      "content": "'use client';\n\nimport { useTheme } from 'next-themes';\nimport ThemeToggleReveal from '@/components/tweenui/theme-toggle-reveal';\n\nexport default function SiteThemeToggle() {\n  const { resolvedTheme, setTheme } = useTheme();\n  return (\n    <ThemeToggleReveal\n      theme={resolvedTheme === 'dark' ? 'dark' : 'light'}\n      onThemeChange={setTheme}\n    />\n  );\n}"
+    },
+    {
+      "path": "examples/theme-toggle-reveal-demo-2.tsx",
+      "type": "registry:example",
+      "content": "import ThemeToggleReveal from '@/components/tweenui/theme-toggle-reveal';\n\nexport default function SiteThemeToggle() {\n  return <ThemeToggleReveal onThemeChange={(theme) => localStorage.setItem('theme', theme)} />;\n}"
+    }
+  ]
+}
