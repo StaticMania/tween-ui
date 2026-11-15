@@ -1185,4 +1185,37 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'ink-stroke-button',
+    type: 'component',
+    addedAt: '2026-11-08',
+    title: 'Ink Stroke Button',
+    description:
+      'A teal button with lime ink that flows under the cursor. The ink is a small fluid simulation in WebGL: a pool floods in from whichever edge the cursor crosses, the ink is pushed along the way you move, curls aside when you stop and fades back to teal in about a second. The label flips colour under the ink.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/ink-stroke-button.tsx',
+        target: 'components/tweenui/ink-stroke-button.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Preview',
+        reactSource: 'registry/tweenui/ink-stroke-button.tsx',
+      },
+    ],
+    usage: {
+      react: `import InkStrokeButton from '@/components/tweenui/ink-stroke-button';
+
+export default function Example() {
+  return <InkStrokeButton onClick={() => {}}>Start a project</InkStrokeButton>;
+}`,
+    },
+  },
 ];

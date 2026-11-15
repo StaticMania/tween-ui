@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "ink-stroke-button-demo",
+  "type": "registry:example",
+  "title": "Ink Stroke Button Demo",
+  "description": "Usage examples for Ink Stroke Button.",
+  "registryDependencies": [
+    "https://tween-ui.vercel.app/r/ink-stroke-button.json"
+  ],
+  "files": [
+    {
+      "path": "examples/ink-stroke-button-demo.tsx",
+      "type": "registry:example",
+      "content": "import InkStrokeButton from '@/components/tweenui/ink-stroke-button';\n\nexport default function StartProject() {\n  return <InkStrokeButton onClick={() => {}}>Start a project</InkStrokeButton>;\n}"
+    }
+  ]
+}
