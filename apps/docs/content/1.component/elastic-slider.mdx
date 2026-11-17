@@ -121,8 +121,10 @@ value. That means:
   bigger jump, and Home and End go to `min` and `max`.
 - **Screen readers.** They read the label and the formatted value from
   `aria-valuetext`, e.g. "Monthly budget, slider, $7,500".
-- **Focus.** Keyboard focus draws a ring around the ruler. Pressing the ruler
-  focuses the input too, so the keys work straight after a drag.
+- **Focus.** The ring around the ruler only shows for keyboard focus. Pressing
+  or dragging with the mouse focuses the input without the ring, so the keys
+  still work straight after a drag, and the ring comes back on the first key
+  press.
 
 The minus and plus are real buttons labelled "Decrease Monthly budget by
 $100" and "Increase Monthly budget by $100".

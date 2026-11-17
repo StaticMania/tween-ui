@@ -26,6 +26,14 @@ const LIFT = { idle: 0.6, hover: 1.1, drag: 1.7 };
 const STEP_BUTTON =
   'grid size-9 cursor-pointer place-items-center transition-colors duration-200 hover:bg-current/10 focus-visible:bg-current/10 focus-visible:outline-none disabled:cursor-not-allowed disabled:hover:bg-transparent';
 
+const matchesFocusVisible = (element: HTMLElement) => {
+  try {
+    return element.matches(':focus-visible');
+  } catch {
+    return true;
+  }
+};
+
 const clamp = (value: number, low: number, high: number) => Math.min(high, Math.max(low, value));
 
 export const rubberBand = (overdrag: number) =>
@@ -101,6 +109,8 @@ const ElasticSlider = ({
 
   const [innerValue, setInnerValue] = useState(defaultValue);
   const [dragging, setDragging] = useState(false);
+  const [keyboardFocus, setKeyboardFocus] = useState(false);
+  const pointerFocus = useRef(false);
   const [reduced, setReduced] = useState(false);
 
   const value = clamp(controlledValue ?? innerValue, min, max);
@@ -249,7 +259,10 @@ const ElasticSlider = ({
     if (disabled || (event.pointerType === 'mouse' && event.button !== 0)) return;
     event.preventDefault();
     event.currentTarget.setPointerCapture(event.pointerId);
+    setKeyboardFocus(false);
+    pointerFocus.current = true;
     inputRef.current?.focus({ preventScroll: true });
+    pointerFocus.current = false;
     setDragging(true);
     setLift('drag');
     track(event.clientX);
@@ -363,11 +376,21 @@ const ElasticSlider = ({
           disabled={disabled}
           aria-valuetext={formatText(value)}
           onChange={(event) => commit(Number(event.target.value))}
-          className="peer sr-only"
+          onFocus={(event) =>
+            setKeyboardFocus(!pointerFocus.current && matchesFocusVisible(event.currentTarget))
+          }
+          onKeyDown={() => setKeyboardFocus(true)}
+          onBlur={() => setKeyboardFocus(false)}
+          className="sr-only"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -inset-x-3 -inset-y-1 rounded-xl outline-2 outline-transparent peer-focus-visible:outline-current"
+          data-elastic-focus-ring
+          data-visible={keyboardFocus || undefined}
+          className={cn(
+            'pointer-events-none absolute -inset-x-3 -inset-y-1 rounded-xl outline-2 outline-transparent',
+            keyboardFocus && 'outline-current'
+          )}
         />
         <div ref={railRef} aria-hidden="true" className="absolute inset-0">
           {Array.from({ length: ticks }, (_, index) => (

@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import gsap from 'gsap';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import ElasticSlider, { MAX_STRETCH, rubberBand } from '@/registry/tweenui/elastic-slider';
 
 vi.mock('@number-flow/react', () => ({
@@ -44,6 +44,24 @@ const Budget = (props: { onValueChange?: (value: number) => void; defaultValue?:
     {...props}
   />
 );
+
+beforeAll(() => {
+  if (!('PointerEvent' in window)) {
+    class PointerEventPolyfill extends MouseEvent {
+      pointerId: number;
+      pointerType: string;
+      constructor(type: string, init: PointerEventInit = {}) {
+        super(type, init);
+        this.pointerId = init.pointerId ?? 1;
+        this.pointerType = init.pointerType ?? 'mouse';
+      }
+    }
+    Object.defineProperty(window, 'PointerEvent', {
+      value: PointerEventPolyfill,
+      configurable: true,
+    });
+  }
+});
 
 const lastTickX = (container: HTMLElement) => {
   const ticks = container.querySelectorAll('[data-elastic-tick]');
@@ -108,27 +126,51 @@ describe('Elastic Slider', () => {
     expect(screen.getByRole('slider')).toHaveValue('7600');
   });
 
+  describe('focus ring', () => {
+    const ring = (container: HTMLElement) => container.querySelector('[data-elastic-focus-ring]');
+
+    beforeEach(() => {
+      Element.prototype.setPointerCapture = vi.fn();
+    });
+
+    it('shows when the slider is focused from the keyboard', () => {
+      const { container } = render(<Budget />);
+      act(() => screen.getByRole('slider').focus());
+      expect(ring(container)).toHaveAttribute('data-visible');
+    });
+
+    it('stays hidden when the ruler is pressed with the mouse', () => {
+      const { container } = render(<Budget />);
+      const track = container.querySelector('[data-elastic-track]');
+      if (!track) throw new Error('track not found');
+      fireEvent.pointerDown(track, { clientX: 0, pointerId: 1, button: 0, pointerType: 'mouse' });
+      expect(screen.getByRole('slider')).toHaveFocus();
+      expect(ring(container)).not.toHaveAttribute('data-visible');
+    });
+
+    it('comes back once a key is pressed after a drag', () => {
+      const { container } = render(<Budget />);
+      const track = container.querySelector('[data-elastic-track]');
+      if (!track) throw new Error('track not found');
+      fireEvent.pointerDown(track, { clientX: 0, pointerId: 1, button: 0, pointerType: 'mouse' });
+      fireEvent.keyDown(screen.getByRole('slider'), { key: 'ArrowRight' });
+      expect(ring(container)).toHaveAttribute('data-visible');
+    });
+
+    it('hides again on blur', () => {
+      const { container } = render(<Budget />);
+      act(() => screen.getByRole('slider').focus());
+      act(() => screen.getByRole('slider').blur());
+      expect(ring(container)).not.toHaveAttribute('data-visible');
+    });
+  });
+
   describe('stretch past the ends', () => {
     let now = 0;
     beforeEach(() => {
       gsap.ticker.remove(gsap.updateRoot);
       now = gsap.ticker.time;
       Element.prototype.setPointerCapture = vi.fn();
-      if (!('PointerEvent' in window)) {
-        class PointerEventPolyfill extends MouseEvent {
-          pointerId: number;
-          pointerType: string;
-          constructor(type: string, init: PointerEventInit = {}) {
-            super(type, init);
-            this.pointerId = init.pointerId ?? 1;
-            this.pointerType = init.pointerType ?? 'mouse';
-          }
-        }
-        Object.defineProperty(window, 'PointerEvent', {
-          value: PointerEventPolyfill,
-          configurable: true,
-        });
-      }
     });
     afterEach(() => {
       gsap.ticker.add(gsap.updateRoot);
