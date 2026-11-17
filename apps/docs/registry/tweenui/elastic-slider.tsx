@@ -16,10 +16,10 @@ import { cn } from '@/lib/utils';
 
 gsap.registerPlugin(useGSAP);
 
-const prefersReducedMotion = () =>
-  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
-const MAX_STRETCH = 28;
+export const MAX_STRETCH = 10;
+const EDGE_BUMP = 6;
 const WAVE_WIDTH = 30;
 const LIFT = { idle: 0.6, hover: 1.1, drag: 1.7 };
 
@@ -28,8 +28,8 @@ const STEP_BUTTON =
 
 const clamp = (value: number, low: number, high: number) => Math.min(high, Math.max(low, value));
 
-const rubberBand = (overdrag: number) =>
-  Math.sign(overdrag) * MAX_STRETCH * (1 - Math.exp(-Math.abs(overdrag) / (MAX_STRETCH * 2.5)));
+export const rubberBand = (overdrag: number) =>
+  Math.sign(overdrag) * MAX_STRETCH * (1 - Math.exp(-Math.abs(overdrag) / (MAX_STRETCH * 4)));
 
 const decimalsOf = (step: number) => {
   const [, fraction = ''] = String(step).split('.');
@@ -134,26 +134,34 @@ const ElasticSlider = ({
     });
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const query = window.matchMedia(REDUCED_MOTION_QUERY);
+    const sync = () => setReduced(query.matches);
+    sync();
+    query.addEventListener('change', sync);
+    return () => query.removeEventListener('change', sync);
+  }, []);
+
   useGSAP(
     () => {
-      const isReduced = prefersReducedMotion();
-      setReduced(isReduced);
       const width = railRef.current?.offsetWidth ?? 0;
       motion.current.progress = progress;
       motion.current.focus = progress * width;
-      motion.current.lift = isReduced ? 0 : LIFT.idle;
+      motion.current.stretch = 0;
+      motion.current.lift = reduced ? 0 : LIFT.idle;
       moveTo.current = gsap.quickTo(motion.current, 'progress', {
-        duration: isReduced ? 0 : 0.4,
+        duration: reduced ? 0 : 0.4,
         ease: 'power3.out',
         onUpdate: render,
       });
       focusTo.current = gsap.quickTo(motion.current, 'focus', {
-        duration: isReduced ? 0 : 0.5,
+        duration: reduced ? 0 : 0.5,
         ease: 'power3.out',
         onUpdate: render,
       });
       liftTo.current = gsap.quickTo(motion.current, 'lift', {
-        duration: isReduced ? 0 : 0.45,
+        duration: reduced ? 0 : 0.45,
         ease: 'power2.out',
         onUpdate: render,
       });
@@ -165,7 +173,7 @@ const ElasticSlider = ({
       observer.observe(rail);
       return () => observer.disconnect();
     },
-    { scope: rootRef, dependencies: [ticks] }
+    { scope: rootRef, dependencies: [ticks, reduced] }
   );
 
   useEffect(() => {
@@ -192,8 +200,8 @@ const ElasticSlider = ({
     if (reduced) return;
     gsap.to(motion.current, {
       stretch: amount,
-      duration: release ? 0.9 : 0.2,
-      ease: release ? 'elastic.out(1, 0.32)' : 'power3.out',
+      duration: release ? 0.32 : 0.18,
+      ease: 'power3.out',
       overwrite: 'auto',
       onUpdate: render,
     });
@@ -202,8 +210,8 @@ const ElasticSlider = ({
   const bump = (direction: number) => {
     if (reduced) return;
     gsap.to(motion.current, {
-      stretch: direction * 14,
-      duration: 0.14,
+      stretch: direction * EDGE_BUMP,
+      duration: 0.12,
       ease: 'power2.out',
       overwrite: 'auto',
       onUpdate: render,
@@ -336,6 +344,7 @@ const ElasticSlider = ({
           'relative mt-5 h-14',
           disabled ? 'cursor-not-allowed' : dragging ? 'cursor-grabbing' : 'cursor-grab'
         )}
+        data-elastic-track
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerLeave={() => !dragging && settle()}
@@ -364,6 +373,7 @@ const ElasticSlider = ({
           {Array.from({ length: ticks }, (_, index) => (
             <span
               key={index}
+              data-elastic-tick
               ref={(node) => {
                 tickRefs.current[index] = node;
               }}
