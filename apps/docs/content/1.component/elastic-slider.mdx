@@ -72,11 +72,14 @@ export default function Page() {
   the value when you leave, on a 500ms `power3.out` ease.
 - **Indicator.** Follows the value on a 400ms `power3.out` ease, so button
   presses and arrow keys glide instead of jumping.
-- **Stretch.** Overdrag runs through a rubber-band curve that tops out at
-  28px. The ruler is pinned at the far end, so ticks near your pointer move
-  the most. On release it springs back on `elastic.out(1, 0.32)` over 900ms.
-- **Buttons.** The icon pops on `back.out`. At the limit the ruler kicks
-  14px toward the button and springs back.
+- **Stretch.** The stretch is how the slider tells you you've hit the
+  limit. Overdrag runs through a rubber-band curve that never goes past
+  10px, however far you pull, and each extra pixel of pull stretches it
+  less. The ruler is pinned at the far end, so ticks near your pointer move
+  the most. On release it settles back in 320ms on `power3.out`, in one
+  move with no wobble.
+- **Buttons.** The icon pops on `back.out`. At the limit the ruler gives a
+  6px kick toward the button and settles back.
 
 ## Props
 
@@ -104,14 +107,22 @@ The accent comes from `--elastic-accent`. Override it with a class, e.g.
 ## Accessibility
 
 ::note
-Under `prefers-reduced-motion: reduce` the ticks stay flat, the ruler never
-stretches, the indicator jumps straight to the value and the digits change
-without rolling.
+Under `prefers-reduced-motion: reduce` the ruler never stretches and the
+ticks stay flat. The indicator jumps straight to the value and stops at the
+limit, and the digits change without rolling. The slider listens for the
+setting, so switching it while the page is open takes effect right away.
 ::
 
-Under the ruler sits a real `<input type="range">` with a `<label>`, so arrow
-keys, Page Up and Down, Home and End, and screen readers all work natively.
-`aria-valuetext` reads the formatted value, such as "$7,500". The minus and
-plus are real buttons labelled "Decrease Monthly budget by $100" and
-"Increase Monthly budget by $100". Pressing the ruler focuses the input, and
-keyboard focus draws a ring around it.
+The drawing is only a picture: under it sits a real, native
+`<input type="range">` with a `<label>`, and its value is the slider's
+value. That means:
+
+- **Keyboard.** Arrow keys move one `step`, Page Up and Page Down move a
+  bigger jump, and Home and End go to `min` and `max`.
+- **Screen readers.** They read the label and the formatted value from
+  `aria-valuetext`, e.g. "Monthly budget, slider, $7,500".
+- **Focus.** Keyboard focus draws a ring around the ruler. Pressing the ruler
+  focuses the input too, so the keys work straight after a drag.
+
+The minus and plus are real buttons labelled "Decrease Monthly budget by
+$100" and "Increase Monthly budget by $100".
