@@ -11,11 +11,15 @@
     "registry:build": "tsx scripts/build-registry.ts",
     "test": "vitest run",
     "format": "prettier --write \"**/*.{ts,tsx,mdx,css,json}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx,css,json}\" --cache"
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx,css,json}\" --cache",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@number-flow/react": "^0.6.2",
+    "@opennextjs/cloudflare": "^1.20.17",
     "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "docora": "^0.0.4",
@@ -45,6 +49,7 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.20.0",
     "typescript": "^5.9.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "wrangler": "^4.164.0"
   }
 }
