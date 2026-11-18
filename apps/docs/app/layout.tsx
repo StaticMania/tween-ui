@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import { DocsRoot, isAssistantEnabled } from 'docora';
 import docsConfig from '../docs.config';
@@ -12,6 +13,14 @@ export const metadata: Metadata = rootMetadata();
 
 export const viewport: Viewport = rootViewport;
 
+// Vercel sets VERCEL=1 at build time. Its analytics script only exists on
+// Vercel, so a Cloudflare build would request it and get a 404.
+const isVercel = Boolean(process.env.VERCEL);
+
+// Cloudflare Web Analytics site token, from Web Analytics → the site → snippet.
+// It is public (it ships in the page), so it is read as a build variable.
+const cloudflareAnalyticsToken = process.env.NEXT_PUBLIC_CF_WEB_ANALYTICS_TOKEN;
+
 const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <DocsRoot
@@ -20,7 +29,14 @@ const RootLayout = async ({ children }: Readonly<{ children: React.ReactNode }>)
       assistantEnabled={isAssistantEnabled(docsConfig.assistant)}
     >
       {children}
-      <Analytics />
+      {isVercel && <Analytics />}
+      {cloudflareAnalyticsToken && (
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cloudflareAnalyticsToken })}
+          strategy="afterInteractive"
+        />
+      )}
     </DocsRoot>
   );
 };
