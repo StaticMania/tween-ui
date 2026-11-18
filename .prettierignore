@@ -4,6 +4,8 @@ out
 dist
 .turbo
 .vercel
+.open-next
+.wrangler
 pnpm-lock.yaml
 *.tsbuildinfo
 next-env.d.ts
