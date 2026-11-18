@@ -7,3 +7,5 @@ allowBuilds:
   # Pulled in transitively by the shadcn devDependency; we never run msw, so
   # its postinstall (which only copies a service worker) is not needed.
   msw: false
+  # Cloudflare Workers runtime used by wrangler and OpenNext (downloads its binary).
+  workerd: true
