@@ -7,7 +7,7 @@ works today, but only after the user maps the namespace in their own
 ```json
 {
   "registries": {
-    "@tween-ui": "https://tween-ui.vercel.app/r/{name}.json"
+    "@tween-ui": "https://tween-ui.staticmania.com/r/{name}.json"
   }
 }
 ```
@@ -29,8 +29,8 @@ entries already listed.
 ```json
 {
   "name": "@tween-ui",
-  "homepage": "https://tween-ui.vercel.app",
-  "url": "https://tween-ui.vercel.app/r/{name}.json",
+  "homepage": "https://tween-ui.staticmania.com",
+  "url": "https://tween-ui.staticmania.com/r/{name}.json",
   "description": "GSAP & CSS animated React components and blocks. One file each, no shared runtime, reduced-motion handled.",
   "logo": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='#045f64'/><path d='M5 19 C 9.5 8.9, 5 5, 19 5' fill='none' stroke='#c6f56f' stroke-width='2' stroke-linecap='round'/><circle cx='19' cy='5' r='1.8' fill='#c6f56f'/></svg>"
 }
@@ -59,15 +59,15 @@ PR body:
 
 > Adds `@tween-ui` to the registry directory.
 >
-> **Registry:** https://tween-ui.vercel.app · **Source:** https://github.com/StaticMania/tween-ui (MIT)
+> **Registry:** https://tween-ui.staticmania.com · **Source:** https://github.com/StaticMania/tween-ui (MIT)
 >
 > 36 GSAP & CSS animated React components and blocks. Each item is a single
 > `.tsx` file with no shared runtime, and every component handles
 > `prefers-reduced-motion`.
 >
-> - `https://tween-ui.vercel.app/r/registry.json` — flat index, 36 items, no
+> - `https://tween-ui.staticmania.com/r/registry.json` — flat index, 36 items, no
 >   `content` in its `files` entries
-> - `https://tween-ui.vercel.app/r/{name}.json` — item files, schema-validated
+> - `https://tween-ui.staticmania.com/r/{name}.json` — item files, schema-validated
 >   at build time
 > - `pnpm validate:registries` passes with the entry added
 
@@ -87,7 +87,7 @@ install, but it is no longer required. The README quick start matches.
 
 | Requirement                                                          | Status                                                         |
 | -------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Open source and publicly accessible                                  | MIT, deployed at `tween-ui.vercel.app`                         |
+| Open source and publicly accessible                                  | MIT, deployed at `tween-ui.staticmania.com`                         |
 | Valid registry JSON conforming to the schema                         | `registrySchema` is enforced in `scripts/build-registry.ts`    |
 | Flat registry — `/registry.json` and `/<name>.json` at the same root | emitted to `apps/docs/public/r`                                |
 | No `content` in the index's `files` entries                          | the index lists `path` and `type` only; `content` is per-item  |

@@ -5,7 +5,7 @@
   "title": "Shutter Slider Demo",
   "description": "Usage examples for Shutter Slider.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/shutter-slider.json"
+    "https://tween-ui.staticmania.com/r/shutter-slider.json"
   ],
   "files": [
     {

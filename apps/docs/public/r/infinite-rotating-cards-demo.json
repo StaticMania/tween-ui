@@ -5,7 +5,7 @@
   "title": "Infinite Rotating Cards Demo",
   "description": "Usage examples for Infinite Rotating Cards.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/infinite-rotating-cards.json"
+    "https://tween-ui.staticmania.com/r/infinite-rotating-cards.json"
   ],
   "files": [
     {

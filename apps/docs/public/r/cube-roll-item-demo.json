@@ -5,7 +5,7 @@
   "title": "Cube Roll Item Demo",
   "description": "Usage examples for Cube Roll Item.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/cube-roll-item.json"
+    "https://tween-ui.staticmania.com/r/cube-roll-item.json"
   ],
   "files": [
     {

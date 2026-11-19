@@ -5,7 +5,7 @@
   "title": "Strip Wipe Demo",
   "description": "Usage examples for Strip Wipe.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/strip-wipe.json"
+    "https://tween-ui.staticmania.com/r/strip-wipe.json"
   ],
   "files": [
     {

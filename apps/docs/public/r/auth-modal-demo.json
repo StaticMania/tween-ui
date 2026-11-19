@@ -5,7 +5,7 @@
   "title": "Auth Modal Demo",
   "description": "Usage examples for Auth Modal.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/auth-modal.json"
+    "https://tween-ui.staticmania.com/r/auth-modal.json"
   ],
   "files": [
     {

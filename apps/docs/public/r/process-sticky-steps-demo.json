@@ -5,7 +5,7 @@
   "title": "Process Sticky Steps Demo",
   "description": "Usage examples for Process Sticky Steps.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/process-sticky-steps.json"
+    "https://tween-ui.staticmania.com/r/process-sticky-steps.json"
   ],
   "files": [
     {

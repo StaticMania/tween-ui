@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "tween-ui",
-  "homepage": "https://tween-ui.vercel.app",
+  "homepage": "https://tween-ui.staticmania.com",
   "items": [
     {
       "name": "icon-trail-button",

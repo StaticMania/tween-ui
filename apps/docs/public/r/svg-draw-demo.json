@@ -5,7 +5,7 @@
   "title": "SVG Draw Demo",
   "description": "Usage examples for SVG Draw.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/svg-draw.json"
+    "https://tween-ui.staticmania.com/r/svg-draw.json"
   ],
   "files": [
     {

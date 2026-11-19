@@ -71,7 +71,7 @@ describe('Gyro Gallery', () => {
 
     expect(screen.getByRole('link', { name: 'Shutter Slider' })).toHaveAttribute(
       'href',
-      'https://tween-ui.vercel.app/block/shutter-slider'
+      'https://tween-ui.staticmania.com/block/shutter-slider'
     );
     expect(screen.getByText('pieces in orbit')).toBeInTheDocument();
   });

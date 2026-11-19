@@ -5,7 +5,7 @@
   "title": "Gyro Gallery Demo",
   "description": "Usage examples for Gyro Gallery.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/gyro-gallery.json"
+    "https://tween-ui.staticmania.com/r/gyro-gallery.json"
   ],
   "files": [
     {

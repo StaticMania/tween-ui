@@ -3,12 +3,12 @@
 ## What is in scope
 
 Tween UI does not publish an npm package. It ships a documentation site and a
-[shadcn-compatible registry](https://tween-ui.vercel.app/r/registry.json) that the CLI
+[shadcn-compatible registry](https://tween-ui.staticmania.com/r/registry.json) that the CLI
 reads to copy component source into a consumer's project.
 
 | Surface                                                 | Supported      |
 | ------------------------------------------------------- | -------------- |
-| The deployed site and registry at `tween-ui.vercel.app` | Yes            |
+| The deployed site and registry at `tween-ui.staticmania.com` | Yes            |
 | Component sources in `apps/docs/registry` on `main`     | Yes            |
 | Source already copied into your own project             | Yours to patch |
 

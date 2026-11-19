@@ -5,7 +5,7 @@
   "title": "Logo Orbit Demo",
   "description": "Usage examples for Logo Orbit.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/logo-orbit.json"
+    "https://tween-ui.staticmania.com/r/logo-orbit.json"
   ],
   "files": [
     {

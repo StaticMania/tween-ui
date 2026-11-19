@@ -5,7 +5,7 @@
   "title": "Arc Carousel Demo",
   "description": "Usage examples for Arc Carousel.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/arc-carousel.json"
+    "https://tween-ui.staticmania.com/r/arc-carousel.json"
   ],
   "files": [
     {

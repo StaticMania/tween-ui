@@ -5,7 +5,7 @@
   "title": "Slant Morph Button Demo",
   "description": "Usage examples for Slant Morph Button.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/slant-morph-button.json"
+    "https://tween-ui.staticmania.com/r/slant-morph-button.json"
   ],
   "files": [
     {

@@ -65,14 +65,16 @@ describe('registryPageMetadata', () => {
     expect(String(metadata.description).length).toBeLessThanOrEqual(160);
     expect(metadata.openGraph).toMatchObject({
       title: 'Grid Cascade — Animated React Block',
-      url: 'https://tween-ui.vercel.app/block/grid-cascade',
+      url: 'https://tween-ui.staticmania.com/block/grid-cascade',
     });
     expect(metadata.twitter).toMatchObject({ card: 'summary_large_image' });
     expect(JSON.stringify(metadata.openGraph?.images)).toContain(
-      'https://tween-ui.vercel.app/og?title=Grid+Cascade'
+      'https://tween-ui.staticmania.com/og?title=Grid+Cascade'
     );
     expect(JSON.stringify(metadata.openGraph?.images)).toContain('kind=block');
-    expect(metadata.alternates?.canonical).toBe('https://tween-ui.vercel.app/block/grid-cascade');
+    expect(metadata.alternates?.canonical).toBe(
+      'https://tween-ui.staticmania.com/block/grid-cascade'
+    );
   });
 
   it('labels components as components', () => {
@@ -88,7 +90,9 @@ describe('previewMetadata', () => {
   it('keeps the preview out of the index and canonicalises to the doc page', () => {
     const metadata = previewMetadata(block);
     expect(metadata.robots).toMatchObject({ index: false });
-    expect(metadata.alternates?.canonical).toBe('https://tween-ui.vercel.app/block/grid-cascade');
+    expect(metadata.alternates?.canonical).toBe(
+      'https://tween-ui.staticmania.com/block/grid-cascade'
+    );
   });
 });
 

@@ -5,7 +5,7 @@
   "title": "Project Hover Reveal Demo",
   "description": "Usage examples for Project Hover Reveal.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/project-hover-reveal.json"
+    "https://tween-ui.staticmania.com/r/project-hover-reveal.json"
   ],
   "files": [
     {

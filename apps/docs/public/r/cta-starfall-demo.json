@@ -5,7 +5,7 @@
   "title": "CTA Starfall Demo",
   "description": "Usage examples for CTA Starfall.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/cta-starfall.json"
+    "https://tween-ui.staticmania.com/r/cta-starfall.json"
   ],
   "files": [
     {

@@ -5,7 +5,7 @@
   "title": "CTA Contact Morph Demo",
   "description": "Usage examples for CTA Contact Morph.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/cta-contact-morph.json"
+    "https://tween-ui.staticmania.com/r/cta-contact-morph.json"
   ],
   "files": [
     {

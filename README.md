@@ -3,8 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="https://tween-ui.vercel.app"><strong>Documentation</strong></a> ·
-  <a href="https://tween-ui.vercel.app/components"><strong>Components</strong></a> ·
+  <a href="https://tween-ui.staticmania.com"><strong>Documentation</strong></a> ·
+  <a href="https://tween-ui.staticmania.com/components"><strong>Components</strong></a> ·
   <a href="CONTRIBUTING.md"><strong>Contributing</strong></a>
 </p>
 
@@ -51,7 +51,7 @@ pnpm dlx shadcn@latest add @tween-ui/sliding-tabs
 ```
 
 Full details, including the optional `components.json` mapping and the URL
-form, are on [the setup guide](https://tween-ui.vercel.app/installation/setup-guide).
+form, are on [the setup guide](https://tween-ui.staticmania.com/installation/setup-guide).
 
 That writes `components/tweenui/sliding-tabs.tsx` into your project. Use it
 like any local component:
@@ -86,7 +86,7 @@ sliders, process steps, CTAs, carousels and galleries, card grids, team
 collages, logo walls and an integration diagram. Blocks are
 page-level sections; some are built from the components above.
 
-Browse them all at **[tween-ui.vercel.app/components](https://tween-ui.vercel.app/components)**.
+Browse them all at **[tween-ui.staticmania.com/components](https://tween-ui.staticmania.com/components)**.
 
 ## Requirements
 

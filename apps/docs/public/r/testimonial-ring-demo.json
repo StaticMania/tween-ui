@@ -5,7 +5,7 @@
   "title": "Testimonial Ring Demo",
   "description": "Usage examples for Testimonial Ring.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/testimonial-ring.json"
+    "https://tween-ui.staticmania.com/r/testimonial-ring.json"
   ],
   "files": [
     {

@@ -5,7 +5,7 @@
   "title": "Loader Line Fold Demo",
   "description": "Usage examples for Loader Line Fold.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/loader-line-fold.json"
+    "https://tween-ui.staticmania.com/r/loader-line-fold.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
 ## Questions and help
 
 - Read the [README](README.md) and the component documentation at
-  [tween-ui.vercel.app](https://tween-ui.vercel.app).
+  [tween-ui.staticmania.com](https://tween-ui.staticmania.com).
 - Search [existing issues](https://github.com/StaticMania/tween-ui/issues) in case the
   question is already answered.
 - Open a [GitHub issue](https://github.com/StaticMania/tween-ui/issues/new) for bugs,

@@ -5,7 +5,7 @@
   "title": "Navbar Gooey Bloom Demo",
   "description": "Usage examples for Navbar Gooey Bloom.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/navbar-gooey-bloom.json"
+    "https://tween-ui.staticmania.com/r/navbar-gooey-bloom.json"
   ],
   "files": [
     {

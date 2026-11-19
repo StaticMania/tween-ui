@@ -5,7 +5,7 @@
   "title": "Team Scatter Focus Demo",
   "description": "Usage examples for Team Scatter Focus.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/team-scatter-focus.json"
+    "https://tween-ui.staticmania.com/r/team-scatter-focus.json"
   ],
   "files": [
     {

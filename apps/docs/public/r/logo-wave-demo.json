@@ -5,7 +5,7 @@
   "title": "Logo Wave Demo",
   "description": "Usage examples for Logo Wave.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/logo-wave.json"
+    "https://tween-ui.staticmania.com/r/logo-wave.json"
   ],
   "files": [
     {
