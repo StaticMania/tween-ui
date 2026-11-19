@@ -5,7 +5,7 @@
   "title": "Process Card Reveal Demo",
   "description": "Usage examples for Process Card Reveal.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/process-card-reveal.json"
+    "https://tween-ui.staticmania.com/r/process-card-reveal.json"
   ],
   "files": [
     {

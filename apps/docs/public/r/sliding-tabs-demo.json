@@ -5,7 +5,7 @@
   "title": "Sliding Tabs Demo",
   "description": "Usage examples for Sliding Tabs.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/sliding-tabs.json"
+    "https://tween-ui.staticmania.com/r/sliding-tabs.json"
   ],
   "files": [
     {

@@ -5,7 +5,7 @@
   "title": "Elastic Slider Demo",
   "description": "Usage examples for Elastic Slider.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/elastic-slider.json"
+    "https://tween-ui.staticmania.com/r/elastic-slider.json"
   ],
   "files": [
     {

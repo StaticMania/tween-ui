@@ -5,7 +5,7 @@
   "title": "Logo Cycle Demo",
   "description": "Usage examples for Logo Cycle.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/logo-cycle.json"
+    "https://tween-ui.staticmania.com/r/logo-cycle.json"
   ],
   "files": [
     {

@@ -5,7 +5,7 @@
   "title": "Blog Hover Expand Demo",
   "description": "Usage examples for Blog Hover Expand.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/blog-hover-expand.json"
+    "https://tween-ui.staticmania.com/r/blog-hover-expand.json"
   ],
   "files": [
     {

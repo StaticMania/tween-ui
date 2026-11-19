@@ -37,7 +37,7 @@ export interface NavbarPushMenuProps extends Omit<ComponentPropsWithoutRef<'sect
   children?: ReactNode;
 }
 
-const SITE = 'https://tween-ui.vercel.app';
+const SITE = 'https://tween-ui.staticmania.com';
 const REPO = 'https://github.com/StaticMania/tween-ui';
 
 const poster = (kind: 'block' | 'component', name: string) =>

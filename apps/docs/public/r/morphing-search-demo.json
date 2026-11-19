@@ -5,7 +5,7 @@
   "title": "Morphing Search Demo",
   "description": "Usage examples for Morphing Search.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/morphing-search.json"
+    "https://tween-ui.staticmania.com/r/morphing-search.json"
   ],
   "files": [
     {

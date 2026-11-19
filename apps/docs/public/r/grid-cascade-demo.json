@@ -5,7 +5,7 @@
   "title": "Grid Cascade Demo",
   "description": "Usage examples for Grid Cascade.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/grid-cascade.json"
+    "https://tween-ui.staticmania.com/r/grid-cascade.json"
   ],
   "files": [
     {

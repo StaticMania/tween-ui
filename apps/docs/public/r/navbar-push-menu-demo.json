@@ -5,7 +5,7 @@
   "title": "Navbar Push Menu Demo",
   "description": "Usage examples for Navbar Push Menu.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/navbar-push-menu.json"
+    "https://tween-ui.staticmania.com/r/navbar-push-menu.json"
   ],
   "files": [
     {

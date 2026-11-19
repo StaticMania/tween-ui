@@ -5,7 +5,7 @@
   "title": "Glow Button Demo",
   "description": "Usage examples for Glow Button.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/glow-button.json"
+    "https://tween-ui.staticmania.com/r/glow-button.json"
   ],
   "files": [
     {

@@ -5,7 +5,7 @@
   "title": "Arrow Tile Button Demo",
   "description": "Usage examples for Arrow Tile Button.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/arrow-tile-button.json"
+    "https://tween-ui.staticmania.com/r/arrow-tile-button.json"
   ],
   "files": [
     {

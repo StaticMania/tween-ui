@@ -5,7 +5,7 @@
   "title": "Tab Wipe Demo",
   "description": "Usage examples for Tab Wipe.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/tab-wipe.json"
+    "https://tween-ui.staticmania.com/r/tab-wipe.json"
   ],
   "files": [
     {

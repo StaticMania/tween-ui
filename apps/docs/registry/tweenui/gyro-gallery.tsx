@@ -77,7 +77,7 @@ const FRAME_MARGIN = 36;
 
 const deg = Math.PI / 180;
 
-const SITE = 'https://tween-ui.vercel.app';
+const SITE = 'https://tween-ui.staticmania.com';
 const poster = (kind: 'block' | 'component', name: string, title: string): GyroItem => ({
   title,
   kind: kind === 'block' ? 'Block' : 'Component',

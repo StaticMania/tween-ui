@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Tween UI',
-  url: 'https://tween-ui.vercel.app',
-  ogImage: 'https://tween-ui.vercel.app/og',
+  url: 'https://tween-ui.staticmania.com',
+  ogImage: 'https://tween-ui.staticmania.com/og',
   description: 'GSAP & CSS animated components for React. Copy the source, own the animation.',
   links: {
     github: 'https://github.com/StaticMania/tween-ui',

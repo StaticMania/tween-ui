@@ -5,7 +5,7 @@
   "title": "Spring Tooltip Demo",
   "description": "Usage examples for Spring Tooltip.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/spring-tooltip.json"
+    "https://tween-ui.staticmania.com/r/spring-tooltip.json"
   ],
   "files": [
     {

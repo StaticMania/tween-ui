@@ -5,7 +5,7 @@
   "title": "Kinetic Type Ring Demo",
   "description": "Usage examples for Kinetic Type Ring.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/kinetic-type-ring.json"
+    "https://tween-ui.staticmania.com/r/kinetic-type-ring.json"
   ],
   "files": [
     {

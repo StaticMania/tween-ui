@@ -5,7 +5,7 @@
   "title": "Ink Stroke Button Demo",
   "description": "Usage examples for Ink Stroke Button.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/ink-stroke-button.json"
+    "https://tween-ui.staticmania.com/r/ink-stroke-button.json"
   ],
   "files": [
     {

@@ -5,7 +5,7 @@
   "title": "Card Hover Expand Demo",
   "description": "Usage examples for Card Hover Expand.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/card-hover-expand.json"
+    "https://tween-ui.staticmania.com/r/card-hover-expand.json"
   ],
   "files": [
     {

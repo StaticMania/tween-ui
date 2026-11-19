@@ -5,7 +5,7 @@
   "title": "Avatar Reveal Demo",
   "description": "Usage examples for Avatar Reveal.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/avatar-reveal.json"
+    "https://tween-ui.staticmania.com/r/avatar-reveal.json"
   ],
   "files": [
     {

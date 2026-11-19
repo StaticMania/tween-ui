@@ -5,7 +5,7 @@
   "title": "Pricing Usage Slider Demo",
   "description": "Usage examples for Pricing Usage Slider.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/pricing-usage-slider.json"
+    "https://tween-ui.staticmania.com/r/pricing-usage-slider.json"
   ],
   "files": [
     {

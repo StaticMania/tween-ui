@@ -5,7 +5,7 @@
   "title": "Loader Iris Ring Demo",
   "description": "Usage examples for Loader Iris Ring.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/loader-iris-ring.json"
+    "https://tween-ui.staticmania.com/r/loader-iris-ring.json"
   ],
   "files": [
     {

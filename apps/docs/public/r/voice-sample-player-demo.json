@@ -5,7 +5,7 @@
   "title": "Voice Sample Player Demo",
   "description": "Usage examples for Voice Sample Player.",
   "registryDependencies": [
-    "https://tween-ui.vercel.app/r/voice-sample-player.json"
+    "https://tween-ui.staticmania.com/r/voice-sample-player.json"
   ],
   "files": [
     {

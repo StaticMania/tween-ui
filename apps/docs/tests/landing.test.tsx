@@ -28,7 +28,7 @@ vi.mock('docora', () => ({
   ThemeToggle: () => null,
   useSearch: () => ({ setOpen: setSearchOpen }),
   useDocsConfig: () => ({
-    site: { name: 'Tween UI', url: 'https://tween-ui.vercel.app' },
+    site: { name: 'Tween UI', url: 'https://tween-ui.staticmania.com' },
     github: { url: 'https://github.com/StaticMania/tween-ui' },
   }),
 }));
