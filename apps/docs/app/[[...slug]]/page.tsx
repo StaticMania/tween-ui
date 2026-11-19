@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { compileMdxFile, createPageMetadata, DocsPage, DocsPager, LandingLayout } from 'docora';
+import { compileMdxFile, DocsPage, DocsPager, LandingLayout } from 'docora';
 import { LandingPage } from '@/components/landing/landing-page';
 import { DocsShell } from '@/components/layout/docs-shell';
 import { mdxComponents } from '@/components/mdx/registry-components';
 import docsConfig from '@/docs.config';
 import { fetchStarCount } from '@/lib/github';
 import {
+  docPageMetadata,
   registryEntryForSlug,
   registryJsonLd,
   registryPageMetadata,
@@ -37,9 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!page) return {};
 
   const entry = registryEntryForSlug(slug);
-  return entry
-    ? registryPageMetadata(entry, page)
-    : createPageMetadata({ config: docsConfig, page });
+  return entry ? registryPageMetadata(entry, page) : docPageMetadata(page);
 }
 
 const Page = async ({ params }: PageProps) => {

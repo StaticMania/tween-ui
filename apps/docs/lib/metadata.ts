@@ -3,6 +3,7 @@ import { createPageMetadata, createRootMetadata } from 'docora';
 import { siteConfig } from '@/config/site';
 import docsConfig from '@/docs.config';
 import { buildOgImageUrl } from '@/lib/og-image/og-image-params';
+import { OG_IMAGE_SIZE } from '@/lib/og-image/og-theme';
 import { getEntry, hrefFor } from '@/registry/index';
 import type { RegistryEntry } from '@/registry/schema';
 
@@ -68,8 +69,13 @@ export function registryKeywords(entry: RegistryEntry): string[] {
 
 /** Site-wide defaults for the root layout: docora's base plus icons and crawl rules. */
 export function rootMetadata(): Metadata {
+  const base = createRootMetadata(docsConfig);
+  const ogImage = buildOgImageUrl('/');
+
   return {
-    ...createRootMetadata(docsConfig),
+    ...base,
+    openGraph: { ...base.openGraph, images: [{ url: ogImage, ...OG_IMAGE_SIZE }] },
+    twitter: { ...base.twitter, images: [ogImage] },
     applicationName: siteConfig.name,
     keywords: [...siteConfig.keywords],
     authors: [{ name: siteConfig.name, url: siteConfig.links.github }],
@@ -114,7 +120,7 @@ export function registryPageMetadata(
   const base = createPageMetadata({ config: docsConfig, page });
   const description = clampDescription(entry.description);
   const title = `${entry.title} — Animated React ${kindLabel(entry)}`;
-  const ogImage = buildOgImageUrl({ title: entry.title, description, kind: entry.type });
+  const ogImage = buildOgImageUrl(hrefFor(entry));
 
   return {
     ...base,
@@ -127,7 +133,7 @@ export function registryPageMetadata(
       title,
       description,
       url: absolute(hrefFor(entry)),
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      images: [{ url: ogImage, ...OG_IMAGE_SIZE, alt: title }],
     },
     twitter: {
       ...base.twitter,
@@ -135,6 +141,18 @@ export function registryPageMetadata(
       description,
       images: [ogImage],
     },
+  };
+}
+
+/** Metadata for a plain docs page, pointing its share image at the prebuilt PNG. */
+export function docPageMetadata(page: Parameters<typeof createPageMetadata>[0]['page']): Metadata {
+  const base = createPageMetadata({ config: docsConfig, page });
+  const ogImage = buildOgImageUrl(page?.path ?? '/');
+
+  return {
+    ...base,
+    openGraph: { ...base.openGraph, images: [{ url: ogImage, ...OG_IMAGE_SIZE }] },
+    twitter: { ...base.twitter, images: [ogImage] },
   };
 }
 

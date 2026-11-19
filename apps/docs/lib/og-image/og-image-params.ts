@@ -10,25 +10,31 @@ export type OgImageParams = Readonly<{
 
 const TITLE_LIMIT = 60;
 const DESCRIPTION_LIMIT = 130;
-const OG_IMAGE_PATH = '/og';
+const OG_IMAGE_DIR = '/og';
 
-export function parseOgImageParams(searchParams: URLSearchParams): OgImageParams {
-  const kind = searchParams.get('kind');
-
+export function toOgImageParams({
+  title,
+  description,
+  kind,
+}: {
+  title?: string;
+  description?: string;
+  kind?: string;
+}): OgImageParams {
   return {
-    title: clampText(searchParams.get('title') ?? siteConfig.name, TITLE_LIMIT),
-    description: clampText(
-      searchParams.get('description') ?? siteConfig.description,
-      DESCRIPTION_LIMIT
-    ),
+    title: clampText(title ?? siteConfig.name, TITLE_LIMIT),
+    description: clampText(description ?? siteConfig.description, DESCRIPTION_LIMIT),
     kind: kind === 'component' || kind === 'block' ? kind : undefined,
   };
 }
 
-export function buildOgImageUrl({ title, description, kind }: OgImageParams): string {
-  const query = new URLSearchParams({ title, description });
-  if (kind) query.set('kind', kind);
-  return new URL(`${OG_IMAGE_PATH}?${query.toString()}`, siteConfig.url).toString();
+export function ogImagePath(pagePath: string): string {
+  const slug = pagePath.replace(/^\/+|\/+$/g, '') || 'index';
+  return `${OG_IMAGE_DIR}/${slug}.png`;
+}
+
+export function buildOgImageUrl(pagePath: string): string {
+  return new URL(ogImagePath(pagePath), siteConfig.url).toString();
 }
 
 export function isSiteTitle(title: string): boolean {

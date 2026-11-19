@@ -3,7 +3,6 @@ node_modules
 out
 dist
 .turbo
-.vercel
 .open-next
 .wrangler
 pnpm-lock.yaml
