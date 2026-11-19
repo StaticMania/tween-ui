@@ -69,9 +69,11 @@ describe('registryPageMetadata', () => {
     });
     expect(metadata.twitter).toMatchObject({ card: 'summary_large_image' });
     expect(JSON.stringify(metadata.openGraph?.images)).toContain(
-      'https://tween-ui.staticmania.com/og?title=Grid+Cascade'
+      'https://tween-ui.staticmania.com/og/block/grid-cascade.png'
     );
-    expect(JSON.stringify(metadata.openGraph?.images)).toContain('kind=block');
+    expect(metadata.twitter).toMatchObject({
+      images: ['https://tween-ui.staticmania.com/og/block/grid-cascade.png'],
+    });
     expect(metadata.alternates?.canonical).toBe(
       'https://tween-ui.staticmania.com/block/grid-cascade'
     );
@@ -97,6 +99,13 @@ describe('previewMetadata', () => {
 });
 
 describe('rootMetadata', () => {
+  it('points the share image at the prebuilt home PNG', () => {
+    const metadata = rootMetadata();
+    expect(JSON.stringify(metadata.openGraph?.images)).toContain(
+      'https://tween-ui.staticmania.com/og/index.png'
+    );
+  });
+
   it('declares the icon set and manifest', () => {
     const metadata = rootMetadata();
     expect(metadata.manifest).toBe('/site.webmanifest');

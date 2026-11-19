@@ -1,10 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { siteConfig } from '@/config/site';
-import { buildOgImageUrl, isSiteTitle, parseOgImageParams } from '@/lib/og-image/og-image-params';
+import {
+  buildOgImageUrl,
+  isSiteTitle,
+  ogImagePath,
+  toOgImageParams,
+} from '@/lib/og-image/og-image-params';
 
-describe('parseOgImageParams', () => {
+describe('toOgImageParams', () => {
   it('falls back to the site name and description', () => {
-    const params = parseOgImageParams(new URLSearchParams());
+    const params = toOgImageParams({});
     expect(params).toEqual({
       title: siteConfig.name,
       description: siteConfig.description,
@@ -14,15 +19,13 @@ describe('parseOgImageParams', () => {
   });
 
   it('accepts only known kinds', () => {
-    expect(parseOgImageParams(new URLSearchParams('kind=block')).kind).toBe('block');
-    expect(parseOgImageParams(new URLSearchParams('kind=component')).kind).toBe('component');
-    expect(parseOgImageParams(new URLSearchParams('kind=<script>')).kind).toBeUndefined();
+    expect(toOgImageParams({ kind: 'block' }).kind).toBe('block');
+    expect(toOgImageParams({ kind: 'component' }).kind).toBe('component');
+    expect(toOgImageParams({ kind: '<script>' }).kind).toBeUndefined();
   });
 
   it('clamps long text at a word boundary', () => {
-    const params = parseOgImageParams(
-      new URLSearchParams({ title: 'word '.repeat(40), description: 'word '.repeat(80) })
-    );
+    const params = toOgImageParams({ title: 'word '.repeat(40), description: 'word '.repeat(80) });
     expect(params.title.length).toBeLessThanOrEqual(60);
     expect(params.description.length).toBeLessThanOrEqual(130);
     expect(params.description.endsWith('…')).toBe(true);
@@ -30,16 +33,11 @@ describe('parseOgImageParams', () => {
 });
 
 describe('buildOgImageUrl', () => {
-  it('round-trips through the parser on the site origin', () => {
-    const url = new URL(
-      buildOgImageUrl({ title: 'Grid Cascade', description: 'Cards fall in.', kind: 'block' })
+  it('maps a page path to its prebuilt PNG on the site origin', () => {
+    expect(buildOgImageUrl('/block/grid-cascade')).toBe(
+      new URL('/og/block/grid-cascade.png', siteConfig.url).toString()
     );
-    expect(url.origin).toBe(new URL(siteConfig.url).origin);
-    expect(url.pathname).toBe('/og');
-    expect(parseOgImageParams(url.searchParams)).toEqual({
-      title: 'Grid Cascade',
-      description: 'Cards fall in.',
-      kind: 'block',
-    });
+    expect(ogImagePath('/')).toBe('/og/index.png');
+    expect(ogImagePath('/installation/setup-guide/')).toBe('/og/installation/setup-guide.png');
   });
 });
