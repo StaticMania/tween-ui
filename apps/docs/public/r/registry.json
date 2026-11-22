@@ -756,6 +756,34 @@
       ]
     },
     {
+      "name": "password-strength",
+      "type": "registry:ui",
+      "title": "Password Strength",
+      "description": "A password field with a four-bar strength meter. The bars fill one after another and shift from red to teal as the password gets stronger, the strength word rolls in, and each requirement draws a check when it is met. The eye blinks and draws a slash across itself to show or hide the password.",
+      "files": [
+        {
+          "path": "components/tweenui/password-strength.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "password-strength-demo",
+      "type": "registry:example",
+      "title": "Password Strength Demo",
+      "description": "Usage examples for Password Strength.",
+      "files": [
+        {
+          "path": "examples/password-strength-demo.tsx",
+          "type": "registry:example"
+        },
+        {
+          "path": "examples/password-strength-demo-2.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "pricing-plan-switch",
       "type": "registry:block",
       "title": "Pricing Plan Switch",
