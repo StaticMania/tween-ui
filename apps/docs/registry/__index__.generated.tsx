@@ -49,6 +49,7 @@ export const demos: Record<string, ComponentType> = {
   'elastic-slider:default': dynamic(() => import('./demos/elastic-slider')),
   'package-command:default': dynamic(() => import('./demos/package-command')),
   'ink-stroke-button:default': dynamic(() => import('./demos/ink-stroke-button')),
+  'password-strength:default': dynamic(() => import('./demos/password-strength')),
   'pricing-plan-switch:default': dynamic(() => import('./demos/pricing-plan-switch')),
   'process-card-reveal:default': dynamic(() => import('./demos/process-card-reveal')),
   'process-sticky-steps:default': dynamic(() => import('./demos/process-sticky-steps')),

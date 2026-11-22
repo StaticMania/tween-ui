@@ -1218,4 +1218,41 @@ export default function Example() {
 }`,
     },
   },
+  {
+    name: 'password-strength',
+    type: 'component',
+    addedAt: '2026-11-22',
+    title: 'Password Strength',
+    description:
+      'A password field with a four-bar strength meter. The bars fill one after another and shift from red to teal as the password gets stronger, the strength word rolls in, and each requirement draws a check when it is met. The eye blinks and draws a slash across itself to show or hide the password.',
+    media: {},
+    dependencies: ['gsap', '@gsap/react'],
+    registryDependencies: [],
+    cssVars: {},
+    files: [
+      {
+        path: 'registry/tweenui/password-strength.tsx',
+        target: 'components/tweenui/password-strength.tsx',
+        kind: 'react',
+      },
+    ],
+    variants: [
+      {
+        id: 'default',
+        label: 'Default',
+        reactSource: 'registry/tweenui/password-strength.tsx',
+      },
+    ],
+    usage: {
+      react: `import PasswordStrength from '@/components/tweenui/password-strength';
+
+export default function Example() {
+  return (
+    <form>
+      <PasswordStrength />
+    </form>
+  );
+}`,
+    },
+  },
 ];
